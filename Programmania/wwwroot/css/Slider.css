@@ -1,0 +1,54 @@
+@font-face{
+    font-family: 'mainFont';
+    src: url("../Fonts/Font2.ttf");
+}
+
+.image-slider{
+    padding: 30px 0 70px 0;
+    margin: 50px 200px;
+}
+
+.image-slider-image{
+    text-align: center;
+}
+
+.image-slider-image img{
+    max-width:35%;
+}
+
+.image-slider .swiper-button-prev::after,
+.image-slider .swiper-button-next::after {
+    color: #19006d;
+    font-size: 80px;
+}
+
+.image-slider .swiper-scrollbar-drag{
+    cursor: pointer;
+    background-color: #19006d;
+}
+
+.swiper-pagination{
+    margin-bottom:-50px;
+}
+
+
+.image-slider-image h1{
+    font-family: 'mainFont';
+    font-weight: bold;
+}
+
+#coursesHeader{
+    color: #0300a0;
+}
+
+#codeHeader{
+    color: #5800a0;
+}
+
+#testsHeader{
+    color: #00344d;
+}
+
+#progressHeader{
+    color: #0053a0;
+}
