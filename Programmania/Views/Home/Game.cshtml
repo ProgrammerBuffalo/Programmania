@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="../Styles/game.css">
+    <link rel="stylesheet" href="../Styles/circle.css">
+    <link rel="stylesheet" href="../Styles/firecircle.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" src="../Scripts/circle.js"></script>
+    <link rel="stylesheet"
+          href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.1.0/build/styles/default.min.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.1.0/build/highlight.min.js"></script>
+
+</head>
+
+<body>
+    <div class="content">
+        <div class="players">
+            <div class="player">
+                <div class="player__avatar">
+                    <img src="../Images/avatarImg.png" alt="">
+                </div>
+
+                <div class="player__level">
+                    <h3>Level: 5</h3>
+                </div>
+
+                <div class="player__questionsCount">
+                    <h3>Correct answers: 2</h3>
+                </div>
+            </div>
+
+            <div class="player">
+                <div class="player__avatar">
+                    <img src="../Images/avatarImg.png" alt="">
+                </div>
+
+                <div class="player__level">
+                    <h3>Level: 10</h3>
+                </div>
+
+                <div class="player__questionsCount">
+                    <h3>Correct answers: 5</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question__main">
+                <div class="question__main__text">
+                    <h3>Lorem ipsum dolor, sit amet consectetur, adipisicing elit. Libero consequuntur tempora eveniet atque, dicta quod est animi doloribus, vero asperiores tempore deserunt minima corrupti delectus voluptatem exercitationem velit saepe nam?</h3>
+                </div>
+
+                <div class="question__timer">
+                    <div class="circlebar"
+                         data-circle-startTime=0
+                         data-circle-maxTime="30"
+                         data-circle-dialWidth=15
+                         data-circle-size="150px"
+                         data-circle-type="timer"
+                         data-circle-skin="fire">
+                        <div class="loader-bg">
+                            <div class="text">00:00:00</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="question__answers">
+                <div class="answer answer_1">Answer 1</div>
+                <div class="answer answer_2">Answer 2</div>
+                <div class="answer answer_3">Answer 3</div>
+                <div class="answer answer_4">Answer 4</div>
+            </div>
+        </div>
+
+        <div class="question">
+            <div class="question__main">
+                <div class="question__main__text">
+                    <h3>Lorem ipsum dolor, sit amet consectetur, adipisicing elit. Libero consequuntur tempora eveniet atque, dicta quod est animi doloribus, vero asperiores tempore deserunt minima corrupti delectus voluptatem exercitationem velit saepe nam?</h3>
+                </div>
+
+                <div class="question__timer">
+                    <div class="circlebar"
+                         data-circle-startTime=0
+                         data-circle-maxTime="30"
+                         data-circle-dialWidth=15
+                         data-circle-size="150px"
+                         data-circle-type="timer"
+                         data-circle-skin="fire">
+                        <div class="loader-bg">
+                            <div class="text">00:00:00</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="question__answers">
+                <div class="answer answer__true">True</div>
+                <div class="answer answer__false">False</div>
+            </div>
+        </div>
+
+        <div class="draggableQuestion">
+            <div class="draggableQuestion__left">
+                <div class="draggableQuestion__left__part"></div>
+                <div class="draggableQuestion__left__part"></div>
+                <div class="draggableQuestion__left__part"></div>
+            </div>
+
+            <div class="draggableQuestion__right">
+                <div class="draggableQuestion__right__part">
+                    <pre>
+                    <code class="hljs java">
+      					public class Main {
+        						public static void main(String[] args) {
+
+        						}
+      					}
+    					</code>
+  					</pre>
+                </div>
+                <div class="draggableQuestion__right__part"></div>
+                <div class="draggableQuestion__right__part"></div>
+            </div>
+        </div>
+</body>
+</html>
