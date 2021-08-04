@@ -1,4 +1,5 @@
-new Swiper('.image-slider',{
+new Swiper('.image-slider', {
+    autoHeight: true,
     navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
@@ -7,7 +8,7 @@ new Swiper('.image-slider',{
         el: '.swiper-pagination',
         type: 'fraction',
 
-        renderFraction: function (currClass, totalClass){
+        renderFraction: function (currClass, totalClass) {
             return '<span class="' + currClass + '"></span>' + '/' + '<span class="' + totalClass + '"></span>'
         }
     },
