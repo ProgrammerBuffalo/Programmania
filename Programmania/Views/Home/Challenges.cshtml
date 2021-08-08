@@ -5,8 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"></script>
+
     <link rel="stylesheet" href="~/css/Challenges.css">
-    <link rel="stylesheet" href="~/css/HamburgerMenu.css">
+    <link rel="stylesheet" href="../css/HamburgerMenu.css">
+
+
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
@@ -51,32 +56,90 @@
 
     <main>
         <div class="content">
-            <div class="challengeItem">
-                <div class="challengeItem__user">
-                    <div class="challengeItem__user__image">
-                        <img src="../Images/avatarImg.png" alt="">
+            <div class="main">
+                <div class="row">
+                    <div class="col-md-8 mt-1">
+                        <div class="card fixedCard">
+                            <h3 class="titleText">Games history</h3>
+
+                            <div class="card-body">
+                                <div class="gameResult">
+                                    <button type="button" class="gameResult__btn gameResult__btn__win">Win 02.08.2021</button>
+                                    <div class="gameResult__content">
+                                        <h3>Questions: 20</h3>
+                                        <h3>Correct answers: 13</h3>
+                                        <h3>Earn XP: 3000</h3>
+                                        <h3>Difficult: hard</h3>
+                                        <h3>Discipline: multithreading</h3>
+                                    </div>
+                                </div>
+
+
+                                <div class="gameResult">
+                                    <button type="button" class="gameResult__btn gameResult__btn__lose">Lose 02.08.2021</button>
+                                    <div class="gameResult__content">
+                                        <h3>Questions: 20</h3>
+                                        <h3>Correct answers: 13</h3>
+                                        <h3>Earn XP: 3000</h3>
+                                        <h3>Difficult: hard</h3>
+                                        <h3>Discipline: multithreading</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="challengeItem__user__info">
-                        <h3>Level: 15</h3>
+                    <div class="col-md-4 mt-1">
+                        <div class="card">
+                            <h3 class="titleText">Personal states</h3>
+                            <div class="card-body">
+                                <div class="personalStates">
+                                    <h3>Games: 30</h3>
+                                    <h3>Wins: 21</h3>
+                                    <h3>Defeats: 9</h3>
+                                    <h3>XP earned: 35734</h3>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="card">
+                        <h3 class="titleText">Games</h3>
+                        <div class="card-body">
+
+                        </div>
                     </div>
                 </div>
 
-                <div class="challengeItem__info">
-                    <h3>Subject: C#</h3>
-                    <h3>Questions: 10</h3>
-                    <h3>Difficulty: medium</h3>
-                    <h3>Reward: 300XP</h3>
-                </div>
 
-                <a href="#" class="challengeItem__button">
-                    <span class="challengeItem__button__text">Play</span>
-                    <span class="challengeItem__button__waves"></span>
-                </a>
+
             </div>
         </div>
+
     </main>
 
     <script type="text/javascript" src="~/js/burger.js"></script>
+
+    <script type="text/javascript">
+        var coll = document.getElementsByClassName("gameResult__btn");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener('click', function () {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                }
+                else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            })
+        }
+    </script>
 </body>
 </html>

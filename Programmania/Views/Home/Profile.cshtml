@@ -19,7 +19,7 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
-    <script type="text/javascript" src="../Scripts/jQuery-plugin-progressbar.js"></script>
+    <script type="text/javascript" src="~/js/jQuery-plugin-progressbar.js"></script>
 </head>
 
 <body>
@@ -105,6 +105,10 @@
                                         23
                                     </div>
                                 </div>
+                                <hr>
+                                <div class="row">
+                                    <button type="button" class="btn btn-success" id="changeAvatarBtn">Change Avatar</button>
+                                </div>
                             </div>
                         </div>
 
@@ -128,160 +132,211 @@
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="card mb-3 content activity">
-                        <h1 class="m-3 titleText">Courses</h1>
-                        <div class="card-body">
-                            <div class="coursesList">
-                                <a href="#">
-                                    <div class="coursesList__item">
-                                        <div class="coursesList__item__hover">
-                                            <div class="coursesList__item__hover__body">
-                                                <h3>Lessons count: 23</h3>
-                                                <h3>Progress: 12%</h3>
-                                                <h3>Completed lessons: 5/23</h3>
-                                                <h3>People opened this course: 130</h3>
-                                                <h3>Earn XP: 3000</h3>
-                                            </div>
-                                        </div>
 
-                                        <div class="coursesList__item__image">
-                                            <img src="../Images/JavaLogo.png" alt="">
-                                        </div>
-
-                                        <div class="coursesList__item__body">
-                                            <h3 class="coursesList__item__body__header">Java Course</h3>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <a href="#">
-                                    <div class="coursesList__item">
-                                        <div class="coursesList__item__hover">
-                                            <div class="coursesList__item__hover__body">
-                                                <h3>Lessons count: 23</h3>
-                                                <h3>Progress: 12%</h3>
-                                                <h3>Completed lessons: 5/23</h3>
-                                                <h3>People opened this course: 130</h3>
-                                                <h3>Earn XP: 3000</h3>
-                                            </div>
-                                        </div>
-
-                                        <div class="coursesList__item__image">
-                                            <img src="../Images/JSLogo.png" alt="">
-                                        </div>
-
-                                        <div class="coursesList__item__body">
-                                            <h3 class="coursesList__item__body__header">Java Script</h3>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <a href="#">
-                                    <div class="coursesList__item">
-                                        <div class="coursesList__item__hover">
-                                            <div class="coursesList__item__hover__body">
-                                                <h3>Lessons count: 23</h3>
-                                                <h3>Progress: 12%</h3>
-                                                <h3>Completed lessons: 5/23</h3>
-                                                <h3>People opened this course: 130</h3>
-                                                <h3>Earn XP: 3000</h3>
-                                            </div>
-                                        </div>
-
-                                        <div class="coursesList__item__image">
-                                            <img src="../Images/PHPLogo.png" alt="">
-                                        </div>
-
-                                        <div class="coursesList__item__body">
-                                            <h3 class="coursesList__item__body__header">PHP Course</h3>
-                                        </div>
-                                    </div>
-                                </a>
+                <div class="row">
+                    <div class="col-md-4 mt-1">
+                        <div class="card fixedCard">
+                            <h1 class="titleText">
+                                Games
+                            </h1>
+                            <div class="card-body">
+                                <ul class="gamesList">
+                                    <li class="winElement">08.08.2021 WIN</li>
+                                    <li class="loseElement">07.08.2021 LOSE</li>
+                                    <li class="winElement">07.08.2021 WIN</li>
+                                    <li class="winElement">06.08.2021 WIN</li>
+                                    <li class="loseElement">06.08.2021 LOSE</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
 
-
-
-                    <div class="card mb-3 content activity">
-                        <h1 class="m-3 titleText">Codes</h1>
-                        <div class="card-body">
-                            <div class="code">
-                                <div class="code__header">
-                                    <h3 href="#">C# Exceptions</h3>
+                    <div class="col-md-8 mt-1">
+                        <div class="card fixedCard">
+                            <h1 class="titleText">
+                                Posts
+                            </h1>
+                            <div class="card-body ">
+                                <div class="newsItem__title">
+                                    <a href="" class="newsItem__title__body">Example</a>
                                 </div>
 
-                                <div class="code__content">
-                                    <pre>
-                                    <code class="language-c#">
-											using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Lesson_7__Exceptions_
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            int number_1 = 1;
-            int number_2 = 0;
-            try
-            {
-                int res = number_1 / number_2;
-            }
-            //Фильтрация исключений
-            catch(Exception ex) when (number_1 == 0)
-            {
-                Console.WriteLine("Number 1 mustn't be zero");
-            }
-            catch(Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            finally
-            {
-                Console.WriteLine("End of program");
-            }
-
-
-            User user = new User("John", "123");
-            string login = "John";
-            string pass = "234";
-
-            if (user.Login == login && user.Password == pass)
-            {
-                Console.WriteLine("User logged in");
-            }
-            else
-            {
-                UserException userException = new UserException("Login failed", DateTime.Now);   
-                throw userException;
-            }
-
-
-            
-        }
-    }
-}
-
-										</code>
-									</pre>
-
+                                <div class="newsItem__description">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, voluptate, cum? Asperiores eaque sunt iure ut quos sapiente amet mollitia optio, pariatur repudiandae repellat illum, ex deleniti, non. Ducimus, minima!</p>
                                 </div>
+
+                                <div class="newsItem__image">
+                                    <img src="../Images/courseSlider.jpg" alt="">
+                                </div>
+
+                                <a href="" class="newsItem__button">
+                                    <span class="newsItem__button__text">View more</span>
+                                    <span class="newsItem__button__waves"></span>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
+
+
+                <div class="card mb-3 content activity">
+                    <h1 class="m-3 titleText">Courses</h1>
+                    <div class="card-body">
+                        <div class="coursesList">
+                            <a href="#">
+                                <div class="coursesList__item">
+                                    <div class="coursesList__item__hover">
+                                        <div class="coursesList__item__hover__body">
+                                            <h3>Lessons count: 23</h3>
+                                            <h3>Progress: 12%</h3>
+                                            <h3>Completed lessons: 5/23</h3>
+                                            <h3>People opened this course: 130</h3>
+                                            <h3>Earn XP: 3000</h3>
+                                        </div>
+                                    </div>
+
+                                    <div class="coursesList__item__image">
+                                        <img src="../Images/JavaLogo.png" alt="">
+                                    </div>
+
+                                    <div class="coursesList__item__body">
+                                        <h3 class="coursesList__item__body__header">Java Course</h3>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <a href="#">
+                                <div class="coursesList__item">
+                                    <div class="coursesList__item__hover">
+                                        <div class="coursesList__item__hover__body">
+                                            <h3>Lessons count: 23</h3>
+                                            <h3>Progress: 12%</h3>
+                                            <h3>Completed lessons: 5/23</h3>
+                                            <h3>People opened this course: 130</h3>
+                                            <h3>Earn XP: 3000</h3>
+                                        </div>
+                                    </div>
+
+                                    <div class="coursesList__item__image">
+                                        <img src="../Images/JSLogo.png" alt="">
+                                    </div>
+
+                                    <div class="coursesList__item__body">
+                                        <h3 class="coursesList__item__body__header">Java Script</h3>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <a href="#">
+                                <div class="coursesList__item">
+                                    <div class="coursesList__item__hover">
+                                        <div class="coursesList__item__hover__body">
+                                            <h3>Lessons count: 23</h3>
+                                            <h3>Progress: 12%</h3>
+                                            <h3>Completed lessons: 5/23</h3>
+                                            <h3>People opened this course: 130</h3>
+                                            <h3>Earn XP: 3000</h3>
+                                        </div>
+                                    </div>
+
+                                    <div class="coursesList__item__image">
+                                        <img src="../Images/PHPLogo.png" alt="">
+                                    </div>
+
+                                    <div class="coursesList__item__body">
+                                        <h3 class="coursesList__item__body__header">PHP Course</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="card mb-3 content activity">
+                    <h1 class="m-3 titleText">Codes</h1>
+                    <div class="card-body">
+                        <div class="code">
+                            <div class="code__header">
+                                <h3 href="#">C# Exceptions</h3>
+                            </div>
+
+                            <div class="code__content">
+                                <pre>
+                                <code class="language-c#">
+										using System;
+										using System.Collections.Generic;
+										using System.Linq;
+										using System.Text;
+										using System.Threading.Tasks;
+
+										namespace Lesson_7__Exceptions_
+										{
+											class Program
+											{
+												static void Main(string[] args)
+												{
+													int number_1 = 1;
+													int number_2 = 0;
+													try
+													{
+														int res = number_1 / number_2;
+													}
+													//Фильтрация исключений
+													catch(Exception ex) when (number_1 == 0)
+													{
+														Console.WriteLine("Number 1 mustn't be zero");
+													}
+													catch(Exception ex)
+													{
+														Console.WriteLine(ex.Message);
+													}
+													finally
+													{
+														Console.WriteLine("End of program");
+													}
+
+
+													User user = new User("John", "123");
+													string login = "John";
+													string pass = "234";
+
+													if (user.Login == login && user.Password == pass)
+													{
+														Console.WriteLine("User logged in");
+													}
+													else
+													{
+														UserException userException = new UserException("Login failed", DateTime.Now);   
+														throw userException;
+													}
+
+
+													
+												}
+											}
+										}
+
+									</code>
+								</pre>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
             </div>
         </div>
     </main>
     <script type="text/javascript" src="~/js/adaptiveProfile.js"></script>
     <script type="text/javascript" src="~/js/burger.js"></script>
-
+    <script type="text/javascript" src="~/js/changeAvatar.js"></script>
 
 </body>
 </html>

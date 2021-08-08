@@ -1,76 +1,76 @@
 /*Обнуление*/
 
-*{
-    padding: 0;
-    margin: 0;
-    border: 0;
+* {
+	padding: 0;
+	margin: 0;
+	border: 0;
 }
 
-*,*:before,*:after{
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
+	*, *:before, *:after {
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+
+:focus, :active {
+	outline: none;
 }
 
-:focus, :active{
-    outline: none;
+a:focus, a:active {
+	outline: none;
 }
 
-a:focus, a:active{
-    outline: none;
+nav, footer, header, aside {
+	display: block;
 }
 
-nav,footer,header,aside{
-    display: block;
+html, body {
+	height: 100%;
+	width: 100%;
+	font-size: 100%;
+	line-height: 1;
+	font-size: 14px;
+	-ms-text-size-adjust: 100%;
+	-moz-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
 }
 
-html,body{
-    height: 100%;
-    width: 100%;
-    font-size: 100%;
-    line-height: 1;
-    font-size: 14px;
-    -ms-text-size-adjust: 100%;
-    -moz-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%;
+input, button, textarea {
+	font-family: inherit;
 }
 
-input,button,textarea{
-    font-family: inherit;
+	input::-ms-clear {
+		display: none;
+	}
+
+button {
+	cursor: pointer;
 }
 
-input::-ms-clear{
-    display: none;
+	button::-moz-focus-inner {
+		padding: 0;
+		border: 0;
+	}
+
+a, a:visited {
+	text-decoration: none;
 }
 
-button{
-    cursor: pointer;
+	a:hover {
+		text-decoration: none;
+	}
+
+ul-li {
+	list-style: none;
 }
 
-button::-moz-focus-inner{
-    padding: 0;
-    border: 0;
+img {
+	vertical-align: top;
 }
 
-a, a:visited{
-    text-decoration: none;
-}
-
-a:hover{
-    text-decoration: none;
-}
-
-ul-li{
-    list-style: none;
-}
-
-img{
-    vertical-align: top;
-}
-
-h1,h2,h3,h4,h5,h6{
-    font-size: inherit;
-    font-weight: 400;
+h1, h2, h3, h4, h5, h6 {
+	font-size: inherit;
+	font-weight: 400;
 }
 
 
@@ -86,7 +86,6 @@ h1,h2,h3,h4,h5,h6{
 	-o-display: flex;
 	-ms-display: flex;
 	-webkit-display: flex;
-
 	flex-direction: row;
 	flex-wrap: nowrap;
 	justify-content: space-around;
@@ -97,16 +96,13 @@ h1,h2,h3,h4,h5,h6{
 .player {
 	min-height: 300px;
 	min-width: 100px;
-
 	width: 500px;
 	height: 400px;
-
 	display: flex;
 	-moz-display: flex;
 	-o-display: flex;
 	-ms-display: flex;
 	-webkit-display: flex;
-	
 	flex-direction: column;
 	flex: 0 1 auto;
 	background-color: #2b0053;
@@ -116,9 +112,9 @@ h1,h2,h3,h4,h5,h6{
 	padding: 10px;
 }
 
-.player:first-child{
-	margin: 0;
-}
+	.player:first-child {
+		margin: 0;
+	}
 
 .player__avatar {
 	width: 200px;
@@ -128,18 +124,18 @@ h1,h2,h3,h4,h5,h6{
 	margin: 0 auto;
 }
 
-.player__avatar img{
-	max-width: 100%;
-	display: block;
-}
+	.player__avatar img {
+		max-width: 100%;
+		display: block;
+	}
 
 .player__level, .player__questionsCount {
 	font-family: "mainFont";
-    color: #ffd45f;
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    font-size: 30px;
+	color: #ffd45f;
+	position: relative;
+	z-index: 1;
+	text-align: center;
+	font-size: 30px;
 }
 
 .player__questionsCount {
@@ -152,11 +148,8 @@ h1,h2,h3,h4,h5,h6{
 	margin-top: 50px;
 	width: 100%;
 	height: 100%;
-
 	background-color: #2b0053;
 	border-radius: 40px;
-
-	
 }
 
 .question__main {
@@ -167,19 +160,19 @@ h1,h2,h3,h4,h5,h6{
 	-o-display: flex;
 	-ms-display: flex;
 	-webkit-display: flex;
-
 	flex-direction: row;
+	flex-wrap: wrap;
 	justify-content: space-around;
 }
 
-.question__main__text h3{
+.question__main__text h3 {
 	font-family: "mainFont";
-    color: #ffd45f;
-    position: relative;
-    width: 700px;
-    z-index: 1;
-    text-align: center;
-    font-size: 30px;
+	color: #ffd45f;
+	position: relative;
+	width: 700px;
+	z-index: 1;
+	text-align: center;
+	font-size: calc(20px + 10 * (100vw / 1600));
 }
 
 .question__answers {
@@ -188,7 +181,6 @@ h1,h2,h3,h4,h5,h6{
 	-o-display: flex;
 	-ms-display: flex;
 	-webkit-display: flex;
-
 	flex-direction: row;
 	justify-content: space-around;
 	flex: 0 1 auto;
@@ -196,7 +188,7 @@ h1,h2,h3,h4,h5,h6{
 	padding: 30px;
 }
 
-.answer{
+.answer {
 	border-radius: 40px;
 	width: 500px;
 	height: 100px;
@@ -209,56 +201,138 @@ h1,h2,h3,h4,h5,h6{
 
 
 
-.answer:nth-child(1){
+.answer_1 {
 	background-color: #e8e400;
 	margin-left: 0;
 }
 
-.answer:nth-child(2){
+.answer_2 {
 	background-color: #00c417;
 }
 
-.answer:nth-child(3){
+.answer_3 {
 	background-color: #001dc4;
 	margin-left: 0;
 	margin-top: 50px;
-
 }
 
-.answer:nth-child(4){
+.answer_4 {
 	background-color: #c21000;
 	margin-top: 50px;
 }
 
+.answer__true {
+	background-color: #00c417;
+}
 
-@media(max-width: 750px) {
-	.player__level, .player__questionsCount{
+.answer__false {
+	background-color: #c21000;
+}
+
+.draggableQuestion {
+	margin-top: 50px;
+	width: 100%;
+	height: 100%;
+	padding: 50px;
+	background-color: #2b0053;
+	border-radius: 40px;
+	display: flex;
+	-o-display: flex;
+	-webkit-display: flex;
+	-moz-display: flex;
+	-ms-display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.draggableQuestion__left {
+	display: flex;
+	-o-display: flex;
+	-webkit-display: flex;
+	-moz-display: flex;
+	-ms-display: flex;
+	flex-direction: column;
+	flex: 1 1 auto;
+	flex-wrap: nowrap;
+}
+
+.draggableQuestion__left__part {
+	margin-top: 50px;
+	max-width: 700px;
+	border-radius: 40px;
+	height: 100px;
+	background-color: #ffd45f;
+}
+
+.draggableQuestion__right {
+	display: flex;
+	-o-display: flex;
+	-webkit-display: flex;
+	-moz-display: flex;
+	-ms-display: flex;
+	flex-direction: column;
+	flex: 1 1 auto;
+	flex-wrap: nowrap;
+}
+
+.draggableQuestion__right__part {
+	margin-top: 50px;
+	max-width: 700px;
+	border-radius: 40px;
+}
+
+@media(max-width: 1280px) {
+	.answer {
+		margin: 0;
+		margin-top: 50px;
+	}
+
+	.answer_1 {
+		margin-top: 0;
+	}
+}
+
+@media(max-width: 1008px) {
+	.question__timer {
+		margin-top: 20px;
+	}
+}
+
+@media(max-width: 800px) {
+	.question__main__text h3 {
+		width: auto;
+	}
+}
+
+
+@media(max-width: 767px) {
+	.player__level, .player__questionsCount {
 		font-size: 20px;
 	}
 
-	.player__avatar{
+	.player__avatar {
 		width: 100px;
 		height: 100px;
 	}
 
-	.content{
+	.content {
 		padding: 50px;
 	}
 }
 
 @media(max-width: 450px) {
-	.content{
+	.content {
 		padding: 20px;
 		padding-top: 50px;
 	}
 
-	.player{
+	.player {
 		height: 200px;
 	}
 }
 
 @media(max-width: 300px) {
-	.content{
+	.content {
 		padding: 10px;
 		padding-top: 50px;
 	}
