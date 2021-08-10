@@ -1,30 +1,30 @@
 /*Обнуление*/
 
-*{
+* {
     padding: 0;
     margin: 0;
     border: 0;
 }
 
-*,*:before,*:after{
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
+    *, *:before, *:after {
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
 
-:focus, :active{
+:focus, :active {
     outline: none;
 }
 
-a:focus, a:active{
+a:focus, a:active {
     outline: none;
 }
 
-nav,footer,header,aside{
+nav, footer, header, aside {
     display: block;
 }
 
-html,body{
+html, body {
     height: 100%;
     width: 100%;
     font-size: 100%;
@@ -35,40 +35,40 @@ html,body{
     -webkit-text-size-adjust: 100%;
 }
 
-input,button,textarea{
+input, button, textarea {
     font-family: inherit;
 }
 
-input::-ms-clear{
-    display: none;
-}
+    input::-ms-clear {
+        display: none;
+    }
 
-button{
+button {
     cursor: pointer;
 }
 
-button::-moz-focus-inner{
-    padding: 0;
-    border: 0;
-}
+    button::-moz-focus-inner {
+        padding: 0;
+        border: 0;
+    }
 
-a, a:visited{
+a, a:visited {
     text-decoration: none;
 }
 
-a:hover{
-    text-decoration: none;
-}
+    a:hover {
+        text-decoration: none;
+    }
 
-ul-li{
+ul-li {
     list-style: none;
 }
 
-img{
+img {
     vertical-align: top;
 }
 
-h1,h2,h3,h4,h5,h6{
+h1, h2, h3, h4, h5, h6 {
     font-size: inherit;
     font-weight: 400;
 }
@@ -76,12 +76,12 @@ h1,h2,h3,h4,h5,h6{
 
 /*--------------------*/
 
-@font-face{
+@font-face {
     font-family: 'mainFont';
     src: url("../Fonts/Font2.ttf");
 }
 
-.container{
+.container {
     max-width: 1180px;
     margin: 0 auto;
     padding: 0 10px;
@@ -95,16 +95,16 @@ h1,h2,h3,h4,h5,h6{
     z-index: 50;
 }
 
-.header:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #2b0053;
-    z-index: 2;
-}
+    .header:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(60, 2, 117, 0.8);
+        z-index: 2;
+    }
 
 .header__body {
     position: relative;
@@ -124,13 +124,12 @@ h1,h2,h3,h4,h5,h6{
     position: relative;
     z-index: 2;
     margin: 0;
-
 }
 
-.header__list li{
-    list-style: none;
-    margin: 0 0 0 100px;
-}
+    .header__list li {
+        list-style: none;
+        margin: 0 0 0 100px;
+    }
 
 .header__link {
     color: #a1a7ff;
@@ -141,14 +140,15 @@ h1,h2,h3,h4,h5,h6{
     transition: color 0.3s ease 0s;
 }
 
-.header__link:hover{
-    color: #ffd45f;
-}
+    .header__link:hover {
+        color: #ffd45f;
+    }
 
-@media(max-width: 980px) {  
-    body.lock{
+@media(max-width: 980px) {
+    body.lock {
         overflow: hidden;
     }
+
     .header__burger {
         display: block;
         position: relative;
@@ -157,7 +157,7 @@ h1,h2,h3,h4,h5,h6{
         z-index: 3;
     }
 
-    .header__body{
+    .header__body {
         height: 50px;
     }
 
@@ -172,7 +172,7 @@ h1,h2,h3,h4,h5,h6{
         transition: all 0.3s ease 0s;
     }
 
-    .header__burger span{
+    .header__burger span {
         position: absolute;
         background-color: #ffd45f;
         left: 0;
@@ -182,29 +182,29 @@ h1,h2,h3,h4,h5,h6{
         transition: all 0.3s ease 0s;
     }
 
-    .header__burger:before{
+    .header__burger:before {
         top: 0;
     }
 
-    .header__burger:after{
+    .header__burger:after {
         bottom: 0;
     }
 
-    .header__burger.active:before{
+    .header__burger.active:before {
         transform: rotate(45deg);
         top: 9px;
     }
 
-    .header__burger.active:after{
+    .header__burger.active:after {
         transform: rotate(-45deg);
         bottom: 9px;
     }
 
-    .header__burger.active span{
-        transform: scale(0);    
+    .header__burger.active span {
+        transform: scale(0);
     }
 
-    .header__menu{
+    .header__menu {
         position: fixed;
         top: -100%;
         left: 0;
@@ -216,21 +216,20 @@ h1,h2,h3,h4,h5,h6{
         transition: all 0.3s ease 0s;
     }
 
-    .header__menu.active{
-        top: 0;
-    }
+        .header__menu.active {
+            top: 0;
+        }
 
-    .header__list{
+    .header__list {
         display: block;
-
     }
 
-    .header__list li{
-        margin: 50px 0 20px 0;
-        text-align: center;
-    }
+        .header__list li {
+            margin: 50px 0 20px 0;
+            text-align: center;
+        }
 
-    .header__link{
+    .header__link {
         color: #2b0053;
         font-size: 24px;
     }

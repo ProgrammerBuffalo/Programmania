@@ -3,54 +3,126 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../Styles/HamburgerMenu.css" />
+    <link rel="stylesheet" href="~/css/HamburgerMenu.css" />
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="~/css/Main.css">
 </head>
 
 <body>
-    <header>
+    <header class="header">
+        <div class="container">
+            <div class="header__body">
+                <div class="header__burger">
+                    <span></span>
+                </div>
+                <nav class="header__menu">
+                    <ul class="header__list">
+                        <li>
+                            <a href="Main.html" class="header__link">Main</a>
+                        </li>
+
+                        <li>
+                            <a href="Courses.html" class="header__link">Courses</a>
+                        </li>
+
+                        <li>
+                            <a href="Codes.html" class="header__link">Codes</a>
+                        </li>
+
+                        <li>
+                            <a href="Challenges.html" class="header__link">Challenges</a>
+                        </li>
+
+                        <li>
+                            <a href="Profile.html" class="header__link">Profile</a>
+                        </li>
+
+                        <li>
+                            <a href="News.html" class="header__link">News</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
     </header>
 
 
-    <aside>
-        <nav role="navigation">
-            <div id="menuToggle">
-                <input type="checkbox" />
+    <main>
+        <div class="content">
+            <div class="main">
+                <div class="row">
+                    <div class="col-md-6 mt-1 fixedCard">
+                        <div class="card mb-3">
+                            <h1 class="titleText">Leaderboard</h1>
 
-                <span></span>
-                <span></span>
-                <span></span>
 
-                <ul id="menu">
-                    <a href="#">
-                        <img src="../Images/MainImg.png" />
-                    <li>Main</li>
-                    </a>
-                    <a href="#">
-                        <img src="../Images/CoursesImg.png" />
-                    <li>Courses</li>
-                    </a>
-                    <a href="#">
-                        <img src="../Images/NewsImg.png" />
-                    <li>News</li>
-                    </a>
-                    <a href="#">
-                        <img src="../Images/ChallengeImg.png" />
-                    <li>Challenges</li>
-                    </a>
-                    <a href="#">
-                        <img src="../Images/CodesImg.png" />
-                    <li>Codes</li>
-                    </a>
-                    <a href="#">
-                        <img src="../Images/ProfileImg.png" />
-                    <li>Profile</li>
-                    </a>
-                </ul>
+                            <div class="card-body">
+                                <ul class="leaderboard">
+                                    <li><a href="#">1. Andrey Level: 130</a></li>
+                                    <li><a href="#">2. Max Level: 112</a></li>
+                                    <li><a href="#">3. John Level: 98</a></li>
+                                    <li><a href="#">4. Jack Level: 95</a></li>
+                                    <li><a href="#">5. Jim Level: 91</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mt-1 fixedCard">
+                        <div class="card mb-3">
+                            <h1 class="titleText">Position</h1>
+
+
+                            <div class="card-body ">
+                                <ul class="allUsers">
+                                    <li><a href="#">1. Andrey Level: 130</a></li>
+                                    <li><a href="#">2. Max Level: 112</a></li>
+                                    <li><a href="#" class="myPosition">3. John Level: 98</a></li>
+                                    <li><a href="#">4. Jack Level: 95</a></li>
+                                    <li><a href="#">5. Jim Level: 91</a></li>
+                                    <li><a href="#">5. Helen Level: 89</a></li>
+                                    <li><a href="#">5. Chris Level: 87</a></li>
+                                    <li><a href="#">5. Mattew Level: 56</a></li>
+                                    <li><a href="#">5. Marilyn Level: 43</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="card">
+                        <h1 class="titleText">
+                            Top Posts
+                        </h1>
+                        <div class="card-body ">
+                            <div class="newsItem__title">
+                                <a href="" class="newsItem__title__body">Example</a>
+                            </div>
+
+
+                            <div class="newsItem__description">
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, voluptate, cum? Asperiores eaque sunt iure ut quos sapiente amet mollitia optio, pariatur repudiandae repellat illum, ex deleniti, non. Ducimus, minima!</p>
+                            </div>
+
+                            <div class="newsItem__image">
+                                <img src="../Images/courseSlider.jpg" alt="">
+                            </div>
+
+                            <a href="" class="newsItem__button">
+                                <span class="newsItem__button__text">View more</span>
+                                <span class="newsItem__button__waves"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </nav>
-    </aside>
+        </div>
+    </main>
 </body>
+
+<script type="text/javascript" src="~/js/burger.js" />
 </html>

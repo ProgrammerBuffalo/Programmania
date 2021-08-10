@@ -1,89 +1,100 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Post News</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="../Styles/PostNews.css">
+    <link rel="stylesheet" href="~/css/PostNews.css">
+
+    <link rel="stylesheet" href="~/css/highlight styles/default.min.css">
+    <script src="~/js/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
 </head>
 
 <body>
     <div class="content">
+        <div class="main">
+            <div class="row">
+                <div class="card mb-3">
+                    <h1 class="m-3 titleText">Post News</h1>
+                </div>
+                <div class="card-body">
+                    <a href="#" class="return">
+                        &#706;  Return
+                    </a>
+                    <div class="newsBlock">
+                        <div class="newsBlock__settings">
+                            <button type="button" class="newsBlock__settings__btn" data-element="bold">
+                                <abbr title="Bold"><i class="fa fa-bold"></i></abbr>
+                            </button>
 
-        <a href="#" class="return">
-            &#706;  Return
-        </a>
-        <div class="newsBlock">
-            <div class="newsBlock__settings">
-                <button type="button" class="newsBlock__settings__btn" data-element="bold">
-                    <i class="fa fa-bold"></i>
-                </button>
+                            <button type="button" class="newsBlock__settings__btn" data-element="italic">
+                                <abbr title="cursive"><i class="fa fa-italic"></i></abbr>
+                            </button>
 
-                <button type="button" class="newsBlock__settings__btn" data-element="italic">
-                    <i class="fa fa-italic"></i>
-                </button>
+                            <button type="button" class="newsBlock__settings__btn" data-element="underline">
+                                <abbr title="underline"><i class="fa fa-underline"></i></abbr>
+                            </button>
 
-                <button type="button" class="newsBlock__settings__btn" data-element="underline">
-                    <i class="fa fa-underline"></i>
-                </button>
+                            <button type="button" class="newsBlock__settings__btn" data-element="insertUnorderedList">
+                                <abbr title="unordered list"><i class="fa fa-list-ul"></i></abbr>
+                            </button>
 
-                <button type="button" class="newsBlock__settings__btn" data-element="insertUnorderedList">
-                    <i class="fa fa-list-ul"></i>
-                </button>
+                            <button type="button" class="newsBlock__settings__btn" data-element="insertOrderedList">
+                                <abbr title="orderedList"><i class="fa fa-list-ol"></i></abbr>
+                            </button>
 
-                <button type="button" class="newsBlock__settings__btn" data-element="insertOrderedList">
-                    <i class="fa fa-list-ol"></i>
-                </button>
+                            <button type="button" class="newsBlock__settings__btn" data-element="createLink">
+                                <abbr title="insert link"><i class="fa fa-link"></i></abbr>
+                            </button>
 
-                <button type="button" class="newsBlock__settings__btn" data-element="createLink">
-                    <i class="fa fa-link"></i>
-                </button>
+                            <button type="button" class="newsBlock__settings__btn" data-element="justifyLeft">
+                                <abbr title="align left"><i class="fa fa-align-left"></i></abbr>
+                            </button>
 
-                <button type="button" class="newsBlock__settings__btn" data-element="justifyLeft">
-                    <i class="fa fa-align-left"></i>
-                </button>
+                            <button type="button" class="newsBlock__settings__btn" data-element="justifyCenter">
+                                <abbr title="align center"><i class="fa fa-align-center"></i></abbr>
+                            </button>
 
-                <button type="button" class="newsBlock__settings__btn" data-element="justifyCenter">
-                    <i class="fa fa-align-center"></i>
-                </button>
+                            <button type="button" class="newsBlock__settings__btn" data-element="justifyRight">
+                                <abbr title="align right"><i class="fa fa-align-right"></i></abbr>
+                            </button>
 
-                <button type="button" class="newsBlock__settings__btn" data-element="justifyRight">
-                    <i class="fa fa-align-right"></i>
-                </button>
+                            <button type="button" class="newsBlock__settings__btn" data-element="justifyFull">
+                                <abbr title="stretch to full width"></abbr><i class="fa fa-align-justify"></i>
+                            </button>
 
-                <button type="button" class="newsBlock__settings__btn" data-element="justifyFull">
-                    <i class="fa fa-align-justify"></i>
-                </button>
+                            <button type="button" class="newsBlock__settings__btn" data-element="insertImage">
+                                <abbr title="insert image"><i class="fa fa-image"></i></abbr>
+                            </button>
 
-                <button type="button" class="newsBlock__settings__btn" data-element="insertImage">
-                    <i class="fa fa-image"></i>
-                </button>
+                            <button type="button" class="newsBlock__settings__btn" data-element="insertCode">
+                                <abbr title="insert code"><i class="fa fa-code"></i></abbr>
+                            </button>
+                        </div>
 
-                <button type="button" class="newsBlock__settings__btn" data-element="redo">
-                    <i class="fa fa-code"></i>
-                </button>
+                        <div class="newsBlock__header">Title</div>
+
+                        <div class="newsBlock__title" contenteditable="true">
+
+                        </div>
+
+                        <div class="newsBlock__header">Content</div>
+
+                        <div class="newsBlock__text" contenteditable="true">
+
+                        </div>
+
+                    </div>
+                    <a href="" class="newsBlock__postBtn">
+                        <span class="newsBlock__postBtn__text">Post</span>
+                        <span class="newsBlock__postBtn__waves"></span>
+                    </a>
+                </div>
             </div>
-
-            <div class="newsBlock__header">Title</div>
-
-            <div class="newsBlock__title" contenteditable="true">
-
-            </div>
-
-            <div class="newsBlock__header">Content</div>
-
-            <div class="newsBlock__text" contenteditable="true">
-
-            </div>
-
-
         </div>
-        <a href="" class="newsBlock__postBtn">
-            <span class="newsBlock__postBtn__text">Post</span>
-            <span class="newsBlock__postBtn__waves"></span>
-        </a>
     </div>
+
     <script src="https://use.fontawesome.com/a31a3f8384.js"></script>
-    <script type="text/javascript" src="../Scripts/postNews.js"></script>
+    <script type="text/javascript" src="~/js/postNews.js"></script>
 </body>
 </html>

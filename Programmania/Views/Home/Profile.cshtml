@@ -2,15 +2,24 @@
 <html>
 <head>
     <title>Profile</title>
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width; initial-scale=1.0">
     <meta charset="UTF-8">
 
-    <link rel="stylesheet" href="../Styles/HamburgerMenu.css">
-    <link rel="stylesheet" href="../Styles/Profile.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="~/css/highlight styles/default.min.css">
+    <script src="~/js/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <link rel="stylesheet" href="~/css/HamburgerMenu.css">
+    <link rel="stylesheet" href="~/css/Profile.css">
+
+
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
-    <script type="text/javascript" src="../Scripts/jQuery-plugin-progressbar.js"></script>
+    <script type="text/javascript" src="~/js/jQuery-plugin-progressbar.js"></script>
 </head>
 
 <body>
@@ -49,124 +58,285 @@
 
     <main>
         <div class="content">
-            <div class="profile">
+            <div class="main">
+                <div class="row">
+
+                    <div class="col-md-8 mt-1">
+                        <div class="card mb-3 content">
+                            <h1 class="m-3 pt-3 titleText">About</h1>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <h5>Full Name</h5>
+                                    </div>
+
+                                    <div class="col-md-9 text-secondary">
+                                        Name Surname
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        Progress:
+                                    </div>
+
+                                    <div class="col-md-9">
+                                        <div class="progress">
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <h5>Email: </h5>
+                                    </div>
+                                    <div class="col-md-9 text-secondary">
+                                        someEmail@gmail.com
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <h5>Level: </h5>
+                                    </div>
+
+                                    <div class="col-md-9 text-secondary">
+                                        23
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <button type="button" class="btn btn-success" id="changeAvatarBtn">Change Avatar</button>
+                                </div>
+                            </div>
+                        </div>
 
 
-                <div class="profile__view">
-                    <div class="profile__view__image">
-                        <img src="../Images/avatarImg.png" alt="">
+
+
                     </div>
 
-                    <a href="" class="profile__view__button">
-                        <span class="profile__view__button__text">Change avatar</span>
-                        <span class="profile__view__button__waves"></span>
-                    </a>
-
-                    <div class="profile__view__rewards">
-                        <div class="profile__view__xp">
-
-                            <div class="profile__view__xp__body">
-                                <p>12132</p>
-                            </div>
-                            <div class="profile__view__xp__image">
-                                <img src="../Images/xpImg.png" alt="">
-                            </div>
 
 
-                        </div>
-
-                        <div class="profile__view__level">
-                            <h3>Level: 15</h3>
-                        </div>
-
-                        <div class="profile__view__codes">
-                            <h3>Codes posted: 3</h3>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="profile__info">
-                    <div class="profile__info__xp">
-                        <div class="profile__info__xp__body">
-                            <h3>Progress</h3>
-                        </div>
-                        <div class="profile__info__xp__graphic">
-                            <div class="progress-bar" data-percent="80" data-duration="1000" data-color="#a1a7ff,#ffd45f"></div>
-                        </div>
-                        <div class="profile__info__xp__level">
-                            <h3>Level: 15</h3>
-                        </div>
-                    </div>
-
-                    <div class="profile__info__body">
-                        <div class="profile__info__body__text">
-                            <h3>Name: </h3>
-                            <p>John</p>
-                        </div>
-
-                        <div class="profile__info__body__text">
-                            <h3>Surname: </h3>
-                            <p>Johnson</p>
-                        </div>
-
-                        <div class="profile__info__body__text">
-                            <h3>Age: </h3>
-                            <p>23</p>
-                        </div>
-
-                        <div class="profile__info__body__text">
-                            <h3>Courses completed: </h3>
-                            <p>5</p>
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-
-
-                <div class="profile__activity">
-                    <div class="profile__activity__challenges">
-                        <div class="titleActivity">
-                            <div class="titleActivity__image">
-                                <img src="../Images/ChallengeImg.png" alt="">
-                            </div>
-                            <div class="titleActivity__body">
-                                Challenges
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="profile__activity__courses">
-                        <div class="titleActivity">
-                            <div class="titleActivity__image">
-                                <img src="../Images/CoursesImg.png" alt="">
-                            </div>
-                            <div class="titleActivity__body">
-                                Courses
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="profile__activity__codes">
-                        <div class="titleActivity">
-                            <div class="titleActivity__image">
-                                <img src="../Images/CodesImg.png" alt="">
-                            </div>
-                            <div class="titleActivity__body">
-                                Codes
+                    <div class="col-md-4 mt-1" id="profileDiv">
+                        <div class="card text-center sidebar">
+                            <div class="card-body">
+                                <img src="../Images/avatarImg.png" class="rounded-circle" width="150" alt="">
+                                <div class="mt-3">
+                                    <h3 class="titleText">Name Surname</h3>
+                                    <a href="Courses.html">Courses</a>
+                                    <a href="Codes.html">Codes</a>
+                                    <a href="Challenges.html">Challenges</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+
+                <div class="row">
+                    <div class="col-md-4 mt-1">
+                        <div class="card fixedCard">
+                            <h1 class="titleText">
+                                Games
+                            </h1>
+                            <div class="card-body">
+                                <ul class="gamesList">
+                                    <li class="winElement">08.08.2021 WIN</li>
+                                    <li class="loseElement">07.08.2021 LOSE</li>
+                                    <li class="winElement">07.08.2021 WIN</li>
+                                    <li class="winElement">06.08.2021 WIN</li>
+                                    <li class="loseElement">06.08.2021 LOSE</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-8 mt-1">
+                        <div class="card fixedCard">
+                            <h1 class="titleText">
+                                Posts
+                            </h1>
+                            <div class="card-body ">
+                                <div class="newsItem__title">
+                                    <a href="" class="newsItem__title__body">Example</a>
+                                </div>
+
+
+                                <div class="newsItem__description">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, voluptate, cum? Asperiores eaque sunt iure ut quos sapiente amet mollitia optio, pariatur repudiandae repellat illum, ex deleniti, non. Ducimus, minima!</p>
+                                </div>
+
+                                <div class="newsItem__image">
+                                    <img src="../Images/courseSlider.jpg" alt="">
+                                </div>
+
+                                <a href="" class="newsItem__button">
+                                    <span class="newsItem__button__text">View more</span>
+                                    <span class="newsItem__button__waves"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="card mb-3 content activity">
+                    <h1 class="m-3 titleText">Courses</h1>
+                    <div class="card-body">
+                        <div class="coursesList">
+                            <a href="#">
+                                <div class="coursesList__item">
+                                    <div class="coursesList__item__hover">
+                                        <div class="coursesList__item__hover__body">
+                                            <h3>Lessons count: 23</h3>
+                                            <h3>Progress: 12%</h3>
+                                            <h3>Completed lessons: 5/23</h3>
+                                            <h3>People opened this course: 130</h3>
+                                            <h3>Earn XP: 3000</h3>
+                                        </div>
+                                    </div>
+
+                                    <div class="coursesList__item__image">
+                                        <img src="../Images/JavaLogo.png" alt="">
+                                    </div>
+
+                                    <div class="coursesList__item__body">
+                                        <h3 class="coursesList__item__body__header">Java Course</h3>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <a href="#">
+                                <div class="coursesList__item">
+                                    <div class="coursesList__item__hover">
+                                        <div class="coursesList__item__hover__body">
+                                            <h3>Lessons count: 23</h3>
+                                            <h3>Progress: 12%</h3>
+                                            <h3>Completed lessons: 5/23</h3>
+                                            <h3>People opened this course: 130</h3>
+                                            <h3>Earn XP: 3000</h3>
+                                        </div>
+                                    </div>
+
+                                    <div class="coursesList__item__image">
+                                        <img src="../Images/JSLogo.png" alt="">
+                                    </div>
+
+                                    <div class="coursesList__item__body">
+                                        <h3 class="coursesList__item__body__header">Java Script</h3>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <a href="#">
+                                <div class="coursesList__item">
+                                    <div class="coursesList__item__hover">
+                                        <div class="coursesList__item__hover__body">
+                                            <h3>Lessons count: 23</h3>
+                                            <h3>Progress: 12%</h3>
+                                            <h3>Completed lessons: 5/23</h3>
+                                            <h3>People opened this course: 130</h3>
+                                            <h3>Earn XP: 3000</h3>
+                                        </div>
+                                    </div>
+
+                                    <div class="coursesList__item__image">
+                                        <img src="../Images/PHPLogo.png" alt="">
+                                    </div>
+
+                                    <div class="coursesList__item__body">
+                                        <h3 class="coursesList__item__body__header">PHP Course</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="card mb-3 content activity">
+                    <h1 class="m-3 titleText">Codes</h1>
+                    <div class="card-body">
+                        <div class="code">
+                            <div class="code__header">
+                                <h3 href="#">C# Exceptions</h3>
+                            </div>
+
+                            <div class="code__content">
+                                <pre>
+                                <code class="language-c#">
+										using System;
+										using System.Collections.Generic;
+										using System.Linq;
+										using System.Text;
+										using System.Threading.Tasks;
+
+										namespace Lesson_7__Exceptions_
+										{
+											class Program
+											{
+												static void Main(string[] args)
+												{
+													int number_1 = 1;
+													int number_2 = 0;
+													try
+													{
+														int res = number_1 / number_2;
+													}
+													//Фильтрация исключений
+													catch(Exception ex) when (number_1 == 0)
+													{
+														Console.WriteLine("Number 1 mustn't be zero");
+													}
+													catch(Exception ex)
+													{
+														Console.WriteLine(ex.Message);
+													}
+													finally
+													{
+														Console.WriteLine("End of program");
+													}
+
+
+													User user = new User("John", "123");
+													string login = "John";
+													string pass = "234";
+
+													if (user.Login == login && user.Password == pass)
+													{
+														Console.WriteLine("User logged in");
+													}
+													else
+													{
+														UserException userException = new UserException("Login failed", DateTime.Now);   
+														throw userException;
+													}
+
+
+													
+												}
+											}
+										}
+
+									</code>
+								</pre>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
             </div>
         </div>
     </main>
-
-    <script type="text/javascript" src="../Scripts/burger.js"></script>
-
-    <script type="text/javascript" src="../Scripts/roundedProgressBar.js"></script>
+    <script type="text/javascript" src="~/js/adaptiveProfile.js"></script>
+    <script type="text/javascript" src="~/js/burger.js"></script>
+    <script type="text/javascript" src="~/js/changeAvatar.js"></script>
 
 </body>
 </html>
