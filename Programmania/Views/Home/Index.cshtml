@@ -144,15 +144,7 @@
             <span class="close">&times;</span>
 
             <form name="registerForm" id="registerForm">
-                <div class="form-group">
-                    <label id="nameLabelReg" for="nameInputReg">Name: </label>
-                    <input id="nameInputReg" type="text" class="form-control" placeholder="Name" name="nameInput" />
-                </div>
 
-                <div class="form-group">
-                    <label id="ageLabelReg" for="ageInputReg">Age: </label>
-                    <input id="ageInputReg" type="number" class="form-control" placeholder="Age" name="ageInput" />
-                </div>
 
                 <div class="form-group">
                     <label id="nicknameLabelReg" for="nicknameInputReg">Nickname: </label>
@@ -169,6 +161,12 @@
                     <input id="passwordInputReg" type="password" class="form-control" name="passwordInput" />
                 </div>
 
+                <div class="form-group">
+                    <label for="passwordInput">Confirm password: </label>
+                    <input type="password" class="form-control" name="passwordInput" />
+                </div>
+
+                <input type="button" id="uploadAvatarBtn" class="btn btn-primary" name="uploadAvatarBtn" value="Set profile image" />
                 <input type="button" id="registerBtnOut" class="btn btn-danger" name="registerBtn" value="Register" />
             </form>
         </div>
@@ -286,7 +284,7 @@
         </div>
     </section>
 
-
+    <script type="application/javascript" src="~/js/setAvatarImage.js"></script>
     <script type="application/javascript" src="~/js/logReg.js"></script>
     <script type="application/javascript" src="~/js/openModal.js"></script>
     <script type="application/javascript" src="~/js/slider.js"></script>

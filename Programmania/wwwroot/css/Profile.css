@@ -168,35 +168,61 @@ body {
     position: absolute;
     display: inline;
     top: 0;
-    background-color: rgba(43, 0, 83,0.5);
-    width: 0;
+    background-color: rgba(43, 0, 83,0.7);
+    width: 100%;
     height: 0;
     opacity: 0;
     border: 1px solid #2b0053;
     border-radius: 25px;
     transition: all 0.5s ease 0s;
-    -moz-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0;
     -webkit-transition: all 0.5s ease 0s;
     -o-transition: all 0.5s ease 0s;
 }
 
 .coursesList__item__hover__body {
-    padding-top: 150px;
+    padding-top: 20px;
     text-align: center;
-    font-size: 24px;
+    font-size: 20px;
 }
 
     .coursesList__item__hover__body h3 {
         text-decoration: none;
+        font-size: 1.5em;
         margin-top: 20px;
     }
 
 .coursesList__item:hover .coursesList__item__hover {
     opacity: 1;
-    width: 300px;
-    height: 500px;
+    width: 100%;
+    height: 100%;
     color: #ffd45f;
+    animation-name: courseHover;
+    animation-timing-function: ease-in-out;
+    animation-duration: 0.5s;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
 }
+
+
+
+.ldBar {
+    margin: 0 auto;
+    margin-top: -75px;
+}
+
+    .ldBar path.mainLine {
+        stroke-width: 7;
+        stroke: #a1a7ff;
+        stroke-linecap: round;
+    }
+
+    .ldBar path.baseLine {
+        stroke-width: 5;
+        stroke: #ffd45f;
+        stroke-linecap: round;
+    }
+
 
 
 .coursesList__item:first-child {
@@ -400,14 +426,51 @@ body {
 @media(max-width: 230px) {
     .coursesList__item {
         width: 150px;
+        height: 200px;
     }
 
     .coursesList__item__image {
         width: 100px;
     }
+}
 
-    .coursesList__item:hover .coursesList__item__hover {
-        width: 150px;
+@keyframes courseHover {
+    0% {
+        height: 0%;
+    }
+
+    100% {
+        height: 100%;
+    }
+}
+
+@-webkit-keyframes courseHover {
+    0% {
+        height: 0%;
+    }
+
+    100% {
+        height: 100%;
+    }
+}
+
+@-moz-keyframes courseHover {
+    0% {
+        height: 0%;
+    }
+
+    100% {
+        height: 100%;
+    }
+}
+
+@-o-keyframes courseHover {
+    0% {
+        height: 0%;
+    }
+
+    100% {
+        height: 100%;
     }
 }
 

@@ -23,7 +23,7 @@ namespace Programmania.DAL
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=ProgrammaniaDB;Integrated Security=true");
+            optionsBuilder.UseSqlServer(@"Data Source=.\SQLEXPRESS;Initial Catalog=ProgrammaniaDB;Integrated Security = true;");
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
