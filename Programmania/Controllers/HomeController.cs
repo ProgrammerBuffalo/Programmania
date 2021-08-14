@@ -13,7 +13,7 @@ namespace Programmania.Controllers
         [Route("Registrate")]
         [HttpPost]
         //change string parameter into ViewModel class
-        public IActionResult MakeRegister(ViewModel.RegVM data)
+        public IActionResult MakeRegister(ViewModels.RegistrationVM data)
         {
             //check if email realy exists (use Utility.EmailCheker.CheckIfExists(email)) 
             if (false)
@@ -29,9 +29,8 @@ namespace Programmania.Controllers
         [Route("Main")]
         [HttpPost]
         //change string parameter into ViewModel class
-        public IActionResult Main(ViewModel.LogVM data)
+        public IActionResult Main(ViewModels.AuthorizationVM data)
         {
-            return Ok();
             //check if email exists in db
             if (false)
             {
