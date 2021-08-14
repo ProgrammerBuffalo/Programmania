@@ -207,7 +207,7 @@ body{
     margin-top: 10px;
 }
 
-#registerBtn, #loginBtn{
+#registerBtnOut, #loginBtnOut{
     margin: 30px;
     float: right;   
 }
