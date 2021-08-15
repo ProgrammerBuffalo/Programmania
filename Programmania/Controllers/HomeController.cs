@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json.Linq;
 
 namespace Programmania.Controllers
 {
@@ -13,16 +12,9 @@ namespace Programmania.Controllers
 
         [Route("Registrate")]
         [HttpPost]
-        public IActionResult MakeRegister(string data)
+        //change string parameter into ViewModel class
+        public IActionResult MakeRegister(ViewModels.RegistrationVM data)
         {
-            JObject jObject = JObject.Parse(data);
-            string name = jObject["name"].ToString();
-            int age = int.Parse(jObject["age"].ToString());
-            string nickname = jObject["nickname"].ToString();
-            string email = jObject["email"].ToString();
-            string password = jObject["password"].ToString();
-            return Ok();
-
             //check if email realy exists (use Utility.EmailCheker.CheckIfExists(email)) 
             if (false)
             {
@@ -36,13 +28,9 @@ namespace Programmania.Controllers
 
         [Route("Main")]
         [HttpPost]
-        public IActionResult Main(string data)
+        //change string parameter into ViewModel class
+        public IActionResult Main(ViewModels.AuthorizationVM data)
         {
-            JObject jObject = JObject.Parse(data);
-            string email = jObject["email"].ToString();
-            string password = jObject["password"].ToString();
-
-            return Ok();
             //check if email exists in db
             if (false)
             {

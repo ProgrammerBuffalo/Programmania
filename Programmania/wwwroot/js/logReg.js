@@ -1,17 +1,15 @@
 ﻿$(document).ready(function () {
     $('#registrBtnIn').click(function () {
 
-        $('#nameInputReg').val('');
         $('#nicknameInputReg').val('');
-        $('#ageInputReg').val('');
         $('#emailInputReg').val('');
         $('#passwordInputReg').val('');
+        $('#confirmPasswordInput').val('');
 
-        $('#nameErrorReg').remove();
-        $('#ageErrorReg').remove();
         $('#nicknameErrorReg').remove();
         $('#emailErrorReg').remove();
         $('#passwordErrorReg').remove();
+        $('#confirmPasswordError').remove();
         $('#registerError').remove();
     });
 });
@@ -33,27 +31,15 @@ $(document).ready(function () {
 
         var hasError = false;
 
-        var name = $('#nameInputReg');
-        var age = $('#ageInputReg');
         var nickname = $('#nicknameInputReg');
         var email = $('#emailInputReg');
         var password = $('#passwordInputReg');
+        var confirmPassword = $('#confirmPasswordInput');
 
-        $('#nameErrorReg').remove();
-        $('#ageErrorReg').remove();
         $('#nicknameErrorReg').remove();
         $('#emailErrorReg').remove();
         $('#passwordErrorReg').remove();
-
-        if (!checkName(name.val())) {
-            hasError = true;
-            $('#nameLabelReg').after("<label id='nameErrorReg' class='error'>name is to short</label>");
-        }
-
-        if (!checkAge(age.val())) {
-            hasError = true;
-            $('#ageLabelReg').after("<label id='ageErrorReg' class='error'>input error</label>");
-        }
+        $('#confirmPasswordError').remove();
 
         if (!checkNickname(nickname.val())) {
             hasError = true;
@@ -70,23 +56,25 @@ $(document).ready(function () {
             $('#passwordLabelReg').after("<label id='passwordErrorReg' class='error'>length 8-16. allowed symbols (!,#,$,%,^,&)</label>");
         }
 
-        if (!hasError) {
-            var data = {
-                name: name.val(),
-                age: age.val(),
-                nickname: nickname.val(),
-                email: email.val(),
-                password: password.val()
+        if (password.val() != confirmPassword.val()) {
+            hasError = true;
+            confirmPassword.val('');
+            $('#confirmPasswordLabel').after("<label id='confirmPasswordError' class='error'>Password not matches</label>");
+        }
 
-            }
-            data = JSON.stringify(data);
+        if (!hasError) {
+
+            var data = new FormData();
+            data.append('Nickname', nickname.val());
+            data.append('Email', email.val());
+            data.append('Password', password.val());
 
             $.ajax({
                 type: 'POST',
                 url: '/Registrate',
                 processData: false,
-                dataType: 'json',
-                data: 'data=' + data,
+                contentType: false,
+                data: data,
                 success: function () {
                     alert('registration successful');
                 },
@@ -119,15 +107,16 @@ $(document).ready(function () {
         }
 
         if (!hasError) {
-            var data = { email: email.val(), password: password.val() };
-            data = JSON.stringify(data);
+            var data = new FormData();
+            data.append('Email', email.val());
+            data.append('Password', password.val());
 
             $.ajax({
                 type: 'POST',
                 url: '/Main',
                 processData: false,
-                dataType: 'json',
-                data: 'data=' + data,
+                contentType: false,
+                data: data,
                 success: function () {
 
                 },
@@ -139,23 +128,9 @@ $(document).ready(function () {
     });
 });
 
-function checkName(str) {
-    str = str.trim();
-    if (str.length < 2) return false;
-    return true;
-}
-
 function checkNickname(str) {
     str = str.trim();
     if (str.length < 2) return false;
-    return true;
-}
-
-function checkAge(str) {
-    str = str.trim();
-    var number = Number.parseInt(str);
-    if (Number.isNaN(number)) return false;
-    if (number <= 6 || number >= 100) return false;
     return true;
 }
 
