@@ -68,10 +68,11 @@ $(document).ready(function () {
             data.append('Nickname', nickname.val());
             data.append('Email', email.val());
             data.append('Password', password.val());
+            data.append('PasswordConfirmation', confirmPassword.val());
 
             $.ajax({
                 type: 'POST',
-                url: '/Registrate',
+                url: 'Account/Registration',
                 processData: false,
                 contentType: false,
                 data: data,
@@ -113,12 +114,12 @@ $(document).ready(function () {
 
             $.ajax({
                 type: 'POST',
-                url: '/Main',
+                url: 'account/authorization',
                 processData: false,
                 contentType: false,
                 data: data,
-                success: function () {
-
+                success: function (response) {
+                    window.location.href = response.url;
                 },
                 error: function () {
                     $('loginBtnOut').after("<label id='loginError' class='error'> </label>");

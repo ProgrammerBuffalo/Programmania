@@ -1,67 +1,121 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Programmania.ViewModels;
+using Microsoft.AspNetCore.Authorization;
+using Programmania.Services;
+using Programmania.Models;
 
 namespace Programmania.Controllers
 {
     public class AccountController : Controller
     {
+        private DAL.ProgrammaniaDBContext dbContext;
+        private IAccountService accountService;
 
-        public IActionResult Index()
+        public AccountController(DAL.ProgrammaniaDBContext context, IAccountService accService)
         {
-            return View();
+            this.dbContext = context;
+            this.accountService = accService;
         }
 
-        [Route("Account/Registration")]
+        [Route("account/refresh-token")]
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RefreshTokensAuthentication()
+        {
+            var rtCookie = Request.Cookies["RefreshToken"];
+
+            AuthenticationResponseVM authenticationResponse = await accountService.RefreshTokens(rtCookie, HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString());
+            if (authenticationResponse == null)
+                return Unauthorized("Invalid refresh token");
+
+            setCookieTokens(authenticationResponse.RefreshToken, authenticationResponse.JWTToken);
+
+            return Ok(authenticationResponse);
+        }
+
+        [Route("account/revoke-token")]
+        [HttpPost]
+        public async Task<IActionResult> RevokeToken()
+        {
+            var rtCookie = Request.Cookies["RefreshToken"];
+
+            if (string.IsNullOrEmpty(rtCookie))
+                return BadRequest(new { message = "Refresh token is empty" });
+
+            if (!await accountService.RevokeToken(rtCookie, HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString()))
+                return NotFound(new { message = "Refresh token is null" });
+
+            return Ok("Token revorked");
+
+        }
+
+        [Route("account/authorization")]
+        [HttpPost]
+        public async Task<IActionResult> MakeAuthorization(AuthenticationRequestVM authenticationRequest)
+        {
+            if (ModelState.IsValid)
+            {
+                Models.User user = dbContext.Users.FirstOrDefault(u => u.Login == authenticationRequest.Email && u.Password == authenticationRequest.Password);
+                if (user == null)
+                    ModelState.AddModelError("AuthorizationModelError", "Login or password is not correct");
+                else
+                {
+                    var response = await accountService.Authenticate(authenticationRequest, HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString());
+
+                    setCookieTokens(response.RefreshToken, response.JWTToken);
+
+                    return Json(new { Url = Url.Action("Profile", "Home") });
+                }
+            }
+            return View(authenticationRequest);
+        }
+
+        [Route("account/registration")]
+        [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> MakeRegistration(RegistrationVM registrationVM)
         {
             if (ModelState.IsValid)
             {
-                using (DAL.ProgrammaniaDBContext dbContext = new DAL.ProgrammaniaDBContext())
+                User user = dbContext.Users.FirstOrDefault(u => u.Login == registrationVM.Email || u.Name == registrationVM.Nickname);
+                if (user == null)
                 {
-                    Models.User user = dbContext.Users.FirstOrDefault(u => u.Login == registrationVM.Email);
-                    if (user == null)
-                    {
-                        dbContext.Users.Add(new Models.User()
-                        {
-                            Name = registrationVM.Nickname,
-                            Password = registrationVM.Password,
-                            Login = registrationVM.Email
-                        });
+                    AuthenticationResponseVM response =
+                        await accountService.Registrate(registrationVM, HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString());
 
-                        await dbContext.SaveChangesAsync();
+                    setCookieTokens(response.RefreshToken, response.JWTToken);
 
-                        await Authenticate(registrationVM.Email);
-
-                        return RedirectToAction("Index", "Main");
-                    }
+                    return Json(new { Url = Url.Action("Profile", "Home") });
+                }
+                else
+                {
+                    if (user.Name == registrationVM.Nickname)
+                        ModelState.AddModelError("NicknameModelError", "User with this nickname already exists");
                     else
-                    {
-                        ModelState.AddModelError("", "User with this login/nickname already exists");
-                    }
+                        ModelState.AddModelError("EmailModelError", "User with this email already exists");
                 }
             }
             return View(registrationVM);
         }
 
-        private async Task Authenticate(string email)
+        private void setCookieTokens(string rtoken, string jwttoken)
         {
-            List<Claim> claims = new List<Claim>
-            {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, email)
-            };
+            Response.Cookies.Append("RefreshToken", rtoken,
+                new Microsoft.AspNetCore.Http.CookieOptions
+                {
+                    Expires = DateTime.UtcNow.AddDays(1),
+                    HttpOnly = true
+                });
 
-            ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "AppCookie", ClaimsIdentity.DefaultRoleClaimType, ClaimsIdentity.DefaultRoleClaimType);
-
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+            Response.Cookies.Append("JwtToken", jwttoken,
+                new Microsoft.AspNetCore.Http.CookieOptions
+                {
+                    Expires = DateTime.UtcNow.AddMinutes(15),
+                    HttpOnly = true
+                });
         }
+
     }
 }

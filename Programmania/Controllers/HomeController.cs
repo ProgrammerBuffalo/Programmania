@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Programmania.Controllers
 {
@@ -10,26 +11,10 @@ namespace Programmania.Controllers
             return View();
         }
 
-        [Route("Registrate")]
-        [HttpPost]
-        //change string parameter into ViewModel class
-        public IActionResult MakeRegister(ViewModels.RegistrationVM data)
-        {
-            //check if email realy exists (use Utility.EmailCheker.CheckIfExists(email)) 
-            if (false)
-            {
-                return BadRequest();
-            }
-            else
-            {
-                return View("Main");
-            }
-        }
-
         [Route("Main")]
-        [HttpPost]
+        [HttpGet]
         //change string parameter into ViewModel class
-        public IActionResult Main(ViewModels.AuthorizationVM data)
+        public IActionResult Main(ViewModels.AuthenticationRequestVM data)
         {
             //check if email exists in db
             if (false)
@@ -37,7 +22,7 @@ namespace Programmania.Controllers
                 return BadRequest();
             }
             else
-            {
+            { 
                 return View();
             }
         }
@@ -61,6 +46,8 @@ namespace Programmania.Controllers
         }
 
         [Route("Profile")]
+        [HttpGet]
+        [Authorize]
         public IActionResult Profile()
         {
             return View();

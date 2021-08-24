@@ -16,15 +16,10 @@ namespace Programmania.DAL
         public DbSet<Achievement> Achievements { get; set; }
         public DbSet<Document> Documents { get; set; }
 
-        //public ProgrammaniaDBContext(DbContextOptions<ProgrammaniaDBContext> options) : base(options)
-        //{
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
 
-        //}
+        public ProgrammaniaDBContext(DbContextOptions<ProgrammaniaDBContext> options) : base(options) { }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(@"Data Source=.\SQLEXPRESS;Initial Catalog=ProgrammaniaDB;Integrated Security = true;");
-        }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
