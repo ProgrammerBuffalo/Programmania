@@ -15,6 +15,7 @@ namespace Programmania.DAL
         public DbSet<Course> Courses { get; set; }
         public DbSet<Achievement> Achievements { get; set; }
         public DbSet<Document> Documents { get; set; }
+        public DbSet<UserDiscipline> UserDisciplines { get; set; } 
 
         public DbSet<RefreshToken> RefreshTokens { get; set; }
 
@@ -24,6 +25,10 @@ namespace Programmania.DAL
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Document>(d => { d.HasNoKey(); d.ToView("DocumentsView"); });
+            builder.Entity<UserDiscipline>().HasKey(table => new {
+                table.UserId,
+                table.DisciplineId
+            });
             base.OnModelCreating(builder);
         }
     }

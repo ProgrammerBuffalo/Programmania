@@ -9,7 +9,9 @@ using Programmania.Models;
 
 namespace Programmania.Controllers
 {
-    public class AccountController : Controller
+    [ApiController]
+    [Route("[controller]")]
+    public class AccountController : ControllerBase
     {
         private DAL.ProgrammaniaDBContext dbContext;
         private IAccountService accountService;
@@ -20,7 +22,7 @@ namespace Programmania.Controllers
             this.accountService = accService;
         }
 
-        [Route("account/refresh-token")]
+        [Route("refresh-token")]
         [HttpPost]
         public async Task<IActionResult> RefreshTokensAuthentication()
         {
@@ -35,8 +37,9 @@ namespace Programmania.Controllers
             return Ok(authenticationResponse);
         }
 
-        [Route("account/revoke-token")]
+        [Route("revoke-token")]
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> RevokeToken()
         {
             var rtCookie = Request.Cookies["RefreshToken"];
@@ -51,7 +54,7 @@ namespace Programmania.Controllers
 
         }
 
-        [Route("account/authorization")]
+        [Route("authorization")]
         [HttpPost]
         public async Task<IActionResult> MakeAuthorization(AuthenticationRequestVM authenticationRequest)
         {
@@ -66,15 +69,14 @@ namespace Programmania.Controllers
 
                     setCookieTokens(response.RefreshToken, response.JWTToken);
 
-                    return Json(new { Url = Url.Action("Profile", "Home") });
+                    return Ok(response);
                 }
             }
-            return View(authenticationRequest);
+            return BadRequest(authenticationRequest);
         }
 
-        [Route("account/registration")]
+        [Route("registration")]
         [HttpPost]
-        [AllowAnonymous]
         public async Task<IActionResult> MakeRegistration(RegistrationVM registrationVM)
         {
             if (ModelState.IsValid)
@@ -87,7 +89,7 @@ namespace Programmania.Controllers
 
                     setCookieTokens(response.RefreshToken, response.JWTToken);
 
-                    return Json(new { Url = Url.Action("Profile", "Home") });
+                    return Ok(response);
                 }
                 else
                 {
@@ -97,7 +99,7 @@ namespace Programmania.Controllers
                         ModelState.AddModelError("EmailModelError", "User with this email already exists");
                 }
             }
-            return View(registrationVM);
+            return BadRequest(registrationVM);
         }
 
         private void setCookieTokens(string rtoken, string jwttoken)

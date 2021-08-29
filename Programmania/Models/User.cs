@@ -33,8 +33,10 @@ namespace Programmania.Models
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public ICollection<Achievement> Achievements { get; set; }
 
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public ICollection<Lesson> Lessons { get; set; }
+        //[Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+        //public ICollection<Lesson> Lessons { get; set; }
+
+        public ICollection<UserDiscipline> UserDisciplines { get; set; }
 
         public ICollection<RefreshToken> RefreshTokens { get; set; }
 
@@ -44,7 +46,6 @@ namespace Programmania.Models
         public User()
         {
             Achievements = new List<Achievement>();
-            Lessons = new List<Lesson>();
             RefreshTokens = new List<RefreshToken>();
         }
     }

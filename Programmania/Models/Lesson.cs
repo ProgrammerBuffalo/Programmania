@@ -17,8 +17,8 @@ namespace Programmania.Models
         [Column("Name")]
         public string Name { get; set; }
 
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public ICollection<User> Users { get; set; }
+        //[Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+        //public ICollection<User> Users { get; set; }
 
         public Discipline Discipline { get; set; }
 
@@ -27,7 +27,7 @@ namespace Programmania.Models
 
         public Lesson()
         {
-            Users = new List<User>();
+            //Users = new List<User>();
         }
     }
 }
