@@ -8,7 +8,15 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="~/css/Main.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+
+    
+
+    <link rel="stylesheet" type="text/css" href="~/css/loading-bar.min.css" />
+    <script src="~/js/loading-bar.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/css/Main.css" />
 </head>
 
 <body>
@@ -94,6 +102,184 @@
                 </div>
 
                 <div class="row">
+                    <div class="col-md-3 mt-1 tile">
+                        <h3 class="tile-title">Current Course</h3>
+                        <div class="tile-body tile-currentCourse">
+                            <a>
+                                <h3 class="tile-currentCourse__header">Java</h3>
+                                <div class="ldBar label-center"
+                                     data-value="35"
+                                     data-preset="circle"
+                                     data-transition-in="35"
+                                     data-duration="1"
+                                     style="width: 60%; height: 60%">
+                                </div>
+                            </a>
+                            <a>
+                                <div class="tile-currentCourse__hover">
+                                    <h3>Last lesson: Working with sockets</h3>
+                                </div>
+                            </a>
+                        </div>
+
+
+                    </div>
+
+                    <div class="col-md-3 mt-1 tile">
+                        <h3 class="tile-title">Courses</h3>
+                        <a>
+                            <div class="tile-body tile-courses">
+
+                                <div class="tile-courses__hover">
+                                    <div class="row">
+                                        <div class="col-sm-6 mt-1 course-hover">
+                                            <h3 class="course-hover__header">Java</h3>
+                                            <div class="course-hover__body">
+                                                <div class="ldBar label-center"
+                                                     data-value="73"
+                                                     data-preset="circle"
+                                                     data-transition-in="73"
+                                                     data-duration="1"
+                                                     style="width: 80%; height: 80%">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6 mt-1 course-hover">
+                                            <h3 class="course-hover__header">Angular</h3>
+                                            <div class="course-hover__body">
+                                                <div class="ldBar label-center"
+                                                     data-value="46"
+                                                     data-preset="circle"
+                                                     data-transition-in="46"
+                                                     data-duration="1"
+                                                     style="width: 80%; height: 80%">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="tile-courses__body">
+                                    <div class="row">
+                                        <div class="col-sm-6 mt-1 course">
+                                            <h3 class="course__header">Java</h3>
+                                            <div class="course__body">
+                                                <img src="~/images/JavaLogo.png" />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6 mt-1 course">
+                                            <h3 class="course__header">Angular</h3>
+                                            <div class="course__body">
+                                                <img src="~/images/AngularLogo.png" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </a>
+                    </div>
+
+
+
+                    <div class="col-md-3 mt-1 tile">
+                        <h3 class="tile-title">Perfomance</h3>
+                        <a>
+                            <div class="tile-body tile-perfomance">
+                                <h3 class="tile-perfomance__header">Level: 15</h3>
+                                <div class="tile-perfomance__body">
+                                    <div class="ldBar label-center"
+                                         data-value="73"
+                                         data-preset="circle"
+                                         data-transition-in="73"
+                                         data-duration="1"
+                                         style="width: 70%; height: 70%">
+                                    </div>
+                                </div>
+                                <h3 class="tile-perfomance__header">XP: 1500</h3>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-3 mt-1 tile">
+                        <h3 class="tile-title">Challenges</h3>
+
+
+                        <div class="tile-body tile-challenges">
+                            <div class="challenge">
+                                <h3 class="challenge__text">
+                                    John invited to challenge
+                                </h3>
+                                <div class="challenge__buttons">
+                                    <div class="denyBtn">
+                                        Deny
+                                    </div>
+
+                                    <a>
+                                        <div class="confirmBtn">
+                                            Confirm
+                                        </div>
+                                    </a>
+                                </div>
+
+                            </div>
+
+
+                             <div class="challenge">
+                                <h3 class="challenge__text">
+                                    John invited to challenge
+                                </h3>
+                                <div class="challenge__buttons">
+                                    <div class="denyBtn">
+                                        Deny
+                                    </div>
+
+                                    <a>
+                                        <div class="confirmBtn">
+                                            Confirm
+                                        </div>
+                                    </a>
+                                </div>
+
+                            </div>
+
+
+                             <div class="challenge">
+                                <h3 class="challenge__text">
+                                    John invited to challenge
+                                </h3>
+                                <div class="challenge__buttons">
+                                    <div class="denyBtn">
+                                        Deny
+                                    </div>
+
+                                    <a>
+                                        <div class="confirmBtn">
+                                            Confirm
+                                        </div>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-3 mt-1 tile">
+                        <h3 class="tile-title">Posts</h3>
+                        <a>
+                            <div class="tile-body tile-posts">
+                                <div class="tile-posts__hover">
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="row">
                     <div class="card">
                         <h1 class="titleText">
                             Top Posts
@@ -124,5 +310,6 @@
     </main>
 </body>
 
-<script type="text/javascript" src="~/js/burger.js" />
-</html>
+<script type="text/javascript" src="~/js/burger.js"></script>
+<script type="text/javascript" src="~/js/denyBtnClick.js"></script>
+</html>  
