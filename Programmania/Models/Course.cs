@@ -18,6 +18,10 @@ namespace Programmania.Models
         [Column("Points")]
         public int Points { get; set; }
 
+        public int LessonCount { get; set; }
+
+        public int DisciplineId { get; set; }
+
         public ICollection<Discipline> Disciplines { get; set; }
 
         [Column("stream_id")]

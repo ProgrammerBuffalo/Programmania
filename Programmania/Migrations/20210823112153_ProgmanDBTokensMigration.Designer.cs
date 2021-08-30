@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Programmania.DAL;
 
 namespace Programmania.Migrations
 {
     [DbContext(typeof(ProgrammaniaDBContext))]
-    partial class ProgrammaniaDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210823112153_ProgmanDBTokensMigration")]
+    partial class ProgmanDBTokensMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,6 +34,21 @@ namespace Programmania.Migrations
                     b.HasIndex("UsersId");
 
                     b.ToTable("AchievementUser");
+                });
+
+            modelBuilder.Entity("LessonUser", b =>
+                {
+                    b.Property<int>("LessonsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UsersId")
+                        .HasColumnType("int");
+
+                    b.HasKey("LessonsId", "UsersId");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("LessonUser");
                 });
 
             modelBuilder.Entity("Programmania.Models.Achievement", b =>
@@ -70,12 +87,6 @@ namespace Programmania.Migrations
                         .HasColumnType("int")
                         .HasColumnName("Id")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("DisciplineId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("LessonCount")
-                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)")
@@ -255,29 +266,26 @@ namespace Programmania.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Programmania.Models.UserDiscipline", b =>
-                {
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DisciplineId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("LessonOrder")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserId", "DisciplineId");
-
-                    b.HasIndex("DisciplineId");
-
-                    b.ToTable("UsersDisciplines");
-                });
-
             modelBuilder.Entity("AchievementUser", b =>
                 {
                     b.HasOne("Programmania.Models.Achievement", null)
                         .WithMany()
                         .HasForeignKey("AchievementsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Programmania.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("LessonUser", b =>
+                {
+                    b.HasOne("Programmania.Models.Lesson", null)
+                        .WithMany()
+                        .HasForeignKey("LessonsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -315,25 +323,6 @@ namespace Programmania.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Programmania.Models.UserDiscipline", b =>
-                {
-                    b.HasOne("Programmania.Models.Discipline", "Discipline")
-                        .WithMany("UserDisciplines")
-                        .HasForeignKey("DisciplineId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Programmania.Models.User", "User")
-                        .WithMany("UserDisciplines")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Discipline");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Programmania.Models.Course", b =>
                 {
                     b.Navigation("Disciplines");
@@ -342,15 +331,11 @@ namespace Programmania.Migrations
             modelBuilder.Entity("Programmania.Models.Discipline", b =>
                 {
                     b.Navigation("Lessons");
-
-                    b.Navigation("UserDisciplines");
                 });
 
             modelBuilder.Entity("Programmania.Models.User", b =>
                 {
                     b.Navigation("RefreshTokens");
-
-                    b.Navigation("UserDisciplines");
                 });
 #pragma warning restore 612, 618
         }

@@ -2,7 +2,7 @@
 
 namespace Programmania.ViewModels
 {
-    public class AuthorizationVM
+    public class AuthenticationRequestVM
     {
         [Required]
         public string Email { get; set; }

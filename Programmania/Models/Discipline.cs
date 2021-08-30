@@ -21,6 +21,8 @@ namespace Programmania.Models
 
         public ICollection<Lesson> Lessons { get; set; }
 
+        public ICollection<UserDiscipline> UserDisciplines { get; set; }
+
         public Course Course { get; set; }
 
         [Column("stream_id")]
