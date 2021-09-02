@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+@model Programmania.ViewModels.UserProfileVM
+
 <html>
 <head>
     <title>Profile</title>
@@ -73,7 +75,7 @@
                                     </div>
 
                                     <div class="col-md-9 text-secondary">
-                                        Name Surname
+                                        @Model.Nickname
                                     </div>
                                 </div>
                                 <hr>
@@ -94,7 +96,7 @@
                                         <h5>Email: </h5>
                                     </div>
                                     <div class="col-md-9 text-secondary">
-                                        someEmail@gmail.com
+                                        @Model.Email
                                     </div>
                                 </div>
                                 <hr>
@@ -104,7 +106,7 @@
                                     </div>
 
                                     <div class="col-md-9 text-secondary">
-                                        23
+                                        @Model.Level
                                     </div>
                                 </div>
                                 <hr>
@@ -117,20 +119,14 @@
                                 </div>
                             </div>
                         </div>
-
-
-
-
                     </div>
-
-
 
                     <div class="col-md-4 mt-1" id="profileDiv">
                         <div class="card text-center sidebar">
                             <div class="card-body">
-                                <img src="../Images/avatarImg.png" class="rounded-circle" width="150" alt="">
+                                <img src="@($"data:image/*;base64," + System.Convert.ToBase64String(Model.Avatar))" class="rounded-circle" width="150" alt="">
                                 <div class="mt-3">
-                                    <h3 class="titleText">Name Surname</h3>
+                                    <h3 class="titleText">@Model.Nickname</h3>
                                     <a href="Courses.html">Courses</a>
                                     <a href="Codes.html">Codes</a>
                                     <a href="Challenges.html">Challenges</a>
@@ -286,33 +282,13 @@
                         </div>
                     </div>
 
-
                     <div class="card mb-3 content activity ">
                         <h1 class="m-3 titleText">Courses</h1>
                         <div class="card-body">
-                            <div class="coursesList">
-                                <a href="#">
-                                    <div class="coursesList__item">
-                                        <div class="coursesList__item__hover">
-                                            <div class="coursesList__item__hover__body">
-                                                <h3>In progress</h3>
-                                                <div class="roundedPb">
-
-                                                </div>
-                                                <h3>Completed courses: 50/100</h3>
-                                            </div>
-                                        </div>
-
-                                        <div class="coursesList__item__image">
-                                            <img src="../Images/JavaLogo.png" alt="">
-                                        </div>
-
-                                        <div class="coursesList__item__body">
-                                            <h3 class="coursesList__item__body__header">Java</h3>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
+                            @{
+                                foreach (var item in Model.UserCourses)
+                                    @await Html.PartialAsync("Partials\\CoursePartial", item);
+                            }
                         </div>
                     </div>
 
@@ -322,7 +298,6 @@
                             <div class="newsItem__title">
                                 <a href="" class="newsItem__title__body">Example</a>
                             </div>
-
 
                             <div class="newsItem__description">
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, voluptate, cum? Asperiores eaque sunt iure ut quos sapiente amet mollitia optio, pariatur repudiandae repellat illum, ex deleniti, non. Ducimus, minima!</p>
@@ -345,6 +320,7 @@
 
                 </div>
             </div>
+        </div>
     </main>
     <script type="text/javascript" src="~/js/createPB.js"></script>
     <script type="text/javascript" src="~/js/adaptiveProfile.js"></script>

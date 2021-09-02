@@ -1,0 +1,25 @@
+﻿@model Programmania.ViewModels.UserCourseVM
+
+<div class="coursesList">
+    <a href="#">
+        <div class="coursesList__item">
+            <div class="coursesList__item__hover">
+                <div class="coursesList__item__hover__body">
+                    <h3>In progress</h3>
+                    <div class="roundedPb">
+
+                    </div>
+                    <h3>Completed courses: @Model.LessonsCompleted/@Model.LessonsCount</h3>
+                </div>
+            </div>
+
+            <div class="coursesList__item__image">
+                <img src="@($"data:image/*;base64," + System.Convert.ToBase64String(Model.File))" alt="" width="100" height="100">
+            </div>
+
+            <div class="coursesList__item__body">
+                <h3 class="coursesList__item__body__header">@Model.CourseName</h3>
+            </div>
+        </div>
+    </a>
+</div>

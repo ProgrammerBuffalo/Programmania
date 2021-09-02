@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Programmania.Models;
 using Programmania.Services;
 using Programmania.ViewModels;
@@ -10,7 +10,6 @@ using System.Security.Claims;
 
 namespace Programmania.Controllers
 {
-    [Authorize]
     public class HomeController : Controller
     {
         private DAL.ProgrammaniaDBContext dbContext;
@@ -30,7 +29,6 @@ namespace Programmania.Controllers
 
         [Route("Main")]
         [HttpGet]
-
         //change string parameter into ViewModel class
         public IActionResult Main(ViewModels.AuthenticationRequestVM data)
         {
@@ -69,7 +67,6 @@ namespace Programmania.Controllers
             {
                 return NotFound("Token invalid");
             }
-
             return View(new UserProfileVM(true, user.Login, user.Name, user.Exp, getUserCourses(user), getUserAchievements(user)));
         }
 
@@ -113,64 +110,66 @@ namespace Programmania.Controllers
 
         private List<UserAchievementVM> getUserAchievements(User user)
         {
-            List<UserAchievementVM> list = dbContext.Users.Include(u => u.Achievements)
-                .First(u => u == user).Achievements.Select(s => new UserAchievementVM
-                {
-                    Name = s.Name,
-                    Description = s.Desc,
-                    Points = s.Points,
-                    FormFile = fileService.GetDocument(dbContext.Documents
-                        .FirstOrDefault(d => d.StreamId == s.StreamId).Path)
-                }).ToList();
+            //List<UserAchievementVM> list = dbContext.Users.Include(u => u.Achievements)
+            //    .First(u => u == user).Achievements.Select(s => new UserAchievementVM
+            //    {
+            //        Name = s.Name,
+            //        Description = s.Desc,
+            //        Points = s.Points,
+            //        FormFile = fileService.GetDocument(dbContext.Documents
+            //            .FirstOrDefault(d => d.StreamId == s.StreamId).Path)
+            //    }).ToList();
 
-            return list;
+            //return list;
+            return null;
         }
 
         private List<UserCourseVM> getUserCourses(User user)
         {
-            var list = dbContext.UserDisciplines.Where(u => u.UserId == user.Id)
-                  .Join(dbContext.Courses, userDiscipline => userDiscipline.DisciplineId,
-                                 course => course.DisciplineId,
-                                 (userDiscipline, course) => new
-                                 {
-                                     Discipline = userDiscipline.Discipline,
-                                     Course = course,
-                                     LastLesson = userDiscipline.LessonOrder,
-                                     LessonCount = course.LessonCount,
-                                     StreamIdCourse = course.StreamId
-                                 }).Select(s => new
-                                 {
-                                     discipline = s.Discipline,
-                                     course = s.Course,
-                                     lastLesson = s.LastLesson,
-                                     lessonCount = s.LessonCount,
-                                     streamId = s.StreamIdCourse
-                                 }).ToList();
+            //var list = dbContext.UserDisciplines.Where(u => u.UserId == user.Id)
+            //      .Join(dbContext.Courses, userDiscipline => userDiscipline.DisciplineId,
+            //                     course => course.DisciplineId,
+            //                     (userDiscipline, course) => new
+            //                     {
+            //                         Discipline = userDiscipline.Discipline,
+            //                         Course = course,
+            //                         LastLesson = userDiscipline.LessonOrder,
+            //                         LessonCount = course.LessonCount,
+            //                         StreamIdCourse = course.StreamId
+            //                     }).Select(s => new
+            //                     {
+            //                         discipline = s.Discipline,
+            //                         course = s.Course,
+            //                         lastLesson = s.LastLesson,
+            //                         lessonCount = s.LessonCount,
+            //                         streamId = s.StreamIdCourse
+            //                     }).ToList();
 
-            List<UserCourseVM> userCourses = new List<UserCourseVM>();
+            //List<UserCourseVM> userCourses = new List<UserCourseVM>();
 
-            foreach (var item in list)
-            {
-                var userCourse = userCourses.FirstOrDefault(uc => uc.CourseId == item.course.Id);
-                if (userCourse == null)
-                {
-                    userCourses.Add(new UserCourseVM
-                    {
-                        CourseId = item.course.Id,
-                        CourseName = item.course.Name,
-                        LessonsCount = item.lessonCount,
-                        LessonsCompleted = item.lastLesson,
-                        FormFile = fileService.GetDocument(dbContext.Documents
-                        .FirstOrDefault(d => d.StreamId == item.streamId).Path)
-                    });
-                }
-                else
-                {
-                    userCourse.LessonsCompleted += item.lastLesson;
-                }
-            }
+            //foreach (var item in list)
+            //{
+            //    var userCourse = userCourses.FirstOrDefault(uc => uc.CourseId == item.course.Id);
+            //    if (userCourse == null)
+            //    {
+            //        userCourses.Add(new UserCourseVM
+            //        {
+            //            CourseId = item.course.Id,
+            //            CourseName = item.course.Name,
+            //            LessonsCount = item.lessonCount,
+            //            LessonsCompleted = item.lastLesson,
+            //            FormFile = fileService.GetDocument(dbContext.Documents
+            //            .FirstOrDefault(d => d.StreamId == item.streamId).Path)
+            //        });
+            //    }
+            //    else
+            //    {
+            //        userCourse.LessonsCompleted += item.lastLesson;
+            //    }
+            //}
 
-            return userCourses;
+            //return userCourses;
+            return null;
         }
     }
 }
