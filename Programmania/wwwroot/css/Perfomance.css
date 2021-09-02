@@ -1,0 +1,227 @@
+﻿/*Обнуление*/
+
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+    *, *:before, *:after {
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+:focus, :active {
+    outline: none;
+}
+
+a:focus, a:active {
+    outline: none;
+}
+
+nav, footer, header, aside {
+    display: block;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    font-size: 100%;
+    line-height: 1;
+    font-size: 14px;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+input, button, textarea {
+    font-family: inherit;
+}
+
+    input::-ms-clear {
+        display: none;
+    }
+
+button {
+    cursor: pointer;
+}
+
+    button::-moz-focus-inner {
+        padding: 0;
+        border: 0;
+    }
+
+a, a:visited {
+    text-decoration: none;
+}
+
+    a:hover {
+        text-decoration: none;
+    }
+
+ul-li {
+    list-style: none;
+}
+
+img {
+    vertical-align: top;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    font-weight: 400;
+}
+
+
+/*--------------------*/
+
+body {
+    background-color: #defafa;
+}
+
+.content {
+    padding: 10% 5%;
+    background-color: #defafa;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: 40px;
+    padding: 50px;
+    background-color: #fff;
+}
+
+    .card:nth-child(2) {
+        margin-top: 50px;
+    }
+
+
+
+.chart-arrows {
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+.chart-arrow-left,
+.chart-arrow-right {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    transition: all 0.3s ease 0s;
+    box-shadow: -3px 3px 0 #4797ff;
+    color: aqua;
+}
+
+    .chart-arrow-left:hover,
+    .chart-arrow-right:hover {
+        box-shadow: -3px 3px 0 #000a99;
+        cursor: pointer;
+    }
+
+.chart-arrow-left {
+    transform: rotate(45deg);
+
+}
+
+.chart-arrow-right {
+    transform: rotate(-135deg);
+    margin-left: 300px;
+}
+
+
+.history-title {
+    text-align: center;
+    font-size: 5vh;
+    color: darkslateblue;
+}
+
+.history__day {
+    margin-top: 30px;
+}
+
+.day-title {
+    text-align: center;
+    font-size: 4vh;
+    color: darkorchid;
+}
+
+.day-body {
+    margin-top: 20px;
+}
+
+.day-body table{
+    font-size: 2.3vh;
+}
+
+.posXP{
+    color: lime;
+}
+
+.negXP{
+    color: crimson;
+}
+
+.timeData {
+    color: #ff8c00;
+}
+
+#showMoreBtn{
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 150px;
+    height: 50px;
+    font-size: 2.3vh;
+}
+
+.chart-area{
+    max-width: 445px;
+}
+
+
+
+@media(max-width: 560px) {
+    .card{
+        padding: 20px;
+    }
+
+    .chart-arrow-left,
+    .chart-arrow-right {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+@media(max-width: 480px) {
+    .day-body table {
+        font-size: 2vh;
+    }
+}
+
+@media(max-width: 445px) {
+    canvas {
+        width: 400px !important;
+        height: 180px !important;
+    }
+
+    .chartArea{
+        overflow: scroll;
+    }
+
+    .chart-arrows{
+        margin-top: 50px;
+    }
+
+    .chart-arrow-right{
+        margin-left: 150px;
+    }
+}
+
+@media(max-width: 265px) {
+    .chart-arrow-right {
+        margin-left: 100px;
+    }
+}

@@ -84,7 +84,6 @@ h1, h2, h3, h4, h5, h6 {
 body {
     margin-top: 20px;
     background-color: #defafa;
-    font-family: "mainFont";
 }
 
 .content {
@@ -150,6 +149,10 @@ body {
 
 .allUsers li a:hover {
     color: #ffd45f;
+}
+
+.tilesCard{
+    padding: 250px;
 }
 
 .tile-title {
@@ -511,8 +514,8 @@ body {
     }
 
 ::-webkit-scrollbar {
-    height: 1px;
-    width: 1px;
+    height: 0;
+    width: 0;
     background-color: black;
 }
 

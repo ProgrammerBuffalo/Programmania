@@ -29,6 +29,7 @@ namespace Programmania.Controllers
         }
 
         [Route("Main")]
+        [AllowAnonymous]
         [HttpGet]
 
         //change string parameter into ViewModel class
@@ -46,16 +47,17 @@ namespace Programmania.Controllers
         }
 
         [Route("Courses")]
+        [AllowAnonymous]
         public IActionResult Courses()
         {
-            var user = getUser(HttpContext.User.Claims.ToList());
+            //var user = getUser(HttpContext.User.Claims.ToList());
 
-            if (user == null)
-            {
-                return NotFound("Token is not valid");
-            }
+            //if (user == null)
+            //{
+            //    return NotFound("Token is not valid");
+            //}
 
-            return View(getUserCourses(user));
+            return View(/*getUserCourses(user)*/);
         }
 
         [Route("Profile")]
@@ -99,6 +101,13 @@ namespace Programmania.Controllers
 
         [Route("Challenges/Game")]
         public IActionResult Game()
+        {
+            return View();
+        }
+
+        [Route("Perfomance")]
+        [AllowAnonymous]
+        public IActionResult Perfomance()
         {
             return View();
         }
