@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Programmania.ViewModels
+﻿namespace Programmania.ViewModels
 {
     public class UserAchievementVM
     {
@@ -13,6 +8,6 @@ namespace Programmania.ViewModels
 
         public int Points { get; set; }
 
-        public Microsoft.AspNetCore.Http.IFormFile FormFile { get; set; }
+        public byte[] File { get; set; }
     }
 }
