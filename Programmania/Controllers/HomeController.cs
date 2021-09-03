@@ -112,6 +112,13 @@ namespace Programmania.Controllers
             return View();
         }
 
+        [Route("Course")]
+        [AllowAnonymous]
+        public IActionResult Course()
+        {
+            return View();
+        }
+
         private User getUser(List<Claim> claims)
         {
             var user = dbContext.Users
