@@ -5,6 +5,7 @@
         $('#emailInputReg').val('');
         $('#passwordInputReg').val('');
         $('#confirmPasswordInput').val('');
+        $('#avatarInputReg').val('');
 
         $('#nicknameErrorReg').remove();
         $('#emailErrorReg').remove();
@@ -35,52 +36,52 @@ $(document).ready(function () {
         var email = $('#emailInputReg');
         var password = $('#passwordInputReg');
         var confirmPassword = $('#confirmPasswordInput');
+        var avatar = $('#avatarInputReg');
 
         $('#nicknameErrorReg').remove();
         $('#emailErrorReg').remove();
         $('#passwordErrorReg').remove();
         $('#confirmPasswordError').remove();
 
-        if (!checkNickname(nickname.val())) {
-            hasError = true;
-            $('#nicknameLabelReg').after("<label id='nicknameErrorReg' class='error'>nickname is to short</label>");
-        }
+        //if (!checkNickname(nickname.val())) {
+        //    hasError = true;
+        //    $('#nicknameLabelReg').after("<label id='nicknameErrorReg' class='error'>nickname is to short</label>");
+        //}
 
-        if (!checkEmail(email.val())) {
-            hasError = true;
-            $('#emailLabelReg').after("<label id='emailErrorReg' class='error'>input error</label>");
-        }
+        //if (!checkEmail(email.val())) {
+        //    hasError = true;
+        //    $('#emailLabelReg').after("<label id='emailErrorReg' class='error'>email input error</label>");
+        //}
 
-        if (!checkPassword(password.val())) {
-            hasError = true;
-            $('#passwordLabelReg').after("<label id='passwordErrorReg' class='error'>length 8-16. allowed symbols (!,#,$,%,^,&)</label>");
-        }
+        //if (!checkPassword(password.val())) {
+        //    hasError = true;
+        //    $('#passwordLabelReg').after("<label id='passwordErrorReg' class='error'>length 8-16. allowed symbols (!, #, $, %, ^, &)</label>");
+        //}
 
-        if (password.val() != confirmPassword.val()) {
-            hasError = true;
-            confirmPassword.val('');
-            $('#confirmPasswordLabel').after("<label id='confirmPasswordError' class='error'>Password not matches</label>");
-        }
+        //if (password.val() != confirmPassword.val() || stringIsEmty(password.val())) {
+        //    hasError = true;
+        //    confirmPassword.val('');
+        //    $('#confirmPasswordLabel').after("<label id='confirmPasswordError' class='error'>Password doesn't match</label>");
+        //}
 
         if (!hasError) {
-
             var data = new FormData();
             data.append('Nickname', nickname.val());
             data.append('Email', email.val());
             data.append('Password', password.val());
-            data.append('PasswordConfirmation', confirmPassword.val());
+            data.append('Avatar', avatar.get(0).files[0]);
 
             $.ajax({
                 type: 'POST',
-                url: 'Account/Registration',
+                url: 'account/registration',
                 processData: false,
                 contentType: false,
                 data: data,
                 success: function () {
                     alert('registration successful');
                 },
-                error: function () {
-                    $('#registerBtnOut').after("<label id='registerError' class='error'> </label>");
+                error: function (jqXHR) {
+                    $('#registerBtnOut').after(`<label id='registerError' class='error'>${jqXHR.responseText}</label>`);
                 }
             });
         }
@@ -97,15 +98,15 @@ $(document).ready(function () {
         $('#emailErrorLog').remove();
         $('#passwordErrorLog').remove();
 
-        if (!checkEmail(email.val())) {
-            hasError = true;
-            $('#emailLabelLog').after("<label id='emailErrorLog' class='error'>input error</label>");
-        }
+        //if (!checkEmail(email.val())) {
+        //    hasError = true;
+        //    $('#emailLabelLog').after("<label id='emailErrorLog' class='error'>input error</label>");
+        //}
 
-        if (!checkPassword(password.val())) {
-            hasError = true;
-            $('#passwordLabelLog').after("<label id='passwordErrorLog' class='error'>length 8-16. allowed symbols (!,#,$,%,^,&)</label>");
-        }
+        //if (!checkPassword(password.val())) {
+        //    hasError = true;
+        //    $('#passwordLabelLog').after("<label id='passwordErrorLog' class='error'>length 8-16. allowed symbols (!,#,$,%,^,&)</label>");
+        //}
 
         if (!hasError) {
             var data = new FormData();
@@ -121,8 +122,8 @@ $(document).ready(function () {
                 success: function (response) {
                     window.location.href = response.url;
                 },
-                error: function () {
-                    $('loginBtnOut').after("<label id='loginError' class='error'> </label>");
+                error: function (jqXHR) {
+                    $('loginBtnOut').after(`<label id='loginError' class='error'>${jqXHR.responseText}</label>`);
                 }
             });
         }
@@ -145,4 +146,8 @@ function checkPassword(str) {
     str = str.trim();
     var regex = /^[a-z,A-Z,0-9,!,#,$,%,^,&]{8,16}$/;
     return regex.test(str);
+}
+
+function stringIsEmty(str) {
+    return str == "" || str == null;
 }

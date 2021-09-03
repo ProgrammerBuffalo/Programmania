@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Programmania.ViewModels
+﻿namespace Programmania.ViewModels
 {
     public class UserCourseVM
     {
@@ -17,7 +12,7 @@ namespace Programmania.ViewModels
 
         public int Percentage => LessonsCompleted / LessonsCount * 100;
 
-        public Microsoft.AspNetCore.Http.IFormFile FormFile { get; set; }
+        public byte[] File { get; set; }
 
     }
 }
