@@ -79,8 +79,6 @@ h1,h2,h3,h4,h5,h6{
 }
 
 
-
-
 @font-face{
     font-family: 'mainFont';
     src: url("../Fonts/Font2.ttf");
@@ -126,7 +124,7 @@ body{
     justify-content: flex-start;
 }
 .xop-info-title {
-    font-size: 30px;
+    font-size: 2.7vh;
     background-color: #2b0053; 
     width: 300px;
     text-align: center;
@@ -174,7 +172,7 @@ body{
     border: 1px solid #888;
     width: 80%;
     padding: 1% 2%;
-    font-size: 20px;
+    font-size: 3vh;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     animation-name: animatetop;
     animation-duration: 0.4s
@@ -201,10 +199,12 @@ body{
 
 #registerForm label, #loginForm label{
     margin-top: 20px;
+    font-size: 3vh;
 }
 
 #registerForm input, #loginForm input{
     margin-top: 10px;
+    font-size: 2.5vh;
 }
 
 #registerBtnOut, #loginBtnOut{
@@ -221,20 +221,23 @@ body{
 .headerNav{
     background-color: #2b0053;
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 2.5vh;
     border-radius: 2rem;
     padding: 0 2rem;
 }
 
 .headerNav ul{
+
     margin: 0;
+    margin-left: 75px;
     padding: 0;
     list-style: none;
 }
 
 .headerNav ul li{
+
     display: inline-block;
-    margin: 0 10px;
+    margin: 0 20px;
     position: relative;
 }
 
@@ -242,12 +245,13 @@ body{
     font-family: 'mainFont';
     display: block;
     height: 50px;
-    width: 100px;
+    width: 100%;
     text-align: center;
     line-height: 50px;
     color: #a1a7ff;
     text-decoration: none;
     position: relative;
+    font-size: 2.5vh;
 }
 
 .headerNav ul li a:before{
@@ -309,7 +313,7 @@ section{
 
 }
 .flexTitle{
-    font-size: 60px;
+    font-size: 5vh;
 
     transform: translate(0px, 50%);
     opacity: 0;
@@ -326,7 +330,7 @@ section{
 }
 
 .flexText p{
-    font-size: 20px;
+    font-size: 3vh;
 }
 
 .anim_show{
@@ -386,4 +390,25 @@ section{
         margin-top:30px;
     }
 
+}
+
+@media(max-width: 600px) {
+    
+}
+
+@media(max-width: 430px) {
+    .headerNav ul li a {
+        width: 200px;
+        height: 100px;
+    }
+}
+
+@media(max-width: 360px) {
+    .xop-section {
+        flex-direction: column;
+    }
+
+    .headerNav ul {
+        margin-left: 40px;
+    }
 }

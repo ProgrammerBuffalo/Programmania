@@ -152,7 +152,12 @@ body {
 }
 
 .tilesCard{
-    padding: 250px;
+    padding: 100px;
+}
+
+.tile{
+    width: 300px;
+    margin-left: 30px;
 }
 
 .tile-title {
@@ -528,6 +533,18 @@ body {
 @media(max-width: 768px) {
     .confirmBtn {
         margin-top: 0;
+    }
+}
+
+@media(max-width: 600px) {
+    .tilesCard {
+        padding: 50px;
+    }
+}
+
+@media(max-width: 300px) {
+    .tilesCard{
+        padding: 25px;
     }
 }
 
