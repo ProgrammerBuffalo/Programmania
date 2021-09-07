@@ -4,7 +4,6 @@ using Microsoft.IdentityModel.Tokens;
 using Programmania.Models;
 using Programmania.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -23,28 +22,6 @@ namespace Programmania.Services
         {
             this.dbContext = context;
             this.appSettings = app_settings.Value;
-        }
-
-        public async Task<AuthenticationResponseVM> Registrate(RegistrationVM registrationVM, string ipAdress)
-        {
-            User user = new User()
-            {
-                Name = registrationVM.Nickname,
-                Password = registrationVM.Password,
-                Login = registrationVM.Email
-            };
-
-            dbContext.Users.Add(user);
-
-            string jwtToken = generateJwtToken(user);
-            RefreshToken refreshToken = generateRefreshToken(ipAdress);
-
-            user.RefreshTokens.Add(refreshToken);
-            dbContext.Users.Add(user);
-
-            await dbContext.SaveChangesAsync();
-
-            return new AuthenticationResponseVM(jwtToken, refreshToken.Token);
         }
 
         public async Task<AuthenticationResponseVM> Authenticate(AuthenticationRequestVM authenticationRequest, string ipAdress)

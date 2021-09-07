@@ -6,20 +6,25 @@ using Programmania.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Programmania.Services;
 using Programmania.Models;
+using System.IO;
 
 namespace Programmania.Controllers
 {
-    [ApiController]
     [Route("[controller]")]
-    public class AccountController : ControllerBase
+    public class AccountController : Controller
     {
         private DAL.ProgrammaniaDBContext dbContext;
         private IAccountService accountService;
+        private IXMLService xmlService;
+        private IFileService fileService;
 
-        public AccountController(DAL.ProgrammaniaDBContext context, IAccountService accService)
+        public AccountController(DAL.ProgrammaniaDBContext context, IAccountService accService,
+            IXMLService xmlService, IFileService fileService)
         {
             this.dbContext = context;
             this.accountService = accService;
+            this.xmlService = xmlService;
+            this.fileService = fileService;
         }
 
         [Route("refresh-token")]
@@ -84,9 +89,34 @@ namespace Programmania.Controllers
                 User user = dbContext.Users.FirstOrDefault(u => u.Login == registrationVM.Email || u.Name == registrationVM.Nickname);
                 if (user == null)
                 {
-                    AuthenticationResponseVM response =
-                        await accountService.Registrate(registrationVM, HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString());
+                    AuthenticationResponseVM response;
+                    using (var transaction = dbContext.Database.BeginTransaction())
+                    {
+                        user = new User()
+                        {
+                            Name = registrationVM.Nickname,
+                            Password = registrationVM.Password,
+                            Login = registrationVM.Email
+                        };
+                        SqlFileContext emptyFileContext = fileService.AddEmptyDocument(user.Name + ".xml");
+                        xmlService.CreateXDeclaration(emptyFileContext);
+                        user.HistoryId = emptyFileContext.StreamId;
 
+                        if (registrationVM.FormFile.Length > 0)
+                        {
+                            SqlFileContext sqlFileContext = fileService.AddEmptyDocument(user.Name + Path.GetExtension(registrationVM.FormFile.FileName));
+                            fileService.FillDocumentContent(sqlFileContext, registrationVM.FormFile);
+                            user.ImageId = sqlFileContext.StreamId;
+                        }
+
+                        dbContext.Users.Add(user);
+
+                        dbContext.SaveChanges();
+                        response = await accountService.Authenticate(new AuthenticationRequestVM { Email = user.Login, Password = user.Password },
+                            HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString());
+
+                        transaction.Commit();
+                    }
                     setCookieTokens(response.RefreshToken, response.JWTToken);
 
                     return Ok(response);

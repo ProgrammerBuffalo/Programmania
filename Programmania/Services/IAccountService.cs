@@ -6,8 +6,6 @@ namespace Programmania.Services
 {
     public interface IAccountService
     {
-        Task<AuthenticationResponseVM> Registrate(RegistrationVM regVM, string ipAdress);
-
         Task<AuthenticationResponseVM> Authenticate(AuthenticationRequestVM authenticationRequest, string ipAdress);
 
         Task<AuthenticationResponseVM> RefreshTokens(string refreshToken, string ipAdress);

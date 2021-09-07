@@ -19,5 +19,7 @@ namespace Programmania.ViewModels
         [DataType(DataType.Password)]
         [Compare("Password")]
         public string PasswordConfirmation { get; set; }
+
+        public Microsoft.AspNetCore.Http.IFormFile FormFile { get; set; }
     }
 }

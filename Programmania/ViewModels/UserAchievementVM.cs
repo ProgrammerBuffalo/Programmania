@@ -13,6 +13,6 @@ namespace Programmania.ViewModels
 
         public int Points { get; set; }
 
-        public Microsoft.AspNetCore.Http.IFormFile FormFile { get; set; }
+        public byte[] Image { get; set; }
     }
 }

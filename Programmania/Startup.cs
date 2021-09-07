@@ -59,6 +59,7 @@ namespace Programmania
 
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IFileService, FileService>();
+            services.AddScoped<IXMLService, XMLService>();
 
             services.AddControllersWithViews();
 

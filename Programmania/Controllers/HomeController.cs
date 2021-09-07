@@ -30,6 +30,7 @@ namespace Programmania.Controllers
 
         [Route("Main")]
         [HttpGet]
+        [AllowAnonymous]
 
         //change string parameter into ViewModel class
         public IActionResult Main(ViewModels.AuthenticationRequestVM data)
@@ -63,14 +64,14 @@ namespace Programmania.Controllers
         [HttpGet]
         public IActionResult Profile()
         {
-            var user = getUser(HttpContext.User.Claims.ToList());
+            //var user = getUser(HttpContext.User.Claims.ToList());
 
-            if (user == null)
-            {
-                return NotFound("Token invalid");
-            }
+            //if (user == null)
+            //{
+            //  return NotFound("Token invalid");
+            //}
 
-            return View(new UserProfileVM(true, user.Login, user.Name, user.Exp, getUserCourses(user), getUserAchievements(user)));
+            return View(/*new UserProfileVM(true, user.Login, user.Name, user.Exp, getUserCourses(user), getUserAchievements(user))*/);
         }
 
         [Route("News")]
@@ -119,7 +120,7 @@ namespace Programmania.Controllers
                     Name = s.Name,
                     Description = s.Desc,
                     Points = s.Points,
-                    FormFile = fileService.GetDocument(dbContext.Documents
+                    Image = fileService.GetDocument(dbContext.Documents
                         .FirstOrDefault(d => d.StreamId == s.StreamId).Path)
                 }).ToList();
 
@@ -160,7 +161,7 @@ namespace Programmania.Controllers
                         CourseName = item.course.Name,
                         LessonsCount = item.lessonCount,
                         LessonsCompleted = item.lastLesson,
-                        FormFile = fileService.GetDocument(dbContext.Documents
+                        Image = fileService.GetDocument(dbContext.Documents
                         .FirstOrDefault(d => d.StreamId == item.streamId).Path)
                     });
                 }

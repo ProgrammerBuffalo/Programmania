@@ -9,12 +9,16 @@ namespace Programmania.Services
 {
     public interface IFileService
     { 
-        public IFormFile GetDocument(string full_path);
+        public byte[] GetDocument(string full_path);
 
-        public Guid AddDocument(System.IO.MemoryStream memoryStream, DbContext dbContext);
+        public Models.SqlFileContext GetSqlFileContext(Guid guid);
 
-        public bool UpdateDocument(Guid guid, System.IO.MemoryStream memoryStream, DbContext dbContext);
+        public Models.SqlFileContext AddEmptyDocument(string fileName);
 
-        public bool RemoveDocument(Guid guid, DbContext dbContext);
+        public bool FillDocumentContent(Models.SqlFileContext emptyFileContext, IFormFile formFile);
+
+        public bool UpdateDocument(Guid guid, IFormFile formFile);
+
+        public bool RemoveDocument(Guid guid);
     }
 }
