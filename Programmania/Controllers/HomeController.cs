@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Programmania.Models;
 using Programmania.Services;
 using Programmania.ViewModels;
@@ -142,26 +143,26 @@ namespace Programmania.Controllers
 
         private List<UserCourseVM> getUserCourses(User user)
         {
-            //var list = dbContext.UserDisciplines.Where(u => u.UserId == user.Id)
-            //      .Join(dbContext.Courses, userDiscipline => userDiscipline.DisciplineId,
-            //                     course => course.DisciplineId,
-            //                     (userDiscipline, course) => new
-            //                     {
-            //                         Discipline = userDiscipline.Discipline,
-            //                         Course = course,
-            //                         LastLesson = userDiscipline.LessonOrder,
-            //                         LessonCount = course.LessonCount,
-            //                         StreamIdCourse = course.StreamId
-            //                     }).Select(s => new
-            //                     {
-            //                         discipline = s.Discipline,
-            //                         course = s.Course,
-            //                         lastLesson = s.LastLesson,
-            //                         lessonCount = s.LessonCount,
-            //                         streamId = s.StreamIdCourse
-            //                     }).ToList();
+            var list = dbContext.UserDisciplines.Where(u => u.UserId == user.Id)
+                  .Join(dbContext.Courses, userDiscipline => userDiscipline.DisciplineId,
+                                 course => course.DisciplineId,
+                                 (userDiscipline, course) => new
+                                 {
+                                     Discipline = userDiscipline.Discipline,
+                                     Course = course,
+                                     LastLesson = userDiscipline.LessonOrder,
+                                     LessonCount = course.LessonCount,
+                                     StreamIdCourse = course.StreamId
+                                 }).Select(s => new
+                                 {
+                                     discipline = s.Discipline,
+                                     course = s.Course,
+                                     lastLesson = s.LastLesson,
+                                     lessonCount = s.LessonCount,
+                                     streamId = s.StreamIdCourse
+                                 }).ToList();
 
-            //List<UserCourseVM> userCourses = new List<UserCourseVM>();
+            List<UserCourseVM> userCourses = new List<UserCourseVM>();
 
             foreach (var item in list)
             {
