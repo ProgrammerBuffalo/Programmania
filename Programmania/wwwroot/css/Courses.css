@@ -80,9 +80,24 @@ h1,h2,h3,h4,h5,h6{
     src: url("../Fonts/Font2.ttf");
 }
 
-.content {
-    padding: 100px;
+body {
+    margin-top: 20px;
+    background-color: #defafa;
 }
+
+.content {
+    padding: 10% 5%;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: 40px;
+    padding: 30px;
+}
+
+/*courses*/
 .coursesList {
     display: flex;
     justify-content: space-around;
@@ -90,17 +105,16 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .coursesList__item {
+    margin-top: 50px;
     display: flex;
     flex-direction: column;
     border: 1px solid #2b0053;
     border-radius: 25px;
     width: 300px;
-    height: 500px;
+    height: 450px;
     flex: 0 0 auto;
     position: relative;
     transition: all 0.3s ease 0s;
-    margin-top: 50px;
-    margin-left: 50px;
 }
 
 .coursesList__item__hover{
@@ -108,7 +122,7 @@ h1,h2,h3,h4,h5,h6{
     display: inline;
     top: 0;
     background-color: rgba(43, 0, 83,0.5);
-    width: 0;
+    width: 100%;
     height: 0;
     opacity: 0;
     border: 1px solid #2b0053;
@@ -120,23 +134,25 @@ h1,h2,h3,h4,h5,h6{
     -o-transition: all 0.5s ease 0s ;
 }
 
-.coursesList__item__hover__body{
-    padding-top: 150px;
-    text-align: center;
-    font-size: 24px;
 
-}
 
-.coursesList__item__hover__body h3{
+.coursesList__item__footer h3 {
     text-decoration: none;
     margin-top: 20px;
+    color: #2b0053;
+    text-align: center;
+    font-size: 2.2vh;
 }
 
-.coursesList__item:hover .coursesList__item__hover{
+.coursesList__item:hover .coursesList__item__hover {
     opacity: 1;
-    width: 300px;
-    height: 500px;
-    color: #ffd45f;
+    height: 100%;
+    animation-name: courseHover;
+    animation-timing-function: ease-in-out;
+    animation-duration: 0.5s;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+
 }
 
 
@@ -152,17 +168,16 @@ h1,h2,h3,h4,h5,h6{
 .coursesList__item__image img{
     max-width: 100%;
 }
-.coursesList__item__body {
+
+.courseList__item__footer {
     position: absolute;
     bottom: 0;
-    text-align: center;
-    font-family: "mainFont";
-    padding: 20px;
-    flex: 1 1 auto;
 }
-.coursesList__item__body__header {
-    font-size: 42px;
+
+.coursesList__item__body h3 {
+    font-size: 4vh;
     color: #2b0053;
+    text-align: center;
 }
 .coursesList__item__body__content {
     font-size: 24px;
@@ -171,9 +186,87 @@ h1,h2,h3,h4,h5,h6{
     color: #2b0053 ;
 }
 
+.ldBar{
+    margin: 0 auto;
+}
+
+.ldBar path.baseLine {
+    stroke-width: 7;
+    stroke: #3c007d;
+    stroke-linecap: round;
+}
+
+.ldBar path.mainLine {
+    stroke-width: 5;
+    stroke: #ffe959;
+    stroke-linecap: round;
+}
+
+
+.ldBar-label {
+    font-size: 4vh;
+    color: #5c00a3;
+    font-weight: 700;
+}
+
+@keyframes courseHover {
+    0% {
+        height: 0%;
+    }
+
+    100% {
+        height: 100%;
+    }
+}
+
+@-webkit-keyframes courseHover {
+    0% {
+        height: 0%;
+    }
+
+    100% {
+        height: 100%;
+    }
+}
+
+@-moz-keyframes courseHover {
+    0% {
+        height: 0%;
+    }
+
+    100% {
+        height: 100%;
+    }
+}
+
+@-o-keyframes courseHover {
+    0% {
+        height: 0%;
+    }
+
+    100% {
+        height: 100%;
+    }
+}
+
 @media(max-width: 1024px) {
     .content{
         padding: 50px;
+    }
+}
+
+@media(max-width: 500px) {
+    .coursesList__item{
+        width: 200px;
+    }
+    .coursesList__item__image {
+        width: 120px;
+    }
+}
+
+@media(max-width: 320px) {
+    .coursesList__item{
+        width: 150px;
     }
 }
 

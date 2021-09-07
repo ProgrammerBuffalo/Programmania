@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Programmania.Models;
 using Programmania.Services;
 using Programmania.ViewModels;
@@ -10,7 +10,6 @@ using System.Security.Claims;
 
 namespace Programmania.Controllers
 {
-    [Authorize]
     public class HomeController : Controller
     {
         private DAL.ProgrammaniaDBContext dbContext;
@@ -29,9 +28,8 @@ namespace Programmania.Controllers
         }
 
         [Route("Main")]
-        [HttpGet]
         [AllowAnonymous]
-
+        [HttpGet]
         //change string parameter into ViewModel class
         public IActionResult Main(ViewModels.AuthenticationRequestVM data)
         {
@@ -47,16 +45,17 @@ namespace Programmania.Controllers
         }
 
         [Route("Courses")]
+        [AllowAnonymous]
         public IActionResult Courses()
         {
-            var user = getUser(HttpContext.User.Claims.ToList());
+            //var user = getUser(HttpContext.User.Claims.ToList());
 
-            if (user == null)
-            {
-                return NotFound("Token is not valid");
-            }
+            //if (user == null)
+            //{
+            //    return NotFound("Token is not valid");
+            //}
 
-            return View(getUserCourses(user));
+            return View(/*getUserCourses(user)*/);
         }
 
         [Route("Profile")]
@@ -104,6 +103,20 @@ namespace Programmania.Controllers
             return View();
         }
 
+        [Route("Perfomance")]
+        [AllowAnonymous]
+        public IActionResult Perfomance()
+        {
+            return View();
+        }
+
+        [Route("Course")]
+        [AllowAnonymous]
+        public IActionResult Course()
+        {
+            return View();
+        }
+
         private User getUser(List<Claim> claims)
         {
             var user = dbContext.Users
@@ -129,26 +142,26 @@ namespace Programmania.Controllers
 
         private List<UserCourseVM> getUserCourses(User user)
         {
-            var list = dbContext.UserDisciplines.Where(u => u.UserId == user.Id)
-                  .Join(dbContext.Courses, userDiscipline => userDiscipline.DisciplineId,
-                                 course => course.DisciplineId,
-                                 (userDiscipline, course) => new
-                                 {
-                                     Discipline = userDiscipline.Discipline,
-                                     Course = course,
-                                     LastLesson = userDiscipline.LessonOrder,
-                                     LessonCount = course.LessonCount,
-                                     StreamIdCourse = course.StreamId
-                                 }).Select(s => new
-                                 {
-                                     discipline = s.Discipline,
-                                     course = s.Course,
-                                     lastLesson = s.LastLesson,
-                                     lessonCount = s.LessonCount,
-                                     streamId = s.StreamIdCourse
-                                 }).ToList();
+            //var list = dbContext.UserDisciplines.Where(u => u.UserId == user.Id)
+            //      .Join(dbContext.Courses, userDiscipline => userDiscipline.DisciplineId,
+            //                     course => course.DisciplineId,
+            //                     (userDiscipline, course) => new
+            //                     {
+            //                         Discipline = userDiscipline.Discipline,
+            //                         Course = course,
+            //                         LastLesson = userDiscipline.LessonOrder,
+            //                         LessonCount = course.LessonCount,
+            //                         StreamIdCourse = course.StreamId
+            //                     }).Select(s => new
+            //                     {
+            //                         discipline = s.Discipline,
+            //                         course = s.Course,
+            //                         lastLesson = s.LastLesson,
+            //                         lessonCount = s.LessonCount,
+            //                         streamId = s.StreamIdCourse
+            //                     }).ToList();
 
-            List<UserCourseVM> userCourses = new List<UserCourseVM>();
+            //List<UserCourseVM> userCourses = new List<UserCourseVM>();
 
             foreach (var item in list)
             {

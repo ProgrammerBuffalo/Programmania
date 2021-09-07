@@ -4,15 +4,12 @@ namespace Programmania.ViewModels
 {
     public class RegistrationVM
     {
-        [Required]
         public string Nickname { get; set; }
 
-        [Required]
-        [DataType(DataType.EmailAddress)]
+        //[DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        [Required]
-        [DataType(DataType.Password)]
+        //[DataType(DataType.Password)]
         public string Password { get; set; }
 
         [Required]

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Programmania.ViewModels
 {
@@ -16,6 +14,8 @@ namespace Programmania.ViewModels
         public int Expierence { get; set; }
 
         public int Level => (int)(Math.Sqrt(Expierence) / 50);
+
+        public byte[] Avatar { get; set; }
 
         public ICollection<UserCourseVM> UserCourses { get; set; }
 

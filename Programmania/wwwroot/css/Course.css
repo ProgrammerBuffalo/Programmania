@@ -1,0 +1,141 @@
+﻿/*Обнуление*/
+
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+    *, *:before, *:after {
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+:focus, :active {
+    outline: none;
+}
+
+a:focus, a:active {
+    outline: none;
+}
+
+nav, footer, header, aside {
+    display: block;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    font-size: 100%;
+    line-height: 1;
+    font-size: 14px;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+input, button, textarea {
+    font-family: inherit;
+}
+
+    input::-ms-clear {
+        display: none;
+    }
+
+button {
+    cursor: pointer;
+}
+
+    button::-moz-focus-inner {
+        padding: 0;
+        border: 0;
+    }
+
+a, a:visited {
+    text-decoration: none;
+}
+
+    a:hover {
+        text-decoration: none;
+    }
+
+ul-li {
+    list-style: none;
+}
+
+img {
+    vertical-align: top;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    font-weight: 400;
+}
+
+
+/*--------------------*/
+
+body {
+    background-color: #defafa;
+    padding: 10% 5%;
+}
+
+.content {
+    padding: 10% 5%;
+    border-radius: 40px;
+    background-color: #fff;
+}
+
+.accordion {
+    color: #fff;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: all 0.4s ease 0s;
+}
+
+    .active, .accordion:hover:nth-child(2n) {
+        background-color: #004769;
+    }
+
+    .active, .accordion:hover:nth-child(2n+1) {
+        background-color: #4d0080;
+    }
+
+.accordion:nth-child(2n) {
+    background-color: #008bcc;
+}
+
+.accordion:nth-child(2n+1) {
+    background-color: #7a02c9;
+}
+
+.panel {
+    padding: 0 30px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-in-out 0s;
+    background-color: #d6a1ff;
+}
+
+    .panel ol li {
+        color: #1f0136;
+        margin-top: 20px;
+        font-size: 2.3vh;
+    }
+
+    .panel ol {
+        margin-top: 30px;
+    }
+
+    .panel a {
+        display: block;
+        margin: 0 auto;
+        margin-bottom: 30px;
+        font-size: 2.3vh;
+    }

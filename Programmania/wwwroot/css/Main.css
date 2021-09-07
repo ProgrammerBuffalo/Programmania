@@ -83,8 +83,10 @@ h1, h2, h3, h4, h5, h6 {
 
 body {
     margin-top: 20px;
-    background-color: #defafa;
-    font-family: "mainFont";
+    background: url("../images/mainBackground.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 .content {
@@ -97,6 +99,7 @@ body {
     flex-direction: column;
     border-radius: 40px;
     padding: 50px;
+    background-color: rgba(227, 196, 163, .7);
 }
 
 .row {
@@ -140,7 +143,7 @@ body {
 
     .allUsers li a {
         font-size: 20px;
-        color: darkgray;
+        color: #383838;
         transition: color 0.5s ease 0s;
     }
 
@@ -148,8 +151,22 @@ body {
     color: #6269de;
 }
 
-.allUsers li a:hover {
-    color: #ffd45f;
+        .allUsers li a:hover {
+            color: #ffd445;
+        }
+
+.tilesCard{
+    padding: 40px;
+
+}
+
+.tile {
+    width: 300px;
+    margin-left: 40px;
+    background-color: rgba(217, 217, 217, .7);
+    border-radius: 40px;
+    padding: 0;
+    margin-top: 30px;
 }
 
 .tile-title {
@@ -166,10 +183,6 @@ body {
 }
 
 /*Current Course*/
-
-.tile-currentCourse {
-    background-color: #e8aafa;
-}
 
 .tile-currentCourse__header {
     text-align: center;
@@ -220,11 +233,6 @@ body {
 }
 
 /*Courses*/
-
-.tile-courses {
-    background-color: #8e84fa;
-}
-
 .course{
     margin: 0;
     
@@ -288,7 +296,6 @@ body {
 
 /*Perfomance*/
 .tile-perfomance {
-     background-color: #82ff9f;
      padding: 20px;
 }
 
@@ -320,7 +327,6 @@ body {
 /*Challenges*/
 
 .tile-challenges {
-    background-color: #ffbe82;
     padding: 20px;
 }
 
@@ -370,9 +376,6 @@ body {
 
 /*Posts*/
 
-.tile-posts {
-    background-color: #82fff9;
-}
 
 
 .ldBar{
@@ -511,8 +514,8 @@ body {
     }
 
 ::-webkit-scrollbar {
-    height: 1px;
-    width: 1px;
+    height: 0;
+    width: 0;
     background-color: black;
 }
 
@@ -520,11 +523,25 @@ body {
     .confirmBtn {
         margin-top: 20px;
     }
+    
 }
 
 @media(max-width: 768px) {
     .confirmBtn {
         margin-top: 0;
+    }
+}
+
+@media(max-width: 600px) {
+    .tilesCard {
+        padding: 0px;
+        margin-left: 0;
+    }
+}
+
+@media(max-width: 300px) {
+    .tilesCard{
+        
     }
 }
 

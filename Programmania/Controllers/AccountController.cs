@@ -56,7 +56,6 @@ namespace Programmania.Controllers
                 return NotFound(new { message = "Refresh token is null" });
 
             return Ok("Token revorked");
-
         }
 
         [Route("authorization")]
