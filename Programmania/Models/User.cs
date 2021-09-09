@@ -33,15 +33,15 @@ namespace Programmania.Models
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public ICollection<Achievement> Achievements { get; set; }
 
-        //[Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
-        //public ICollection<Lesson> Lessons { get; set; }
-
         public ICollection<UserDiscipline> UserDisciplines { get; set; }
 
         public ICollection<RefreshToken> RefreshTokens { get; set; }
 
-        [Column("stream_id")]
-        public Guid StreamId { get; set; }
+        [Column("img_stream_id")]
+        public Guid ImageId { get; set; }
+
+        [Column("hstr_stream_id")]
+        public Guid HistoryId { get; set; }
 
         public User()
         {

@@ -17,5 +17,8 @@ namespace Programmania.Models
         public string Name { get; set; }
 
         public long Size { get; set; }
+
+        [NotMapped]
+        public byte[] Transaction_Context { get; set; }
     }
 }
