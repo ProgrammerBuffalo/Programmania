@@ -71,7 +71,7 @@ function CreateChart(labels, month) {
                 }
             },
             responsive: true,
-            maintainAspectRadio: false
+            maintainAspectRatio: false
         },
 
     });
