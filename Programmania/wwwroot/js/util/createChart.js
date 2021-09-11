@@ -176,7 +176,7 @@ function createChart(data, labels, headerLabel, xAxis) {
                 yAxisKey: 'exp'
             },
             responsive: true,
-            maintainAspectRadio: false
+            maintainAspectRatio: false
         },
 
     });

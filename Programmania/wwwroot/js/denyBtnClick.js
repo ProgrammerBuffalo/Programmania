@@ -1,6 +1,6 @@
 "use strict";
 
-var buttons = document.getElementsByClassName("denyBtn");
+var buttons = document.getElementsByClassName("deny-btn");
 
 console.log(buttons);
 

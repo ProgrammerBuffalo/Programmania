@@ -12,10 +12,14 @@
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
             crossorigin="anonymous"></script>
 
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="~/css/loading-bar.min.css" />
     <script src="~/js/loading-bar.min.js"></script>
+    <script src="~/js/skroll.min.js"></script>
+    <script src="~/js/util/animateMain.js"></script>
+    <script src="~/js/rAF.js"></script>
+   
     <link rel="stylesheet" type="text/css" href="~/css/Main.css" />
 </head>
 
@@ -59,257 +63,222 @@
 
 
     <main>
-        <div class="content">
-            <div class="main">
-                <div class="row">
-                    <div class="col-md-6 mt-1 fixedCard">
-                        <div class="card mb-3">
-                            <h1 class="titleText">Leaderboard</h1>
+        <div id="large-header" class="large-header">
+            <canvas id="demo-canvas">
+
+            </canvas>
+            <div class="large-header__content">
+                <h3>Welcome, Kapusta111</h3>
+                <p>Subtitle</p>
+            </div>
+        </div>
 
 
-                            <div class="card-body">
-                                <ul class="leaderboard">
-                                    <li><a href="#">1. Andrey Level: 130</a></li>
-                                    <li><a href="#">2. Max Level: 112</a></li>
-                                    <li><a href="#">3. John Level: 98</a></li>
-                                    <li><a href="#">4. Jack Level: 95</a></li>
-                                    <li><a href="#">5. Jim Level: 91</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="col-md-6 mt-1 fixedCard">
-                        <div class="card mb-3">
-                            <h1 class="titleText">Position</h1>
+        <div class="content ">
 
+            <div class="leaderboard row _anim-items">
 
-                            <div class="card-body ">
-                                <ul class="allUsers">
-                                    <li><a href="#">1. Andrey Level: 130</a></li>
-                                    <li><a href="#">2. Max Level: 112</a></li>
-                                    <li><a href="#" class="myPosition">3. John Level: 98</a></li>
-                                    <li><a href="#">4. Jack Level: 95</a></li>
-                                    <li><a href="#">5. Jim Level: 91</a></li>
-                                    <li><a href="#">5. Helen Level: 89</a></li>
-                                    <li><a href="#">5. Chris Level: 87</a></li>
-                                    <li><a href="#">5. Mattew Level: 56</a></li>
-                                    <li><a href="#">5. Marilyn Level: 43</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                <div class="leaderboard__image col-md-5 flexImage _anim-items ">
+                    <img src="~/images/leaderboard.jpg" />
                 </div>
 
-                <div class="row tilesCard">
-                    <div class="col-md-4 mt-1 tile">
-                        <h3 class="tile-title">Current Course</h3>
-                        <div class="tile-body tile-currentCourse">
-                            <a>
-                                <h3 class="tile-currentCourse__header">Java</h3>
-                                <div class="ldBar label-center"
-                                     data-value="35"
-                                     data-preset="circle"
-                                     data-transition-in="35"
-                                     data-duration="1"
-                                     style="width: 60%; height: 60%">
-                                </div>
-                            </a>
-                            <a>
-                                <div class="tile-currentCourse__hover">
-                                    <h3>Last lesson: Working with sockets</h3>
-                                </div>
-                            </a>
-                        </div>
-
-
+                <div class="leaderboard-content col-md-7">
+                    <div class="leaderboard-header">
+                        Leaderboard
                     </div>
-
-                    <div class="col-md-4 mt-1 tile">
-                        <h3 class="tile-title">Courses</h3>
-                        <a>
-                            <div class="tile-body tile-courses">
-
-                                <div class="tile-courses__hover">
-                                    <div class="row">
-                                        <div class="col-sm-6 mt-1 course-hover">
-                                            <h3 class="course-hover__header">Java</h3>
-                                            <div class="course-hover__body">
-                                                <div class="ldBar label-center"
-                                                     data-value="73"
-                                                     data-preset="circle"
-                                                     data-transition-in="73"
-                                                     data-duration="1"
-                                                     style="width: 80%; height: 80%">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-6 mt-1 course-hover">
-                                            <h3 class="course-hover__header">Angular</h3>
-                                            <div class="course-hover__body">
-                                                <div class="ldBar label-center"
-                                                     data-value="46"
-                                                     data-preset="circle"
-                                                     data-transition-in="46"
-                                                     data-duration="1"
-                                                     style="width: 80%; height: 80%">
-                                                </div>
-                                            </div>
-                                        </div>
+                    <div class="leaderboard-content-body anim_show">
+                        <ol>
+                            <li>
+                                <a href="#">
+                                    <div class="user">
+                                        <p>Kapusta111</p>
+                                        <p>Level: 133</p>
                                     </div>
-
-
-                                </div>
-                                <div class="tile-courses__body">
-                                    <div class="row">
-                                        <div class="col-sm-6 mt-1 course">
-                                            <h3 class="course__header">Java</h3>
-                                            <div class="course__body">
-                                                <img src="~/images/JavaLogo.png" />
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-6 mt-1 course">
-                                            <h3 class="course__header">Angular</h3>
-                                            <div class="course__body">
-                                                <img src="~/images/AngularLogo.png" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </a>
-                    </div>
-
-
-
-                    <div class="col-md-4 mt-1 tile">
-                        <h3 class="tile-title">Perfomance</h3>
-                        <a>
-                            <div class="tile-body tile-perfomance">
-                                <h3 class="tile-perfomance__header">Level: 15</h3>
-                                <div class="tile-perfomance__body">
-                                    <div class="ldBar label-center"
-                                         data-value="73"
-                                         data-preset="circle"
-                                         data-transition-in="73"
-                                         data-duration="1"
-                                         style="width: 70%; height: 70%">
-                                    </div>
-                                </div>
-                                <h3 class="tile-perfomance__header">XP: 1500</h3>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-md-4 mt-1 tile">
-                        <h3 class="tile-title">Challenges</h3>
-
-
-                        <div class="tile-body tile-challenges">
-                            <div class="challenge">
-                                <h3 class="challenge__text">
-                                    John invited to challenge
-                                </h3>
-                                <div class="challenge__buttons">
-                                    <div class="denyBtn">
-                                        Deny
-                                    </div>
-
-                                    <a>
-                                        <div class="confirmBtn">
-                                            Confirm
-                                        </div>
-                                    </a>
-                                </div>
-
-                            </div>
-
-
-                             <div class="challenge">
-                                <h3 class="challenge__text">
-                                    John invited to challenge
-                                </h3>
-                                <div class="challenge__buttons">
-                                    <div class="denyBtn">
-                                        Deny
-                                    </div>
-
-                                    <a>
-                                        <div class="confirmBtn">
-                                            Confirm
-                                        </div>
-                                    </a>
-                                </div>
-
-                            </div>
-
-
-                             <div class="challenge">
-                                <h3 class="challenge__text">
-                                    John invited to challenge
-                                </h3>
-                                <div class="challenge__buttons">
-                                    <div class="denyBtn">
-                                        Deny
-                                    </div>
-
-                                    <a>
-                                        <div class="confirmBtn">
-                                            Confirm
-                                        </div>
-                                    </a>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="col-md-4 mt-1 tile">
-                        <h3 class="tile-title">Posts</h3>
-                        <a>
-                            <div class="tile-body tile-posts">
-                                <div class="tile-posts__hover">
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="card">
-                        <h1 class="titleText">
-                            Top Posts
-                        </h1>
-                        <div class="card-body ">
-                            <div class="newsItem__title">
-                                <a href="" class="newsItem__title__body">Example</a>
-                            </div>
-
-
-                            <div class="newsItem__description">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, voluptate, cum? Asperiores eaque sunt iure ut quos sapiente amet mollitia optio, pariatur repudiandae repellat illum, ex deleniti, non. Ducimus, minima!</p>
-                            </div>
-
-                            <div class="newsItem__image">
-                                <img src="../Images/courseSlider.jpg" alt="">
-                            </div>
-
-                            <a href="" class="newsItem__button">
-                                <span class="newsItem__button__text">View more</span>
-                                <span class="newsItem__button__waves"></span>
-                            </a>
-                        </div>
+                                </a>
+                            </li>
+                        </ol>
                     </div>
                 </div>
             </div>
+
+            <div class="userslist row _anim-items ">
+
+                <div class="userslist-content col-md-7">
+                    <div class="userslist-header">
+                        Users List
+                    </div>
+                    <div class="userslist-content-body anim_show">
+                        <ol>
+                            <li>
+                                <a href="#">
+                                    <div class="user">
+                                        <p>Kapusta111</p>
+                                        <p>Level: 133</p>
+                                    </div>
+                                </a>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="userslist__image col-md-5 flexImage _anim-items ">
+                    <img src="~/images/users.jpg" />
+                </div>
+            </div>
+
+            <div class="courses-part row _anim-items ">
+                <div class="col-md-6 mt-1 _anim-items  flexImage">
+                    <a href="#">
+                        <div class="current-course">
+                            <h3 class="current-course__title anim_show">
+                                Current Course
+                            </h3>
+
+
+                            <div class="current-course-body row">
+                                <h3 class="current-course-body__title">
+                                    Java
+                                </h3>
+                                <div class="current-course-body-info col-md-6">
+
+                                    <div class="current-course-body-info-image flexImage _anim-items">
+                                        <img src="~/images/JavaLogo.png" />
+                                    </div>
+                                </div>
+
+                                <div class="current-course-body-percent col-md-6">
+                                    <div class="ldBar label-center"
+                                         data-value="35"
+                                         data-preset="circle"
+                                         data-transition-in="35"
+                                         data-duration="1"
+                                         style="width: 60%; height: 60%">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+
+                <div class="col-md-6 mt-1 tile flexImage _anim-items ">
+                    <h3 class="tile-title">Courses</h3>
+                    <a>
+                        <div class="tile-body tile-courses">
+
+                            <div class="tile-courses__hover">
+                                <div class="row">
+                                    <div class="col-sm-6 mt-1 course-hover">
+                                        <h3 class="course-hover__header">Java</h3>
+                                        <div class="course-hover__body">
+                                            <div class="ldBar label-center"
+                                                 data-value="73"
+                                                 data-preset="circle"
+                                                 data-transition-in="73"
+                                                 data-duration="1"
+                                                 style="width: 50%; height: 50%">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6 mt-1 course-hover">
+                                        <h3 class="course-hover__header">Angular</h3>
+                                        <div class="course-hover__body">
+                                            <div class="ldBar label-center"
+                                                 data-value="46"
+                                                 data-preset="circle"
+                                                 data-transition-in="46"
+                                                 data-duration="1"
+                                                 style="width: 50%; height: 50%">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="tile-courses__body">
+                                <div class="row">
+                                    <div class="col-sm-6 mt-1 course">
+                                        <h3 class="course__header">Java</h3>
+                                        <div class="course__body">
+                                            <img src="~/images/JavaLogo.png" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6 mt-1 course">
+                                        <h3 class="course__header">Angular</h3>
+                                        <div class="course__body">
+                                            <img src="~/images/AngularLogo.png" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="perfomance-part flexImage _anim-items">
+                <div class="chart">
+                    <div class="chart-container">
+                        <canvas id="perfomanceChart" style="width: 100%; height: 100%">
+                        </canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="three-options row">
+                <div class="challenges-part flexImage _anim-items col-md-4 mt-1">
+                    <h3 class="challenges-part__title">Challenges</h3>
+
+                    <div class="challenges-part-body">
+                        <div class="challenge">
+                            <h3 class="challenge__text">
+                                John invited to challenge
+                            </h3>
+                            <div class="challenge-buttons">
+                                <div class="deny-btn">
+                                    Deny
+                                </div>
+
+                                <a>
+                                    <div class="confirm-btn">
+                                        Confirm
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="achievments-part flexImage _anim-items col-md-4 mt-1">
+                    <ul>
+                        <li>
+                            
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="posts-part flexImage _anim-items col-md-4 mt-1">
+                    <ul>
+                        <li>You get 15 likes for your post</li>
+                    </ul>
+                </div>
+            </div>
+
         </div>
     </main>
+    <script type="text/javascript" src="~/js/util/createChartInMain.js"></script>
+    <script type="text/javascript" src="~/js/util/burger.js"></script>
+    <script type="text/javascript" src="~/js/denyBtnClick.js"></script>
+    <script type="text/javascript" src="~/js/util/scrollAnimation.js"></script>
+    <script type="text/javascript" src="~/js/denyBtnClick.js"></script>
+     <script src="~/js/demo-2.js"></script>
 </body>
 
-<script type="text/javascript" src="~/js/util/burger.js"></script>
-<script type="text/javascript" src="~/js/denyBtnClick.js"></script>
+
 </html>  

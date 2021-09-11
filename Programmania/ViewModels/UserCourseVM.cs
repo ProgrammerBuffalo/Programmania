@@ -12,7 +12,7 @@
 
         public int Percentage => LessonsCompleted / LessonsCount * 100;
 
-        public byte[] File { get; set; }
+        public byte[] Image { get; set; }
 
     }
 }

@@ -8,6 +8,6 @@
 
         public int Points { get; set; }
 
-        public byte[] File { get; set; }
+        public byte[] Image { get; set; }
     }
 }

@@ -16,11 +16,9 @@ namespace Programmania.DAL
         public DbSet<Achievement> Achievements { get; set; }
         public DbSet<Document> Documents { get; set; }
         public DbSet<UserDiscipline> UserDisciplines { get; set; } 
-
         public DbSet<RefreshToken> RefreshTokens { get; set; }
 
         public ProgrammaniaDBContext(DbContextOptions<ProgrammaniaDBContext> options) : base(options) { }
-
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
