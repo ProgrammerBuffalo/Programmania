@@ -102,13 +102,6 @@ namespace Programmania.Controllers
             return View();
         }
 
-        [Route("Perfomance")]
-        [AllowAnonymous]
-        public IActionResult Perfomance()
-        {
-            return View();
-        }
-
         [Route("Course")]
         [AllowAnonymous]
         public IActionResult Course()
