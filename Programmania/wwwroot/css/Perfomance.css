@@ -77,12 +77,15 @@ h1, h2, h3, h4, h5, h6 {
 /*--------------------*/
 
 body {
-    background-color: #defafa;
+    height: 100%;
+    background: rgb(183,201,255);
+    background: linear-gradient(0deg, rgba(183,201,255,1) 0%, rgba(243,254,254,1) 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .content {
     padding: 10% 5%;
-    background-color: #defafa;
 }
 
 .card {
@@ -91,7 +94,8 @@ body {
     flex-direction: column;
     border-radius: 40px;
     padding: 50px;
-    background-color: #fff;
+    background: rgb(177,162,255);
+    background: linear-gradient(0deg, rgba(177,162,255,1) 0%, rgba(245,232,255,1) 100%);
 }
 
     .card:nth-child(2) {
@@ -103,6 +107,11 @@ body {
 .chart-arrows {
     margin: 0 auto;
     margin-top: 30px;
+}
+
+.chart-container {
+    position: relative;
+    height: 500px;
 }
 
 .chart-arrow-left,
@@ -123,7 +132,6 @@ body {
 
 .chart-arrow-left {
     transform: rotate(45deg);
-
 }
 
 .chart-arrow-right {
@@ -152,15 +160,15 @@ body {
     margin-top: 20px;
 }
 
-.day-body table{
-    font-size: 2.3vh;
-}
+    .day-body table {
+        font-size: 2.3vh;
+    }
 
-.posXP{
+.posXP {
     color: lime;
 }
 
-.negXP{
+.negXP {
     color: crimson;
 }
 
@@ -168,7 +176,7 @@ body {
     color: #ff8c00;
 }
 
-#showMoreBtn{
+#showMoreBtn {
     display: block;
     margin: 0 auto;
     margin-top: 20px;
@@ -177,14 +185,42 @@ body {
     font-size: 2.3vh;
 }
 
-.chart-area{
+.chart-area {
     max-width: 445px;
 }
 
+.flexImage {
+    transform: scale(0);
+    transition: all 0.8s ease 0s;
+}
 
+    .flexImage._active {
+        transform: scale(1);
+    }
+
+.anim_show {
+    transform: translate(0px,120%);
+    opacity: 0;
+    transition: all 0.8s ease 0s;
+}
+
+    .anim_show._active,
+    ._active .anim_show {
+        opacity: 1;
+        transform: translate(0px, 0px);
+    }
+
+.show-more__btn {
+    display: block;
+    margin: 0 auto;
+}
+
+#load-count {
+    margin-top: 50px;
+}
 
 @media(max-width: 560px) {
-    .card{
+    .card {
         padding: 20px;
     }
 
@@ -202,20 +238,21 @@ body {
 }
 
 @media(max-width: 445px) {
-    canvas {
-        width: 400px !important;
-        height: 180px !important;
+
+    .card {
+        max-height: 400px;
+        padding: 10px;
     }
 
-    .chartArea{
-        overflow: scroll;
+    .chart-container {
+        height: 330px;
     }
 
-    .chart-arrows{
-        margin-top: 50px;
+    .chart-arrows {
+        margin-top: 0px;
     }
 
-    .chart-arrow-right{
+    .chart-arrow-right {
         margin-left: 150px;
     }
 }
