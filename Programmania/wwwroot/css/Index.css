@@ -220,7 +220,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .features {
-    margin-top: 50px;
+    padding: 50px;
     background-color: #f0fff0;
 }
 
@@ -434,8 +434,7 @@ h1, h2, h3, h4, h5, h6 {
     .advantages__image {
         width: 100%;
     }
-
-    .features__list{
+    .features__list {
         width: 200px;
     }
 
