@@ -16,9 +16,7 @@
 
     <link rel="stylesheet" type="text/css" href="~/css/loading-bar.min.css" />
     <script src="~/js/loading-bar.min.js"></script>
-    <script src="~/js/skroll.min.js"></script>
     <script src="~/js/util/animateMain.js"></script>
-    <script src="~/js/rAF.js"></script>
    
     <link rel="stylesheet" type="text/css" href="~/css/Main.css" />
 </head>
@@ -69,25 +67,20 @@
             </canvas>
             <div class="large-header__content">
                 <h3>Welcome, Kapusta111</h3>
-                <p>Subtitle</p>
             </div>
         </div>
 
+        <div class="leaderboard _anim-no-hide _anim-items">
 
-
-        <div class="content ">
-
-            <div class="leaderboard row _anim-items">
-
-                <div class="leaderboard__image col-md-5 flexImage _anim-items ">
+                <div class="leaderboard__image _anim-no-hide flexImage _anim-items ">
                     <img src="~/images/leaderboard.jpg" />
                 </div>
 
-                <div class="leaderboard-content col-md-7">
+                <div class="leaderboard-content">
                     <div class="leaderboard-header">
                         Leaderboard
                     </div>
-                    <div class="leaderboard-content-body anim_show">
+                    <div class="leaderboard-content-body anim_show _anim-no-hide">
                         <ol>
                             <li>
                                 <a href="#">
@@ -102,13 +95,13 @@
                 </div>
             </div>
 
-            <div class="userslist row _anim-items ">
+            <div class="userslist _anim-no-hide _anim-items ">
 
-                <div class="userslist-content col-md-7">
+                <div class="userslist-content">
                     <div class="userslist-header">
                         Users List
                     </div>
-                    <div class="userslist-content-body anim_show">
+                    <div class="userslist-content-body _anim-no-hide anim_show">
                         <ol>
                             <li>
                                 <a href="#">
@@ -121,13 +114,17 @@
                         </ol>
                     </div>
                 </div>
-                <div class="userslist__image col-md-5 flexImage _anim-items ">
+                <div class="userslist__image flexImage _anim-no-hide _anim-items ">
                     <img src="~/images/users.jpg" />
                 </div>
             </div>
 
-            <div class="courses-part row _anim-items ">
-                <div class="col-md-6 mt-1 _anim-items  flexImage">
+        <div class="content ">
+
+            
+
+            <div class="courses-part row _anim-no-hide _anim-items ">
+                <div class="col-md-6 mt-1 _anim-items _anim-no-hide  flexImage">
                     <a href="#">
                         <div class="current-course">
                             <h3 class="current-course__title anim_show">
@@ -135,18 +132,18 @@
                             </h3>
 
 
-                            <div class="current-course-body row">
+                            <div class="current-course-body">
                                 <h3 class="current-course-body__title">
                                     Java
                                 </h3>
-                                <div class="current-course-body-info col-md-6">
+                                <div class="current-course-body-info">
 
-                                    <div class="current-course-body-info-image flexImage _anim-items">
+                                    <div class="current-course-body-info-image flexImage _anim-no-hide _anim-items">
                                         <img src="~/images/JavaLogo.png" />
                                     </div>
                                 </div>
 
-                                <div class="current-course-body-percent col-md-6">
+                                <div class="current-course-body-percent">
                                     <div class="ldBar label-center"
                                          data-value="35"
                                          data-preset="circle"
@@ -162,7 +159,7 @@
 
                 </div>
 
-                <div class="col-md-6 mt-1 tile flexImage _anim-items ">
+                <div class="col-md-6 mt-1 tile flexImage _anim-no-hide _anim-items ">
                     <h3 class="tile-title">Courses</h3>
                     <a>
                         <div class="tile-body tile-courses">
@@ -222,7 +219,7 @@
 
             </div>
 
-            <div class="perfomance-part flexImage _anim-items">
+            <div class="perfomance-part _anim-no-hide flexImage _anim-items">
                 <div class="chart">
                     <div class="chart-container">
                         <canvas id="perfomanceChart" style="width: 100%; height: 100%">
@@ -232,7 +229,7 @@
             </div>
 
             <div class="three-options row">
-                <div class="challenges-part flexImage _anim-items col-md-4 mt-1">
+                <div class="challenges-part flexImage _anim-no-hide _anim-items col-sm-3 mt-1 ">
                     <h3 class="challenges-part__title">Challenges</h3>
 
                     <div class="challenges-part-body">
@@ -255,7 +252,7 @@
                     </div>
                 </div>
 
-                <div class="achievments-part flexImage _anim-items col-md-4 mt-1">
+                <div class="achievments-part flexImage _anim-items _anim-no-hide col-sm-3 mt-1 ">
                     <ul>
                         <li>
                             
@@ -263,7 +260,7 @@
                     </ul>
                 </div>
 
-                <div class="posts-part flexImage _anim-items col-md-4 mt-1">
+                <div class="posts-part flexImage _anim-items _anim-no-hide col-sm-3 mt-1">
                     <ul>
                         <li>You get 15 likes for your post</li>
                     </ul>
@@ -277,7 +274,6 @@
     <script type="text/javascript" src="~/js/denyBtnClick.js"></script>
     <script type="text/javascript" src="~/js/util/scrollAnimation.js"></script>
     <script type="text/javascript" src="~/js/denyBtnClick.js"></script>
-     <script src="~/js/demo-2.js"></script>
 </body>
 
 
