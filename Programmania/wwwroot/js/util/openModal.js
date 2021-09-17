@@ -3,16 +3,15 @@ var regModal = document.getElementById("registerModal");
 var regSpan = document.getElementsByClassName("close")[0];
 var logSpan = document.getElementsByClassName("close")[1];
 
-$("#loginDiv").click(function(){
+$("#loginBtnIn").click(function () {
     logModal.style.display = "block";
 });
 
 logSpan.onclick = function() {
     logModal.style.display = "none";
-    console.log("true");
 }
 
-$("#registerDiv").click(function(){
+$("#registrBtnIn").click(function(){
     regModal.style.display = "block";
 })
 

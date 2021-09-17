@@ -4,11 +4,10 @@
 
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="~/css/Index.css" />
-    <link rel="stylesheet" href="~/css/Slider.css" />
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"></script>
@@ -19,131 +18,140 @@
 
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 
 <body>
-
     <header>
-        <nav class="headerNav">
-            <ul>
-                <li>
-                    <a href="#" text="Home">Home</a>
-                </li>
+        <div class="header-text">
+            <h3>PROGRAMMANIA</h3>
+        </div>
 
-                <li>
-                    <a href="#menu" text="Menu">Menu</a>
-                </li>
+        <div class="header-menu">
+            <a class="header-menu__item" href="#main">Main</a>
+            <a class="header-menu__item" href="#courses">Courses</a>
+            <a class="header-menu__item" href="#advantages">Advantages</a>
+            <a class="header-menu__item" href="#features">Features</a>
+            <a class="header-menu__item" id="registrBtnIn" href="#">Register</a>
+            <a class="header-menu__item" id="loginBtnIn" href="#">Login</a>
+        </div>
 
-                <li>
-                    <a href="#" text="Contact">Contact</a>
-                </li>
-
-                <li>
-                    <a href="#" text="About">About</a>
-                </li>
-            </ul>
-        </nav>
+        <div class="header-image">
+            <a name="main"></a>
+            <div class="header-image-text">
+                <h3>Programmania:</h3>
+                <h5>We will be glad to see you</h5>
+            </div>
+        </div>
     </header>
 
+    <main>
+        <div class="courses">
+            <h3 class="course__header">Our courses</h3>
+            <a name="courses"></a>
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="swiper-image">
+                            <img src="~/images/jsCourseSlider.jpg" />
+                        </div>
+                        <div class="swiper-image__text">
+                            <h3>JavaScript Course</h3>
+                        </div>
+                    </div>
 
-    <div class="image-slider swiper-container">
-        <div class="image-slider-wrapper swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="swiper-image">
+                            <img src="~/images/androidCourseSlider.jpg" />
+                        </div>
+                        <div class="swiper-image__text">
+                            <h3>Android development Course</h3>
+                        </div>
+                    </div>
 
-            <div class="image-slider-slide swiper-slide">
-                <div class="image-slider-image">
-                    <h1 id="coursesHeader">Take courses and gain new knowledge</h1>
-                    <img class="swiper-lazy" data-src="../images/courseSlider.jpg" src="../images/courseSlider.jpg" />
-                    <div class="swiper-lazy-preloader"></div>
+                    <div class="swiper-slide">
+                        <div class="swiper-image">
+                            <img src="~/images/javaCourseSlider.jpg" />
+                        </div>
+                        <div class="swiper-image__text">
+                            <h3>Java Course</h3>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="swiper-image">
+                            <img src="~/images/angularCourseSlider.jpg" />
+                        </div>
+                        <div class="swiper-image__text">
+                            <h3>Angular Course</h3>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="swiper-image">
+                            <img src="~/images/phpCourseSlider.jpg" />
+                        </div>
+                        <div class="swiper-image__text">
+                            <h3>PHP Course</h3>
+                        </div>
+                    </div>
+
+                    
+
+                    <div class="swiper-slide">
+                        <div class="swiper-image">
+                            <img src="~/images/csharpCourseSlider.jpg" />
+                        </div>
+                        <div class="swiper-image__text">
+                            <h3>C# Course</h3>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <div class="image-slider-slide swiper-slide">
-                <div class="image-slider-image">
-                    <h1 id="codeHeader">Share your projects and see others' projects</h1>
-                    <img class="swiper-lazy" data-src="../images/codeSlider.png" src="../images/codeSlider.png" />
-                    <div class="swiper-lazy-preloader"></div>
-                </div>
+        <div class="advantages">
+
+            <div data-aos="fade-left" data-aos-duration="700" class="advantages__text">
+                <a name="advantages"></a>
+                <h3>Our advantages</h3>
+                <p>
+                    Difficult to find good courses at a reasonable price?
+                    Welcome to Programmania! Our courses are completely free.
+                    Very easy registration, a large number of courses with lectures
+                    and tests, the ability to compete with other people, share news
+                    and much more only on our website! Learn courses, take tests and
+                    develop in Programmania!
+                </p>
             </div>
 
-            <div class="image-slider-slide swiper-slide">
-                <div class="image-slider-image">
-                    <h1 id="testsHeader">Take tests and get rewards</h1>
-                    <img class="swiper-lazy" data-src="../images/testsSlider.jpg" src="../images/testsSlider.jpg" />
-                    <div class="swiper-lazy-preloader"></div>
-                </div>
+            <div data-aos="zoom-out-up" data-aos-duration="700" class="advantages__image">
+                <img src="~/images/advantagesImage.jpg" />
             </div>
+        </div>
 
-            <div class="image-slider-slide swiper-slide">
-                <div class="image-slider-image">
-                    <h1 id="progressHeader">Compete with others and unlock new courses for your rewards</h1>
-                    <img class="swiper-lazy" data-src="../images/progressSlider.jpg"
-                         src="../images/progressSlider.jpg" />
-                    <div class="swiper-lazy-preloader"></div>
-                </div>
+        <div class="features">
+            <a name="features"></a>
+            <h3>Our features</h3>
+            <div data-aos="fade-right" data-aos-duration="700" class="features__list">
+                <ul>
+                    <li>All courses are free</li>
+                    <li>Convenient and intuitive interface</li>
+                    <li>User level system</li>
+                    <li>The ability to compete with other users</li>
+                    <li>Grade Schedule</li>
+                    <li>Ability to upload articles</li>
+                </ul>
             </div>
-
-
-        </div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-
-        <div class="swiper-pagination"></div>
-    </div>
-
-
-
-
-    <div class="swiper-scrollbar"></div>
-
-
-
-    <div class="xop-section">
-        <div class="xop-box">
-            <a href="#" name="menu">
-                <div class="xop-info">
-                    <div class="xop-info-title">
-                        Courses
-                    </div>
-                    <div class="xop-info-image-courses">
-
-                    </div>
-                </div>
-            </a>
         </div>
 
-        <div class="xop-box" id="registerDiv">
-            <a id="registrBtnIn" href="#">
-                <div class="xop-info">
-                    <div class="xop-info-title">
-                        Register
-                    </div>
-                    <div class="xop-info-image-register">
+        <div class="modal" id="registerModal">
+            <div class="modal-content" style="width: 500px">
+                <span class="close">&times;</span>
 
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <div class="xop-box" id="loginDiv">
-            <a id="loginBtnIn" href="#">
-                <div class="xop-info">
-                    <div class="xop-info-title">
-                        Login
-                    </div>
-                    <div class="xop-info-image-login">
-
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
-
-
-    <div class="modal" id="registerModal">
-        <div class="modal-content" style="width: 500px">
-            <span class="close">&times;</span>
-
-            <form name="registerForm" id="registerForm" method="post">
+                <form name="registerForm" id="registerForm" method="post">
 
                 <div class="form-group">
                     <label id="nicknameLabelReg">Nickname: </label>
@@ -170,130 +178,65 @@
                     <input id="avatarInputReg" type="file" class="form-control" />
                 </div>
 
-                <input type="button" id="uploadAvatarBtn" class="btn btn-primary" name="uploadAvatarBtn" value="Set profile image" />
-                <input type="button" id="registerBtnOut" class="btn btn-danger" name="registerBtn" value="Register" />
-            </form>
-        </div>
-    </div>
-
-    <div class="modal" id="loginModal">
-        <div class="modal-content" style="width: 500px">
-            <span class="close">&times;</span>
-
-            <form name="loginForm" id="loginForm">
-                <div class="form-group">
-                    <label id="emailLabelLog" for="emailInputLog">Email: </label>
-                    <input id="emailInputLog" type="email" class="form-control" placeholder="email" name="emailInput" />
-                </div>
-
-                <div class="form-group">
-                    <label id="passwordLabelLog" for="passwordInputLog">Password: </label>
-                    <input id="passwordInputLog" type="password" class="form-control" placeholder="password" name="passwordInput" />
-                </div>
-                <input type="button" id="loginBtnOut" class="btn btn-success" name="loginBtn" value="Login" />
-            </form>
-        </div>
-    </div>
-
-    <section class="coursesSection">
-
-        <div class="coursesFlex">
-            <div class="flexRow-1">
-                <div class="flexBody">
-                    <div class="flexTitle _anim-items _anim-no-hide">Complete courses and improve your skills</div>
-
-                    <div class="flexText _anim-items _anim-no-hide">
-                        <p class="anim_show">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                    </div>
-                </div>
-                <div class="flexImage _anim-items _anim-no-hide">
-                    <img class="imageFlex" src="../images/courseSlider.jpg" />
-                </div>
+                    <input type="button" id="uploadAvatarBtn" class="btn btn-primary" name="uploadAvatarBtn" value="Set profile image" />
+                    <input type="button" id="registerBtnOut" class="btn btn-danger" name="registerBtn" value="Register" />
+                </form>
             </div>
         </div>
-    </section>
 
-    <section class="projectsSection">
-        <div class="projectsFlex">
-            <div class="flexRow-2">
-                <div class="flexImage _anim-items _anim-no-hide">
-                    <img class="imageFlex" src="../images/codeSlider.png" />
-                </div>
+        <div class="modal" id="loginModal">
+            <div class="modal-content" style="width: 500px">
+                <span class="close">&times;</span>
 
-                <div class="flexBody">
-                    <div class="flexTitle _anim-items _anim-no-hide">You can share your projects and view other people's projects</div>
-                    <div class="flexText _anim-items _anim-no-hide">
-                        <p class="anim_show">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
+                <form name="loginForm" id="loginForm">
+                    <div class="form-group">
+                        <label id="emailLabelLog" for="emailInputLog">Email: </label>
+                        <input id="emailInputLog" type="email" class="form-control" placeholder="email" name="emailInput" />
                     </div>
-                </div>
+
+                    <div class="form-group">
+                        <label id="passwordLabelLog" for="passwordInputLog">Password: </label>
+                        <input id="passwordInputLog" type="password" class="form-control" placeholder="password" name="passwordInput" />
+                    </div>
+                    <input type="button" id="loginBtnOut" class="btn btn-success" name="loginBtn" value="Login" />
+                </form>
             </div>
         </div>
-    </section>
+    </main>
 
-    <section class="testsSection">
-        <div class="testsFlex">
-            <div class="flexRow-1">
-                <div class="flexBody">
-                    <div class="flexTitle _anim-items _anim-no-hide">Complete tests and check your knowledge</div>
-
-                    <div class="flexText _anim-items _anim-no-hide">
-                        <p class="anim_show _anim-no-hide">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
+    <footer>
+        <div class="footer">
+            <div class="footer-links" data-aos="fade-left" data-aos-duration="700">
+                <a href="#" class="footer-links_first">
+                    <div class="footer-link__image">
+                        <img src="~/images/facebookLogo.png" />
                     </div>
-                </div>
-                <div class="flexImage _anim-items _anim-no-hide">
-                    <img class="imageFlex" src="../images/testsSlider.jpg" />
-                </div>
+                </a>
+
+                <a href="#">
+                    <div class="footer-link__image">
+                        <img src="~/images/twitterLogo.png" />
+                    </div>
+                </a>
+
+                <a href="#">
+                    <div class="footer-link__image">
+                        <img src="~/images/linkedinLogo.png" />
+                    </div>
+                </a>
+            </div>
+
+            <div class="footer__text" data-aos="fade-right" data-aos-duration="700">
+                <h5>&#x24B8; 2021 Programmania. All rights reserved.</h5>
             </div>
         </div>
-    </section>
-
-    <section class="rewardsSection">
-        <div class="rewardsFlex">
-            <div class="flexRow-2">
-                <div class="flexImage _anim-items _anim-no-hide">
-                    <img class="imageFlex" src="../images/progressSlider.jpg" />
-                </div>
-
-                <div class="flexBody">
-                    <div class="flexTitle _anim-items _anim-no-hide">You can share your projects and view other people's projects</div>
-                    <div class="flexText _anim-items _anim-no-hide">
-                        <p class="anim_show">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <script type="application/javascript" src="~/js/setAvatarImage.js"></script>
-    <script type="application/javascript" src="~/js/util/openModal.js"></script>
-    <script type="application/javascript" src="~/js/util/slider.js"></script>
-    <script type="application/javascript" src="~/js/util/scrollAnimation.js"></script>
+    </footer>
     <script type="application/javascript" src="~/js/util/camelize.js"></script>
     <script type="application/javascript" src="~/js/index.js"></script>
+    <script type="application/javascript" src="~/js/util/slider.js"></script>
+    <script type="application/javascript" src="~/js/util/openModal.js"></script>
+    <script>
+  AOS.init();
+</script>
 </body>
-
 </html>

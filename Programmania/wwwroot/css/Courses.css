@@ -1,30 +1,30 @@
 /*Обнуление*/
 
-*{
+* {
     padding: 0;
     margin: 0;
     border: 0;
 }
 
-*,*:before,*:after{
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
+    *, *:before, *:after {
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
 
-:focus, :active{
+:focus, :active {
     outline: none;
 }
 
-a:focus, a:active{
+a:focus, a:active {
     outline: none;
 }
 
-nav,footer,header,aside{
+nav, footer, header, aside {
     display: block;
 }
 
-html,body{
+html, body {
     height: 100%;
     width: 100%;
     font-size: 100%;
@@ -35,250 +35,221 @@ html,body{
     -webkit-text-size-adjust: 100%;
 }
 
-input,button,textarea{
+input, button, textarea {
     font-family: inherit;
 }
 
-input::-ms-clear{
-    display: none;
-}
+    input::-ms-clear {
+        display: none;
+    }
 
-button{
+button {
     cursor: pointer;
 }
 
-button::-moz-focus-inner{
-    padding: 0;
-    border: 0;
-}
+    button::-moz-focus-inner {
+        padding: 0;
+        border: 0;
+    }
 
-a, a:visited{
+a, a:visited {
     text-decoration: none;
 }
 
-a:hover{
-    text-decoration: none;
-}
+    a:hover {
+        text-decoration: none;
+    }
 
-ul-li{
+ul-li {
     list-style: none;
 }
 
-img{
+img {
     vertical-align: top;
 }
 
-h1,h2,h3,h4,h5,h6{
+h1, h2, h3, h4, h5, h6 {
     font-size: inherit;
     font-weight: 400;
 }
 
 
 /*--------------------*/
-@font-face{
-    font-family: 'mainFont';
-    src: url("../Fonts/Font2.ttf");
-}
-
 body {
-    margin-top: 20px;
-    background-color: #defafa;
+    background-color: #faf17c;
 }
-
-.content {
-    padding: 10% 5%;
+.header-text {
+    background-color: rgb(78, 67, 15);
+    height: 155px;
 }
+    .header-text h3 {
+        color: white;
+        text-shadow: rgb(255 255 255 / 60%) 1px 1px 1px, rgb(0 0 0 / 60%) -1px -1px 1px;
+        text-align: center;
+        vertical-align: middle;
+        line-height: 155px;
+        font-size: 5vh;
+        font-family: montserrat, sans-serif;
+        font-weight: 700;
+    }
 
-.card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    border-radius: 40px;
-    padding: 30px;
-}
-
-/*courses*/
-.coursesList {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-
-.coursesList__item {
-    margin-top: 50px;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #2b0053;
-    border-radius: 25px;
-    width: 300px;
-    height: 450px;
-    flex: 0 0 auto;
-    position: relative;
-    transition: all 0.3s ease 0s;
-}
-
-.coursesList__item__hover{
-    position: absolute;
-    display: inline;
-    top: 0;
-    background-color: rgba(43, 0, 83,0.5);
-    width: 100%;
-    height: 0;
-    opacity: 0;
-    border: 1px solid #2b0053;
-    border-radius: 25px;
-
-    transition: all 0.5s ease 0s;
-    -moz-transition: all 0.5s ease 0s;
-    -webkit-transition: all 0.5s ease 0s;
-    -o-transition: all 0.5s ease 0s ;
-}
-
-
-
-.coursesList__item__footer h3 {
-    text-decoration: none;
-    margin-top: 20px;
-    color: #2b0053;
-    text-align: center;
-    font-size: 2.2vh;
-}
-
-.coursesList__item:hover .coursesList__item__hover {
-    opacity: 1;
+.content{
+    padding: 0 10%;
     height: 100%;
-    animation-name: courseHover;
-    animation-timing-function: ease-in-out;
-    animation-duration: 0.5s;
-    animation-delay: 0s;
-    animation-iteration-count: 1;
-
 }
 
+.courses{
+    display: flex;
+    -moz-display: flex;
+    -ms-display: flex;
+    -o-display: flex;
+    -webkit-display: flex;
 
-.coursesList__item:first-child{
-    margin-left: 0;
+    justify-content: space-between;
+    flex: 1 1 33.33%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 100%;
 }
 
-.coursesList__item__image {
-    width: 170px;
-    margin: 0 auto;
+.course {
+    margin-top: 20px;
+    position: relative;
+    height: 500px;
+    width: 370px;
+    border: 0.5px solid #fff;
+    background-color: #4E430F;
+    z-index: 1;
 }
 
-.coursesList__item__image img{
-    max-width: 100%;
+.dark-image {
+    filter: brightness(50%);
 }
 
-.courseList__item__footer {
-    position: absolute;
-    bottom: 0;
+.course__image {
+    position: relative;
+    width: 100%;
+    height: 50%;
+    
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 }
 
-.coursesList__item__body h3 {
-    font-size: 4vh;
-    color: #2b0053;
-    text-align: center;
-}
-.coursesList__item__body__content {
-    font-size: 24px;
-    line-height: 20px;
-    font-family: "mainFont";
-    color: #2b0053 ;
-}
+    .course__image:before,
+    .course__image:after {
+        content: "";
+        position: absolute;
+        z-index: -2;
+    }
 
-.ldBar{
-    margin: 0 auto;
-}
+    .course__image img {
+        width: 100%;
+        height: 100%;
+    }
 
-.ldBar path.baseLine {
-    stroke-width: 7;
-    stroke: #3c007d;
-    stroke-linecap: round;
+.course-body{
+    padding: 0 5%;
 }
 
-.ldBar path.mainLine {
-    stroke-width: 5;
-    stroke: #ffe959;
-    stroke-linecap: round;
+.course-info {
+    vertical-align: central;
+    margin-top: 10px;
+    display: flex;
+    -moz-display: flex;
+    -ms-display: flex;
+    -o-display: flex;
+    -webkit-display: flex;
+
+    flex: 1 1 50.00%;
+    justify-content: space-between;
+    color: white;
 }
 
+.course-info h5{
+    font-weight: 700;
+    font-size: 3vh;
+}
 
-.ldBar-label {
-    font-size: 4vh;
-    color: #5c00a3;
+.course-info p{
+    font-weight: 300;
+    font-size: 2vh;
+}
+
+.course-info__text {
+    color: #faf17c;
+    font-size: 2.5vh;
     font-weight: 700;
 }
 
-@keyframes courseHover {
-    0% {
-        height: 0%;
+
+/*Progress bar*/
+.ldBar{
+    margin: 0 auto;
+    margin-top: -20px;
+}
+    .ldBar path.mainline {
+        stroke-width: 8;
+        stroke: #faf17c;
+        stroke-linecap: round;
+    }
+    .ldBar path.baseline {
+        stroke-width: 5;
+        stroke: #fdffc9;
+        stroke-linecap: round;
+    }
+.ldBar-label {
+    font-size: 3vh;
+    color: #faf17c;
+}
+
+
+.lifted {
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+    .lifted:before,
+    .lifted:after {
+        bottom: 15px;
+        left: 10px;
+        width: 50%;
+        height: 20%;
+        max-width: 300px;
+        max-height: 100px;
+        -webkit-box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
+        -moz-box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
+        box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
+        -webkit-transform: rotate(-5deg);
+        -moz-transform: rotate(-5deg);
+        -ms-transform: rotate(-5deg);
+        -o-transform: rotate(-5deg);
+        transform: rotate(-5deg);
     }
 
-    100% {
-        height: 100%;
+    .lifted:after {
+        right: 10px;
+        left: auto;
+        -webkit-transform: rotate(5deg);
+        -moz-transform: rotate(5deg);
+        -ms-transform: rotate(5deg);
+        -o-transform: rotate(5deg);
+        transform: rotate(5deg);
+    }
+
+@media(max-width: 921px) {
+    .courses {
+        justify-content: center;
+    }
+}
+@media(max-width: 390px) {
+    .course{
+        width: 300px;
     }
 }
 
-@-webkit-keyframes courseHover {
-    0% {
-        height: 0%;
-    }
-
-    100% {
-        height: 100%;
-    }
-}
-
-@-moz-keyframes courseHover {
-    0% {
-        height: 0%;
-    }
-
-    100% {
-        height: 100%;
-    }
-}
-
-@-o-keyframes courseHover {
-    0% {
-        height: 0%;
-    }
-
-    100% {
-        height: 100%;
-    }
-}
-
-@media(max-width: 1024px) {
-    .content{
-        padding: 50px;
-    }
-}
-
-@media(max-width: 500px) {
-    .coursesList__item{
-        width: 200px;
-    }
-    .coursesList__item__image {
-        width: 120px;
-    }
-}
-
-@media(max-width: 320px) {
-    .coursesList__item{
-        width: 150px;
-    }
-}
-
-@media(max-height: 400px) {
-    .coursesList__item{
-        height: 300px;
-    }
-
-    .coursesList__item:hover .coursesList__item__hover{
-    opacity: 1;
-    width: 300px;
-    height: 300px;
-    color: #ffd45f;
+@media(max-width: 300px) {
+    .course {
+        width: 250px;
     }
 }
