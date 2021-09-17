@@ -82,69 +82,58 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .container {
-    max-width: 1180px;
-    margin: 0 auto;
-    padding: 0 10px;
-}
-
-.header {
-    position: fixed;
     width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 50;
-}
-
-    .header:before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(60, 2, 117, 0.8);
-        z-index: 2;
-    }
-
-.header__body {
-    position: relative;
+    height: 100px;
     display: flex;
-    justify-content: space-around;
-    height: 80px;
+    -moz-display: flex;
+    -ms-display: flex;
+    -webkit-display: flex;
+    -o-display: flex;
+
+    flex-direction: row;
+    flex: 1 1 50.00%;
+    justify-content: space-between;
     align-items: center;
-    flex: 1 1 auto;
 }
 
-.header__burger {
-    display: none;
+.container__text{
+    color: white;
+    font-size: 4vh;
+    font-weight: 800;
+    vertical-align: central;
 }
 
-.header__list {
+.header__list{
     display: flex;
-    position: relative;
-    z-index: 2;
-    margin: 0;
+    list-style: none;
+    justify-content: space-between;
 }
 
     .header__list li {
-        list-style: none;
-        margin: 0 0 0 100px;
+        margin-left: 50px;
+        
     }
 
 .header__link {
-    color: #a1a7ff;
-    text-transform: uppercase;
-    font-size: 18px;
-    font-family: 'mainFont';
     text-decoration: none;
-    transition: color 0.3s ease 0s;
+    color: rgb(78, 67, 15);
+    font-size: 3vh;
+    font-weight: 200;
+    border-top: 2px solid rgb(78, 67, 15);
 }
 
     .header__link:hover {
-        color: #ffd45f;
+        color: #ff9d54;
+        cursor: pointer;
+        border-top: 2px solid #fdffd4;
     }
 
-@media(max-width: 1067px) {
+.header__burger{
+    margin-left: auto;
+    margin-right: 0;
+}
+
+@media(max-width: 973px) {
     body.lock {
         overflow: hidden;
     }
@@ -154,7 +143,7 @@ h1, h2, h3, h4, h5, h6 {
         position: relative;
         width: 30px;
         height: 20px;
-        z-index: 3;
+        z-index: 4;
     }
 
     .header__body {
@@ -211,13 +200,15 @@ h1, h2, h3, h4, h5, h6 {
         width: 100%;
         height: 100%;
         overflow: auto;
-        background-color: #a1a7ff;
+        background-color: #a6a6a6;
         padding: 70px 10px 20px 10px;
+        z-index: 3;
         transition: all 0.3s ease 0s;
     }
 
         .header__menu.active {
             top: 0;
+            z-index: 3;
         }
 
     .header__list {
@@ -230,7 +221,8 @@ h1, h2, h3, h4, h5, h6 {
         }
 
     .header__link {
-        color: #2b0053;
+        color: #fcffa6;
         font-size: 24px;
+        border-top: 2px solid #d9b00d;
     }
 }
