@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Authorization;
 using Programmania.Services;
 using Programmania.Models;
 using System.IO;
+using System.Text;
+using Newtonsoft.Json;
 
 namespace Programmania.Controllers
 {
@@ -66,7 +68,10 @@ namespace Programmania.Controllers
             {
                 Models.User user = dbContext.Users.FirstOrDefault(u => u.Login == authenticationRequest.Email && u.Password == authenticationRequest.Password);
                 if (user == null)
-                    ModelState.AddModelError("AuthorizationModelError", "Login or password is not correct");
+                {
+                    string json = Utilities.FormError.MakeServerError("Error", "email or password was entered wrong");
+                    return BadRequest(json);
+                }
                 else
                 {
                     var response = await accountService.Authenticate(authenticationRequest, HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString());
@@ -76,7 +81,11 @@ namespace Programmania.Controllers
                     return Ok(response);
                 }
             }
-            return BadRequest(authenticationRequest);
+            else
+            {
+                string json = Utilities.FormError.MakeModelError(ModelState);
+                return BadRequest(json);
+            }
         }
 
         [Route("registration")]
@@ -122,13 +131,21 @@ namespace Programmania.Controllers
                 }
                 else
                 {
-                    if (user.Name == registrationVM.Nickname)
-                        ModelState.AddModelError("NicknameModelError", "User with this nickname already exists");
+                    string json;
+                    //if this email alredy exsists
+                    if (true)
+                        json = Utilities.FormError.MakeServerError("Error", "this email alredy exists");
+                    //if this password alredy exsists
                     else
-                        ModelState.AddModelError("EmailModelError", "User with this email already exists");
+                        json = Utilities.FormError.MakeServerError("Error", "this password alredy exists");
+                    return BadRequest(json);
                 }
             }
-            return BadRequest(registrationVM);
+            else
+            {
+                string json = Utilities.FormError.MakeModelError(ModelState);
+                return BadRequest(json);
+            }
         }
 
         private void setCookieTokens(string rtoken, string jwttoken)
