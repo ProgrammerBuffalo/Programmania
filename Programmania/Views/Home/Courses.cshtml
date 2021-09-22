@@ -1,4 +1,6 @@
 <!DOCTYPE/>
+@model Programmania.ViewModels.UserCourseVM[];
+
 <html>
 <head>
     <title>Courses</title>
@@ -23,7 +25,7 @@
         <div class="header-container">
             <div class="container__text">Programmania</div>
             <div class="header__burger">
-            <span></span>
+                <span></span>
             </div>
             <div class="container-menu">
                 <nav class="header__menu">
@@ -60,131 +62,18 @@
 
         <div class="content">
             <div class="courses" data-aos="fade-left" data-aos-duration="1500">
-                <a>
-                    <div class="course ">
-                        <div class="course__image lifted">
-                            <img src="~/images/csharpCourse.jpg" />
-                        </div>
 
-                        <div class="course-body">
-                            <div class="course-info">
-                                <h5>C#</h5>
-                                <p>Lessons Count: 100/155</p>
-                            </div>
-
-                            <div class="ldBar label-center"
-                                 data-preset="circle"
-                                 data-value="64"
-                                 data-transition-in="1000"
-                                 style="width: 50%; height: 50%;">
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-
-                <a>
-                    <div class="course ">
-                        <div class="course__image lifted">
-                            <img src="~/images/rubyCourse.jpg" />
-                        </div>
-
-                        <div class="course-body">
-                            <div class="course-info">
-                                <h5>Ruby</h5>
-                                <p>Lessons Count: 86/144</p>
-                            </div>
-
-                            <div class="ldBar label-center"
-                                 data-preset="circle"
-                                 data-value="59"
-                                 data-transition-in="1000"
-                                 style="width: 50%; height: 50%;">
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-
-                <a>
-                    <div class="course ">
-                        <div class="course__image lifted">
-                            <img src="~/images/pythonCourse.png" />
-                        </div>
-
-                        <div class="course-body">
-                            <div class="course-info">
-                                <h5>Python</h5>
-                                <p>Lessons Count: 55/155</p>
-                            </div>
-
-                            <div class="ldBar label-center"
-                                 data-preset="circle"
-                                 data-value="32"
-                                 data-transition-in="1000"
-                                 style="width: 50%; height: 50%;">
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <a>
-                    <div class="course">
-                        <div class="course__image lifted dark-image">
-                            <img src="~/images/cplusplusCourse.jpg" />
-                        </div>
-
-                        <div class="course-body">
-                            <div class="course-info">
-                                <h5>C++</h5>
-                                <p>Lessons Count: 0/200</p>
-                            </div>
-
-                            <div class="course-info__text">
-                                C++ is a general-purpose programming language created by Bjarne Stroustrup as an extension of the C programming language, or "C with Classes".
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <a>
-                    <div class="course">
-                        <div class="course__image lifted dark-image">
-                            <img src="~/images/javaCourse.png" />
-                        </div>
-
-                        <div class="course-body">
-                            <div class="course-info">
-                                <h5>Java</h5>
-                                <p>Lessons Count: 0/122</p>
-                            </div>
-
-                            <div class="course-info__text">
-                                Java is the #1 programming language and development platform. It reduces costs, shortens development timeframes, drives innovation, and improves application ...
-
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <a>
-                    <div class="course">
-                        <div class="course__image lifted dark-image">
-                            <img src="~/images/phpCourse.png" />
-                        </div>
-
-                        <div class="course-body">
-                            <div class="course-info">
-                                <h5>PHP</h5>
-                                <p>Lessons Count: 0/65</p>
-                            </div>
-
-                            <div class="course-info__text">
-                                PHP is a popular general-purpose scripting language that is especially suited to web development. Fast, flexible and pragmatic, PHP powers everything from ...
-                            </div>
-                        </div>
-                    </div>
-                </a>
+                @foreach (var course in Model)
+                {
+                    if (course.IsSelected)
+                    {
+                        @(Programmania.TagHelpers.CourseHelper.GetUserCourse(Html, course));
+                    }
+                    else
+                    {
+                        @Programmania.TagHelpers.CourseHelper.GetCourse(Html, course);
+                    }
+                }
             </div>
         </div>
     </main>
