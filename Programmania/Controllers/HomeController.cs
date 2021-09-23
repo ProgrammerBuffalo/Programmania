@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Programmania.Models;
@@ -56,6 +55,8 @@ namespace Programmania.Controllers
             //    return NotFound("Token is not valid");
             //}
 
+            //return View(userCourses);
+
             return View(/*getUserCourses(user)*/);
         }
 
@@ -104,9 +105,9 @@ namespace Programmania.Controllers
             return View();
         }
 
-        [Route("Course")]
+        [Route("Disciplines")]
         [AllowAnonymous]
-        public IActionResult Course()
+        public IActionResult Disciplines()
         {
             return View();
         }

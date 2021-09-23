@@ -183,17 +183,6 @@ function createChart(data, labels, headerLabel, xAxis) {
     return performanceChart;
 }
 
-function mediaMatch(mediaQuery) {
-    if (mediaQuery.matches) {
-        performanceChart.options.responsive = false;
-        performanceChart.update();
-    }
-    else {
-        performanceChart.options.responsive = true;
-        performanceChart.update();
-    }
-}
-
 $(document).ready(function () {
     let type = $('#chart-type').val();
 
@@ -208,10 +197,6 @@ $(document).ready(function () {
             dayNames = data.days;
 
             updateChart(data.rewards, type);
-
-            let mediaQuery = window.matchMedia("(max-width: 445px)");
-            mediaQuery.addListener(mediaMatch);
-            mediaMatch(mediaQuery);
         }
     })
 });

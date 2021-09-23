@@ -7,19 +7,24 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"></script>
 
+    <link rel="stylesheet" href="~/css/nice-select2.css" />
+    <script src="~/js/nice-select2.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
     <link rel="stylesheet" href="~/css/Perfomance.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-            crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
     <div class="content">
-        <div class="chart card">
+        <div class="chart card _anim-items flexImage">
             <div class="chartArea">
-                <canvas id="performanceChart">
-                </canvas>
+                <div class="chart-container">
+                    <canvas id="performanceChart" style="width: 100%; height: 100%">
+                    </canvas>
+                </div>
             </div>
 
             <div class="chart-arrows">
@@ -31,29 +36,37 @@
             </div>
         </div>
 
-        <div class="history card">
+        <div class="history card _anim-items flexImage">
             <h3 class="history-title">History</h3>
+            <select class="wide" id="chart-type">
+                <option selected="selected">Day</option>
+                <option>Week</option>
+                <option>Month</option>
+            </select>
+            <select class="wide" id="load-count">
+                <option selected="selected">10</option>
+                <option>25</option>
+                <option>50</option>
+                <option>70</option>
+            </select>
             <div id="history_day" class="history__day">
 
-                <button id="chart-more" class="btn btn-primary">Show More -></button>
+                <button id="chart-more" class="btn btn-primary show-more__btn">Show More -></button>
 
-                <select id="chart-type">
-                    <option selected="selected">Day</option>
-                    <option>Week</option>
-                    <option>Month</option>
-                </select>
-                <select id="load-count">
-                    <option>10</option>
-                    <option>25</option>
-                    <option>50</option>
-                    <option>70</option>
-                </select>
+
             </div>
         </div>
     </div>
 
+    <script type="text/javascript" src="~/js/util/scrollAnimation.js"></script>
     <script type="text/javascript" src="~/js/elements/rewards.js"></script>
     <script type="text/javascript" src="~/js/performance.js"></script>
+
+    <script type="text/javascript">
+        NiceSelect.bind(document.getElementById("chart-type"));
+        NiceSelect.bind(document.getElementById("load-count"));
+
+    </script>
 </body>
 </html>
 

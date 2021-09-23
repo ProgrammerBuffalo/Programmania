@@ -1,3 +1,4 @@
+function()
 var bar = new ldBar(".roundedPb", {
 	"preset": "circle",
 	"min": 0,
@@ -10,7 +11,5 @@ $('.ldBar').addClass("label-center");
 $('.ldBar').css("width", "70%");
 $('.ldBar').css("height", "70%");
 
+bar.set(50, true);
 
-$('.coursesList__item__hover').on('animationstart', function() {
-	bar.set(50, true);
-});
