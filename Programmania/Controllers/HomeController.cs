@@ -105,9 +105,9 @@ namespace Programmania.Controllers
             return View();
         }
 
-        [Route("Course")]
+        [Route("Disciplines")]
         [AllowAnonymous]
-        public IActionResult Course()
+        public IActionResult Disciplines()
         {
             return View();
         }

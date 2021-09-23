@@ -10,24 +10,19 @@ const data = {
         label: "Rewards",
         data: dataArray,
         fill: false,
-        borderColor: "rgb(97,1,6)",
+        borderColor: "rgb(82, 82, 82)",
         tension: 0.1
     }]
 };
 
-var ctx = document.getElementById('perfomanceChart').getContext('2d');
+var ctx = document.getElementById('performanceChart').getContext('2d');
 
 var perfomanceChart = new Chart(ctx, {
     type: 'line',
     data: data,
     options: {
 
-        scales: {
-            y: {
-                min: 0,
-                max: 100
-            }
-        },
+        
         layout: {
             padding: 20
         },
