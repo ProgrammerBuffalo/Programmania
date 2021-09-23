@@ -5,22 +5,22 @@
 }
 
 body {
-    background: #FCE78D;
+    background: #808080;
 }
 
 .back {
     border: 40px solid transparent;
-    border-right: 40px solid #ffe670;
+    border-right: 40px solid #c0c0c0;
     transition: all 0.5s ease 0s;
 }
 
     .back:hover {
-        border-right: 40px solid #fff3b8;
+        border-right: 40px solid #ffffff;
         cursor: pointer;
     }
 
 .header-text {
-    background-color: rgb(78, 67, 15);
+    background-color: #808080;
     height: 155px;
     display: flex;
     flex-direction: row;
@@ -40,14 +40,12 @@ body {
     }
 
 .content {
-    padding: 10px;
-    width: 70%;
-    margin: auto;
+    padding: 5% 10%;
 }
 
 .course__img {
     width: 100%;
-    height: 40%;
+    height: 600px;
 }
 
     .course__img img {
@@ -68,10 +66,11 @@ body {
 .descipline {
     margin-top: 20px;
     position: relative;
-    height: 520px;
+    min-height: 520px;
     width: 370px;
-    border: 0.5px solid #fff;
-    background-color: #4E430F;
+    border: 0.5px solid #7702c4;
+    background-color: #F0F0F0;
+    margin-left: 50px;
 }
 
 .subject {
@@ -81,7 +80,7 @@ body {
 
 .subject-text {
     text-align: center;
-    color: white;
+    color: #9E02A3;
     text-shadow: rgb(255 255 255 / 60%) 1px 1px 1px, rgb(0 0 0 / 60%) -1px -1px 1px;
     font-size: 30px;
     padding: 5px;
@@ -105,34 +104,35 @@ body {
 .ldBar {
     margin: auto;
     margin-top: -30px;
+    color: #DBDBDB
 }
 
     .ldBar path.mainline {
         stroke-width: 8;
-        stroke: #faf17c;
+        stroke: #9E02A3;
         stroke-linecap: round;
     }
 
     .ldBar path.baseline {
         stroke-width: 5;
-        stroke: #fdffc9;
+        stroke: #DBDBDB;
         stroke-linecap: round;
     }
 
 .ldBar-label {
     font-size: 3vh;
-    color: #faf17c;
+    color: #F71CFF;
 }
 
 .lesson-count {
-    width: 100px;
+    width: 100%;
     height: auto;
 }
 
 .lesson-count__text {
     text-align: center;
     padding: 5px;
-    color: white;
-    font-size: 20px;
+    color: #7702c4;
+    font-size: 4vh;
     height: auto;
 }
