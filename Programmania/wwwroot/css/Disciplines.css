@@ -40,7 +40,7 @@ body {
     }
 
 .content {
-    padding: 5% 10%;
+    padding: 5% 15%;
 }
 
 .course__img {
@@ -57,7 +57,7 @@ body {
     display: flex;
     width: auto;
     height: 100%;
-    justify-content: space-around;
+    justify-content: left;
     flex: 1 1 33.33%;
     flex-direction: row;
     flex-wrap: wrap;
@@ -67,10 +67,16 @@ body {
     margin-top: 20px;
     position: relative;
     min-height: 520px;
-    width: 370px;
+    width: 300px;
     border: 0.5px solid #7702c4;
     background-color: #F0F0F0;
-    margin-left: 50px;
+    margin-left: 20px;
+    transition: all 0.5s ease 0s;
+}
+
+.descipline:hover{
+    background-color: #f7f7f7;
+    transform: scale(1.1);
 }
 
 .subject {
@@ -103,8 +109,10 @@ body {
 
 .ldBar {
     margin: auto;
-    margin-top: -30px;
-    color: #DBDBDB
+    margin-top: 0;
+    color: #DBDBDB;
+    height: 230px !important;
+    
 }
 
     .ldBar path.mainline {
@@ -135,4 +143,10 @@ body {
     color: #7702c4;
     font-size: 4vh;
     height: auto;
+}
+
+@media(max-width: 935px) {
+    .desciplines{
+        justify-content: center;
+    }
 }
