@@ -188,6 +188,10 @@ body {
     display: none;
 }
 
+::-moz-scrollbar {
+    display: none;
+}
+
 
 /*Progress bar*/
 .ldBar{
@@ -242,6 +246,7 @@ body {
         -o-transform: rotate(5deg);
         transform: rotate(5deg);
     }
+
 
 
 @media(max-width: 1040px) {

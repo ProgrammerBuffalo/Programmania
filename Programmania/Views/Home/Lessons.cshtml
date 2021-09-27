@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Lessons</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/css/Lessons.css" />
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="header">
+            <a href="Disciplines">
+                <div class="header-back" data-aos="fade-right" data-aos-duration="1000">
+                </div>
+            </a>
+            <h3 class="header__text" data-aos="fade-left" data-aos-duration="1000">Programmania</h3>
+        </div>
+    </header>
+
+    <main>
+        <div class="main">
+            <div class="burger" data-aos="flip-left" data-aos-duration="1000">
+                <div class="burger__image">
+                    <img src="~/images/garbageCollector.jpg" />
+                </div>
+
+                <div class="burger-content">
+                    <a href="#">
+                        <div class="burger-content-elem burger-content-elem_read">
+                            <h3 class="burger-content-elem__text">
+                                #1 What is garbage collector?
+                            </h3>
+                        </div>
+                    </a>
+
+                    <a href="#">
+                        <div class="burger-content-elem burger-content-elem_read">
+                            <h3 class="burger-content-elem__text">
+                                #2 IDisposable interface
+                            </h3>
+                        </div>
+                    </a>
+
+                    <a href="#">
+                        <div class="burger-content-elem burger-content-elem_unread">
+                            <h3 class="burger-content-elem__text">
+                                #3 Something interesting
+                            </h3>
+                        </div>
+                    </a>
+
+                    <a href="#">
+                        <div class="burger-content-elem burger-content-elem_unread">
+                            <h3 class="burger-content-elem__text">
+                                #4 Something interesting
+                            </h3>
+                        </div>
+                    </a>
+
+                    <a href="#">
+                        <div class="burger-content-elem burger-content-elem_unread">
+                            <h3 class="burger-content-elem__text">
+                                #5 Something interesting
+                            </h3>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+
+            <div class="content">
+                <h3 class="content__title" data-aos="fade-left" data-aos-duration="1000">Lesson N2. IDisposable</h3>
+                <p class="content__text" data-aos="fade-right" data-data-aos-duration="1000">Lorem ipsum...</p>
+
+                <div class="content-tests">
+                    <div class="content-tests-test" data-aos="fade-right" data-aos-duration="1000">
+                        <h3 class="content-tests__question">Some question...</h3>
+                        <label class="rad-label">
+                            <input type="radio" class="rad-input" name="rad" />
+                            <div class="rad-design"></div>
+                            <div class="rad-text">Answer 1</div>
+                        </label>
+
+                        <label class="rad-label">
+                            <input type="radio" class="rad-input" name="rad" />
+                            <div class="rad-design"></div>
+                            <div class="rad-text">Answer 2</div>
+                        </label>
+
+                        <label class="rad-label">
+                            <input type="radio" class="rad-input" name="rad" />
+                            <div class="rad-design"></div>
+                            <div class="rad-text">Answer 3</div>
+                        </label>
+
+                        <label class="rad-label">
+                            <input type="radio" class="rad-input" name="rad" />
+                            <div class="rad-design"></div>
+                            <div class="rad-text">Answer 4</div>
+                        </label>
+                    </div>
+
+                </div>
+
+                <button class="button button-next">
+                    <span>
+                        Next
+                    </span>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        AOS.init();
+    </script>
+</body>
+</html>
+
