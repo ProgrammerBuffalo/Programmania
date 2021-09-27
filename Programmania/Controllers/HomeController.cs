@@ -94,13 +94,6 @@ namespace Programmania.Controllers
             return View();
         }
 
-        [Route("Disciplines")]
-        [AllowAnonymous]
-        public IActionResult Disciplines()
-        {
-            return View();
-        }
-
         private User getUser(List<Claim> claims)
         {
             var users = dbContext.Users;
