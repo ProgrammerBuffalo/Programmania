@@ -44,22 +44,6 @@ namespace Programmania.Controllers
             }
         }
 
-        [Route("Courses")]
-        [AllowAnonymous]
-        public IActionResult Courses()
-        {
-            //var user = getUser(HttpContext.User.Claims.ToList());
-
-            //if (user == null)
-            //{
-            //    return NotFound("Token is not valid");
-            //}
-
-            //return View(userCourses);
-
-            return View(/*getUserCourses(user)*/);
-        }
-
         [Route("Profile")]
         [AllowAnonymous]
         [HttpGet]
@@ -105,9 +89,31 @@ namespace Programmania.Controllers
             return View();
         }
 
+        [Route("Courses")]
+        [AllowAnonymous]
+        public IActionResult Courses()
+        {
+            //var user = getUser(HttpContext.User.Claims.ToList());
+
+            //if (user == null)
+            //{
+            //    return NotFound("Token is not valid");
+            //}
+
+            //return View(userCourses);
+            return View(/*getUserCourses(user)*/);
+        }
+
         [Route("Disciplines")]
         [AllowAnonymous]
-        public IActionResult Disciplines()
+        public IActionResult Disciplines(int id) // id of course
+        {
+            return View();
+        }
+
+        [Route("Lesson")]
+        [AllowAnonymous]
+        public IActionResult Lesson(int id) // id of lesson
         {
             return View();
         }

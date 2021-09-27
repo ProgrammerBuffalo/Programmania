@@ -134,10 +134,10 @@ namespace Programmania.Controllers
                     string json;
                     //if this email alredy exsists
                     if (true)
-                        json = Utilities.FormError.MakeServerError("Error", "this email alredy exists");
+                        json = Utilities.FormError.MakeServerError("Error", "this email already exists");
                     //if this password alredy exsists
                     else
-                        json = Utilities.FormError.MakeServerError("Error", "this password alredy exists");
+                        json = Utilities.FormError.MakeServerError("Error", "this password already exists");
                     return BadRequest(json);
                 }
             }

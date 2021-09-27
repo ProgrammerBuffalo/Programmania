@@ -12,9 +12,8 @@
         for (var j = 0; j < image.width; j += 5) {
             pixelData = canvas.getContext('2d').getImageData(i, j, 1, 1).data;
             for (var k = 0; k < pixelDatas.length; k++) {
-                if (pixelDatas[k].color[0] == pixelData[0] &&
-                    pixelDatas[k].color[1] == pixelData[1] &&
-                    pixelDatas[k].color[2] == pixelData[2]) {
+                if (colorsFamiliarPercent(pixelDatas[k].color, pixelData) <= 10) {
+                    mergeColor(pixelDatas[k].color, pixelData);
                     pixelDatas[k].count++;
                     continue outerLoop;
                 }
@@ -38,10 +37,42 @@ function componentToHex(c) {
     return hex.length == 1 ? "0" + hex : hex;
 }
 
-function isColorsEqual(color1, color2) {
-    return color1[0] == color2[0] && color1[1] == color2[1] && color1[2] == color2[2];
+function colorsFamiliarPercent(color1, color2) {
+    let rDiff = Math.abs(color1[0] - color2[0]) / 255;
+    let gDiff = Math.abs(color1[1] - color2[1]) / 255;
+    let bDiff = Math.abs(color1[2] - color2[2]) / 255;
+    return (rDiff + gDiff + bDiff) / 3 * 100;
+}
+
+function mergeColor(sourceColor, addColor) {
+    sourceColor[0] = (sourceColor[0] + addColor[0]) / 2;
+    sourceColor[1] = (sourceColor[1] + addColor[1]) / 2;
+    sourceColor[2] = (sourceColor[2] + addColor[2]) / 2;
 }
 
 function rgbToHex(rgb) {
     return "#" + componentToHex(rgb[0]) + componentToHex(rgb[1]) + componentToHex(rgb[2]);
 }
+
+//function temp() {
+
+//    var color1 = [255, 26, 26];
+//    var color2 = [111, 79, 121];
+//    console.log(colorsFamiliarPercent(color1, color2));
+
+//    color1 = [230, 25, 25];
+//    color2 = [217, 38, 38];
+//    console.log(colorsFamiliarPercent(color1, color2));
+
+//    color1 = [230, 25, 25];
+//    color2 = [164, 49, 72];
+//    console.log(colorsFamiliarPercent(color1, color2));
+
+//    color1 = [230, 25, 25];
+//    color2 = [255, 49, 72];
+//    console.log(colorsFamiliarPercent(color1, color2));
+
+//    color1 = [230, 25, 25];
+//    color2 = [255, 152, 146];
+//    console.log(colorsFamiliarPercent(color1, color2));
+//}

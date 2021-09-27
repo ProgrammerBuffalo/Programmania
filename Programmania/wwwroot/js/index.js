@@ -49,7 +49,7 @@ $(document).ready(function () {
             contentType: false,
             data: data,
             success: function () {
-
+                window.location.href = '/main';
             },
             error: function (jqXHR) {
                 var errors = JSON.parse(jqXHR.responseText);
@@ -80,8 +80,8 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             data: data,
-            success: function (response) {
-                window.location.href = response.url;
+            success: function () {
+                window.location.href = '/main';
             },
             error: function (jqXHR) {
                 var errors = JSON.parse(jqXHR.responseText);

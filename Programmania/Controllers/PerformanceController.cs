@@ -24,7 +24,8 @@ namespace Programmania.Controllers
         }
 
         //type - type of diagram (day, month, year)
-        //date - current date of diagramm using type and date backend must return Reward[] array
+        //date - current date of diagramm
+        //using type and date backend must return Reward[] array
         //For Example type=day date=11/9/2021 return all rewards in September
         //For Example type=month date 11/9/2021 return all rewards in 2021 year
         //For Exaple type=week date 11/9/2021 return rewards from 9 to 15 Semptember (7 days in week)

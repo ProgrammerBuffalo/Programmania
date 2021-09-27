@@ -78,33 +78,34 @@ h1, h2, h3, h4, h5, h6 {
 body {
     background-color: #faf17c;
 }
+
 .header-text {
     background-color: rgb(78, 67, 15);
     height: 155px;
 }
-    .header-text h3 {
-        color: white;
-        text-shadow: rgb(255 255 255 / 60%) 1px 1px 1px, rgb(0 0 0 / 60%) -1px -1px 1px;
-        text-align: center;
-        vertical-align: middle;
-        line-height: 155px;
-        font-size: 5vh;
-        font-family: montserrat, sans-serif;
-        font-weight: 700;
-    }
 
-.content{
+.header-text h3 {
+    color: white;
+    text-shadow: rgb(255 255 255 / 60%) 1px 1px 1px, rgb(0 0 0 / 60%) -1px -1px 1px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 155px;
+    font-size: 5vh;
+    font-family: montserrat, sans-serif;
+    font-weight: 700;
+}
+
+.content {
     padding: 0 10%;
     height: 100%;
 }
 
-.courses{
+.courses {
     display: flex;
     -moz-display: flex;
     -ms-display: flex;
     -o-display: flex;
     -webkit-display: flex;
-
     justify-content: left;
     flex: 1 1 33.33%;
     flex-direction: row;
@@ -132,25 +133,24 @@ body {
     position: relative;
     width: 100%;
     height: 50%;
-    
     -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
     -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 }
 
-    .course__image:before,
-    .course__image:after {
-        content: "";
-        position: absolute;
-        z-index: -2;
-    }
+.course__image:before,
+.course__image:after {
+    content: "";
+    position: absolute;
+    z-index: -2;
+}
 
-    .course__image img {
-        width: 100%;
-        height: 100%;
-    }
+.course__image img {
+    width: 100%;
+    height: 100%;
+}
 
-.course-body{
+.course-body {
     padding: 0 5%;
 }
 
@@ -162,18 +162,17 @@ body {
     -ms-display: flex;
     -o-display: flex;
     -webkit-display: flex;
-
     flex: 1 1 50.00%;
     justify-content: space-between;
     color: white;
 }
 
-.course-info h5{
+.course-info h5 {
     font-weight: 700;
     font-size: 3vh;
 }
 
-.course-info p{
+.course-info p {
     font-weight: 300;
     font-size: 2vh;
 }
@@ -190,20 +189,23 @@ body {
 
 
 /*Progress bar*/
-.ldBar{
+.ldBar {
     margin: 0 auto;
     margin-top: -20px;
 }
-    .ldBar path.mainline {
-        stroke-width: 8;
-        stroke: #faf17c;
-        stroke-linecap: round;
-    }
-    .ldBar path.baseline {
-        stroke-width: 5;
-        stroke: #fdffc9;
-        stroke-linecap: round;
-    }
+
+.ldBar path.mainline {
+    stroke-width: 8;
+    stroke: #faf17c;
+    stroke-linecap: round;
+}
+
+.ldBar path.baseline {
+    stroke-width: 5;
+    stroke: #fdffc9;
+    stroke-linecap: round;
+}
+
 .ldBar-label {
     font-size: 3vh;
     color: #faf17c;
@@ -215,33 +217,33 @@ body {
     border-radius: 4px;
 }
 
-    .lifted:before,
-    .lifted:after {
-        bottom: 15px;
-        left: 10px;
-        width: 50%;
-        height: 20%;
-        max-width: 300px;
-        max-height: 100px;
-        -webkit-box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
-        -moz-box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
-        box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
-        -webkit-transform: rotate(-5deg);
-        -moz-transform: rotate(-5deg);
-        -ms-transform: rotate(-5deg);
-        -o-transform: rotate(-5deg);
-        transform: rotate(-5deg);
-    }
+.lifted:before,
+.lifted:after {
+    bottom: 15px;
+    left: 10px;
+    width: 50%;
+    height: 20%;
+    max-width: 300px;
+    max-height: 100px;
+    -webkit-box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
+    -webkit-transform: rotate(-5deg);
+    -moz-transform: rotate(-5deg);
+    -ms-transform: rotate(-5deg);
+    -o-transform: rotate(-5deg);
+    transform: rotate(-5deg);
+}
 
-    .lifted:after {
-        right: 10px;
-        left: auto;
-        -webkit-transform: rotate(5deg);
-        -moz-transform: rotate(5deg);
-        -ms-transform: rotate(5deg);
-        -o-transform: rotate(5deg);
-        transform: rotate(5deg);
-    }
+.lifted:after {
+    right: 10px;
+    left: auto;
+    -webkit-transform: rotate(5deg);
+    -moz-transform: rotate(5deg);
+    -ms-transform: rotate(5deg);
+    -o-transform: rotate(5deg);
+    transform: rotate(5deg);
+}
 
 
 @media(max-width: 1040px) {
@@ -249,12 +251,13 @@ body {
         justify-content: center;
     }
 
-    .course{
+    .course {
         margin-left: 0;
     }
 }
+
 @media(max-width: 390px) {
-    .course{
+    .course {
         width: 300px;
     }
 }

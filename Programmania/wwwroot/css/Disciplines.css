@@ -14,10 +14,10 @@ body {
     transition: all 0.5s ease 0s;
 }
 
-    .back:hover {
-        border-right: 40px solid #ffffff;
-        cursor: pointer;
-    }
+.back:hover {
+    border-right: 40px solid #ffffff;
+    cursor: pointer;
+}
 
 .header-text {
     background-color: #808080;
@@ -28,16 +28,16 @@ body {
     align-items: center;
 }
 
-    .header-text h3 {
-        color: white;
-        text-shadow: rgb(255 255 255 / 60%) 1px 1px 1px, rgb(0 0 0 / 60%) -1px -1px 1px;
-        text-align: center;
-        vertical-align: middle;
-        line-height: 155px;
-        font-size: 5vh;
-        font-family: montserrat, sans-serif;
-        font-weight: 700;
-    }
+.header-text h3 {
+    color: white;
+    text-shadow: rgb(255 255 255 / 60%) 1px 1px 1px, rgb(0 0 0 / 60%) -1px -1px 1px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 155px;
+    font-size: 5vh;
+    font-family: montserrat, sans-serif;
+    font-weight: 700;
+}
 
 .content {
     padding: 5% 15%;
@@ -48,10 +48,10 @@ body {
     height: 600px;
 }
 
-    .course__img img {
-        width: 100%;
-        height: 100%;
-    }
+.course__img img {
+    width: 100%;
+    height: 100%;
+}
 
 .desciplines {
     display: flex;
@@ -97,10 +97,10 @@ body {
     height: auto;
 }
 
-    .subject__img img {
-        width: 100%;
-        height: auto;
-    }
+.subject__img img {
+    width: 100%;
+    height: auto;
+}
 
 .diagramm__body {
     width: 100%;
@@ -115,17 +115,17 @@ body {
     
 }
 
-    .ldBar path.mainline {
-        stroke-width: 8;
-        stroke: #9E02A3;
-        stroke-linecap: round;
-    }
+.ldBar path.mainline {
+    stroke-width: 8;
+    stroke: #9E02A3;
+    stroke-linecap: round;
+}
 
-    .ldBar path.baseline {
-        stroke-width: 5;
-        stroke: #DBDBDB;
-        stroke-linecap: round;
-    }
+.ldBar path.baseline {
+    stroke-width: 5;
+    stroke: #DBDBDB;
+    stroke-linecap: round;
+}
 
 .ldBar-label {
     font-size: 3vh;
