@@ -32,7 +32,7 @@ namespace Programmania.Controllers
         [HttpGet]
         public IActionResult Courses()
         {
-            return /*View(getUserCourses(HttpContext.Items["User"] as User))*/ Ok();
+            return /*View(getUserCourses(HttpContext.Items["User"] as User))*/ View();
         }
 
         [Route("Courses/Disciplines")]
