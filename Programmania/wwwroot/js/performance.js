@@ -287,23 +287,13 @@ $("#chart-more").click(function () {
                         $(div).addClass('day-body table-responsive');
                         let table = document.createElement('table');
                         $(table).addClass('table table-hover table-bordered table-striped table-dark');
-                        $(table).append("<thead> <tr>"
-                            + "<th scope='col'>Achievment</th>"
-                            + "<th scope='col'>XP</th>"
-                            + "<th scope='col'>Description</th>"
-                            + "<th scope='col'>Time</th>"
-                            + "</tr> </thead>"
-                            + "<tbody> </tbody>");
+                        $(table).append(createRewardsHeader());
+
                         div.append(table);
                         $('#history_day').append(div);
                         body = $(table).find('tbody');
                     }
-                    $(body).append('<tr>'
-                        + `<td>${data[i].type}</td>`
-                        + `<td class='posXP'>${data[i].expierence}</td>`
-                        + `<td>DESC!!!</td>`
-                        + `<td class='timeData'>${date.getUTCHours() + ':' + date.getMinutes() + ':' + date.getUTCSeconds()}</td>`
-                        + '</tr>');
+                    $(body).append(addTableRewards(data[i], date));
                     lastDate = date;
                 }
             }
