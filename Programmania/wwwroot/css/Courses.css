@@ -105,7 +105,7 @@ body {
     -o-display: flex;
     -webkit-display: flex;
 
-    justify-content: space-between;
+    justify-content: left;
     flex: 1 1 33.33%;
     flex-direction: row;
     flex-wrap: wrap;
@@ -120,6 +120,8 @@ body {
     border: 0.5px solid #fff;
     background-color: #4E430F;
     z-index: 1;
+    margin-left: 50px;
+    overflow: auto;
 }
 
 .dark-image {
@@ -182,6 +184,10 @@ body {
     font-weight: 700;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 
 /*Progress bar*/
 .ldBar{
@@ -237,9 +243,14 @@ body {
         transform: rotate(5deg);
     }
 
-@media(max-width: 921px) {
+
+@media(max-width: 1040px) {
     .courses {
         justify-content: center;
+    }
+
+    .course{
+        margin-left: 0;
     }
 }
 @media(max-width: 390px) {

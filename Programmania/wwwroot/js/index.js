@@ -30,39 +30,10 @@ $(document).ready(function () {
 $(document).ready(function () {
     $('#registerBtnOut').click(function () {
 
-        //var hasError = true;
-
-        //var nickname = ;
-        //var email = ;
-        //var password = ;
-        //var confirmPassword = ;
-        //var avatar = ;
-
         $('#nicknameErrorReg').remove();
         $('#emailErrorReg').remove();
         $('#passwordErrorReg').remove();
         $('#passwordConfirmationErrorReg').remove();
-
-        //if (!checkNickname(nickname.val())) {
-        //    hasError = true;
-        //    $('#nicknameLabelReg').after("<label id='nicknameErrorReg' class='error'>nickname is to short</label>");
-        //}
-
-        //if (!checkEmail(email.val())) {
-        //    hasError = true;
-        //    $('#emailLabelReg').after("<label id='emailErrorReg' class='error'>email input error</label>");
-        //}
-
-        //if (!checkPassword(password.val())) {
-        //    hasError = true;
-        //    $('#passwordLabelReg').after("<label id='passwordErrorReg' class='error'>length 8-16. allowed symbols (!, #, $, %, ^, &)</label>");
-        //}
-
-        //if (password.val() != confirmPassword.val() || stringIsEmty(password.val())) {
-        //    hasError = true;
-        //    confirmPassword.val('');
-        //    $('#confirmPasswordLabel').after("<label id='confirmPasswordError' class='error'>Password doesn't match</label>");
-        //}
 
         var data = new FormData();
         data.append('Nickname', $('#nicknameInputReg').val());
@@ -96,22 +67,8 @@ $(document).ready(function () {
 $(document).ready(function () {
     $('#loginBtnOut').click(function () {
 
-        //var hasError = false;
-        //var email = ;
-        //var password = ;
-
         $('#emailErrorLog').remove();
         $('#passwordErrorLog').remove();
-
-        //if (!checkEmail(email.val())) {
-        //    hasError = true;
-        //    $('#emailLabelLog').after("<label id='emailErrorLog' class='error'>input error</label>");
-        //}
-
-        //if (!checkPassword(password.val())) {
-        //    hasError = true;
-        //    $('#passwordLabelLog').after("<label id='passwordErrorLog' class='error'>length 8-16. allowed symbols (!,#,$,%,^,&)</label>");
-        //}
 
         var data = new FormData();
         data.append('Email', $('#emailInputLog').val());
@@ -138,25 +95,3 @@ $(document).ready(function () {
         });
     });
 });
-
-//function checkNickname(str) {
-//    str = str.trim();
-//    if (str.length < 2) return false;
-//    return true;
-//}
-
-//function checkEmail(str) {
-//    str = str.trim();
-//    var regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-//    return regex.test(str);
-//}
-
-//function checkPassword(str) {
-//    str = str.trim();
-//    var regex = /^[a-z,A-Z,0-9,!,#,$,%,^,&]{8,16}$/;
-//    return regex.test(str);
-//}
-
-//function stringIsEmty(str) {
-//    return str == "" || str == null;
-//}
