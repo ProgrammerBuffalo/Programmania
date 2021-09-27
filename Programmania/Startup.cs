@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Programmania.Models;
 using Programmania.Services;
+using System.Security.Claims;
+using Programmania.Middlewares;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Http;
 
 namespace Programmania
 {
@@ -30,32 +35,13 @@ namespace Programmania
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
+            services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.IgnoreNullValues = true);
 
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<DAL.ProgrammaniaDBContext>(options => options.UseSqlServer(connection));
 
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
-
-            var key = Encoding.ASCII.GetBytes(appSettingsSection.Get<AppSettings>().SecretCode);
-
-            services.AddAuthentication(x =>
-           {
-               x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-               x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-           }).AddJwtBearer(x =>
-           {
-               x.RequireHttpsMetadata = false;
-               x.SaveToken = true;
-               x.TokenValidationParameters = new TokenValidationParameters
-               {
-                   ValidateIssuerSigningKey = true,
-                   IssuerSigningKey = new SymmetricSecurityKey(key),
-                   ValidateIssuer = false,
-                   ValidateAudience = false,
-                   ClockSkew = TimeSpan.Zero
-               };
-           });
 
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IFileService, FileService>();
@@ -79,7 +65,6 @@ namespace Programmania
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-
             app.UseRouting();
 
             app.UseCors(x => x
@@ -88,8 +73,8 @@ namespace Programmania
                 .AllowAnyHeader()
                 .AllowCredentials());
 
-            app.UseAuthentication();
-            app.UseAuthorization();
+            app.UseMiddleware<ErrorMiddleware>();
+            app.UseMiddleware<JWTMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {

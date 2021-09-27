@@ -20,6 +20,8 @@ namespace Programmania.Models
         //[Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         //public ICollection<User> Users { get; set; }
 
+        public int DisciplineId { get; set; }
+
         public Discipline Discipline { get; set; }
 
         [Column("stream_id")]

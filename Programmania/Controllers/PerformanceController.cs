@@ -4,7 +4,7 @@ using Programmania.ViewModels;
 
 namespace Programmania.Controllers
 {
-    [Route("performance")]
+//    [Route("performance")]
     public class PerformanceController : Controller
     {
         [Route("")]
