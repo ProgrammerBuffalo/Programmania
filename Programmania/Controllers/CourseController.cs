@@ -11,7 +11,7 @@ using Programmania.ViewModels;
 
 namespace Programmania.Controllers
 {
-    [Authorize]
+    [Route("Courses")]
     public class CourseController : Controller
     {
         private DAL.ProgrammaniaDBContext dbContext;
@@ -28,14 +28,13 @@ namespace Programmania.Controllers
             this.fileService = fileService;
         }
 
-        [Route("Courses")]
-        [HttpGet]
         public IActionResult Courses()
         {
-            return /*View(getUserCourses(HttpContext.Items["User"] as User))*/ View();
+            //return /*View(getUserCourses(HttpContext.Items["User"] as User))*/ View();
+            return View();
         }
 
-        [Route("Courses/Disciplines")]
+        [Route("Course/Disciplines")]
         public IActionResult Disciplines(int courseId)
         {
             var token = Request.Cookies["JwtToken"];

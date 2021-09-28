@@ -35,6 +35,7 @@ namespace Programmania.Controllers
 
         [Route("Main")]
         [HttpGet]
+        [AllowAnonymous]
         //change string parameter into ViewModel class
         public IActionResult Main(ViewModels.AuthenticationRequestVM data)
         {
