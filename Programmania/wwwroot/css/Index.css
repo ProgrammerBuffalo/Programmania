@@ -277,6 +277,12 @@ h1, h2, h3, h4, h5, h6 {
     animation-duration: 0.4s
 }
 
+.error {
+    font-size: 18px !important;
+    color: red;
+    margin-left: 10px;
+}
+
 @keyframes animatetop {
     from {
         top: -300px;

@@ -55,10 +55,10 @@ $(document).ready(function () {
                 var errors = JSON.parse(jqXHR.responseText);
                 for (var key in errors) {
                     var camel = camelize(key);
-                    $('#' + camel + 'LabelReg').after(`<label id='${camel + 'ErrorReg'}' class='error'>${errors[key]}</label>`);
+                    $('#' + camel + 'LabelReg').after(`<p id='${camel + 'ErrorReg'}' class='error'>${errors[key]}</p>`);
                 }
                 if (errors['error'] != null)
-                    $('#registerBtnOut').after(`<label id='registerError' class='error'>${errors['error']}</label>`);
+                    $('#registerBtnOut').after(`<p id='registerError' class='error'>${errors['error']}</p>`);
             }
         });
     });
@@ -87,10 +87,10 @@ $(document).ready(function () {
                 var errors = JSON.parse(jqXHR.responseText);
                 for (var key in errors) {
                     var camel = camelize(key);
-                    $('#' + camel + 'LabelLog').after(`<label id='${camel + 'ErrorLog'}' class='error'>${errors[key]}</label>`);
+                    $('#' + camel + 'LabelLog').after(`<p id='${camel + 'ErrorLog'}' class='error'>${errors[key]}</p>`);
                 }
                 if (errors['error'] != null)
-                    $('#registerBtnOut').after(`<label id='loginError' class='error'>${errors['error']}</label>`);
+                    $('#registerBtnOut').after(`<p id='loginError' class='error'>${errors['error']}</p>`);
             }
         });
     });

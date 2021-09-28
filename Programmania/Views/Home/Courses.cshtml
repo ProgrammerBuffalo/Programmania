@@ -63,15 +63,18 @@
 
         <div class="content">
             <div class="courses" data-aos="fade-left" data-aos-duration="1500">
-                @foreach (var course in Model)
+                @if (Model != null)
                 {
-                    if (course.IsSelected)
+                    @foreach (Programmania.ViewModels.UserCourseVM course in Model)
                     {
-                        @Html.CreateUserCourse(course);
-                    }
-                    else
-                    {
-                       @Html.CreateCourse(course);
+                        if (course.IsSelected)
+                        {
+                            @Html.CreateUserCourse(course);
+                        }
+                        else
+                        {
+                            @Html.CreateCourse(course);
+                        }
                     }
                 }
             </div>

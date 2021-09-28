@@ -23,6 +23,7 @@
     }
 
     var count = pixelDatas[0].count;
+    pixelData = pixelDatas[0].color;
     for (var i = 0; i < pixelDatas.length; i++) {
         if (count < pixelDatas[i].count) {
             pixelData = pixelDatas[i].color;

@@ -100,7 +100,6 @@ namespace Programmania.Controllers
             //    return NotFound("Token is not valid");
             //}
 
-            //return View(userCourses);
             return View(/*getUserCourses(user)*/);
         }
 
