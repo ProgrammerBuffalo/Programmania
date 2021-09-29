@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Programmania.Attributes;
 using Programmania.Models;
@@ -11,6 +10,8 @@ using System.Security.Claims;
 
 namespace Programmania.Controllers
 {
+    [Route("Home")]
+    [Route("")]
     [Authorize]
     public class HomeController : Controller
     {
@@ -25,9 +26,10 @@ namespace Programmania.Controllers
             this.accountService = accountService;
         }
 
-        [AllowAnonymous]
         [Route("")]
+        [Route("Index")]
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View();
@@ -35,19 +37,9 @@ namespace Programmania.Controllers
 
         [Route("Main")]
         [HttpGet]
-        [AllowAnonymous]
-        //change string parameter into ViewModel class
-        public IActionResult Main(ViewModels.AuthenticationRequestVM data)
+        public IActionResult Main()
         {
-            //check if email exists in db
-            if (false)
-            {
-                return BadRequest();
-            }
-            else
-            {
-                return View();
-            }
+            return View();
         }
 
         [Route("Profile")]
@@ -62,7 +54,8 @@ namespace Programmania.Controllers
             //  return NotFound("Token invalid");
             //}
 
-            return View(/*new UserProfileVM(true, user.Login, user.Name, user.Exp, getUserCourses(user), getUserAchievements(user))*/);
+            return View(new UserProfileVM(true));
+            //return View(/*new UserProfileVM(true, user.Login, user.Name, user.Exp, getUserCourses(user), getUserAchievements(user))*/);
         }
 
         [Route("News")]
@@ -121,6 +114,6 @@ namespace Programmania.Controllers
             return list;
         }
 
-        
+
     }
 }

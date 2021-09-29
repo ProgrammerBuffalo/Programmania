@@ -55,10 +55,10 @@ $(document).ready(function () {
                 var errors = JSON.parse(jqXHR.responseText);
                 for (var key in errors) {
                     var camel = camelize(key);
-                    $('#' + camel + 'LabelReg').after(`<p id='${camel + 'ErrorReg'}' class='error'>${errors[key]}</p>`);
+                    $('#' + camel + 'LabelReg').after(`<label id='${camel + 'ErrorReg'}' class='error'>${errors[key]}</label>`);
                 }
                 if (errors['error'] != null)
-                    $('#registerBtnOut').after(`<p id='registerError' class='error'>${errors['error']}</p>`);
+                    $('#registerBtnOut').after(`<label id='registerError' class='error'>${errors['error']}</label>`);
             }
         });
     });
@@ -80,17 +80,17 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             data: data,
-            success: function () {
+            success: function (response) {
                 window.location.href = '/main';
             },
             error: function (jqXHR) {
                 var errors = JSON.parse(jqXHR.responseText);
                 for (var key in errors) {
                     var camel = camelize(key);
-                    $('#' + camel + 'LabelLog').after(`<p id='${camel + 'ErrorLog'}' class='error'>${errors[key]}</p>`);
+                    $('#' + camel + 'LabelLog').after(`<label id='${camel + 'ErrorLog'}' class='error'>${errors[key]}</label>`);
                 }
                 if (errors['error'] != null)
-                    $('#registerBtnOut').after(`<p id='loginError' class='error'>${errors['error']}</p>`);
+                    $('#registerBtnOut').after(`<label id='loginError' class='error'>${errors['error']}</label>`);
             }
         });
     });

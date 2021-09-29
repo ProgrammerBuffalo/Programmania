@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <title>Error 401</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/401.css" />
 </head>
@@ -17,12 +18,12 @@
         <div class="input__container from-group">
             <input id="email" type="text" class="form-control my-3" placeholder="email">
             <input id="password" type="text" class="form-control my-3" placeholder="password">
-            <input id="acceptBtn" type="button" class="btn btn-success sign-in__btn" value="Sign In">
+            <input id="signInBtn" type="button" class="btn btn-success sign-in__btn" value="Sign In">
             <input id="mainBtn" class="btn btn-secondary main__btn" type="button" value="Back To Main">
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="../js/401.js"></script>
+    <script type="text/javascript" src="../../js/util/cookie.js"></script>
+    <script type="text/javascript" src="../js/401.js"></script>
 </body>
 </html>

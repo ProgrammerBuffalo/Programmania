@@ -40,4 +40,23 @@ p {
 
     .error__img img {
         width: 100%;
+        height: auto;
     }
+
+/*@media only screen and (max-width: 1500px){
+    .container {
+        display: block;
+    }
+    .error__description {
+        clear: both;
+        margin: 0 auto;
+        text-align: center;
+        width: 100%;
+    }
+    .error__img {
+        margin: 0 auto;
+        clear: both;
+        text-align: center;
+        max-width: 100%;
+    }
+}*/

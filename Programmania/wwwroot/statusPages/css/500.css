@@ -40,4 +40,5 @@ p {
 
     .error__img img {
         width: 100%;
+        height: auto;
     }
