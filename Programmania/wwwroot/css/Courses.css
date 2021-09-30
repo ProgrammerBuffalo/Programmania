@@ -122,7 +122,6 @@ body {
     background-color: #4E430F;
     z-index: 1;
     margin-left: 50px;
-    overflow: auto;
 }
 
 .dark-image {
