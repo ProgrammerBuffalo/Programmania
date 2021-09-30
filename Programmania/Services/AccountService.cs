@@ -1,9 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Programmania.Models;
 using Programmania.ViewModels;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -39,13 +42,17 @@ namespace Programmania.Services
             return new AuthenticationResponseVM(jwtToken, rt.Token);
         }
 
-        public async Task<AuthenticationResponseVM> RefreshTokens(string refreshToken, string ipAdress)
+        public bool RefreshTokens(string refreshToken, string ipAdress, out string generatedJwtToken, out string generatedRToken, out User user)
         {
-            User user = dbContext.Users.Include(u => u.RefreshTokens).FirstOrDefault(u => u.RefreshTokens.Any(t => t.Token == refreshToken));
-            if (user == null) return null;
+            generatedJwtToken = null;
+            generatedRToken = null;
+
+            user = dbContext.Users.Include(u => u.RefreshTokens).FirstOrDefault(u => u.RefreshTokens.Any(t => t.Token == refreshToken));
+
+            if (user == null) return false;
 
             var rt = user.RefreshTokens.First(t => t.Token == refreshToken);
-            if (!rt.IsAlive) return null;
+            if (!rt.IsAlive) return false;
 
             var generatedRT = generateRefreshToken(ipAdress);
             rt.IpRevoker = ipAdress;
@@ -54,11 +61,12 @@ namespace Programmania.Services
             user.RefreshTokens.Add(generatedRT);
 
             dbContext.Update(user);
-            await dbContext.SaveChangesAsync();
+            dbContext.SaveChanges();
 
-            var jwtToken = generateJwtToken(user);
+            generatedJwtToken = generateJwtToken(user);
+            generatedRToken = generatedRT.Token;
 
-            return new AuthenticationResponseVM(jwtToken, generatedRT.Token);
+            return true;
         }
 
         public async Task<bool> RevokeToken(string token, string ipAdress)
@@ -116,6 +124,66 @@ namespace Programmania.Services
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
+        }
+
+        public void SetCookiesInApp(HttpResponse httpResponse, string jwtToken, string refreshToken)
+        {
+            httpResponse.Cookies.Append("RefreshToken", refreshToken,
+                new Microsoft.AspNetCore.Http.CookieOptions
+                {
+                    Expires = DateTime.UtcNow.AddDays(1),
+                    HttpOnly = true
+                });
+
+            httpResponse.Cookies.Append("JwtToken", jwtToken,
+                new Microsoft.AspNetCore.Http.CookieOptions
+                {
+                    Expires = DateTime.UtcNow.AddMinutes(1),
+                    HttpOnly = true
+                });
+        }
+
+        public bool ValidateJWTToken(string jwtToken, out int? claimUserId, out string claimUserlogin)
+        {
+            claimUserId = null;
+            claimUserlogin = null;
+
+            if (jwtToken == null)
+                return false;
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(appSettings.SecretCode);
+
+            try
+            {
+                tokenHandler.ValidateToken(jwtToken, new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ClockSkew = TimeSpan.Zero
+                }, out SecurityToken validatedJwtToken);
+
+                JwtSecurityToken jwtSecurityToken = (JwtSecurityToken)validatedJwtToken;
+
+                claimUserId = int.Parse(jwtSecurityToken.Claims.First(c => c.Type == "nameid").Value);
+                claimUserlogin = jwtSecurityToken.Claims.First(c => c.Type == "unique_name").Value;
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public User GetUserDBId(int? claimUserId, string claimUserlogin)
+        {
+            if (claimUserId == null && claimUserlogin == null)
+                return null;
+
+            return dbContext.Users.FirstOrDefault(u => u.Id == claimUserId && u.Login == claimUserlogin);
         }
     }
 }

@@ -1,0 +1,62 @@
+﻿body {
+    background-color: #313131;
+}
+
+p {
+    color: white;
+}
+
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.error__description {
+    float: left;
+}
+
+.error__msg {
+    font-size: 40px;
+    text-align: center;
+}
+
+.error__msg_small {
+    font-size: 30px;
+    text-align: center;
+}
+
+.main__btn {
+    font-size: 30px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.error__img {
+    float: right;
+    max-width: 600px;
+}
+
+    .error__img img {
+        width: 100%;
+        height: auto;
+    }
+
+/*@media only screen and (max-width: 1500px){
+    .container {
+        display: block;
+    }
+    .error__description {
+        clear: both;
+        margin: 0 auto;
+        text-align: center;
+        width: 100%;
+    }
+    .error__img {
+        margin: 0 auto;
+        clear: both;
+        text-align: center;
+        max-width: 100%;
+    }
+}*/

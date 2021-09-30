@@ -13,18 +13,24 @@ body {
     transform: translate(-50%, -50%);
 }
 
+.error__input {
+    color: red;
+    margin-left: 10px;
+    font-size: 18px;
+}
+
 .error__img {
     display: block;
     margin: auto;
 }
 
 .error__msg {
-    font-size: 30px;
+    font-size: 40px;
     text-align: center;
 }
 
 .error__msg_small {
-    font-size: 20px;
+    font-size: 30px;
     text-align: center;
 }
 

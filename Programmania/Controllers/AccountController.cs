@@ -3,16 +3,17 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Programmania.ViewModels;
-using Microsoft.AspNetCore.Authorization;
 using Programmania.Services;
 using Programmania.Models;
 using System.IO;
 using System.Text;
 using Newtonsoft.Json;
+using Programmania.Attributes;
 
 namespace Programmania.Controllers
 {
     [Route("[controller]")]
+    [Authorize]
     public class AccountController : Controller
     {
         private DAL.ProgrammaniaDBContext dbContext;
@@ -31,22 +32,24 @@ namespace Programmania.Controllers
 
         [Route("refresh-token")]
         [HttpPost]
-        public async Task<IActionResult> RefreshTokensAuthentication()
+        [AllowAnonymous]
+        public IActionResult RefreshTokensAuthentication()
         {
             var rtCookie = Request.Cookies["RefreshToken"];
 
-            AuthenticationResponseVM authenticationResponse = await accountService.RefreshTokens(rtCookie, HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString());
-            if (authenticationResponse == null)
-                return Unauthorized("Invalid refresh token");
+            if (accountService.RefreshTokens(rtCookie, HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString(),
+                out string generatedJWT, out string generatedRToken, out User user))
+            {
+                  return Unauthorized("Invalid refresh token");
+            }
 
-            setCookieTokens(authenticationResponse.RefreshToken, authenticationResponse.JWTToken);
+            setCookieTokens(generatedRToken, generatedJWT);
 
-            return Ok(authenticationResponse);
+            return Ok();
         }
 
         [Route("revoke-token")]
         [HttpPost]
-        [Authorize]
         public async Task<IActionResult> RevokeToken()
         {
             var rtCookie = Request.Cookies["RefreshToken"];
@@ -62,6 +65,7 @@ namespace Programmania.Controllers
 
         [Route("authorization")]
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> MakeAuthorization(AuthenticationRequestVM authenticationRequest)
         {
             if (ModelState.IsValid)
@@ -131,14 +135,12 @@ namespace Programmania.Controllers
                 }
                 else
                 {
-                    string json;
-                    //if this email alredy exsists
-                    if (true)
-                        json = Utilities.FormError.MakeServerError("Error", "this email alredy exists");
-                    //if this password alredy exsists
+                    string jsonResponse;
+                    if (user.Login.Contains(registrationVM.Email))
+                        jsonResponse = Utilities.FormError.MakeServerError("Error", "The given email already exists");
                     else
-                        json = Utilities.FormError.MakeServerError("Error", "this password alredy exists");
-                    return BadRequest(json);
+                        jsonResponse = Utilities.FormError.MakeServerError("Error", "The given nickname already exists");
+                    return BadRequest(jsonResponse);
                 }
             }
             else
@@ -160,7 +162,7 @@ namespace Programmania.Controllers
             Response.Cookies.Append("JwtToken", jwttoken,
                 new Microsoft.AspNetCore.Http.CookieOptions
                 {
-                    Expires = DateTime.UtcNow.AddMinutes(15),
+                    Expires = DateTime.UtcNow.AddMinutes(1),
                     HttpOnly = true
                 });
         }
