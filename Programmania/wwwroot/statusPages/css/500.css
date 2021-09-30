@@ -7,14 +7,10 @@ p {
 }
 
 .container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.error__description {
-    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 700px;
 }
 
 .error__msg {
@@ -34,11 +30,31 @@ p {
 }
 
 .error__img {
-    float: right;
     max-width: 600px;
+    min-width: 600px;
 }
 
     .error__img img {
         width: 100%;
         height: auto;
     }
+
+@media only screen and (max-width: 1000px) {
+    .container {
+        flex-direction: column-reverse;
+        height: 100%;
+    }
+
+    .error__img {
+        margin: 10px;
+        min-width: 0px;
+    }
+
+    .error__msg {
+        font-size: 30px;
+    }
+
+    .error__msg_small {
+        font-size: 20px;
+    }
+}
