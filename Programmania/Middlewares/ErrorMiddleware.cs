@@ -20,7 +20,7 @@ namespace Programmania.Middlewares
         private IWebHostEnvironment hostingEnvironment;
         private IActionDescriptorCollectionProvider actionDescriptorCollection;
 
-        public ErrorMiddleware(RequestDelegate next, 
+        public ErrorMiddleware(RequestDelegate next,
             IWebHostEnvironment hostingEnvironment, IActionDescriptorCollectionProvider actionDescriptorCollection)
         {
             this.actionDescriptorCollection = actionDescriptorCollection;
@@ -64,7 +64,7 @@ namespace Programmania.Middlewares
                         }
 
                 }
-                var page = await File.ReadAllTextAsync(Path.Combine(hostingEnvironment.WebRootPath + "/statusPages",
+                var page = await File.ReadAllTextAsync(Path.Combine(hostingEnvironment.WebRootPath + "/statusPages/html",
                     response.StatusCode.ToString() + ".html"));
                 await response.WriteAsync(page);
             }

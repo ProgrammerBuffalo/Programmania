@@ -5,10 +5,10 @@ using Programmania.ViewModels;
 namespace Programmania.Controllers
 {
     [Route("performance")]
+    [Authorize]
     public class PerformanceController : Controller
     {
         [Route("")]
-        [AllowAnonymous]
         public IActionResult Perfomance()
         {
             return View("/Views/Home/Performance.cshtml");
@@ -16,7 +16,6 @@ namespace Programmania.Controllers
 
         //loading of diagram retrurn Reward[] array and put it into PerformanceViewModel then return it using Json
         [Route("rewards-init")]
-        [AllowAnonymous]
         public IActionResult GetPerformanceRewards(string type, System.DateTime date)
         {
             PerformanceViewModel viewModel = new PerformanceViewModel(null);
@@ -24,12 +23,12 @@ namespace Programmania.Controllers
         }
 
         //type - type of diagram (day, month, year)
-        //date - current date of diagramm using type and date backend must return Reward[] array
+        //date - current date of diagramm
+        //using type and date backend must return Reward[] array
         //For Example type=day date=11/9/2021 return all rewards in September
         //For Example type=month date 11/9/2021 return all rewards in 2021 year
         //For Exaple type=week date 11/9/2021 return rewards from 9 to 15 Semptember (7 days in week)
         [Route("rewards")]
-        [AllowAnonymous]
         public IActionResult GetRewards(string type, System.DateTime date)
         {
             return Json(null);
@@ -38,7 +37,6 @@ namespace Programmania.Controllers
         //count - count of rewards to return
         //offset - how much rewards already returned to client
         [Route("more-rewards")]
-        [AllowAnonymous]
         public IActionResult GetMoreRewards(int count, int offset)
         {
             return Json(null);

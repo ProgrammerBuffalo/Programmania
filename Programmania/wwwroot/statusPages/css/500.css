@@ -1,0 +1,60 @@
+﻿body {
+    background-color: #313131;
+}
+
+p {
+    color: white;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 700px;
+}
+
+.error__msg {
+    font-size: 40px;
+    text-align: center;
+}
+
+.error__msg_small {
+    font-size: 30px;
+    text-align: center;
+}
+
+.main__btn {
+    font-size: 30px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.error__img {
+    max-width: 600px;
+    min-width: 600px;
+}
+
+    .error__img img {
+        width: 100%;
+        height: auto;
+    }
+
+@media only screen and (max-width: 1000px) {
+    .container {
+        flex-direction: column-reverse;
+        height: 100%;
+    }
+
+    .error__img {
+        margin: 10px;
+        min-width: 0px;
+    }
+
+    .error__msg {
+        font-size: 30px;
+    }
+
+    .error__msg_small {
+        font-size: 20px;
+    }
+}

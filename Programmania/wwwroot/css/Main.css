@@ -152,14 +152,12 @@ body {
 .currentCourse__image {
     height: 100%;
     width: 40%;
-
-}
-
-.currentCourse__image img{
-    width: 100%;
-    height: 100%;
+    background-image: url(../images/CSharp.jpg);
     border-bottom-left-radius: 20px;
     border-top-left-radius: 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 .currentCourse-content {
@@ -241,9 +239,12 @@ body {
     transition: all 0.3s ease 0s;
 }
 
-.courses__course img{
+.courses__course{
     width: 100%;
     height: 250px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 .courses__course:hover{

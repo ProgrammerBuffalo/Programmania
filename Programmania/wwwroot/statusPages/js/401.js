@@ -1,35 +1,36 @@
 ﻿var redirectTo;
 
-document.ready(function () {
+$(document).ready(function () {
     var req = new XMLHttpRequest();
     redirectTo = req.getResponseHeader('RedirectTo');
+    console.log(redirectTo);
 });
 
 $(document).ready(function () {
     $('#mainBtn').click(function () {
-        window.location.href = '/home/index';
+        window.location.href = '/index';
     });
 });
 
 $(document).ready(function () {
-    $('#acceptBtn').click(function () {
-        $('')
+    $('#signInBtn').click(function () {
 
         var data = new FormData();
         data.append('Email', $('#email').val());
         data.append('Password', $('#password').val());
-
+        document.cookie = 'JwtToken=abcdefg;';
+        
         $.ajax({
-            type: 'GET',
-            url: 'account/authorization',
+            type: 'POST',
+            url: '/account/authorization',
             processData: false,
             contentType: false,
-            headers: {},
+            headers: { 'Authorization': 'Bearer ' + getCookie('JwtToken')},
             data: data,
             success: function () {
                 window.location.href = redirectTo;
             },
-            error: function (jqXML) {
+            error: function (jqXHR) {
                 var errors = JSON.parse(jqXHR.responseText);
                 for (var key in errors) {
                     var camel = camelize(key);
