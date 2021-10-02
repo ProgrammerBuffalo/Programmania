@@ -20,16 +20,7 @@ namespace Programmania.Models
 
         public int LessonCount { get; set; }
 
-        public int DisciplineId { get; set; }
-
-        public ICollection<Discipline> Disciplines { get; set; }
-
         [Column("stream_id")]
         public Guid StreamId { get; set; }
-
-        public Course()
-        {
-            Disciplines = new List<Discipline>();
-        }
     }
 }
