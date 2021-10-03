@@ -87,6 +87,12 @@ namespace Programmania.Controllers
         {
             return View();
         }
+        [AllowAnonymous]
+        [Route("Lessons")]
+        public IActionResult Lessons()
+        {
+            return View();
+        }
 
         private User getUser(List<Claim> claims)
         {
