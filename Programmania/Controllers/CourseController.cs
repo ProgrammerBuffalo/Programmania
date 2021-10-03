@@ -28,10 +28,10 @@ namespace Programmania.Controllers
             this.fileService = fileService;
         }
 
+        [Authorize]
         public IActionResult Courses()
         {
-            //return /*View(getUserCourses(HttpContext.Items["User"] as User))*/ View();
-            return View();
+            return View(getCourses(HttpContext.Items["User"] as User));
         }
 
         [Route("Course/Disciplines")]
@@ -61,18 +61,18 @@ namespace Programmania.Controllers
             return View();
         }
 
-        private List<UserCourseVM> getUserCourses(User user)
+        private UserCourseVM[] getCourses(User user)
         {
             var list = dbContext.UserDisciplines.Where(u => u.UserId == user.Id)
-                  .Join(dbContext.Courses, userDiscipline => userDiscipline.DisciplineId,
-                                 course => course.DisciplineId,
-                                 (userDiscipline, course) => new
+                  .Join(dbContext.Disciplines, userDiscipline => userDiscipline.DisciplineId,
+                                 discipline => discipline.Id,
+                                 (userDiscipline, discipline) => new
                                  {
                                      Discipline = userDiscipline.Discipline,
-                                     Course = course,
+                                     Course = discipline.Course,
                                      LastLesson = userDiscipline.LessonOrder,
-                                     LessonCount = course.LessonCount,
-                                     StreamIdCourse = course.StreamId
+                                     LessonCount = discipline.Course.LessonCount,
+                                     StreamIdCourse = discipline.Course.StreamId
                                  }).Select(s => new
                                  {
                                      discipline = s.Discipline,
@@ -95,6 +95,7 @@ namespace Programmania.Controllers
                         CourseName = item.course.Name,
                         LessonsCount = item.lessonCount,
                         LessonsCompleted = item.lastLesson,
+                        IsSelected = true,
                         Image = fileService.GetDocument(dbContext.Documents
                         .FirstOrDefault(d => d.StreamId == item.streamId).Path)
                     });
@@ -105,7 +106,25 @@ namespace Programmania.Controllers
                 }
             }
 
-            return userCourses;
+            List<Course> allAvailableCourses = dbContext.Courses.ToList();
+
+            foreach(var item in allAvailableCourses)
+            {
+                if (userCourses.Any(uc => uc.CourseId == item.Id))
+                    continue;
+                userCourses.Add(new UserCourseVM
+                {
+                    CourseId = item.Id,
+                    CourseName = item.Name,
+                    IsSelected = false,
+                    LessonsCount = item.LessonCount,
+                    Image = fileService.GetDocument(dbContext.Documents
+                        .FirstOrDefault(d => d.StreamId == item.StreamId).Path),
+                    LessonsCompleted = 0
+                });
+            }
+
+            return userCourses.ToArray();
         }
     }
 }
