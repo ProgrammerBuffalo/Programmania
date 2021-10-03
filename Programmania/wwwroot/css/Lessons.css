@@ -75,7 +75,33 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*----------------------------*/
+@font-face {
+    font-family: "Monsterrat-thin";
+    src: url("../fonts/Montserrat-Thin.ttf") format('truetype');
+    font-style: normal;
+    font-weight: normal;
+}
 
+@font-face {
+    font-family: "Monsterrat-light";
+    src: url("../fonts/Montserrat-Light.ttf") format('truetype');
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Monsterrat-normal";
+    src: url("../fonts/Montserrat-Regular.ttf");
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Monsterrat-bold";
+    src: url("../fonts/Montserrat-Bold.ttf");
+    font-style: normal;
+    font-weight: normal;
+}
 
 .header {
     width: 100%;
@@ -171,6 +197,12 @@ h1, h2, h3, h4, h5, h6 {
 .content__text{
     margin-top: 50px;
     font-size: 2.4vh;
+    line-height: 30px;
+    text-align: justify;
+}
+
+.content-tests{
+    margin-top: 30px !important;
 }
 
 .content-tests__question{
@@ -193,6 +225,21 @@ h1, h2, h3, h4, h5, h6 {
         background: hsla(0, 0%, 80%, .14);
     }
 
+.text-thin{
+    font-family: Monsterrat-thin, sans-serif;
+}
+
+.text-light{
+    font-family: Monsterrat-light, sans-serif;
+}
+
+.text-normal{
+    font-family: Monsterrat-normal, sans-serif;
+}
+
+.text-bold{
+    font-family: Monsterrat-bold, sans-serif;
+}
 .rad-input {
     position: absolute;
     left: 0;
@@ -238,6 +285,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .rad-input:checked ~ .rad-text {
     color: hsl(0, 0%, 40%);
+}
+
+.code{
+    font-size: 2vh !important;
 }
 
 .button {
@@ -294,13 +345,20 @@ h1, h2, h3, h4, h5, h6 {
         font-size: 2.5vh;
     }
 
-@media(max-width: 810px) {
+
+@media(max-width: 1200px) {
     .burger-content-elem__text {
         font-size: 2.5vh;
     }
 }
 
-@media(max-width: 700px) {
+@media(max-width: 1000px) {
+    .burger-content-elem__text {
+        font-size: 2vh;
+    }
+}
+
+@media(max-width: 800px) {
     .main{
         flex-direction: column;
     }
@@ -312,5 +370,11 @@ h1, h2, h3, h4, h5, h6 {
     .content{
         width: 100%;
         margin-top: 50px;
+    }
+}
+
+@media(max-height: 700px){
+    .content__text{
+        line-height: 20px;
     }
 }
