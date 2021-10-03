@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE/>
-@model Programmania.ViewModels.UserCourseVM[];
+@model IEnumerable<Programmania.ViewModels.UserCourseVM>;
 @using Programmania.HtmlHelpers
 
 <html>
@@ -68,13 +68,9 @@
                     @foreach (Programmania.ViewModels.UserCourseVM course in Model)
                     {
                         if (course.IsSelected)
-                        {
-                            @Html.CreateUserCourse(course);
-                        }
+                            Html.CreateSelectedCourse(course);
                         else
-                        {
-                            @Html.CreateCourse(course);
-                        }
+                            Html.CreateCourse(course);
                     }
                 }
             </div>
