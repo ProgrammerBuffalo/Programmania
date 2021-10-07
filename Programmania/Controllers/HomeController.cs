@@ -35,6 +35,7 @@ namespace Programmania.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         [Route("Main")]
         [HttpGet]
         public IActionResult Main()

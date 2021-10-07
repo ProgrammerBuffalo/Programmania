@@ -1,356 +1,631 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="~/css/HamburgerMenu.css" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="~/css/Main.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
+	<link rel="stylesheet" href="~/css/loading-bar.min.css">
+	<script src="~/js/loading-bar.min.js"></script>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-            crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="~/css/loading-bar.min.css" />
-    <script src="~/js/loading-bar.min.js"></script>
-    <script src="~/js/util/animateMain.js"></script>
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="~/css/HamburgerMenu.css" />
-    <link rel="stylesheet" type="text/css" href="~/css/Main.css" />
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
-        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	<title>Main</title>
 </head>
 
 <body>
-    <header>
-        <div class="header-container">
-            <div class="container__text">Programmania</div>
-            <div class="header__burger">
-                <span></span>
-            </div>
-            <div class="container-menu">
-                <nav class="header__menu">
-                    <ul class="header__list">
-                        <li>
-                            <a id="mainRef" href="Main" class="header__link">Main</a>
-                        </li>
-
-                        <li>
-                            <a id="coursesRef" href="Courses" class="header__link">Courses</a>
-                        </li>
-
-                        <li>
-                            <a id="newsRef" href="News" class="header__link">News</a>
-                        </li>
-
-                        <li>
-                            <a id="challengesRef" href="Challenges" class="header__link">Challenges</a>
-                        </li>
-
-                        <li>
-                            <a id="profileRef" href="Profile" class="header__link">Profile</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
-
-
-    <main>
-        <div class="header">
-        </div>
-
-        <div class="content">
-
-            <div class="coursesContainer">
-                <div class="currentCourse" data-aos="fade-right" data-aos-duration="1000">
-                    <div class="currentCourse__image">
-
-                    </div>
-
-                    <div class="currentCourse-content ">
-                        <div class="currentCourse-content__header">
-                            Current Course C#
-                        </div>
-
-                        <div class="currentCourse-content__text">
-                            Lessons Count: 77/100
-                        </div>
-
-                        <div class="currentCourse-content__percent">
-                            <div class="ldBar label-center"
-                                 data-preset="circle"
-                                 data-value="77"
-                                 data-transition-in="1000"
-                                 style="width: 60%; height: 60%;"></div>
-                        </div>
-
-                        <a>
-                            <div class="currentCourse-content__button">
-                                Last lesson: Working with sockets
-                            </div>
-                        </a>
-
-                    </div>
-                </div>
-
-                <div class="courses row" data-aos="fade-left" data-aos-duration="1000">
-                    <a class="col-md-6">
-                        <div class="courses__course" style="background-image: url(../images/cppCourse.png)">
-                        </div>
-                    </a>
-
-                    <a class="col-md-6">
-                        <div class="courses__course" style="background-image: url(../images/rubyCourse.png)">
-                        </div>
-                    </a>
-
-                    <a class="col-md-6">
-                        <div class="courses__course" style="background-image: url(../images/javaCourse.jpg)">
-                        </div>
-                    </a>
-
-                    <a class="col-md-6">
-                        <div class="courses__course" style="background-image: url(../images/phpCourse.jpg)">
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="levelAndPerformanceContainer">
-                <div class="level" data-aos="fade-right" data-aos-duration="1000">
-                    <div class="level__header">
-                        LEVEL
-                    </div>
-
-                    <div class="level-content">
-                        <h3>77%</h3>
-                        <h5>TO 21 LVL 250xp left</h5>
-                    </div>
-
-                    <div class="level__percent">
-                        <div class="ldBar"
-                             data-preset="line"
-                             data-value="77"
-                             data-transition-in="2000"
-                             style="width: 100%; height: 50%;">
-                        </div>
-                    </div>
-
-                    <div class="level__xp">
-                        255000/255250 XP
-                    </div>
-                </div>
-
-                <div class="performance" data-aos="fade-left" data-aos-duration="1000">
-                    <div class="chartArea">
-                        <div class="chart-container">
-                            <canvas id="performanceChart" style="width: 100%; height: 100%">
-                            </canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="challenges" data-aos="flip-left" data-aos-duration="1000">
-
-                <a>
-                    <div class="challenges-item challenges-item_create">
-                        <div class="challenges-item__image">
-                            <img src="~/images/pythonCourse.png" />
-                        </div>
-
-                        <div class="challenges-item-content">
-                            <div class="challenges-item-content__userImage">
-                                <img src="~/images/ProfileImg.png" />
-                            </div>
-
-                            <div class="challenges-item-content__username">
-                                Daniel
-                            </div>
-
-                            <div class="challenges-item-content__description">
-                                Propose a challenge in Python language
-                            </div>
-
-                            <div class="challenges-item-content__button" id="createBtn">
-                                Create
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <a>
-                    <div class="challenges-item challenges-item_accept">
-                        <div class="challenges-item__image">
-                            <img src="~/images/csharpCourse.jpg" />
-                        </div>
-
-                        <div class="challenges-item-content">
-                            <div class="challenges-item-content__userImage">
-                                <img src="~/images/ProfileImg.png" />
-                            </div>
-
-                            <div class="challenges-item-content__username">
-                                John Johnson
-                            </div>
-
-                            <div class="challenges-item-content__description">
-                                Challenged you on the C# language
-                            </div>
-
-                            <div class="challenges-item-content__button" id="acceptBtn">
-                                Accept
-                            </div>
-
-                            <div class="challenges-item__triangle">
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-
-
-                <div class="challenges-info">
-                    <div class="challenges-info__header">
-                        Challenges
-                    </div>
-
-
-                    <div class="challenges-info__percent">
-                        <div class="ldBar label-center"
-                             data-preset="circle"
-                             data-value="77"
-                             data-transition-in="1000"
-                             style="width: 100%; height: 100%">
-                        </div>
-                    </div>
-
-                    <div class="triangle">
-                    </div>
-                </div>
-
-
-                <a>
-                    <div class="challenges-item challenges-item_accept">
-                        <div class="challenges-item__image">
-                            <img src="~/images/rubyCourse.png" />
-                        </div>
-
-                        <div class="challenges-item-content">
-                            <div class="challenges-item-content__userImage">
-                                <img src="~/images/ProfileImg.png" />
-                            </div>
-
-                            <div class="challenges-item-content__username">
-                                Maria Lovely
-                            </div>
-
-                            <div class="challenges-item-content__description">
-                                Challenged you on the Ruby language
-                            </div>
-
-                            <div class="challenges-item-content__button" id="acceptBtn">
-                                Accept
-                            </div>
-
-                            <div class="challenges-item__triangle">
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <a>
-                    <div class="challenges-item challenges-item_create">
-                        <div class="challenges-item__image">
-                            <img src="~/images/cppCourse.png" />
-                        </div>
-
-                        <div class="challenges-item-content">
-                            <div class="challenges-item-content__userImage">
-                                <img src="~/images/ProfileImg.png" />
-                            </div>
-
-                            <div class="challenges-item-content__username">
-                                Lili Raider
-                            </div>
-
-                            <div class="challenges-item-content__description">
-                                Propose a challenge in C++ language
-                            </div>
-
-                            <div class="challenges-item-content__button" id="createBtn">
-                                Create
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-            </div>
-
-            <div class="achievmentsAndNewsContainer">
-                <div class="achievment" data-aos="fade-right" data-aos-duration="1000">
-                    <div class="achievment__image lifted">
-                        <img src="~/images/achievment.png" />
-                    </div>
-
-                    <div class="achievment-content">
-                        <div class="achievment-content__header">
-                            Achievment
-                        </div>
-
-                        <div class="achievment-content-main">
-                            <div class="achievment-content-main__header">
-                                Some achievment
-                            </div>
-
-                            <div class="achievment-content-main-flex">
-                                <div class="achievment-content-main-flex__percent">
-                                    <div class="ldBar label-center"
-                                         data-preset="line"
-                                         data-value="60"
-                                         data-transition-in="1500"
-                                         style="width: 100%; height: 50%;">
-                                    </div>
-
-                                    <div class="achievment-content-main-flex__text">
-                                        5 plays left
-                                    </div>
-                                </div>
-
-                                <div class="achievment-content-main-flex__image">
-                                    <img src="~/images/Achievments/brilliantBook.svg"/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-
-    </main>
-
-
-    <script type="text/javascript" src="~/js/util/createChartInMain.js"></script>
-    <script type="text/javascript" src="~/js/util/burger.js"></script>
-    <script type="text/javascript" src="~/js/denyBtnClick.js"></script>
-    <script type="text/javascript" src="~/js/util/scrollAnimation.js"></script>
-    <script type="text/javascript" src="~/js/denyBtnClick.js"></script>
-    <script type="text/javascript" src="~/js/util/cookie.js"></script>
-    <script type="text/javascript" src="~/js/main.js"></script>
-    <script>
-        AOS.init();
-    </script>
+	<header class="header" style="background-image: url('images/mainHeader.jpg');">
+		<div class="header__title">
+			Welcome to Programmania, username
+		</div>
+		<a href="#curr-course">
+			<span class="arrowbtn arrowbtn-down"></span>
+		</a>
+
+	</header>
+
+	<main class="main">
+
+		<div class="left-menu">
+			<div class="left-menu-content" id="menu-content">
+
+				<ul>
+					<li>
+						<a href="#curr-course">
+							Current Course
+						</a>
+					</li>
+					<li>
+						<a href="#courses">
+							All Courses
+						</a>
+					</li>
+					<li>
+						<a href="#level">
+							Level
+						</a>
+					</li>
+					<li>
+						<a href="#performance">
+							Performance
+						</a>
+					</li>
+					<li>
+						<a href="#challenges">
+							Challenges
+						</a>
+					</li>
+					<li>
+						<a href="#achievments">
+							Achievments
+						</a>
+					</li>
+					<li>
+						<a href="#news">
+							News
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="left-menu__button" id="hide-btn">
+				<i class="arrow arrow-right" id="arrow"></i>
+			</div>
+		</div>
+
+		<div class="current-course-container" id="curr-course">
+			<h3 class="container__title">Current course</h3>
+			<div class="current-course">
+				<div class="current-course-col-1" data-aos="fade-right" data-aos-duration="1000">
+					<div class="current-course__image" style="background-image: url('images/CSharp.jpg');">
+
+					</div>
+
+					<h3 class="current-course__title">C#</h3>
+					<p class="current-course__info">Lesson count: 77/100</p>
+				</div>
+
+				<div class="current-course-col-2" data-aos="fade-left" data-aos-duration="1000">
+					<div class="current-course__percent">
+						<div class="ldBar label-center" data-preset="circle" data-value="77" data-transition-in="1000"
+							style="width: 100%; height: 100%">
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<a href="#">
+				<div class="current-course__button" data-aos="flip-left" data-aos-duration="1000">Last lesson: Working with
+					sockets</div>
+			</a>
+		</div>
+
+
+
+
+		<div class="courses-container" id="courses">
+			<h3 class="container__title">All courses</h3>
+			<div class="swiper">
+				<div class="courses swiper-container" data-aos="zoom-in" data-aos-duration="1000">
+
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<div class="course">
+								<div class="course__image" style="background-image: url('images/CSharp.jpg');">
+								</div>
+								<div class="course-content">
+									<h3 class="course__title">
+										C#
+									</h3>
+									<p class="course__info">
+										Lessons count: 77/100
+									</p>
+
+									<div class="course__percent">
+										<div class="ldBar label-center" data-preset="circle" data-value="77"
+											data-transition-in="1000" style="width: 100%; height: 100%">
+										</div>
+									</div>
+
+									<a href="#">
+										<div class="course__button">
+											Last lesson: Working with sockets
+										</div>
+									</a>
+
+								</div>
+
+							</div>
+						</div>
+
+						<div class="swiper-slide">
+							<div class="course">
+								<div class="course__image" style="background-image: url('images/javaCourse.jpg');">
+								</div>
+								<div class="course-content">
+									<h3 class="course__title">
+										Java
+									</h3>
+									<p class="course__info">
+										Lessons count: 77/100
+									</p>
+
+									<div class="course__percent">
+										<div class="ldBar label-center" data-preset="circle" data-value="77"
+											data-transition-in="1000" style="width: 100%; height: 100%">
+										</div>
+									</div>
+
+									<div class="course__button">
+										Last lesson: Working with sockets
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+						<div class="swiper-slide">
+							<div class="course">
+								<div class="course__image" style="background-image: url('images/JSLogo.png');">
+								</div>
+								<div class="course-content">
+									<h3 class="course__title">
+										JavaScript
+									</h3>
+									<p class="course__info">
+										Lessons count: 77/100
+									</p>
+
+									<div class="course__percent">
+										<div class="ldBar label-center" data-preset="circle" data-value="77"
+											data-transition-in="1000" style="width: 100%; height: 100%">
+										</div>
+									</div>
+
+									<div class="course__button">
+										Last lesson: Working with sockets
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+						<div class="swiper-slide">
+							<div class="course">
+								<div class="course__image" style="background-image: url('images/phpCourse.jpg');">
+								</div>
+								<div class="course-content">
+									<h3 class="course__title">
+										PHP
+									</h3>
+									<p class="course__info">
+										Lessons count: 77/100
+									</p>
+
+									<div class="course__percent">
+										<div class="ldBar label-center" data-preset="circle" data-value="77"
+											data-transition-in="1000" style="width: 100%; height: 100%">
+										</div>
+									</div>
+
+									<div class="course__button">
+										Last lesson: Working with sockets
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+						<div class="swiper-slide">
+							<div class="course">
+								<div class="course__image" style="background-image: url('images/rubyCourse.png');">
+								</div>
+								<div class="course-content">
+									<h3 class="course__title">
+										Ruby
+									</h3>
+									<p class="course__info">
+										Lessons count: 77/100
+									</p>
+
+									<div class="course__percent">
+										<div class="ldBar label-center" data-preset="circle" data-value="77"
+											data-transition-in="1000" style="width: 100%; height: 100%">
+										</div>
+									</div>
+
+									<div class="course__button">
+										Last lesson: Working with sockets
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+						<div class="swiper-slide">
+							<div class="course">
+								<div class="course__image" style="background-image: url('images/pythonCourse.png');">
+								</div>
+								<div class="course-content">
+									<h3 class="course__title">
+										Python
+									</h3>
+									<p class="course__info">
+										Lessons count: 77/100
+									</p>
+
+									<div class="course__percent">
+										<div class="ldBar label-center" data-preset="circle" data-value="77"
+											data-transition-in="1000" style="width: 100%; height: 100%">
+										</div>
+									</div>
+
+									<div class="course__button">
+										Last lesson: Working with sockets
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<div class="swiper-button-prev"></div>
+					<div class="swiper-button-next"></div>
+				</div>
+			</div>
+		</div>
+
+
+
+		<div class="level-container" id="level">
+			<h3 class="container__title">Level</h3>
+			<div class="level">
+				<div class="level-col-1" data-aos="fade-right" data-aos-duration="1000">
+					<div class="level__percent">
+						<div class="ldBar label-center" data-preset="circle" data-value="77" data-transition-in="1000"
+							style="width: 100%; height: 100%">
+						</div>
+					</div>
+
+					<h3 class="level__xp">25.600 / 28.850 XP</h3>
+				</div>
+				<div class="level-col-2" data-aos="fade-left" data-aos-duration="1000">
+					<h3 class="level__title">Level: 32</h3>
+					<p class="level__info">To 32 lvl 3.250xp left</p>
+				</div>
+
+
+			</div>
+		</div>
+
+
+
+
+		<div class="performance-container" id="performance">
+			<h3 class="container__title">Performance</h3>
+			<div class="performance" data-aos="zoom-in" data-aos-duration="1000">
+				<div class="chartArea">
+					<div class="chart-container">
+						<canvas id="performanceChart">
+						</canvas>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+		<div class="challenges-container" id="challenges">
+			<h3 class="container__title">Challenges</h3>
+			<div class="challenges" data-aos="zoom-in" data-aos-duration="1000">
+				<div class="challenges-winrate">
+					<div class="winrate__percent">
+						<div class="ldBar label-center" data-preset="circle" data-value="77" data-transition-in="1000"
+							style="width: 100%; height: 100%">
+						</div>
+					</div>
+
+					<div class="winrate__info">Games win: 7/10</div>
+				</div>
+
+				<div class="swiper">
+					<div class="challenges-swiper swiper-container">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide">
+								<div class="challenge challenge_create">
+									<div class="challenge__image" style="background-image: url('images/pythonCourse.png');">
+
+									</div>
+
+									<div class="challenge-content">
+										<div class="challenge__avatar">
+											<img src="images/avatarImg.png" alt="Avatar image" />
+										</div>
+
+										<h3 class="challenge__username">John Johnson</h3>
+										<p class="challenge__info">Propose a challenge in Python language</p>
+										<a href="#">
+											<div class="challenge__button challenge__button_create">Create</div>
+										</a>
+									</div>
+
+
+								</div>
+							</div>
+
+							<div class="swiper-slide">
+								<div class="challenge challenge_accept">
+									<div class="challenge__image" style="background-image: url('images/CSharp.jpg');">
+
+									</div>
+									<div class="challenge-content">
+										<div class="challenge__avatar" style="background-image: url('images/avatarImg.png')">
+
+										</div>
+
+										<h3 class="challenge__username">Jack Jackson</h3>
+										<p class="challenge__info">Challenged you on the C# language</p>
+										<a href="#">
+											<div class="challenge__button challenge__button_accept">Accept</div>
+										</a>
+									</div>
+								</div>
+							</div>
+
+							<div class="swiper-slide">
+								<div class="challenge challenge_create">
+									<div class="challenge__image" style="background-image: url('images/pythonCourse.png');">
+
+									</div>
+
+									<div class="challenge-content">
+										<div class="challenge__avatar">
+											<img src="images/avatarImg.png" alt="Avatar image" />
+										</div>
+
+										<h3 class="challenge__username">John Johnson</h3>
+										<p class="challenge__info">Propose a challenge in Python language</p>
+										<a href="#">
+											<div class="challenge__button challenge__button_create">Create</div>
+										</a>
+									</div>
+
+
+								</div>
+							</div>
+
+							<div class="swiper-slide">
+								<div class="challenge challenge_accept">
+									<div class="challenge__image" style="background-image: url('images/CSharp.jpg');">
+
+									</div>
+									<div class="challenge-content">
+										<div class="challenge__avatar" style="background-image: url('images/avatarImg.png')">
+
+										</div>
+
+										<h3 class="challenge__username">Jack Jackson</h3>
+										<p class="challenge__info">Challenged you on the C# language</p>
+										<a href="#">
+											<div class="challenge__button challenge__button_accept">Accept</div>
+										</a>
+									</div>
+								</div>
+							</div>
+
+							<div class="swiper-slide">
+								<div class="challenge challenge_create">
+									<div class="challenge__image" style="background-image: url('images/pythonCourse.png');">
+
+									</div>
+
+									<div class="challenge-content">
+										<div class="challenge__avatar">
+											<img src="images/avatarImg.png" alt="Avatar image" />
+										</div>
+
+										<h3 class="challenge__username">John Johnson</h3>
+										<p class="challenge__info">Propose a challenge in Python language</p>
+										<a href="#">
+											<div class="challenge__button challenge__button_create">Create</div>
+										</a>
+									</div>
+
+
+								</div>
+							</div>
+
+							<div class="swiper-slide">
+								<div class="challenge challenge_accept">
+									<div class="challenge__image" style="background-image: url('images/CSharp.jpg');">
+
+									</div>
+									<div class="challenge-content">
+										<div class="challenge__avatar" style="background-image: url('images/avatarImg.png')">
+
+										</div>
+
+										<h3 class="challenge__username">Jack Jackson</h3>
+										<p class="challenge__info">Challenged you on the C# language</p>
+										<a href="#">
+											<div class="challenge__button challenge__button_accept">Accept</div>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="swiper-button-prev"></div>
+					<div class="swiper-button-next"></div>
+				</div>
+
+			</div>
+		</div>
+
+
+
+		<div class="achievment-container" id="achievments">
+			<h3 class="container__title">Achievments</h3>
+			<div class="achievment">
+				<div class="achievment-col-1" data-aos="fade-right" data-aos-duration="1000">
+					<div class="achievment__image" style="background-image: url('images/achievment.png');">
+					</div>
+
+					<h3 class="achievment__name">Lion</h3>
+					<p class="achievment-percent__subtext">5 plays left</p>
+				</div>
+				<div class="achievment-col-2" data-aos="fade-left" data-aos-duration="1000">
+					<div class="achievment__percent">
+						<div class="ldBar label-center" data-preset="circle" data-value="77" data-transition-in="1000"
+							style="width: 100%; height: 100%">
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+
+
+
+
+		<div class="news-container" id="news">
+			<div class="container__title">News</div>
+			<div class="swiper">
+				<div class="news swiper-container" data-aos="zoom-in" data-aos-duration="1000">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<div class="news-el">
+								<div class="news-el-header">
+									<div class="news-el-header__avatar">
+										<img src="images/avatarImg.png" alt="Avatar image">
+									</div>
+									<h3 class="news-el-header__text">John Johnson</h3>
+								</div>
+								<p class="news__content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem in iste,
+									autem neque provident sapiente placeat dolores deleniti. Quam odio, maxime vitae dolor
+									voluptate voluptatum blanditiis error incidunt velit illum?</p>
+								<p class="news__date">05.10.2021</p>
+								<a href="#">
+									<div class="news__button">Details</div>
+								</a>
+							</div>
+						</div>
+
+						<div class="swiper-slide">
+							<div class="news-el">
+								<div class="news-el-header">
+									<div class="news-el-header__avatar">
+										<img src="images/avatarImg.png" alt="Avatar image">
+									</div>
+									<h3 class="news-el-header__text">John Johnson</h3>
+								</div>
+								<p class="news__content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem in iste,
+									autem neque provident sapiente placeat dolores deleniti. Quam odio, maxime vitae dolor
+									voluptate voluptatum blanditiis error incidunt velit illum?</p>
+								<p class="news__date">05.10.2021</p>
+								<a href="#">
+									<div class="news__button">Details</div>
+								</a>
+							</div>
+						</div>
+
+						<div class="swiper-slide">
+							<div class="news-el">
+								<div class="news-el-header">
+									<div class="news-el-header__avatar">
+										<img src="images/avatarImg.png" alt="Avatar image">
+									</div>
+									<h3 class="news-el-header__text">John Johnson</h3>
+								</div>
+								<p class="news__content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem in iste,
+									autem neque provident sapiente placeat dolores deleniti. Quam odio, maxime vitae dolor
+									voluptate voluptatum blanditiis error incidunt velit illum?</p>
+								<p class="news__date">05.10.2021</p>
+								<a href="#">
+									<div class="news__button">Details</div>
+								</a>
+							</div>
+						</div>
+
+						<div class="swiper-slide">
+							<div class="news-el">
+								<div class="news-el-header">
+									<div class="news-el-header__avatar">
+										<img src="images/avatarImg.png" alt="Avatar image">
+									</div>
+									<h3 class="news-el-header__text">John Johnson</h3>
+								</div>
+								<p class="news__content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem in iste,
+									autem neque provident sapiente placeat dolores deleniti. Quam odio, maxime vitae dolor
+									voluptate voluptatum blanditiis error incidunt velit illum?</p>
+								<p class="news__date">05.10.2021</p>
+								<a href="#">
+									<div class="news__button">Details</div>
+								</a>
+							</div>
+						</div>
+
+						<div class="swiper-slide">
+							<div class="news-el">
+								<div class="news-el-header">
+									<div class="news-el-header__avatar">
+										<img src="images/avatarImg.png" alt="Avatar image">
+									</div>
+									<h3 class="news-el-header__text">John Johnson</h3>
+								</div>
+								<p class="news__content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem in iste,
+									autem neque provident sapiente placeat dolores deleniti. Quam odio, maxime vitae dolor
+									voluptate voluptatum blanditiis error incidunt velit illum?</p>
+								<p class="news__date">05.10.2021</p>
+								<a href="#">
+									<div class="news__button">Details</div>
+								</a>
+							</div>
+						</div>
+
+						<div class="swiper-slide">
+							<div class="news-el">
+								<div class="news-el-header">
+									<div class="news-el-header__avatar">
+										<img src="images/avatarImg.png" alt="Avatar image">
+									</div>
+									<h3 class="news-el-header__text">John Johnson</h3>
+								</div>
+								<p class="news__content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem in iste,
+									autem neque provident sapiente placeat dolores deleniti. Quam odio, maxime vitae dolor
+									voluptate voluptatum blanditiis error incidunt velit illum?</p>
+								<p class="news__date">05.10.2021</p>
+								<a href="#">
+									<div class="news__button">Details</div>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="swiper-button-prev"></div>
+				<div class="swiper-button-next"></div>
+			</div>
+		</div>
+
+	</main>
+
+	<script src="~/js/util/courses-slider.js"></script>
+	<script src="~/js/util/news-slider.js"></script>
+	<script src="~/js/util/challenges-slider.js"></script>
+	<script src="~/js/util/createChartInMain.js"></script>
+	<script type="text/javascript" src="~/js/util/open-menu.js"></script>
+	<script type="text/javascript">
+		AOS.init();
+	</script>
 </body>
 
-
-</html>  
+</html>
