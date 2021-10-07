@@ -6,6 +6,8 @@
 
         public string DisciplineName { get; set; }
 
+        public bool IsPassed { get; set; }
+
         public int LessonsCount { get; set; }
 
         public int LessonsCompleted { get; set; }

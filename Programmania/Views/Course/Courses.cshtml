@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE/>
-@model Programmania.ViewModels.UserCourseVM[];
+@model IEnumerable<Programmania.ViewModels.UserCourseVM>;
 @using Programmania.HtmlHelpers
 
 <html>
@@ -61,25 +61,21 @@
    <h3>Courses</h3>
   </div>
 
-  <div class="content">
-   <div class="courses" data-aos="fade-left" data-aos-duration="1500">
-    @if (Model != null)
-    {
-     @foreach (Programmania.ViewModels.UserCourseVM course in Model)
-     {
-      if (course.IsSelected)
-      {
-       @Html.CreateUserCourse(course);
-      }
-      else
-      {
-       @Html.CreateCourse(course);
-      }
-     }
-    }
-   </div>
-  </div>
- </main>
+        <div class="content">
+            <div class="courses" data-aos="fade-left" data-aos-duration="1500">
+                @if (Model != null)
+                {
+                    @foreach (Programmania.ViewModels.UserCourseVM course in Model)
+                    {
+                        if (course.IsSelected)
+                            Html.CreateSelectedCourse(course);
+                        else
+                            Html.CreateCourse(course);
+                    }
+                }
+            </div>
+        </div>
+    </main>
 
  <script type="text/javascript" src="~/js/util/burger.js"></script>
  <script type="text/javascript" src="~/js/util/imageAnylizer.js"></script>
