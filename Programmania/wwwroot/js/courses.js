@@ -11,4 +11,4 @@
         window.location.href = `disciplines?id=${id}`;
     });
 
-});в
+});
