@@ -35,6 +35,7 @@ namespace Programmania.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         [Route("Main")]
         [HttpGet]
         public IActionResult Main()
@@ -84,6 +85,12 @@ namespace Programmania.Controllers
 
         [Route("Challenges/Game")]
         public IActionResult Game()
+        {
+            return View();
+        }
+        [AllowAnonymous]
+        [Route("Lessons")]
+        public IActionResult Lessons()
         {
             return View();
         }

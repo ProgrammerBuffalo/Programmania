@@ -4,7 +4,7 @@ namespace Programmania.HtmlHelpers
 {
     public static class CourseHelper
     {
-        public static HtmlString CreateUserCourse(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html, ViewModels.UserCourseVM course)
+        public static HtmlString CreateSelectedCourse(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html, ViewModels.UserCourseVM course)
         {
             System.Text.StringBuilder @string = new System.Text.StringBuilder();
             @string.AppendLine("<a>");
@@ -15,7 +15,7 @@ namespace Programmania.HtmlHelpers
             @string.AppendLine("</div>");
             @string.AppendLine("<div class='course-body'>");
             @string.AppendLine("<div class='course-info'>");
-            @string.AppendLine($"<h5>{course.CourseName}</h5>");
+            @string.AppendLine($"<h5 id='courseName'>{course.CourseName}</h5>");
             @string.AppendLine($"<p> Lessons Count: {course.LessonsCompleted} / {course.LessonsCount}</p>");
             @string.AppendLine("</div>");
             @string.AppendLine($"<div class='ldBar label-center' data-preset='circle' data-value='{course.Percentage}' data-transition-in='1000' style='width: 50%; height: 50%;'></div>");

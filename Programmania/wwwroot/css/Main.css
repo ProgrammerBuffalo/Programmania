@@ -1,5 +1,4 @@
 /*Обнуление*/
-
 * {
     padding: 0;
     margin: 0;
@@ -17,7 +16,7 @@
 }
 
 a:focus, a:active {
-    outline: none;
+    outline: none !important;
 }
 
 nav, footer, header, aside {
@@ -53,11 +52,12 @@ button {
     }
 
 a, a:visited {
-    text-decoration: none;
+    text-decoration: none !important;
+    color: #000 !important;
 }
 
     a:hover {
-        text-decoration: none;
+        text-decoration: none !important;
     }
 
 ul-li {
@@ -73,794 +73,907 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 400;
 }
 
+/*----------------------------*/
 
-/*--------------------*/
+html {
+    scroll-behavior: smooth;
+}
+
+html,
 body {
-    background-color: #1a1a1a;
-}
-
-/*Menu settings*/
-
-.container__text {
-    color: #8cdaff !important;
-}
-
-.header__link {
-    color: #30bdff !important;
-    border-top: 2px solid #abe4ff !important;
-}
-
-    .header__link:hover {
-        color: #8cdaff !important;
-        cursor: pointer;
-        border-top: 2px solid #e0f5ff !important;
-    }
-
-
-.header{
-    width: 100%;
-    height: 700px;
-    background-image: url("../images/mainPageHeader.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-color: rgba(0,0,0,.5);
-    filter: brightness(60%);
-}
-
-.header__text{
-    color: white;
-    text-align: center;
-    vertical-align: middle;
-    font-size: 4vh;
-}
-
-.content{
-    width: 100%;
-    padding: 5% 10%;
-}
-
-
-/*Current course*/
-.coursesContainer{
-    display: flex;
-    -ms-display: flex;
-    -moz-display: flex;
-    -o-display: flex;
-    -webkit-display: flex;
-
-    flex: 1 1 50.00%;
-    justify-content: space-between;
-    flex-direction: row;
-    height: auto
-}
-
-.currentCourse {
-    display: flex;
-    -ms-display: flex;
-    -moz-display: flex;
-    -o-display: flex;
-    -webkit-display: flex;
-    flex: 1 1 50.00%;
-    justify-content: left;
-    flex-wrap: nowrap;
-    flex-direction: row;
     margin: 0;
-    min-height: 500px;
-    width: 50%;
+    padding: 0;
 }
 
-.currentCourse__image {
-    height: 100%;
-    width: 40%;
-    background-image: url(../images/CSharp.jpg);
-    border-bottom-left-radius: 20px;
-    border-top-left-radius: 20px;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+@font-face {
+    font-family: monsterrat-thin;
+    src: url("../fonts/Montserrat-Thin.ttf");
+}
+
+@font-face {
+    font-family: monsterrat-light;
+    src: url("../fonts/Montserrat-Light.ttf");
+}
+
+@font-face {
+    font-family: monsterrat-normal;
+    src: url("../fonts/Montserrat-Regular.ttf");
+}
+
+@font-face {
+    font-family: monsterrat-bold;
+    src: url("../fonts/Montserrat-Bold.ttf");
+}
+
+.header {
+    width: 100%;
+    height: 100vh;
     background-repeat: no-repeat;
     background-position: center;
+    -webkit-background-size: cover;
     background-size: cover;
+    filter: brightness(70%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.currentCourse-content {
-    background-color: #3a54b4;
-    padding: 20px 50px;
-    border-bottom-right-radius: 20px;
-    border-top-right-radius: 20px;
-    width: 60%;
+.header__title {
+    font-size: 5vh;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+    color: #fff;
+    display: inline-block;
 }
 
-.currentCourse-content__header{
-    color: black;
+.arrowbtn {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: #fff;
+    border: 2px solid #66a8ff;
+    border-radius: 50%;
+    color: #66a8ff;
+    cursor: pointer;
+    left: 50%;
+    line-height: 100px;
+    margin-left: -50px;
+    transition: all 0.5s ease 0s;
+    animation: arrow-anim 10s ease 0s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes arrow-anim {
+    0% {
+        bottom: 150px;
+    }
+
+    50% {
+        bottom: 250px;
+    }
+
+    100% {
+        bottom: 150px;
+    }
+}
+
+.arrowbtn:hover {
+    background: #66a8ff;
+    border-color: #66a8ff;
+    color: #fff;
+}
+
+.arrowbtn::after {
+    position: absolute;
+    display: inline-block;
+    content: "";
+    width: 12.5px;
+    height: 12.5px;
+    top: 50%;
+    left: 50%;
+}
+
+.arrowbtn-down {
+    bottom: 150px;
+}
+
+    .arrowbtn-down::after {
+        margin-left: -6px;
+        margin-top: -10px;
+        border-bottom: 2px solid;
+        border-right: 2px solid;
+        transform: rotateZ(45deg);
+    }
+
+.left-menu {
+    position: fixed;
+    height: 450px;
+    margin-top: 40vh;
+    width: auto;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.left-menu__button {
+    width: 30px;
+    height: auto;
+    background-color: #d6bdff;
+    transition: all 0.3s ease 0s;
+    z-index: 2;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    vertical-align: middle;
+    padding: 0 10px;
+    opacity: 0.5;
+}
+
+    .left-menu__button:hover {
+        background-color: #b488fc;
+    }
+
+.left-menu-content {
+    display: none;
+    padding: 10px;
+    background-color: #e6efff;
+}
+
+    .left-menu-content.active {
+        display: block;
+    }
+
+    .left-menu-content ul {
+        list-style: none;
+    }
+
+    .left-menu-content li {
+        margin-top: 30px;
+        font-size: 2.5vh;
+        font-family: "monsterrat-light";
+    }
+
+        .left-menu-content li a {
+            color: black;
+            transition: all 0.5s ease 0s;
+        }
+
+            .left-menu-content li a:hover {
+                color: #0083ab;
+                font-size: 3vh;
+            }
+
+.arrow {
+    border: solid #007a21;
+    border-width: 0 5px 5px 0;
+    display: inline-block;
+    padding: 3px;
+    margin-top: 200px;
+}
+
+.arrow-right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+
+.arrow-left {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+}
+
+.current-course-container {
+    background-color: #f5faff;
+    min-height: 300px;
+    margin: 0;
+    padding: 50px 0;
+}
+
+.container__title {
+    text-align: center;
     font-size: 4vh;
-    font-weight: 800;
-    text-align: center;
+    font-weight: 700;
+    font-family: "monsterrat-thin";
 }
 
-.currentCourse-content__text {
-    margin-top: 50px;
-    color: black;
+.current-course {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 400px;
+}
+
+.current-course__image {
+    width: 250px;
+    height: 200px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.current-course__title,
+.course__title {
+    text-align: center;
     font-size: 3vh;
-    font-weight: 400;
+    font-family: "monsterrat-bold";
+    margin-top: 10px;
+}
+
+.current-course__info,
+.course__info {
+    text-align: center;
+    font-size: 2.5vh;
+    font-family: "monsterrat-light";
+}
+
+.current-course__percent {
+    width: 250px;
+    height: 250px;
+}
+
+    .current-course__percent .ldBar path.mainline,
+    .course__percent .ldBar path.mainline {
+        stroke-width: 6;
+        stroke: #66a8ff;
+    }
+
+    .current-course__percent .ldBar path.baseline,
+    .course__percent .ldBar path.baseline {
+        stroke-width: 6;
+        stroke: #d6d6d6;
+    }
+
+    .current-course__percent .ldBar-label,
+    .course__percent .ldBar-label {
+        font-size: 3vh;
+        color: #66a8ff;
+    }
+
+.current-course__button {
+    min-height: 20px;
+    width: 500px;
+    padding: 20px;
+    border: 1px solid #66a8ff;
+    color: #66a8ff;
+    font-size: 2.5vh;
+    margin-top: 30px;
+    border-radius: 20px;
+    transition: all 0.5s ease 0s;
+    margin: 0 auto;
+    margin-top: 30px;
     text-align: center;
 }
 
-.currentCourse-content__percent .ldBar {
+    .current-course__button:hover,
+    .course__button:hover {
+        background-color: #66a8ff;
+        color: #fff;
+        border-color: #fff;
+    }
+
+.courses-container {
+    min-height: 300px;
+    padding: 50px 0;
+}
+
+.courses {
+    margin-top: 20px;
+}
+
+.course {
+    width: 350px;
+    height: auto;
+    border: 1px solid #66a8ff;
+    border-radius: 20px;
     margin: 0 auto;
 }
 
-    .currentCourse-content__percent .ldBar path.mainline {
-        stroke-width: 5;
-        stroke: #6ec4cc;
-        stroke-linecap: round;
-    }
-
-    .currentCourse-content__percent .ldBar path.baseline {
-        stroke-width: 8;
-        stroke: #2a2a2a;
-        stroke-linecap: round;
-    }
-
-.currentCourse-content__percent .ldBar{
-    height: 200px !important;
-}
-.currentCourse-content__percent .ldBar-label {
-    font-size: 3vh;
-    color: #6ec4cc;
+.course-content {
+    padding: 20px;
+    height: auto;
 }
 
-.currentCourse-content__button {
-    width: 100%;
-    background-color: #fff;
-    color: #3a54b4;
-    font-size: 2.5vh;
-    padding: 5px;
-    transition: all 0.3s ease 0s;
-    text-align: center;
-    display: table;
-}
-
-    .currentCourse-content__button:hover {
-        cursor: pointer;
-        color: #fff;
-        background-color: #1c307a;
-    }
-
-/*Courses*/
-.courses {
-    height: 500px;
-    width: 50%;
-    overflow: auto;
-    margin-left: 20px;
-}
-
-.courses__course{
-    width: 100%;
-    height: 250px;
-    margin: 0;
-    transition: all 0.3s ease 0s;
-}
-
-.courses__course{
-    width: 100%;
-    height: 250px;
-    background-repeat: no-repeat;
+.course__image {
     background-size: cover;
+    background-repeat: no-repeat;
     background-position: center;
+    height: 200px;
+    width: 100%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
 }
 
-.courses__course:hover{
-    filter: brightness(60%);
+.course__percent {
+    width: 150px;
+    margin: 0 auto;
+    height: 250px;
 }
 
-.col-md-6{
-    padding: 0 !important;
+.swiper-wrapper{
+    height: auto !important;
 }
 
 
-.levelAndPerformanceContainer {
-    display: flex;
-    -ms-display: flex;
-    -moz-display: flex;
-    -o-display: flex;
-    -webkit-display: flex;
-    flex: 1 1 50.00%;
-    justify-content: space-between;
-    flex-direction: row;
-    margin-top: 50px;
+.course__button {
+    width: auto;
+    min-height: 20px;
+    padding: 20px;
+    border: 1px solid #66a8ff;
+    color: #66a8ff;
+    font-size: 2.5vh;
+    margin-top: 30px;
+    border-radius: 20px;
+    transition: all 0.5s ease 0s;
+    margin: 0 auto;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.level-container {
+    background-color: #f7fff9;
+    min-height: 300px;
+    padding: 50px;
 }
 
 .level {
-    height: 500px;
-    width: 30%;
-    background-color: #2a8a9d;
-    padding: 50px;
-    overflow: auto;
-    box-shadow: inset 0px 0px 15px 15px rgba(0,0,0,.9);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 50px 400px;
 }
 
-.level__header{
-    font-size: 5vh;
-    color: #1a1a1a;
-    font-weight: 800;
-    text-align: center;
-}
-
-.level-content h3 {
+.level__title {
     margin-top: 50px;
     font-size: 4vh;
-    font-weight: 400;
-    color: #1a1a1a;
-    text-align: center;
+    font-family: "monsterrat-bold";
+    color: #00c738;
 }
 
-.level-content h5 {
-    font-size: 3vh;
-    font-weight: 300;
-    color: #1a1a1a;
-    text-align: center;
-}
-
-.level__xp {
-    font-size: 3vh;
-    font-weight: 700;
-    color: #1a1a1a;
-    text-align: center;
-}
-
-.level__percent .ldBar {
-   
-    width: 100%;
+.level__percent {
+    width: 250px;
+    height: 250px;
 }
 
     .level__percent .ldBar path.mainline {
-        stroke-width: 8;
-        stroke: #6ec4cc;
+        stroke-width: 6;
+        stroke: #00c738;
     }
 
     .level__percent .ldBar path.baseline {
-        stroke-width: 8;
-        stroke: #000e40;
+        stroke-width: 6;
+        stroke: #d6d6d6;
     }
 
-.level__percent .ldBar-label {
-    visibility: hidden;
+    .level__percent .ldBar-label {
+        font-size: 3vh;
+        font-family: "monsterrat-light";
+        color: #00c738;
+    }
+
+.level__info {
+    font-size: 2.5vh;
+    color: #00c738;
+    font-family: "monsterrat-light";
+    margin-top: 100px;
 }
 
-.level__percent .ldBar{
-    height: 200px !important;
+.level__xp {
+    color: #00c738;
+    font-family: "monsterrat-light";
+    font-size: 2.5vh;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.performance-container {
+    margin-top: 50px;
+    min-height: 500px;
 }
 
 .performance {
-    height: 500px;
-    width: 70%;
-    margin-left: 20px;
-    background-color: #a5e84d;
-    box-shadow: inset 0px 0px 15px 15px rgba(0,0,0,.9);
+    padding: 50px 200px;
 }
 
+#performanceChart {
+    width: 100% !important;
+    height: 500px !important;
+}
 
-/*Challenges*/
+.challenges-container {
+    min-height: 300px;
+    background-color: #fffafa;
+    padding: 0;
+}
+
 .challenges {
+    padding: 0;
+}
+
+.challenges-winrate {
     display: flex;
     flex-direction: row;
-    justify-content: left;
-    flex-wrap: nowrap;
-    margin-top: 50px;
-    width: 100%;
-    min-height: 500px;
-    background-color: #2a8a9d;
-    padding: 0 10px;
-    height: auto;
-    overflow: auto;
+    justify-content: center;
 }
 
-.challenges-info {
-    padding-top: 50px;
-    position: relative;
-    background-color: #a8d5de;
-    width: 15vw;
-    height: auto;
-    margin-left: 20px;
+.winrate__percent {
+    width: 200px;
+    height: 200px;
 }
 
-.challenges-info__header{
+    .winrate__percent .ldBar path.mainline {
+        stroke-width: 6;
+        stroke: #ff4f4f;
+    }
+
+    .winrate__percent .ldBar path.baseline {
+        stroke-width: 6;
+        stroke: #d6d6d6;
+    }
+
+    .winrate__percent .ldBar-label {
+        color: #ff4f4f;
+        font-size: 3vh;
+        font-family: "monsterrat-normal";
+    }
+
+.winrate__info {
+    margin-left: 150px;
+    color: #ff4f4f;
     font-size: 4vh;
-    color: #1a1a1a;
-    font-weight: 500;
-    text-align: center;
+    margin-top: 70px;
 }
 
-.challenges-info__percent {
-    height: 50%;
-    width: 150px;
-    margin: 0 auto;
-    margin-top: 50px;
-}
-
-.challenges-info .triangle {
-    position: absolute;
-    bottom: 0;
-    border-left: 7.5vw solid #a8d5de;
-    border-right: 7.5vw solid #a8d5de;
-    border-bottom: 100px solid #2a8a9d;
-    margin: 0;
-    padding: 0;
-}
-
-    .challenges-info__percent .ldBar path.baseline {
-        stroke-width: 8;
-        stroke: #15444d;
-        stroke-linecap: round;
-    }
-
-    .challenges-info__percent .ldBar path.mainline {
-        stroke-width: 8;
-        stroke: #54aebf;
-        stroke-linecap: round;
-    }
-
-.challenges-info__percent .ldBar-label {
-    font-size: 3vh;
-    color: #fff;
-}
-
-.challenges-item{
+.challenge {
+    width: 350px;
     height: auto;
-    width: 13vw;
-    margin-left: 20px;
-    overflow: auto;
-}
-
-.challenges-item_create {
-    border-bottom-left-radius: 30px;
-    border-bottom-right-radius: 30px;
-    background-color: #20ce88;
-}
-
-.challenges-item_accept {
-    position: relative;
-    background-color: #ff8b7b;
-    padding: 0 !important;
-}
-
-.challenges-item__triangle {
-    bottom: -40px;
-    border-left: 6.5vw solid #2a8a9d;
-    border-right: 6.5vw solid #2a8a9d;
-    border-top: 40px solid #ff8b7b;
-    margin: 0;
-    padding: 0;
-}
-
-.challenges-item__image {
-    height: 30%;
-    width: 100%;
-}
-
-.challenges-item__image img{
-    width: 100%;
-    height: 100%;
-}
-
-.challenges-item-content{
-    
-    padding: 0;
-}
-
-.challenges-item-content__userImage{
+    border-radius: 20px;
     margin: 0 auto;
-    overflow: hidden;
-    border-radius: 50%;
-    width: 120px;
-    height: 120px;
 }
 
-.challenges-item-content__userImage img{
+.challenges-swiper {
+    padding: 30px;
+}
+
+.challenge_create {
+    border: 1px solid #98ff94;
+    background-color: #98ff94;
+}
+
+.challenge__image {
+    height: 200px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.challenge__avatar {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    border-radius: 50%;
+}
+
+.challenge-content {
+    padding: 30px;
+}
+
+.challenges-swiper > .swiper-button-next {
+    color: #ff4f4f !important;
+    font-size: 80px !important;
+}
+
+.challenges-swiper > .swiper-button-prev {
+    color: #ff4f4f !important;
+    font-size: 80px !important;
+}
+
+.challenge__avatar img {
     width: 100%;
     height: 100%;
+    overflow: hidden;
 }
 
-.challenges-item-content__username{
+.challenge__username {
     text-align: center;
-    margin-top: 10px;
-    font-weight: 700;
-    color: #1a1a1a;
+    color: #002c8a;
+    font-family: "monsterrat-normal";
     font-size: 3vh;
 }
 
-.challenges-item-content__description {
+.challenge__info {
     text-align: center;
-    margin-top: 20px;
-    font-weight: 300;
-    color: #1a1a1a;
+    color: #002c8a;
+    font-family: "monsterrat-light";
     font-size: 2.5vh;
 }
 
-.challenges-item-content__button {
-    margin: 0 auto;
-    width: 75%;
-    height: 60px;
-    border-radius: 40px;
-    background-color: #6841b5;
-    text-align: center;
-    font-weight: 700;
-    padding-top: 17px;
-    margin-top: 25px;
+.challenge__button {
+    min-height: 30px;
+    border-radius: 20px;
+    width: auto;
+    transition: all 0.5s ease 0s;
+    font-family: "monsterrat-light";
     font-size: 3vh;
-    color: #fff;
-    font-weight:800;
-    letter-spacing: 4px;
-    transition: all 0.3s ease 0s;
+    padding: 20px;
+    text-align: center;
 }
 
-    .challenges-item-content__button:hover {
-        cursor: pointer;
-        background-color: #311566;
+.challenge__button_accept {
+    color: #fc5858;
+    background-color: #fff;
+}
 
+    .challenge__button_accept:hover {
+        color: #fff;
+        background-color: #fc5858;
     }
 
-/*Achievments*/
+.challenge__button_create {
+    color: #00ed86;
+    background-color: #fff;
+}
 
-.achievmentsAndNewsContainer{
-    display: flex;
-    -moz-display: flex;
-    -ms-display: flex;
-    -o-display: flex;
-    -webkit-display: flex;
+    .challenge__button_create:hover {
+        color: #fff;
+        background-color: #00ed86;
+    }
 
-    justify-content: left;
-    flex-wrap: nowrap;
-    flex: 1 1 50.00%;
+.challenge_accept {
+    border: 1px solid #ff9494;
+    background-color: #ff9494;
+}
 
-    width: 100%;
-    height: 500px;
-    margin-top: 50px;
+.achievment-container {
+    min-height: 300px;
+    padding: 50px 0;
 }
 
 .achievment {
-    width: 30%;
-    height: 100%;
-    background-color: #fee6aa;
-    position: relative;
-    z-index: 1;
-    overflow: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 400px;
 }
 
 .achievment__image {
-    position: relative;
-    width: 100%;
-    height: 35%;
-    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 50px rgba(0, 0, 0, 0.1) inset;
+    width: 300px;
+    height: 300px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
-    .achievment__image:before,
-    .achievment__image:after {
-        content: "";
-        position: absolute;
-        z-index: -2;
-    }
-
-    .achievment__image img {
-        width: 100%;
-        height: 100%;
-    }
-
-.lifted {
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-}
-
-    .lifted:before,
-    .lifted:after {
-        bottom: 15px;
-        left: 10px;
-        width: 50%;
-        height: 20%;
-        max-width: 300px;
-        max-height: 100px;
-        -webkit-box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
-        -moz-box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
-        box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
-        -webkit-transform: rotate(-5deg);
-        -moz-transform: rotate(-5deg);
-        -ms-transform: rotate(-5deg);
-        -o-transform: rotate(-5deg);
-        transform: rotate(-5deg);
-    }
-
-    .lifted:after {
-        right: 10px;
-        left: auto;
-        -webkit-transform: rotate(5deg);
-        -moz-transform: rotate(5deg);
-        -ms-transform: rotate(5deg);
-        -o-transform: rotate(5deg);
-        transform: rotate(5deg);
-    }
-
-.achievment-content {
-    margin-top: 20px;
-    padding: 0 10px;
-}
-.achievment-content__header {
-    font-size: 5vh;
-    font-weight: 600;
+.achievment__name {
+    margin-top: 30px;
     text-align: center;
-}
-
-.achievment-content-main {
-    margin-top: 20px;
-    width: 100%;
-    height: 220px;
-    background-color: #9db39f;
-    padding: 20px;
-}
-
-.achievment-content-main__header{
+    font-family: "monsterrat-bold";
     font-size: 3vh;
-    font-weight: 500;
-    text-align: center;
+    color: #ff9147;
 }
 
-.achievment-content-main-flex {
+.achievment-percent__subtext {
+    margin-top: 30px;
+    text-align: center;
+    font-family: "monsterrat-normal";
+    font-size: 2.5vh;
+    color: #ff9147;
+}
+
+.achievment__percent {
+    width: 250px;
+}
+
+    .achievment__percent .ldBar path.mainline {
+        stroke-width: 6;
+        stroke: #ff9147;
+    }
+
+    .achievment__percent .ldBar path.baseline {
+        stroke-width: 6;
+        stroke: #d6d6d6;
+    }
+
+    .achievment__percent .ldBar-label {
+        color: #ff9147;
+        font-family: "monsterrat-light";
+        font-size: 3vh;
+    }
+
+.news-container {
+    min-height: 300px;
+    background-color: #fdfaff;
+    padding: 50px 0;
+}
+
+.news {
+    padding: 50px;
+}
+
+    .news .swiper-button-prev::after,
+    .news .swiper-button-next::after {
+        color: #530091 !important;
+        font-size: 80px;
+    }
+
+.news-el {
+    width: 350px;
+    height: auto;
+    padding: 30px;
+    border: 1px solid #b34fff;
+    border-radius: 40px;
+    margin: 0 auto;
+}
+
+.news-el-header {
     display: flex;
-    -moz-display: flex;
-    -ms-display: flex;
-    -o-display: flex;
-    -webkit-display: flex;
-
-    justify-content: left;
     flex-direction: row;
-    flex-wrap: nowrap;
-    margin-top: 20px;
+    justify-content: space-between;
 }
 
-.achievment-content-main-flex__percent{
-    margin-top: 40px;
-    width: 50%;
-}
-
-.achievment-content-main-flex__percent .ldBar {
-    width: 100%;
-}
-
-    .achievment-content-main-flex__percent .ldBar path.mainline {
-        stroke-width: 12;
-        stroke: #6ec4cc;
-    }
-
-    .achievment-content-main-flex__percent .ldBar path.baseline {
-        stroke-width: 12;
-        stroke: #000e40;
-    }
-
-    .achievment-content-main-flex__percent .ldBar-label{
-        font-size: 5vh;
-        text-align: center;
-        margin-top: -40px;
-    }
-
-.achievment-content-main-flex__text{
+.news-el-header__text {
+    color: #530091;
+    font-family: "monsterrat-bold";
     font-size: 3vh;
-    font-weight: 400;
-    text-align: center;
-   
 }
 
-.achievment-content-main-flex__image{
-    margin-left: 30px;
-    width: 50%;
-    height: 100%;
+.news-el-header__avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
 }
 
-    .achievment-content-main-flex__image img{
+    .news-el-header__avatar img {
         width: 100%;
         height: 100%;
+        overflow: hidden;
     }
 
-::-webkit-scrollbar {
-    display: none;
+.news__content {
+    font-family: "monsterrat-thin";
+    color: #530091;
+    font-size: 2.5vh;
 }
 
-@media (max-width: 545px) {
-    .currentCourse{
-        flex-direction: column;
-        height: auto !important;
+.news__date {
+    font-family: "monsterrat-thin";
+    color: #530091;
+    font-size: 2.3vh;
+}
+
+.news__button {
+    border: 1px solid #7f00de;
+    border-radius: 20px;
+    padding: 10px;
+    width: auto;
+    min-height: 30px;
+    color: #530091;
+    transition: all 0.5s ease 0s;
+    font-family: "monsterrat-normal";
+    font-size: 3vh;
+    text-align: center;
+}
+
+    .news__button:hover {
+        color: #fff;
+        background-color: #7f00de;
     }
 
-    .currentCourse__image{
-        width: 100%;
-        max-height: 300px;
+@media (max-width: 1362px) {
+    .current-course {
+        padding: 50px 200px;
     }
 
-    .currentCourse__image img{
-        border-radius: 0px !important;
+    .level {
+        padding: 50px 200px;
     }
 
-    .currentCourse-content{
-        border-radius: 0px !important;
-        width: 100%;
+    .achievment {
+        padding: 50px 180px;
+    }
+}
+
+@media (max-width: 920px) {
+    .current-course {
+        padding: 50px 150px;
+    }
+
+    .level {
+        padding: 50px 150px;
+    }
+
+    .achievment {
+        padding: 50px 100px;
+    }
+
+    .performance {
+        padding: 50px 100px;
     }
 }
 
 @media (max-width: 800px) {
-    .levelAndPerformanceContainer{
-        margin: 0 auto;
-        margin-top: 50px;
+    .current-course {
         flex-direction: column;
     }
 
-    .currentCourse{
-        margin: 0 auto;
+    .current-course__button {
+        width: 350px;
     }
 
-    .courses{
-        margin: 0 auto;
-    }
-
-    .level{
-        
-        width: 100%;
-    }
-
-    .challenges-item__triangle {
-        display: none;
-    }
-
-    .triangle {
-        display: none;
-    }
-
-    .performance{
-        width: 100%;
-        margin: 0;
-        margin-top: 50px;
-    }
-
-    .challenges {
-        padding: 20px !important;
+    .level {
         flex-direction: column;
-        height: auto;
-        justify-content: center;
-        position: relative;
+        padding: 50px;
     }
 
-    .challenges a{
-        position: relative;
+    .level__title {
+        text-align: center;
     }
 
-    .challenges-info{
-        width: 70%;
+    .level__percent {
         margin: 0 auto;
+    }
+
+    .level__info {
         margin-top: 50px;
-        height: auto;
-        padding: 20px;
-    }
-
-    .challenges-item {
-        width: 70%;
-        height: 300px;
-        margin: 0 auto;
-        margin-top: 50px;
-        position: relative;
-        height: auto;
-        padding: 20px !important;
-        border-radius: 40px;
-    }
-
-    
-}
-
-@media(max-width: 973px) {
-    .header__burger:before, .header__burger:after {
-        background-color: #abe4ff !important;
-    }
-
-    .header__burger span {
-        background-color: #abe4ff !important;
-    }
-
-    .header__menu {
-        background-color: #1a1a1a !important;
-    }
-
-    .challenges-item-content__userImage{
-        width: 100px;
-        height: 100px;
-    }
-}
-
-@media(max-width: 1060px) {
-
-    .coursesContainer {
-        flex-wrap: wrap;
-    }
-
-    .currentCourse {
-        width: 100%;
-    }
-
-    .courses {
-        width: 100%;
-        margin: 0;
-        margin-top: 50px;
-    }
-
-    .level__percent .ldBar {
-        height: 150px !important;
-    }
-
-    .challenges-info__percent{
-        height: 45%;
-        width: 120px;
-    }
-
-    .challenges-info__header{
-        font-size: 3vh;
-    }  
-}
-
-@media(max-width: 1150px) {
-    .challenges {
-        padding: 20px !important;
-        flex-direction: column;
-        height: auto;
-        justify-content: center;
-        position: relative;
-    }
-
-        .challenges a {
-            position: relative;
-        }
-
-    .challenges-info {
-        width: 70%;
-        margin: 0 auto;
-        margin-top: 50px;
-        height: auto;
-        padding: 20px;
-    }
-
-    .challenges-item {
-        width: 70%;
-        height: 300px;
-        margin: 0 auto;
-        margin-top: 50px;
-        position: relative;
-        height: auto;
-        padding: 20px !important;
-        border-radius: 40px;
-    }
-
-    .challenges-item__triangle {
-        display: none;
-    }
-
-    .triangle {
-        display: none;
-    }
-
-    .achievment-content__header {
-        font-size: 4vh;
-    }
-
-    .achievmentsAndNewsContainer {
-        flex-direction: column;
+        text-align: center;
     }
 
     .achievment {
-        width: 100%;
-        height: auto;
+        flex-direction: column;
     }
 
-    .achievment-content-main {
-        height: auto;
+    .achievment__image {
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+    }
+
+    .achievment__percent {
+        margin: 0 auto;
+        width: 200px;
     }
 }
 
-@media(max-width: 1633px) {
-    .container{
-        margin-left: 20px;
+@media (max-width: 650px) {
+    .level__percent {
+        width: 200px;
+        height: 200px;
+    }
+
+    .performance {
+        padding: 50px 50px;
+    }
+}
+
+@media (max-width: 618px) {
+    .challenge {
+        width: 300px;
+    }
+}
+
+@media (max-width: 600px) {
+    .level__percent {
+        width: 150px;
+        height: 150px;
+    }
+
+    .challenges-winrate {
+        flex-direction: column;
+    }
+
+    .winrate__percent {
+        margin: 0 auto;
+    }
+
+    .winrate__info {
+        text-align: center;
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 500px) {
+    .current-course__button {
+        width: 250px;
+    }
+
+    .current-course__percent {
+        width: 200px;
+        height: 200px;
+    }
+
+    .current-course__image {
+        width: 200px;
+        height: 150px;
+    }
+
+    .course {
+        width: 250px;
+    }
+
+    .course__image {
+        height: 150px;
+    }
+
+    .course__title {
+        margin-top: 5px;
+    }
+
+    .course__percent {
+        height: 100px;
+        width: 100px;
+    }
+
+    .courses-container {
+        padding: 20px;
+    }
+
+    .level {
+        padding: 20px;
+    }
+
+    .achievment {
+        padding: 50px;
+    }
+
+    .news-el {
+        width: 200px;
+    }
+
+    .news-el-header__avatar {
+        width: 150px;
+        height: 150px;
+        margin: 0 auto;
+    }
+
+    .news-el-header__text {
+        text-align: center;
+    }
+
+    .news-el-header {
+        flex-direction: column;
+    }
+
+    .performance {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 340px) {
+    .challenge {
+        width: 250px;
+    }
+
+    .achievment {
+        padding: 20px;
+    }
+
+    .news-el {
+        width: 180px;
+        padding: 10px;
+    }
+
+    .news__button {
+        padding: 2px;
     }
 }
