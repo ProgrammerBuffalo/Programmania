@@ -4,7 +4,7 @@ namespace Programmania.HtmlHelpers
 {
     public static class DisciplineHelper
     {
-        public static HtmlString CreateDiscipline(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html, ViewModels.DisciplineVM discipline)
+        public static HtmlString CreateDiscipline(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html, ViewModels.UserDisciplineVM discipline)
         {
             System.Text.StringBuilder builder = new System.Text.StringBuilder();
             builder.Append("<a data-aos='fade-right' data-aos-duration='1000'");

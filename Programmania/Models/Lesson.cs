@@ -17,19 +17,20 @@ namespace Programmania.Models
         [Column("Name")]
         public string Name { get; set; }
 
-        //[Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
-        //public ICollection<User> Users { get; set; }
-
         public int DisciplineId { get; set; }
+        
+        public int TestId { get; set; }
 
         public Discipline Discipline { get; set; }
+
+        public Test Test { get; set; }
 
         [Column("stream_id")]
         public Guid StreamId { get; set; }
 
         public Lesson()
         {
-            //Users = new List<User>();
+            
         }
     }
 }
