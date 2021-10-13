@@ -29,7 +29,7 @@ namespace Programmania.HtmlHelpers
             return new HtmlString(builder.ToString());
         }
 
-        public static HtmlString CreatePassedDiscipline(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html, ViewModels.DisciplineVM discipline)
+        public static HtmlString CreatePassedDiscipline(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html, ViewModels.UserDisciplineVM discipline)
         {
             System.Text.StringBuilder builder = new System.Text.StringBuilder();
             builder.Append("<a data-aos='fade-right' data-aos-duration='1000'");
