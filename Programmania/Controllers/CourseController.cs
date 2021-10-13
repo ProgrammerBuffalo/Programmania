@@ -11,6 +11,7 @@ using Programmania.ViewModels;
 
 namespace Programmania.Controllers
 {
+    [Authorize]
     [Route("Courses")]
     public class CourseController : Controller
     {
@@ -28,13 +29,14 @@ namespace Programmania.Controllers
             this.fileService = fileService;
         }
 
-        [Authorize]
+        [HttpGet]
         public IActionResult Courses()
         {
             return View(getCourses(HttpContext.Items["User"] as User));
         }
 
         [Route("Courses/Disciplines")]
+        [HttpGet]
         public IActionResult Disciplines(int courseId)
         {
             return View(getDisciplines(HttpContext.Items["User"] as User, courseId));
@@ -60,11 +62,14 @@ namespace Programmania.Controllers
         }
 
         [Route("Courses/Disciplines/Lessons")]
+        [HttpGet]
         public IActionResult Lessons(int disciplineId)
         {
             return View(getLessons(HttpContext.Items["User"] as User, disciplineId));
         }
 
+        [Route("Courses/Disciplines/Lessons/check-test")]
+        [HttpPost]
         public IActionResult CheckTest(int testIndex, int disciplineId, int lessonId)
         {
             User user = HttpContext.Items["User"] as User;
@@ -86,6 +91,8 @@ namespace Programmania.Controllers
             return Json(false);
         }
 
+        [Route("Courses/Disciplines/Lessons/{id}")]
+        [HttpGet]
         public IActionResult CheckLessonAccess(int lessonId, int disciplineId)
         {
             Lesson lesson = getRequestedLesson(HttpContext.Items["User"] as User, disciplineId, lessonId);
