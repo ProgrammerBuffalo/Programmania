@@ -11,6 +11,7 @@ using Programmania.ViewModels;
 
 namespace Programmania.Controllers
 {
+    [Authorize]
     [Route("Courses")]
     public class CourseController : Controller
     {
@@ -27,38 +28,170 @@ namespace Programmania.Controllers
             this.xmlService = xmlService;
             this.fileService = fileService;
         }
-        
-        [Authorize]
+
+        [HttpGet]
         public IActionResult Courses()
         {
             return View(getCourses(HttpContext.Items["User"] as User));
         }
 
-        [Route("Course/Disciplines")]
+        [Route("Courses/Disciplines")]
+        [HttpGet]
         public IActionResult Disciplines(int courseId)
         {
-            var token = Request.Cookies["JwtToken"];
+            return View(getDisciplines(HttpContext.Items["User"] as User, courseId));
+        }
 
-            //var claims = accountService.GetClaimsFromJWTToken();
+        [Route("Courses/Disciplines/discipline-begin")]
+        [HttpPost]
+        public IActionResult BeginDiscipline(int disciplineId)
+        {
+            var user = HttpContext.Items["User"] as User;
+            if (!dbContext.UserDisciplines.Any(ud => ud.DisciplineId == disciplineId && ud.UserId == user.Id))
+            {
+                Discipline discipline = dbContext.Disciplines.FirstOrDefault(d => d.Id == disciplineId);
+                if (discipline == null)
+                    return NotFound();
+                UserDiscipline userDiscipline = new UserDiscipline { Discipline = discipline, User = user, LessonOrder = 1 };
 
+                dbContext.Update(userDiscipline);
+                dbContext.SaveChanges();
+                return RedirectToAction("Courses/Disciplines/Lessons", disciplineId);
+            }
+            return BadRequest();
+        }
 
+        [Route("Courses/Disciplines/Lessons")]
+        [HttpGet]
+        public IActionResult Lessons(int disciplineId)
+        {
+            return View(getLessons(HttpContext.Items["User"] as User, disciplineId));
+        }
 
-            //var user = dbContext.Users.FirstOrDefault(u => u.Id == int.Parse(claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value)
-            //       && u.Login == claims.First(c => c.Type == ClaimTypes.Name).Value);
+        [Route("Courses/Disciplines/Lessons/check-test")]
+        [HttpPost]
+        public IActionResult CheckTest(int testIndex, int disciplineId, int lessonId)
+        {
+            User user = HttpContext.Items["User"] as User;
+            Lesson lesson = getRequestedLesson(user, disciplineId, lessonId);
+            if (lesson == null)
+                return NotFound();
 
-            //var list = dbContext.UserDisciplines.Where(u => u.UserId == user.Id && u.Discipline.Course.Id == courseId)
-            //.Join(dbContext.Lessons, userDiscipline => userDiscipline.DisciplineId, lesson => lesson.DisciplineId,
-            //(userDiscipline, lesson) => new
-            //{
-            //Discipline = userDiscipline.Discipline,
-            //Lesson = lesson,   
-            //}).Select(s => new
-            //{
+            if (lesson.Test.Correct == testIndex)
+            {
+                UserDiscipline userDiscipline = dbContext.UserDisciplines.FirstOrDefault(ud => ud.DisciplineId == disciplineId && ud.UserId == user.Id);
+                if (userDiscipline == null)
+                    return NotFound();
 
-            //})
+                userDiscipline.LessonOrder++;
+                dbContext.SaveChanges();
 
+                return Json(true);
+            }
+            return Json(false);
+        }
 
-            return View();
+        [Route("Courses/Disciplines/Lessons/{id}")]
+        [HttpGet]
+        public IActionResult CheckLessonAccess(int lessonId, int disciplineId)
+        {
+            Lesson lesson = getRequestedLesson(HttpContext.Items["User"] as User, disciplineId, lessonId);
+            if (lesson == null)
+                return NotFound();
+
+            return Content(System.Text.Encoding.UTF8.GetString(fileService.GetDocument(dbContext.Documents.FirstOrDefault(d => d.StreamId == lesson.StreamId).Path)));
+        }
+
+        private Lesson getRequestedLesson(User user, int disciplineId, int lessonId)
+        {
+            int? order = dbContext.UserDisciplines.FirstOrDefault(ud => ud.UserId == user.Id && ud.DisciplineId == disciplineId)?.LessonOrder;
+            if (order == null)
+                return null;
+            Lesson lesson = dbContext.Disciplines.FirstOrDefault(d => d.Id == disciplineId)?.Lessons.FirstOrDefault(l => l.Id == lessonId);
+            if (lesson != null)
+            {
+                return lesson.Order <= order ? lesson : null;
+            }
+            return null;
+        }
+
+        private UserLessonVM[] getLessons(User user, int disciplineId)
+        {
+            List<UserLessonVM> userLessons = new List<UserLessonVM>();
+            UserDiscipline userDiscipline = dbContext.UserDisciplines.Where(u => u.UserId == user.Id).FirstOrDefault(c => c.DisciplineId == disciplineId);
+           
+            if (userDiscipline == null)
+            {
+                return null;
+            }
+
+            userLessons = dbContext.Disciplines.FirstOrDefault(d => d.Id == userDiscipline.DisciplineId)?.Lessons.Select(s => new UserLessonVM
+            { LessonId = s.Id, Name = s.Name, Order = s.Order, IsCompleted = s.Order <= userDiscipline.LessonOrder ? true : false, StreamId = s.StreamId }).ToList();
+
+            var lastLesson = userLessons.Last(l => l.IsCompleted);
+            lastLesson.HTML = System.Text.Encoding.UTF8.GetString(fileService
+                .GetDocument(dbContext.Documents.FirstOrDefault(d => d.StreamId == lastLesson.StreamId).Path));
+            Test test = dbContext.Lessons.First(l => l.Id == lastLesson.LessonId).Test;
+            lastLesson.Test = new TestVM { A1 = test.Answer1, A2 = test.Answer2, A3 = test.Answer3, A4 = test.Answer4, Question = test.Question };
+
+            return userLessons.ToArray();
+        }
+
+        private UserDisciplineVM[] getDisciplines(User user, int courseId)
+        {
+            var list = dbContext.UserDisciplines.Where(u => u.UserId == user.Id).Where(c => c.Discipline.Course.Id == courseId)
+                .Join(dbContext.Disciplines, userDiscipline => userDiscipline.DisciplineId,
+                                 discipline => discipline.Id,
+                                 (userDiscipline, discipline) => new
+                                 {
+                                     DisciplineId = userDiscipline.Discipline.Id,
+                                     DisciplineName = userDiscipline.Discipline.Name,
+                                     LessonsCount = discipline.Lessons.Count,
+                                     LessonsCompleted = userDiscipline.LessonOrder,
+                                     StreamId = discipline.StreamId
+                                 }).Select(s => new
+                                 {
+                                     disciplineId = s.DisciplineId,
+                                     disciplineName = s.DisciplineName,
+                                     lessonsCount = s.LessonsCount,
+                                     lessonsCompleted = s.LessonsCompleted,
+                                     streamId = s.StreamId
+                                 }).ToList();
+
+            List<UserDisciplineVM> userDisciplines = new List<UserDisciplineVM>();
+
+            foreach (var item in list)
+            {
+                userDisciplines.Add(new UserDisciplineVM
+                {
+                    DisciplineId = item.disciplineId,
+                    DisciplineName = item.disciplineName,
+                    LessonsCount = item.lessonsCount,
+                    LessonsCompleted = item.lessonsCompleted,
+                    Image = fileService.GetDocument(dbContext.Documents
+                        .FirstOrDefault(d => d.StreamId == item.streamId).Path)
+                });
+            }
+
+            List<Discipline> allAvailableDisciplines = dbContext.Disciplines.Where(d => d.Course.Id == courseId).ToList();
+
+            foreach (var item in allAvailableDisciplines)
+            {
+                if (userDisciplines.Any(d => d.DisciplineId == item.Id))
+                    continue;
+                userDisciplines.Add(new UserDisciplineVM
+                {
+                    DisciplineId = item.Id,
+                    DisciplineName = item.Name,
+                    LessonsCount = item.Lessons.Count,
+                    LessonsCompleted = 0,
+                    Image = fileService.GetDocument(dbContext.Documents
+                        .FirstOrDefault(d => d.StreamId == item.StreamId).Path),
+                });
+            }
+
+            return userDisciplines.ToArray();
+
         }
 
         private UserCourseVM[] getCourses(User user)
