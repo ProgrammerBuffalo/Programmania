@@ -4,45 +4,35 @@ namespace Programmania.HtmlHelpers
 {
     public static class CourseHelper
     {
-        public static HtmlString CreateSelectedCourse(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html, ViewModels.UserCourseVM course)
+        public static HtmlString CreateCourse(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html, ViewModels.UserCourseVM course)
         {
             System.Text.StringBuilder @string = new System.Text.StringBuilder();
+
             @string.AppendLine("<a>");
-            @string.AppendLine("<div class='course'>");
-            @string.AppendLine("<div class='course__image lifted'>");
+            if (course.IsSelected)
+                @string.AppendLine("<div class='course'>");
+            else
+                @string.AppendLine("<div class='course course_selected'>");
+            @string.AppendLine("<div class='course__image'>");
             string base64String = System.Convert.ToBase64String(course.Image, 0, course.Image.Length);
             @string.AppendLine($"<img src='data:image/*;base64,{base64String}' />");
             @string.AppendLine("</div>");
-            @string.AppendLine("<div class='course-body'>");
-            @string.AppendLine("<div class='course-info'>");
-            @string.AppendLine($"<h5 id='courseName'>{course.CourseName}</h5>");
-            @string.AppendLine($"<p> Lessons Count: {course.LessonsCompleted} / {course.LessonsCount}</p>");
+            @string.AppendLine("<div class='course-content'>");
+            @string.AppendLine($"<h3 class='course__title'>{course.CourseName}</h3>");
+            @string.AppendLine($"<p class='course__info'>Lesson count: {course.LessonsCompleted}/{course.LessonsCount}</p>");
+            @string.AppendLine("<div class='course__percent'>");
+            @string.AppendLine($"<div class='ldBar label - center' data-preset='circle' data-value='{course.Percentage}' data-transition-in='1000' style='width: 100 %; height: 100 %;'></div>");
             @string.AppendLine("</div>");
-            @string.AppendLine($"<div class='ldBar label-center' data-preset='circle' data-value='{course.Percentage}' data-transition-in='1000' style='width: 50%; height: 50%;'></div>");
             @string.AppendLine("</div>");
             @string.AppendLine("</div>");
             @string.AppendLine("</a>");
             return new HtmlString(@string.ToString());
         }
 
-        public static HtmlString CreateCourse(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html, ViewModels.UserCourseVM course)
+        public static HtmlString Temp(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html)
         {
             System.Text.StringBuilder @string = new System.Text.StringBuilder();
-            @string.AppendLine("<a>");
-            @string.AppendLine("<div class='course'>");
-            @string.AppendLine("<div class='course__image lifted dark-image'>");
-            string base64String = System.Convert.ToBase64String(course.Image, 0, course.Image.Length);
-            @string.AppendLine($"<img src='data:image/*;base64,{base64String}' />");
-            @string.AppendLine("</div>");
-            @string.AppendLine("<div class='course-body'>");
-            @string.AppendLine("<div class='course-info'>");
-            @string.AppendLine($"<h5>{course.CourseName}</h5>");
-            @string.AppendLine($"<p> Lessons Count: {course.LessonsCompleted} / {course.LessonsCount}</p>");
-            @string.AppendLine("</div>");
-            @string.AppendLine($"<div class='course-info__text'>{course.Description}</div>");
-            @string.AppendLine("</div>");
-            @string.AppendLine("</div>");
-            @string.AppendLine("</a>");
+            @string.AppendLine("<a>sadsad</a>");
             return new HtmlString(@string.ToString());
         }
     }

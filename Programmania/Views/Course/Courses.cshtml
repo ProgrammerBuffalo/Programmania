@@ -67,10 +67,7 @@
                 {
                     @foreach (Programmania.ViewModels.UserCourseVM course in Model)
                     {
-                        if (course.IsSelected)
-                            Html.CreateSelectedCourse(course);
-                        else
-                            Html.CreateCourse(course);
+                        @Html.CreateCourse(course);
                     }
                 }
             </div>

@@ -27,7 +27,7 @@ namespace Programmania.Controllers
             this.xmlService = xmlService;
             this.fileService = fileService;
         }
-
+        
         [Authorize]
         public IActionResult Courses()
         {
@@ -44,19 +44,19 @@ namespace Programmania.Controllers
 
 
             //var user = dbContext.Users.FirstOrDefault(u => u.Id == int.Parse(claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value)
-              //       && u.Login == claims.First(c => c.Type == ClaimTypes.Name).Value);
+            //       && u.Login == claims.First(c => c.Type == ClaimTypes.Name).Value);
 
             //var list = dbContext.UserDisciplines.Where(u => u.UserId == user.Id && u.Discipline.Course.Id == courseId)
-                //.Join(dbContext.Lessons, userDiscipline => userDiscipline.DisciplineId, lesson => lesson.DisciplineId,
-                      //(userDiscipline, lesson) => new
-                      //{
-                          //Discipline = userDiscipline.Discipline,
-                          //Lesson = lesson,   
-                      //}).Select(s => new
-                      //{
+            //.Join(dbContext.Lessons, userDiscipline => userDiscipline.DisciplineId, lesson => lesson.DisciplineId,
+            //(userDiscipline, lesson) => new
+            //{
+            //Discipline = userDiscipline.Discipline,
+            //Lesson = lesson,   
+            //}).Select(s => new
+            //{
 
-                      //})
-                      
+            //})
+
 
             return View();
         }
@@ -108,7 +108,7 @@ namespace Programmania.Controllers
 
             List<Course> allAvailableCourses = dbContext.Courses.ToList();
 
-            foreach(var item in allAvailableCourses)
+            foreach (var item in allAvailableCourses)
             {
                 if (userCourses.Any(uc => uc.CourseId == item.Id))
                     continue;
