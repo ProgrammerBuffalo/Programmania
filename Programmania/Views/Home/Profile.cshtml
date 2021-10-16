@@ -1,56 +1,51 @@
 <!DOCTYPE html>
-@model Programmania.ViewModels.UserProfileVM
+<html lang="en">
 
-<html>
 <head>
-    <title>Profile</title>
-    <meta name="viewport" content="width=device-width; initial-scale=1.0">
-    <meta charset="UTF-8">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Profile</title>
+	<link rel="stylesheet" href="~/css/profile.css">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="~/css/HamburgerMenu.css" />
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" href="~/css/highlight styles/default.min.css">
-    <script src="~/js/highlight.min.js"></script>
-    <script>hljs.highlightAll();</script>
-
-    <link rel="stylesheet" href="~/css/HamburgerMenu.css">
-    <link rel="stylesheet" href="~/css/Profile.css">
-
-    <link rel="stylesheet" href="~/css/loading-bar.min.css">
-    <script src="~/js/loading-bar.min.js"></script>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
+	<link rel="stylesheet" href="~/css/loading-bar.min.css">
+	<script src="~/js/loading-bar.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script src="~/js/util/burger.js"></script>
 </head>
 
 <body>
-    <header class="header">
-        <div class="container">
-            <div class="header__body">
-                <div class="header__burger">
-                    <span></span>
-                </div>
+	<header class="header">
+        <div class="header-container">
+            <div class="container__text">Programmania</div>
+            <div class="header__burger">
+                <span></span>
+            </div>
+            <div class="container-menu">
                 <nav class="header__menu">
                     <ul class="header__list">
                         <li>
-                            <a href="Main.html" class="header__link">Main</a>
+                            <a href="Main" class="header__link">Main</a>
                         </li>
 
                         <li>
-                            <a href="Courses.html" class="header__link">Courses</a>
+                            <a href="Courses" class="header__link">Courses</a>
                         </li>
 
                         <li>
-                            <a href="Codes.html" class="header__link">Codes</a>
+                            <a href="News" class="header__link">News</a>
                         </li>
 
                         <li>
-                            <a href="Challenges.html" class="header__link">Challenges</a>
+                            <a href="Challenges" class="header__link">Challenges</a>
                         </li>
 
                         <li>
-                            <a href="Profile.html" class="header__link">Profile</a>
+                            <a href="Profile" class="header__link">Profile</a>
                         </li>
                     </ul>
                 </nav>
@@ -58,271 +53,102 @@
         </div>
     </header>
 
-    <main>
-        <div class="content">
-            <div class="main">
-                <div class="row">
+	<main class="content">
+		<div class="profile">
+			<div class="profile-col-1">
+				<div class="profile__image">
+					<img src="images/avatarImg.png" alt="">
+				</div>
 
-                    <div class="col-md-8 mt-1">
-                        <div class="card mb-3 content">
-                            <h1 class="m-3 pt-3 titleText">About</h1>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <h5>Full Name</h5>
-                                    </div>
+				<div class="profile-info">
+					<div class="profile-info__item">
+						<h3>Name:</h3>
+						<p>John</p>
+					</div>
+					<hr />
+					<div class="profile-info__item">
+						<h3>Surname:</h3>
+						<p>Johnson</p>
+					</div>
+					<hr />
+					<div class="profile-info__item">
+						<h3>Username:</h3>
+						<p>JohnJohnson123</p>
+					</div>
+					<hr />
+					<div class="profile-info__item">
+						<h3>About me:</h3>
+						<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corporis eius, veniam nesciunt et cum
+							enim dolore consequatur distinctio natus illo assumenda dicta quisquam vel, quas dolores eaque
+							incidunt molestias quam?</p>
+					</div>
+					<hr />
+					<button class="btn btn-primary profile-info__change">
+						Change profile data
+					</button>
+				</div>
+			</div>
 
-                                    <div class="col-md-9 text-secondary">
-                                        @Model.Nickname
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        Progress:
-                                    </div>
+			<div class="profile-col-2">
+				<h1 class="profile__name">
+					JohnJohnson123
+				</h1>
 
-                                    <div class="col-md-9">
-                                        <div class="progress">
-                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <h5>Email: </h5>
-                                    </div>
-                                    <div class="col-md-9 text-secondary">
-                                        @Model.Email
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <h5>Level: </h5>
-                                    </div>
+				<div class="level">
+					<div class="level__percent">
+						<div class="ldBar label-center" data-preset="circle" data-value="30" data-transition-in="1000"
+							style="width: 100%; height: 100%;"></div>
+					</div>
 
-                                    <div class="col-md-9 text-secondary">
-                                        @Model.Level
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <button type="button" class="btn btn-success" id="changeAvatarBtn">Change Avatar</button>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <button type="button" class="btn btn-danger" id="deleteAvatarBtn">Delete Avatar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+					<div class="level__content">Level: 12</div>
+				</div>
 
-                    <div class="col-md-4 mt-1" id="profileDiv">
-                        <div class="card text-center sidebar">
-                            <div class="card-body">
-                                <img src="@($"data:image/*;base64," + System.Convert.ToBase64String(Model.Avatar))" class="rounded-circle" width="150" alt="">
-                                <div class="mt-3">
-                                    <h3 class="titleText">@Model.Nickname</h3>
-                                    <a href="Courses.html">Courses</a>
-                                    <a href="Codes.html">Codes</a>
-                                    <a href="Challenges.html">Challenges</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+				<div class="tabs-container">
+					<div class="tab">
+						<button class="tablinks" onclick="openContent(event, 'user-info')">User info</button>
+						<button class="tablinks" onclick="openContent(event, 'games')">Games</button>
+						<button class="tablinks" onclick="openContent(event, 'achievments')">Achievments</button>
+					</div>
 
+					<!-- Tab content -->
+					<div id="user-info" class="tabcontent">
+						<div class="profile-info">
+							<div class="profile-info__item">
+								<h3>XP:</h3>
+								<p>3500</p>
+							</div>
+							<hr />
+							<div class="profile-info__item">
+								<h3>Courses ended:</h3>
+								<p>3</p>
+							</div>
+							<hr />
+						</div>
+					</div>
 
-                <div class="row">
-                    <div class="col-md-4 mt-1">
-                        <div class="card fixedCard">
-                            <h1 class="titleText">
-                                Games
-                            </h1>
-                            <div class="card-body">
-                                <ul class="gamesList">
-                                    <li class="winElement">08.08.2021 WIN</li>
-                                    <li class="loseElement">07.08.2021 LOSE</li>
-                                    <li class="winElement">07.08.2021 WIN</li>
-                                    <li class="winElement">06.08.2021 WIN</li>
-                                    <li class="loseElement">06.08.2021 LOSE</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+					<div id="games" class="tabcontent">
+						<div class="profile-info">
+							<div class="profile-info__item">
+								<h3>Games played:</h3>
+								<p>13</p>
+							</div>
+							<hr />
+							<div class="profile-info__item">
+								<h3>Games wins:</h3>
+								<p>7</p>
+							</div>
+							<hr />
+						</div>
+					</div>
 
-                    <div class="col-md-8 mt-1">
-                        <div class="card fixedCard">
-                            <h1 class="titleText">
-                                Achievments
-                            </h1>
-                            <div class="card-body">
-                                <div class="achievments">
-                                    <div class="achievments__part">
-                                        <h1>Level achievments: </h1>
-                                        <hr>
-                                        <div class="achievments__part__main">
-                                            <div class="achievment achievment__level__1" data-title="Beginner - reach level 5">
-                                                <img src="../Images/Achievments/bronzeStar.svg" alt="">
-                                            </div>
+					<div id="achievments" class="tabcontent">
 
-                                            <div class="achievment achievment__level__2" data-title="Advanced - reach level 20">
-                                                <img src="../Images/Achievments/greenStar.svg" alt="">
-                                            </div>
-
-                                            <div class="achievment achievment__level__3" data-title="Experienced - reach level 50">
-                                                <img src="../Images/Achievments/goldenStar.svg" alt="">
-                                            </div>
-
-                                            <div class="achievment achievment__level__4" data-title="Professional - reach level 100">
-                                                <img src="../Images/Achievments/brilliantStar.svg" alt="">
-                                            </div>
-                                        </div>
-                                        <hr>
-
-                                    </div>
-
-                                    <div class="achievments__part">
-                                        <h1>Challenge achievments: </h1>
-                                        <hr>
-                                        <div class="achievments__part__main">
-                                            <div class="achievment achievment__challenge__1" data-title="First win - win 1 game">
-                                                <img src="../Images/Achievments/bronzeMedal.svg" alt="">
-                                            </div>
-
-                                            <div class="achievment achievment__challenge__2" data-title="The smell of victory - win 10 games">
-                                                <img src="../Images/Achievments/silverMedal.svg" alt="">
-                                            </div>
-
-                                            <div class="achievment achievment__challenge__3" data-title="Life winner - win 50 games">
-                                                <img src="../Images/Achievments/goldenMedal.svg" alt="">
-                                            </div>
-                                        </div>
-                                        <hr>
-
-                                    </div>
-
-                                    <div class="achievments__part">
-                                        <h1>Course achievments: </h1>
-                                        <hr>
-                                        <div class="achievments__part__main">
-                                            <div class="achievment achievment__courses__1" data-title="Pupil - take your first course">
-                                                <img src="../Images/Achievments/bronzeBook.svg" alt="">
-                                            </div>
-
-                                            <div class="achievment achievment__courses__2" data-title="Student - take 3 courses">
-                                                <img src="../Images/Achievments/goldenBook.svg" alt="">
-                                            </div>
-
-                                            <div class="achievment achievment__courses__3" data-title="Teacher - take 5 courses">
-                                                <img src="../Images/Achievments/brilliantBook.svg" alt="">
-                                            </div>
-
-                                            <div class="achievment achievment__courses__4" data-title="Scientist - take 10 courses">
-                                                <img src="../Images/Achievments/goldenBooks.svg" alt="">
-                                            </div>
-
-                                            <div class="achievment achievment__courses__5" data-title="Know-it-all - take 20 courses">
-                                                <img src="../Images/Achievments/coloredBooks.svg" alt="">
-                                            </div>
-                                        </div>
-                                        <hr>
-
-                                    </div>
-
-                                    <div class="achievments__part">
-                                        <h1>Post achievments: </h1>
-                                        <hr>
-                                        <div class="achievments__part__main">
-                                            <div class="achievment achievment__posts__1" data-title="First publication - publish your first post">
-                                                <img src="../Images/Achievments/bronzeWriting.svg" alt="">
-                                            </div>
-
-                                            <div class="achievment achievment__posts__2" data-title="Writer - publish 5 posts">
-                                                <img src="../Images/Achievments/goldenWriting.svg" alt="">
-                                            </div>
-
-                                            <div class="achievment achievment__posts__3" data-title="Junior editor - publish 10 posts">
-                                                <img src="../Images/Achievments/brilliantWriting.svg" alt="">
-                                            </div>
-
-                                            <div class="achievment achievment__posts__4" data-title="Chief editor - publish 20 posts">
-                                                <img src="../Images/Achievments/goldenUpgradeWriting.svg" alt="">
-                                            </div>
-
-                                            <div class="achievment achievment__posts__5" data-title="Celebrity - publish 50 posts">
-                                                <img src="../Images/Achievments/greyUpgradeWriting.svg" alt="">
-                                            </div>
-                                        </div>
-                                        <hr>
-
-                                    </div>
-
-
-                                </div>
-                            </div>
-                            <h1 class="titleText">Next Achievments</h1>
-                            <hr>
-                            <div class="achievmentProgress">
-                                <div class="achievment achievment__posts__5" data-title="Celebrity - publish 50 posts">
-                                    <img src="../Images/Achievments/upgradeWriting.svg" alt="">
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <h1>40/50</h1>
-                            </div>
-
-                            <hr>
-
-                        </div>
-                    </div>
-
-                    <div class="card mb-3 content activity ">
-                        <h1 class="m-3 titleText">Courses</h1>
-                        <div class="card-body">
-                            @{
-                                foreach (var item in Model.UserCourses)
-                                    @await Html.PartialAsync("Partials\\CoursePartial", item);
-                            }
-                        </div>
-                    </div>
-
-                    <div class="card mb-3 content activity fixedCard">
-                        <h1 class="m-3 titleText">Posts</h1>
-                        <div class="card-body">
-                            <div class="newsItem__title">
-                                <a href="" class="newsItem__title__body">Example</a>
-                            </div>
-
-                            <div class="newsItem__description">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, voluptate, cum? Asperiores eaque sunt iure ut quos sapiente amet mollitia optio, pariatur repudiandae repellat illum, ex deleniti, non. Ducimus, minima!</p>
-                            </div>
-
-                            <div class="newsItem__image">
-                                <img src="../Images/courseSlider.jpg" alt="">
-                            </div>
-
-                            <a href="" class="newsItem__button">
-                                <span class="newsItem__button__text">View more</span>
-                                <span class="newsItem__button__waves"></span>
-                            </a>
-                        </div>
-                    </div>
-
-
-
-
-
-                </div>
-            </div>
-        </div>
-    </main>
-    <script type="text/javascript" src="~/js/util/createPB.js"></script>
-    <script type="text/javascript" src="~/js/util/burger.js"></script>
-    <script type="text/javascript" src="~/js/changeAvatar.js"></script>
-
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+	<script src="~/js/util/tabs.js"></script>
 </body>
+
 </html>

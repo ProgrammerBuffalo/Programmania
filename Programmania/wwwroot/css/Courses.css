@@ -76,7 +76,6 @@ h1, h2, h3, h4, h5, h6 {
 
 /*--------------------*/
 body {
-   /* background-color: #faf17c;*/
 }
 
 .header-text {
@@ -107,17 +106,25 @@ body {
     -ms-display: flex;
     -o-display: flex;
     -webkit-display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+    flex-flow: row wrap;
+    align-items: center; 
 }
 
+/*.courses::after{
+    content: "";
+    flex: auto;
+}*/
+
 .course {
+    flex: 1 0 25%;
     width: 350px;
     height: auto;
     border: 1px solid #66a8ff;
     border-radius: 20px;
-    margin: 10px;
+    margin-top: 10px;
+    margin-left: 1vw;
+    box-sizing: border-box;
 }
 
 .course_selected {
