@@ -1,19 +1,19 @@
 ﻿@using Programmania.HtmlHelpers;
 @model IEnumerable<Programmania.ViewModels.UserDisciplineVM>;
 
-<ht ml>
+<html>
  <head>
   <title>Disciplines</title>
-  <met a charset="utf-8" />
-  <met a name="viewport" content="width=device-width, initial-scale=1" />
-  <sc ript src="~/js/loading-bar.min.js"></sc>
-  <li nk rel="stylesheet" href="~/css/loading-bar.min.css" />
-  <li nk rel="stylesheet" href="~/css/Disciplines.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="~/js/loading-bar.min.js"></script>
+  <link rel="stylesheet" href="~/css/loading-bar.min.css" />
+  <link rel="stylesheet" href="~/css/Disciplines.css" />
 
-  <sc ript src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></sc>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
-  <li nk href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-   <sc ript src="https://unpkg.com/aos@2.3.1/dist/aos.js"></sc>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
  </head>
 
  <body>
@@ -30,7 +30,7 @@
     </div>
 
     <div class="course__img" data-aos="fade-left" data-aos-duration="1000">
-        <img src="~/images/caio.jpg">
+        <img />
     </div>
 
   <div class="content">
@@ -38,16 +38,16 @@
 
     @foreach (var discipline in Model)
     {
-     Html.CreateDiscipline(discipline);
+     @Html.CreateDiscipline(discipline);
     }
 
    </div>
   </div>
 
-  <sc ript>
+  <script>
    AOS.init();
-  </sc>
+  </script>
 
-  <sc ript type="text/javascript" src="~/js/disciplines.js"></sc>
+  <script ript type="text/javascript" src="~/js/disciplines.js"></script>
  </body>
  </html>
