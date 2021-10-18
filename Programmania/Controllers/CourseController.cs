@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Programmania.Attributes;
 using Programmania.Models;
 using Programmania.Services;
@@ -30,25 +31,16 @@ namespace Programmania.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
         public IActionResult Courses()
         {
-            UserCourseVM[] userCourses = new UserCourseVM[6];
-            userCourses[0] = new UserCourseVM() { CourseName = "Name1", Description = "Lorem Ipsum", IsSelected = true, LessonsCompleted = 11, LessonsCount = 111, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
-            userCourses[1] = new UserCourseVM() { CourseName = "Name2", Description = "Lorem Ipsum", IsSelected = true, LessonsCompleted = 12, LessonsCount = 45, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
-            userCourses[2] = new UserCourseVM() { CourseName = "Name3", Description = "Lorem Ipsum", IsSelected = true, LessonsCompleted = 13, LessonsCount = 45, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
-            userCourses[3] = new UserCourseVM() { CourseName = "Name4", Description = "Lorem Ipsum", IsSelected = false, LessonsCompleted = 14, LessonsCount = 65, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
-            userCourses[4] = new UserCourseVM() { CourseName = "Name5", Description = "Lorem Ipsum", IsSelected = false, LessonsCompleted = 15, LessonsCount = 45, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
-            userCourses[5] = new UserCourseVM() { CourseName = "Name6", Description = "Lorem Ipsum", IsSelected = false, LessonsCompleted = 16, LessonsCount = 63, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
-            return View(userCourses);
-            //return View(getCourses(HttpContext.Items["User"] as User));
+            return View(getCourses(HttpContext.Items["User"] as User));
         }
 
-        [Route("Courses/Disciplines")]
+        [Route("Disciplines")]
         [HttpGet]
-        public IActionResult Disciplines(int courseId)
+        public IActionResult Disciplines(int id)
         {
-            return View(getDisciplines(HttpContext.Items["User"] as User, courseId));
+            return View(getDisciplines(HttpContext.Items["User"] as User, id));
         }
 
         [Route("Courses/Disciplines/discipline-begin")]
@@ -148,24 +140,17 @@ namespace Programmania.Controllers
 
         private UserDisciplineVM[] getDisciplines(User user, int courseId)
         {
-            var list = dbContext.UserDisciplines.Where(u => u.UserId == user.Id).Where(c => c.Discipline.Course.Id == courseId)
-                .Join(dbContext.Disciplines, userDiscipline => userDiscipline.DisciplineId,
-                                 discipline => discipline.Id,
-                                 (userDiscipline, discipline) => new
-                                 {
-                                     DisciplineId = userDiscipline.Discipline.Id,
-                                     DisciplineName = userDiscipline.Discipline.Name,
-                                     LessonsCount = discipline.Lessons.Count,
-                                     LessonsCompleted = userDiscipline.LessonOrder,
-                                     StreamId = discipline.StreamId
-                                 }).Select(s => new
-                                 {
-                                     disciplineId = s.DisciplineId,
-                                     disciplineName = s.DisciplineName,
-                                     lessonsCount = s.LessonsCount,
-                                     lessonsCompleted = s.LessonsCompleted,
-                                     streamId = s.StreamId
-                                 }).ToList();
+            var list = dbContext.UserDisciplines.Include(ud => ud.Discipline).ThenInclude(d => d.Course)
+                .Where(u => u.UserId == user.Id && u.Discipline.Course.Id == courseId)
+                .Select(s => new
+                {
+                    DisciplineId = s.DisciplineId,
+                    DisciplineName = s.Discipline.Name,
+                    LessonsCount = s.Discipline.Lessons.Count,
+                    LessonsCompleted = s.LessonOrder,
+                    StreamId = s.Discipline.StreamId
+                }).ToList();
+               
 
             List<UserDisciplineVM> userDisciplines = new List<UserDisciplineVM>();
 
@@ -173,12 +158,12 @@ namespace Programmania.Controllers
             {
                 userDisciplines.Add(new UserDisciplineVM
                 {
-                    DisciplineId = item.disciplineId,
-                    DisciplineName = item.disciplineName,
-                    LessonsCount = item.lessonsCount,
-                    LessonsCompleted = item.lessonsCompleted,
+                    DisciplineId = item.DisciplineId,
+                    DisciplineName = item.DisciplineName,
+                    LessonsCount = item.LessonsCount,
+                    LessonsCompleted = item.LessonsCompleted,
                     Image = fileService.GetDocument(dbContext.Documents
-                        .FirstOrDefault(d => d.StreamId == item.streamId).Path)
+                        .FirstOrDefault(d => d.StreamId == item.StreamId).Path)
                 });
             }
 

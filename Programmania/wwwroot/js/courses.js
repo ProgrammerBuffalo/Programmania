@@ -8,7 +8,7 @@
         sessionStorage.setItem('courseName', $('#courseName').val());
         
         let id = $(this).attr('data-id');
-        window.location.href = `disciplines?id=${id}`;
+        window.location.href = `Courses/Disciplines?id=${id}`;
     });
 
 });
