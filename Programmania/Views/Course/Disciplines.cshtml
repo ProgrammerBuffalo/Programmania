@@ -2,19 +2,19 @@
 @model IEnumerable<Programmania.ViewModels.UserDisciplineVM>;
 
 <html>
-<head>
-    <title>Disciplines</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="~/js/loading-bar.min.js"></script>
-    <link rel="stylesheet" href="~/css/loading-bar.min.css" />
-    <link rel="stylesheet" href="~/css/Disciplines.css" />
+ <head>
+  <title>Disciplines</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="~/js/loading-bar.min.js"></script>
+  <link rel="stylesheet" href="~/css/loading-bar.min.css" />
+  <link rel="stylesheet" href="~/css/Disciplines.css" />
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-</head>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+ </head>
 
 <body>
     <div class="header-text">
@@ -30,25 +30,24 @@
     </div>
 
     <div class="course__img" data-aos="fade-left" data-aos-duration="1000">
-        <img src="~/images/caio.jpg">
+        <img />
     </div>
 
-    <div class="content">
-        <div class="desciplines">
-            @if (Model != null)
-            {
-                @foreach (var discipline in Model)
-                {
-                    @Html.CreateDiscipline(discipline);
-                }
-            }
-        </div>
-    </div>
+  <div class="content">
+   <div class="desciplines">
 
-    <script>
-        AOS.init();
-    </script>
+    @foreach (var discipline in Model)
+    {
+     @Html.CreateDiscipline(discipline);
+    }
 
-    <script type="text/javascript" src="~/js/disciplines.js"></script>
-</body>
-</html>
+   </div>
+  </div>
+
+  <script>
+   AOS.init();
+  </script>
+
+  <script ript type="text/javascript" src="~/js/disciplines.js"></script>
+ </body>
+ </html>

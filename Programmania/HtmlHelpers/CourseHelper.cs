@@ -10,7 +10,7 @@ namespace Programmania.HtmlHelpers
 
             @string.AppendLine("<a>");
             if (course.IsSelected)
-                @string.AppendLine($"<div class='course'> data-id='{course.CourseId}'");
+                @string.AppendLine($"<div class='course' data-id='{course.CourseId}'>");
             else
                 @string.AppendLine($"<div class='course course_selected' data-id='{course.CourseId}'>");
             @string.AppendLine("<div class='course__image'>");
