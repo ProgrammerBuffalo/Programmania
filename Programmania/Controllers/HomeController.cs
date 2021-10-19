@@ -76,7 +76,7 @@ namespace Programmania.Controllers
         {
             return View();
         }
-
+        [AllowAnonymous]
         [Route("Challenges")]
         public IActionResult Challenges()
         {
