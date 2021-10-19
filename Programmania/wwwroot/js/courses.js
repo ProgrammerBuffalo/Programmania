@@ -6,9 +6,9 @@
         sessionStorage.setItem('courseImage', img.src);
         sessionStorage.setItem('courseColor', rgbToHex(rgb));
         sessionStorage.setItem('courseName', $('#courseName').val());
-        
+
         let id = $(this).attr('data-id');
-        window.location.href = `disciplines?id=${id}`;
+        window.location.href = `Course/Disciplines?id=${id}`;
     });
 
 });

@@ -2,24 +2,24 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Profile</title>
-	<link rel="stylesheet" href="~/css/profile.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="~/css/profile.css">
 
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="~/css/HamburgerMenu.css" />
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/HamburgerMenu.css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 
-	<link rel="stylesheet" href="~/css/loading-bar.min.css">
-	<script src="~/js/loading-bar.min.js"></script>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-	<script src="~/js/util/burger.js"></script>
+    <link rel="stylesheet" href="~/css/loading-bar.min.css">
+    <script src="~/js/loading-bar.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="~/js/util/burger.js"></script>
 </head>
 
 <body>
-	<header class="header">
+    <header class="header">
         <div class="header-container">
             <div class="container__text">Programmania</div>
             <div class="header__burger">
@@ -53,102 +53,111 @@
         </div>
     </header>
 
-	<main class="content">
-		<div class="profile">
-			<div class="profile-col-1">
-				<div class="profile__image">
-					<img src="images/avatarImg.png" alt="">
-				</div>
+    <main class="content">
+        <div class="profile">
+            <div class="profile-col-1">
+                <div class="profile__image">
+                    <img id='profileImage' src="images/avatarImg.png" alt="">
+                    <input id="profileImageInput" type="file" style="display:none" />
+                </div>
 
-				<div class="profile-info">
-					<div class="profile-info__item">
-						<h3>Name:</h3>
-						<p>John</p>
-					</div>
-					<hr />
-					<div class="profile-info__item">
-						<h3>Surname:</h3>
-						<p>Johnson</p>
-					</div>
-					<hr />
-					<div class="profile-info__item">
-						<h3>Username:</h3>
-						<p>JohnJohnson123</p>
-					</div>
-					<hr />
-					<div class="profile-info__item">
-						<h3>About me:</h3>
-						<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corporis eius, veniam nesciunt et cum
-							enim dolore consequatur distinctio natus illo assumenda dicta quisquam vel, quas dolores eaque
-							incidunt molestias quam?</p>
-					</div>
-					<hr />
-					<button class="btn btn-primary profile-info__change">
-						Change profile data
-					</button>
-				</div>
-			</div>
+                <div class="profile-info">
+                    <div class="profile-info__item">
+                        <h3>Username:</h3>
+                        <p>JohnJohnson123</p>
+                    </div>
+                    <hr />
 
-			<div class="profile-col-2">
-				<h1 class="profile__name">
-					JohnJohnson123
-				</h1>
+                    <div class="profile-info__item">
+                        <h3>Email:</h3>
+                        <p>John123@gmail.com</p>
+                    </div>
+                    <hr />
 
-				<div class="level">
-					<div class="level__percent">
-						<div class="ldBar label-center" data-preset="circle" data-value="30" data-transition-in="1000"
-							style="width: 100%; height: 100%;"></div>
-					</div>
+                    <button id="profileModalShow" class="btn btn-primary profile-info__change">Change profile data</button>
 
-					<div class="level__content">Level: 12</div>
-				</div>
+                    <div class="modal" id="profileModal">
+                        <div class="modal-content" style="width: 500px">
+                            <span class="close">&times;</span>
 
-				<div class="tabs-container">
-					<div class="tab">
-						<button class="tablinks" onclick="openContent(event, 'user-info')">User info</button>
-						<button class="tablinks" onclick="openContent(event, 'games')">Games</button>
-						<button class="tablinks" onclick="openContent(event, 'achievments')">Achievments</button>
-					</div>
+                            <form name="loginForm" id="loginForm">
+                                <div class="form-group">
+                                    <label id="emailLabelLog" for="emailInputLog">Email: </label>
+                                    <input id="emailInputLog" type="email" class="form-control" placeholder="email" name="emailInput" />
+                                </div>
 
-					<!-- Tab content -->
-					<div id="user-info" class="tabcontent">
-						<div class="profile-info">
-							<div class="profile-info__item">
-								<h3>XP:</h3>
-								<p>3500</p>
-							</div>
-							<hr />
-							<div class="profile-info__item">
-								<h3>Courses ended:</h3>
-								<p>3</p>
-							</div>
-							<hr />
-						</div>
-					</div>
+                                <div class="form-group">
+                                    <label id="passwordLabelLog" for="passwordInputLog">Password: </label>
+                                    <input id="passwordInputLog" type="password" class="form-control" placeholder="password" name="passwordInput" />
+                                </div>
+                                <input type="button" id="loginBtnOut" class="btn btn-success" name="loginBtn" value="Login" />
+                            </form>
+                        </div>
+                    </div>
 
-					<div id="games" class="tabcontent">
-						<div class="profile-info">
-							<div class="profile-info__item">
-								<h3>Games played:</h3>
-								<p>13</p>
-							</div>
-							<hr />
-							<div class="profile-info__item">
-								<h3>Games wins:</h3>
-								<p>7</p>
-							</div>
-							<hr />
-						</div>
-					</div>
+                </div>
+            </div>
 
-					<div id="achievments" class="tabcontent">
+            <div class="profile-col-2">
+                <h1 class="profile__name">JohnJohnson123</h1>
 
-					</div>
-				</div>
-			</div>
-		</div>
-	</main>
-	<script src="~/js/util/tabs.js"></script>
+                <div class="level">
+                    <div class="level__percent">
+                        <div class="ldBar label-center" data-preset="circle" data-value="30" data-transition-in="1000"
+                             style="width: 100%; height: 100%;"></div>
+                    </div>
+
+                    <div class="level__content">Level: 12</div>
+                </div>
+
+                <div class="tabs-container">
+                    <div class="tab">
+                        <button class="tablinks" onclick="openContent(event, 'user-info')">User info</button>
+                        <button class="tablinks" onclick="openContent(event, 'games')">Games</button>
+                        <button class="tablinks" onclick="openContent(event, 'achievments')">Achievments</button>
+                    </div>
+
+                    <!-- Tab content -->
+                    <div id="user-info" class="tabcontent">
+                        <div class="profile-info">
+                            <div class="profile-info__item">
+                                <h3>XP:</h3>
+                                <p>3500</p>
+                            </div>
+                            <hr />
+                            <div class="profile-info__item">
+                                <h3>Courses ended:</h3>
+                                <p>3</p>
+                            </div>
+                            <hr />
+                        </div>
+                    </div>
+
+                    <div id="games" class="tabcontent">
+                        <div class="profile-info">
+                            <div class="profile-info__item">
+                                <h3>Games played:</h3>
+                                <p>13</p>
+                            </div>
+                            <hr />
+                            <div class="profile-info__item">
+                                <h3>Games wins:</h3>
+                                <p>7</p>
+                            </div>
+                            <hr />
+                        </div>
+                    </div>
+
+                    <div id="achievments" class="tabcontent">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="~/js/profile.js"></script>
+    <script src="~/js/util/tabs.js"></script>
 </body>
 
 </html>

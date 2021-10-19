@@ -3,7 +3,6 @@
 $(document).ready(function () {
     var req = new XMLHttpRequest();
     redirectTo = req.getResponseHeader('RedirectTo');
-    console.log(redirectTo);
 });
 
 $(document).ready(function () {

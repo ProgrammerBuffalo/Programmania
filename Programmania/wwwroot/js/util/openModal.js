@@ -25,8 +25,3 @@ window.onclick = function(event) {
         regModal.style.display = "none";
     }
 }
-
-
-
-
-
