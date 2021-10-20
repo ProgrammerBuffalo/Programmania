@@ -1,3 +1,69 @@
 ﻿@{
     Layout = "_Layout";
 }
+
+<!--HEADER-->
+@section Header{
+        <div class="header-container">
+            <div class="container__text">Programmania</div>
+            <div class="header__burger">
+                <span></span>
+            </div>
+            <div class="container-menu">
+                <nav class="header__menu">
+                    <ul class="header__list">
+                        <li>
+                            <a href="Main" class="header__link">Main</a>
+                        </li>
+
+                        <li>
+                            <a href="Courses" class="header__link">Courses</a>
+                        </li>
+
+                        <li>
+                            <a href="News" class="header__link">News</a>
+                        </li>
+
+                        <li>
+                            <a href="Challenges" class="header__link">Challenges</a>
+                        </li>
+
+                        <li>
+                            <a href="Profile" class="header__link">Profile</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+}
+<!--HEADER-->
+
+<!--FOOTER-->
+@section Footer{
+    <div class="footer">
+            <div class="footer-links" data-aos="zoom-in" data-aos-duration="700">
+                <a href="#" class="footer-links_first">
+                    <div class="footer-link__image">
+                        <img src="~/images/facebookLogo.png" />
+                    </div>
+                </a>
+
+                <a href="#">
+                    <div class="footer-link__image">
+                        <img src="~/images/twitterLogo.png" />
+                    </div>
+                </a>
+
+                <a href="#">
+                    <div class="footer-link__image">
+                        <img src="~/images/linkedinLogo.png" />
+                    </div>
+                </a>
+            </div>
+
+            <div class="footer__text" data-aos="zoom-in" data-aos-duration="700">
+                <h5>&#x24B8; 2021 Programmania. All rights reserved.</h5>
+            </div>
+        </div>
+}
+<!--FOOTER-->

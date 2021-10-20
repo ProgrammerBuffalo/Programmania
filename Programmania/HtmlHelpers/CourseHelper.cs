@@ -21,7 +21,7 @@ namespace Programmania.HtmlHelpers
             @string.AppendLine($"<h3 class='course__title'>{course.CourseName}</h3>");
             @string.AppendLine($"<p class='course__info'>Lesson count: {course.LessonsCompleted}/{course.LessonsCount}</p>");
             @string.AppendLine("<div class='course__percent'>");
-            @string.AppendLine($"<div class='ldBar label - center' data-preset='circle' data-value='{course.Percentage}' data-transition-in='1000' style='width: 100 %; height: 100 %;'></div>");
+            @string.AppendLine($"<div class='ldBar label-center' data-preset='circle' data-value='{course.Percentage}' data-transition-in='1000' style='width: 100%; height: 100%;'></div>");
             @string.AppendLine("</div>");
             @string.AppendLine("</div>");
             @string.AppendLine("</div>");

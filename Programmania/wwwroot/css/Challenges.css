@@ -146,7 +146,7 @@ h6 {
 
 .statistic__wins {
     font-family: "monsterrat-normal";
-    font-size: 4vh;
+    font-size: 2em;
     color: #79c752;
 }
 
@@ -167,12 +167,12 @@ h6 {
 
 .ldBar-label {
     color: #f0a85b;
-    font-size: 4vh;
+    font-size: 2.3em;
 }
 
 .statistic__loses {
     font-family: "monsterrat-normal";
-    font-size: 4vh;
+    font-size: 2.3em;
     color: #c75252;
 }
 
@@ -206,7 +206,7 @@ h6 {
 }
 
 .header__text {
-    font-size: 4vh;
+    font-size: 2.3em;
     font-family: "monsterrat-normal";
     text-align: center;
     padding: 30px 0;
@@ -269,14 +269,14 @@ h6 {
     text-align: center;
     color: #002c8a;
     font-family: "monsterrat-normal";
-    font-size: 3vh;
+    font-size: 1.7em;
 }
 
 .challenge__info {
     text-align: center;
     color: #002c8a;
     font-family: "monsterrat-light";
-    font-size: 2.5vh;
+    font-size: 1.3em;
 }
 
 .challenge__button {
@@ -285,29 +285,25 @@ h6 {
     width: auto;
     transition: all 0.5s ease 0s;
     font-family: "monsterrat-light";
-    font-size: 3vh;
+    font-size: 1.7em;
     padding: 5px;
     text-align: center;
 }
 
 .challenge__button_accept {
-    color: #fc5858;
-    background-color: #fff;
+    color: #fff;
+    background-color: #fc5858;
 }
-
-    .challenge__button_accept:hover {
-        color: #fff;
-        background-color: #fc5858;
-    }
 
 .challenge__button_create {
-    color: #00ed86;
-    background-color: #fff;
+    color: #fff;
+    background-color: #00ed86;
 }
 
-    .challenge__button_create:hover {
-        color: #fff;
-        background-color: #00ed86;
+    .challenge__button_create:hover,
+    .challenge__button_accept:hover {
+        opacity: 0.7;
+        box-shadow: 2px 2px 2px #999;
     }
 
 .challenge_accept {
