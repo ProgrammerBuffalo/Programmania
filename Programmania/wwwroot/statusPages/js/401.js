@@ -17,14 +17,13 @@ $(document).ready(function () {
         var data = new FormData();
         data.append('Email', $('#email').val());
         data.append('Password', $('#password').val());
-        document.cookie = 'JwtToken=abcdefg;';
-        
+
         $.ajax({
             type: 'POST',
-            url: '/account/authorization',
+            url: 'Account/authorization',
             processData: false,
             contentType: false,
-            headers: { 'Authorization': 'Bearer ' + getCookie('JwtToken')},
+            headers: { 'Authorization': 'Bearer ' + getCookie('JwtToken') },
             data: data,
             success: function () {
                 window.location.href = redirectTo;

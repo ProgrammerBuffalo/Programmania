@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Programmania.HtmlHelpers;
+@model Programmania.ViewModels.UserLessonsVM1;
+
+<!DOCTYPE html>
 <html>
 <head>
     <title>Lessons</title>
@@ -6,9 +9,10 @@
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="~/css/Lessons.css" />
 
-    <link rel="stylesheet" href="~/css/highlight styles/default.min.css" />
+    <link rel="stylesheet" href="~/css/highlight styles/paraiso-dark.min.css" />
     <script src="~/js/highlight.min.js"></script>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -21,7 +25,8 @@
                 <div class="header-back" data-aos="fade-right" data-aos-duration="1000">
                 </div>
             </a>
-            <h3 class="header__text text-bold" data-aos="fade-left" data-aos-duration="1000">Programmania</h3>
+
+            <h3 id="disciplineName" class="header__text text-bold" data-aos="fade-left" data-aos-duration="1000"></h3>
         </div>
     </header>
 
@@ -29,101 +34,118 @@
         <div class="main">
             <div class="burger" data-aos="flip-left" data-aos-duration="1000">
                 <div class="burger__image">
-                    <img src="~/images/garbageCollector.jpg" />
+                    <img id="disciplineImage" />
                 </div>
 
                 <div class="burger-content">
-                    <a href="#">
-                        <div class="burger-content-elem burger-content-elem_read">
-                            <h3 class="burger-content-elem__text text-normal">
-                                #1 What is garbage collector?
-                            </h3>
-                        </div>
-                    </a>
+                    @if (Model != null)
+                    {
+                        foreach (var lesson in Model.Lessons)
+                        {
+                            @Html.CreateLesson(lesson, lesson.Order);
+                        }
+                    }
 
-                    <a href="#">
-                        <div class="burger-content-elem burger-content-elem_read">
-                            <h3 class="burger-content-elem__text text-normal">
-                                #2 IDisposable interface
-                            </h3>
-                        </div>
-                    </a>
+                    @*<a href="#">
+                            <div class="burger-content-elem burger-content-elem_read">
+                                <h3 class="burger-content-elem__text text-normal">
+                                    #1 What is garbage collector?
+                                </h3>
+                            </div>
+                        </a>
 
-                    <a href="#">
-                        <div class="burger-content-elem burger-content-elem_unread">
-                            <h3 class="burger-content-elem__text text-normal">
-                                #3 Something interesting
-                            </h3>
-                        </div>
-                    </a>
+                        <a href="#">
+                            <div class="burger-content-elem burger-content-elem_read">
+                                <h3 class="burger-content-elem__text text-normal">
+                                    #2 IDisposable interface
+                                </h3>
+                            </div>
+                        </a>
 
-                    <a href="#">
-                        <div class="burger-content-elem burger-content-elem_unread">
-                            <h3 class="burger-content-elem__text text-normal">
-                                #4 Something interesting
-                            </h3>
-                        </div>
-                    </a>
+                        <a href="#">
+                            <div class="burger-content-elem burger-content-elem_unread">
+                                <h3 class="burger-content-elem__text text-normal">
+                                    #3 Something interesting
+                                </h3>
+                            </div>
+                        </a>
 
-                    <a href="#">
-                        <div class="burger-content-elem burger-content-elem_unread">
-                            <h3 class="burger-content-elem__text text-normal">
-                                #5 Something interesting
-                            </h3>
-                        </div>
-                    </a>
+                        <a href="#">
+                            <div class="burger-content-elem burger-content-elem_unread">
+                                <h3 class="burger-content-elem__text text-normal">
+                                    #4 Something interesting
+                                </h3>
+                            </div>
+                        </a>
+
+                        <a href="#">
+                            <div class="burger-content-elem burger-content-elem_unread">
+                                <h3 class="burger-content-elem__text text-normal">
+                                    #5 Something interesting
+                                </h3>
+                            </div>
+                        </a>*@
 
                 </div>
             </div>
 
             <div class="content">
-                <h3 class="content__title text-normal" data-aos="fade-left" data-aos-duration="1000">Lesson N2. IDisposable</h3>
-                <p class="content__text text-thin" data-aos="fade-right" data-data-aos-duration="1000">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+                <h3 id="lessonName" class="content__title text-normal" data-aos="fade-left" data-aos-duration="1000">Lesson N2. IDisposable</h3>
 
-                <pre>
-                    <code class="language-c# code">
-namespace HelloWorld
-{
-    class Hello {         
-        static void Main(string[] args)
-        {
-            System.Console.WriteLine("Hello World!");
-        }
-    }
-}
-                    </code>
-                </pre>
-
-                <p class="content__text text-thin" data-aos="fade-right" data-data-aos-duration="1000">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-
-                <div class="content-tests">
-                    <div class="content-tests-test" data-aos="fade-right" data-aos-duration="1000">
-                        <h3 class="content-tests__question text-normal">Some question...</h3>
-                        <label class="rad-label">
-                            <input type="radio" class="rad-input" name="rad" />
-                            <div class="rad-design"></div>
-                            <div class="rad-text text-light" >Answer 1</div>
-                        </label>
-
-                        <label class="rad-label">
-                            <input type="radio" class="rad-input" name="rad" />
-                            <div class="rad-design"></div>
-                            <div class="rad-text text-light">Answer 2</div>
-                        </label>
-
-                        <label class="rad-label">
-                            <input type="radio" class="rad-input" name="rad" />
-                            <div class="rad-design"></div>
-                            <div class="rad-text text-light">Answer 3</div>
-                        </label>
-
-                        <label class="rad-label">
-                            <input type="radio" class="rad-input" name="rad" />
-                            <div class="rad-design"></div>
-                            <div class="rad-text text-light">Answer 4</div>
-                        </label>
-                    </div>
+                <div id="lessonContent">
+                    @Model.HTML
                 </div>
+
+                @*<p class="content__text text-thin" data-aos="fade-right" data-data-aos-duration="1000">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>*@
+
+
+                @*<pre>
+                                        <code class="language-c# code">
+                    namespace HelloWorld
+                    {
+                        class Hello {
+                            static void Main(string[] args)
+                            {
+                                System.Console.WriteLine("Hello World!");
+                            }
+                        }
+                    }
+                                        </code>
+                                    </pre>*@
+
+                @*<p class="content__text text-thin" data-aos="fade-right" data-data-aos-duration="1000">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>*@
+
+                @*<div class="content-tests">
+                        <div class="content-tests-test" data-aos="fade-right" data-aos-duration="1000">
+                            <h3 class="content-tests__question text-normal">Some question...</h3>
+
+                            <label class="rad-label">
+                                <input type="radio" class="rad-input" name="rad" />
+                                <div class="rad-design"></div>
+                                <div class="rad-text text-light">Answer 1</div>
+                            </label>
+
+                            <label class="rad-label">
+                                <input type="radio" class="rad-input" name="rad" />
+                                <div class="rad-design"></div>
+                                <div class="rad-text text-light">Answer 2</div>
+                            </label>
+
+                            <label class="rad-label">
+                                <input type="radio" class="rad-input" name="rad" />
+                                <div class="rad-design"></div>
+                                <div class="rad-text text-light">Answer 3</div>
+                            </label>
+
+                            <label class="rad-label">
+                                <input type="radio" class="rad-input" name="rad" />
+                                <div class="rad-design"></div>
+                                <div class="rad-text text-light">Answer 4</div>
+                            </label>
+                        </div>
+                    </div>*@
+
+                @Html.CreateQuestion(Model.Test)
 
                 <button class="button button-next">
                     <span>
@@ -141,6 +163,8 @@ namespace HelloWorld
     <script>
         hljs.highlightAll();
     </script>
+
+    <script type="text/javascript" src="~/js/lessons.js"></script>
 </body>
 </html>
 

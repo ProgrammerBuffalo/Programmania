@@ -40,7 +40,7 @@ namespace Programmania.Controllers
             if (accountService.RefreshTokens(rtCookie, HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString(),
                 out string generatedJWT, out string generatedRToken, out User user))
             {
-                  return Unauthorized("Invalid refresh token");
+                return Unauthorized("Invalid refresh token");
             }
 
             setCookieTokens(generatedRToken, generatedJWT);
@@ -68,7 +68,7 @@ namespace Programmania.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> MakeAuthorization(AuthenticationRequestVM authenticationRequest)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 Models.User user = dbContext.Users.FirstOrDefault(u => u.Login == authenticationRequest.Email && u.Password == authenticationRequest.Password);
                 if (user == null)

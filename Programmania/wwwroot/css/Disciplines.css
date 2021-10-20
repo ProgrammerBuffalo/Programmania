@@ -14,10 +14,10 @@ body {
     transition: all 0.5s ease 0s;
 }
 
-.back:hover {
-    border-right: 40px solid #ffffff;
-    cursor: pointer;
-}
+    .back:hover {
+        border-right: 40px solid #ffffff;
+        cursor: pointer;
+    }
 
 .header-text {
     background-color: #808080;
@@ -28,32 +28,129 @@ body {
     align-items: center;
 }
 
-.header-text h3 {
-    color: white;
-    text-shadow: rgb(255 255 255 / 60%) 1px 1px 1px, rgb(0 0 0 / 60%) -1px -1px 1px;
-    text-align: center;
-    vertical-align: middle;
-    line-height: 155px;
-    font-size: 5vh;
-    font-family: montserrat, sans-serif;
-    font-weight: 700;
-}
+    .header-text h3 {
+        color: white;
+        text-shadow: rgb(255 255 255 / 60%) 1px 1px 1px, rgb(0 0 0 / 60%) -1px -1px 1px;
+        text-align: center;
+        vertical-align: middle;
+        line-height: 155px;
+        font-size: 5vh;
+        font-family: montserrat, sans-serif;
+        font-weight: 700;
+    }
 
 .content {
-    padding: 5% 15%;
+    padding: 0 10%;
+    height: 100%;
 }
 
-.course__img {
+/*fix it plz*/
+.course__img img{
+    margin: 0 20px;
+    height: 150px;
+}
+
+.disciplines {
+    margin-top: 20px;
+    display: flex;
+    -moz-display: flex;
+    -ms-display: flex;
+    -o-display: flex;
+    -webkit-display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+    align-items: center;
+}
+
+/*.disciplines::after {
+        content: "";
+        flex: auto;
+    }*/
+
+.discipline {
+    flex: 1 0 25%;
+    width: 350px;
+    height: auto;
+    border: 1px solid #66a8ff;
+    border-radius: 20px;
+    margin-top: 10px;
+    margin-left: 1vw;
+    box-sizing: border-box;
+}
+
+    .discipline:hover {
+        background-color: #f7f7f7;
+        transform: scale(1.1);
+    }
+
+.discipline_selected {
+    background-color: rgb(182, 174, 174);
+}
+
+.dark-image {
+    filter: brightness(50%);
+}
+
+.discipline__image {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 200px;
+    width: 100%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+    .discipline__image:before,
+    .discipline__image:after {
+        content: "";
+        position: absolute;
+        z-index: -2;
+    }
+
+    .discipline__image img {
+        width: 100%;
+        height: 100%;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+    }
+
+
+.discipline-content {
+    padding: 20px;
+    height: auto;
+}
+
+.discipline__title {
+    text-align: center;
+    font-size: 3vh;
+    font-family: "monsterrat-bold";
+    margin-top: 10px;
+}
+
+.discipline__info {
+    text-align: center;
+    font-size: 2.5vh;
+    font-family: "monsterrat-light";
+}
+
+.discipline__percent {
+    width: 150px;
+    margin: 0 auto;
+    height: 150px;
+}
+
+.discipline__img {
     width: 100%;
     height: 600px;
 }
 
-.course__img img {
-    width: 100%;
-    height: 100%;
-}
+    .discipline__img img {
+        width: 100%;
+        height: 100%;
+    }
 
-.desciplines {
+/*.desciplines {
     display: flex;
     width: auto;
     height: 100%;
@@ -104,13 +201,13 @@ body {
 .subject__img img {
     width: 100%;
     height: auto;
-}
+}*/
 
-.diagramm__body {
+/*.diagramm__body {
     width: 100%;
     height: auto;
-}
-
+}*/
+/*
 .ldBar {
     margin: auto;
     margin-top: 0;
@@ -147,10 +244,33 @@ body {
     color: #7702c4;
     font-size: 4vh;
     height: auto;
+}*/
+
+/*Progress bar*/
+.ldBar {
+    margin: auto;
+}
+
+    .ldBar path.mainline {
+        stroke-width: 8;
+        stroke: #66a8ff;
+        stroke-linecap: round;
+    }
+
+    .ldBar path.baseline {
+        stroke-width: 5;
+        stroke: #d6d6d6;
+        stroke-linecap: round;
+    }
+
+.ldBar-label {
+    font-size: 3vh;
+    color: #66a8ff;
+    text-align: center
 }
 
 @media(max-width: 935px) {
-    .desciplines{
+    .desciplines {
         justify-content: center;
     }
 }

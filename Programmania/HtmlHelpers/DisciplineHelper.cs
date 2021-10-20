@@ -6,52 +6,28 @@ namespace Programmania.HtmlHelpers
     {
         public static HtmlString CreateDiscipline(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html, ViewModels.UserDisciplineVM discipline)
         {
-            System.Text.StringBuilder builder = new System.Text.StringBuilder();
-            builder.Append("<a data-aos='fade-right' data-aos-duration='1000'");
-            builder.Append($"<div class='descipline' data-id='{discipline.DisciplineId}'>");
-            builder.Append("<div class='subject'>");
-            builder.Append($"<p class='subject-text'>{discipline.DisciplineName}</p>");
-            builder.Append("</div>");
-            builder.Append("<div class='subject__img'>");
-            string image = System.Convert.ToBase64String(discipline.Image);
-            image = string.Format("data:image/*;base64,{0}", image);
-            builder.Append($"<img src='{image}' />");
-            builder.Append("</div>");
-            builder.Append("<div class='diagramm__body'>");
-            builder.Append("<div class='ldBar label-center' data-preset='circle' data-value='25' data-transition-in='1000' style='width: 50%; height: 50%;'></div>");
-            builder.Append("<div class='lesson-count'>");
-            builder.Append($"<p class='lesson-count__text'>Lesson count {discipline.LessonsCompleted} / {discipline.LessonsCount}</p>");
-            builder.Append("</div>");
-            builder.Append("</div>");
-            builder.Append("</div>");
-            builder.Append("</a>");
+            System.Text.StringBuilder @string = new System.Text.StringBuilder();
 
-            return new HtmlString(builder.ToString());
-        }
+            //@string.AppendLine("<a>");
+            if (discipline.LessonsCompleted > 0 && discipline.LessonsCompleted != discipline.LessonsCount)
+                @string.AppendLine($"<div class='discipline' data-id='{discipline.DisciplineId}'>");
+            else
+                @string.AppendLine($"<div class='discipline discipline_selected' data-id='{discipline.DisciplineId}'>");
+            @string.AppendLine("<div class='discipline__image'>");
+            string base64String = System.Convert.ToBase64String(discipline.Image, 0, discipline.Image.Length);
+            @string.AppendLine($"<img src='data:image/*;base64,{base64String}' />");
+            @string.AppendLine("</div>");
+            @string.AppendLine("<div class='discipline-content'>");
+            @string.AppendLine($"<h3 class='discipline__title'>{discipline.DisciplineName}</h3>");
+            @string.AppendLine($"<p class='discipline__info'>Lesson count: {discipline.LessonsCompleted}/{discipline.LessonsCount}</p>");
+            @string.AppendLine("<div class='discipline__percent'>");
+            @string.AppendLine($"<div class='ldBar label-center' data-preset='circle' data-value='{discipline.Percentage}' data-transition-in='1000' style='width: 100 %; height: 100 %;'></div>");
+            @string.AppendLine("</div>");
+            @string.AppendLine("</div>");
+            @string.AppendLine("</div>");
+            //@string.AppendLine("</a>");
 
-        public static HtmlString CreatePassedDiscipline(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html, ViewModels.UserDisciplineVM discipline)
-        {
-            System.Text.StringBuilder builder = new System.Text.StringBuilder();
-            builder.Append("<a data-aos='fade-right' data-aos-duration='1000'");
-            builder.Append($"<div class='descipline' dark-image data-id='{discipline.DisciplineId}'>");
-            builder.Append("<div class='subject'>");
-            builder.Append($"<p class='subject-text'>{discipline.DisciplineName}</p>");
-            builder.Append("</div>");
-            builder.Append("<div class='subject__img'>");
-            string image = System.Convert.ToBase64String(discipline.Image);
-            image = string.Format("data:image/*;base64,{0}", image);
-            builder.Append($"<img src='{image}' />");
-            builder.Append("</div>");
-            builder.Append("<div class='diagramm__body'>");
-            builder.Append("<div class='ldBar label-center' data-preset='circle' data-value='25' data-transition-in='1000' style='width: 50%; height: 50%;'></div>");
-            builder.Append("<div class='lesson-count'>");
-            builder.Append($"<p class='lesson-count__text'>Lesson count {discipline.LessonsCompleted} / {discipline.LessonsCount}</p>");
-            builder.Append("</div>");
-            builder.Append("</div>");
-            builder.Append("</div>");
-            builder.Append("</a>");
-
-            return new HtmlString(builder.ToString());
+            return new HtmlString(@string.ToString());
         }
     }
 }

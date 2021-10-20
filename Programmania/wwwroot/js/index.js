@@ -44,7 +44,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: 'POST',
-            url: 'account/registration',
+            url: 'Account/registration',
             processData: false,
             contentType: false,
             data: data,
@@ -76,7 +76,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: 'POST',
-            url: 'account/authorization',
+            url: 'Account/authorization',
             processData: false,
             contentType: false,
             data: data,
