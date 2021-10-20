@@ -1,30 +1,37 @@
 /*Обнуление*/
-
 * {
     padding: 0;
     margin: 0;
     border: 0;
 }
 
-    *, *:before, *:after {
+    *,
+    *:before,
+    *:after {
         -moz-box-sizing: border-box;
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
     }
 
-:focus, :active {
+:focus,
+:active {
     outline: none;
 }
 
-a:focus, a:active {
-    outline: none;
+a:focus,
+a:active {
+    outline: none !important;
 }
 
-nav, footer, header, aside {
+nav,
+footer,
+header,
+aside {
     display: block;
 }
 
-html, body {
+html,
+body {
     height: 100%;
     width: 100%;
     font-size: 100%;
@@ -35,7 +42,9 @@ html, body {
     -webkit-text-size-adjust: 100%;
 }
 
-input, button, textarea {
+input,
+button,
+textarea {
     font-family: inherit;
 }
 
@@ -52,12 +61,14 @@ button {
         border: 0;
     }
 
-a, a:visited {
-    text-decoration: none;
+a,
+a:visited {
+    text-decoration: none !important;
+    color: #000;
 }
 
     a:hover {
-        text-decoration: none;
+        text-decoration: none !important;
     }
 
 ul-li {
@@ -68,107 +79,315 @@ img {
     vertical-align: top;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-size: inherit;
     font-weight: 400;
 }
 
+/*----------------------------*/
 
-/*--------------------*/
-
-body {
-    margin-top: 20px;
-    background-color: #defafa;
-    font-family: "mainFont";
+@font-face {
+    font-family: monsterrat-thin;
+    src: url("fonts/Montserrat-Thin.ttf");
 }
 
-.content {
-    padding: 10% 5%;
+@font-face {
+    font-family: monsterrat-light;
+    src: url("fonts/Montserrat-Light.ttf");
 }
 
-.card {
-    position: relative;
+@font-face {
+    font-family: monsterrat-normal;
+    src: url("fonts/Montserrat-Regular.ttf");
+}
+
+@font-face {
+    font-family: monsterrat-bold;
+    src: url("fonts/Montserrat-Bold.ttf");
+}
+
+.main {
+    padding: 50px 100px;
+}
+
+.user-statistic {
     display: flex;
-    flex-direction: column;
-    border-radius: 40px;
-    padding: 50px;
+    -ms-display: flex;
+    -moz-display: flex;
+    -webkit-display: flex;
+    -o-display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    align-self: center;
+    height: auto;
 }
 
-.row {
-    margin-top: 50px;
-}
-
-.titleText {
-    font-size: 40px;
-}
-
-.card-body {
-    font-size: 20px;
-}
-
-
-.fixedCard {
-    max-height: 500px;
-    overflow: scroll;
-}
-
-.gameResult__btn {
-    background-color: #eee;
-    cursor: pointer;
-    padding: 18px;
+.statistic {
     width: 100%;
-    border: none;
-    text-align: left;
-    outline: none;
-    font-size: 32px;
+    height: auto;
+    display: flex;
+    -ms-display: flex;
+    -moz-display: flex;
+    -webkit-display: flex;
+    -o-display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    align-self: center;
 }
 
-.gameResult__btn__win {
-    color: green;
+.statistic__wins {
+    font-family: "monsterrat-normal";
+    font-size: 2em;
+    color: #79c752;
 }
 
-.gameResult__btn__lose {
-    color: #ad0000;
+.statistic__percent {
+    height: 200px;
+    width: 200px;
 }
 
-.gameResult__btn:after {
-    content: '\02795';
-    font-size: 15px;
-    color: white;
-    float: right;
-    margin-left: 5px;
+.ldBar path.baseline {
+    stroke: #cecece;
+    stroke-width: 7;
 }
 
-.active:after {
-    content: '\2796';
+.ldBar path.mainline {
+    stroke: #f0a85b;
+    stroke-width: 7;
 }
 
-.active .gameResult:hover {
-    background-color: #ccc;
+.ldBar-label {
+    color: #f0a85b;
+    font-size: 2.3em;
 }
 
-.gameResult__content {
-    padding: 0 18px;
-    max-height: 0;
-    overflow: hidden;
-    background-color: #f1f1f1;
-    transition: max-height 0.2s ease 0s;
-    font-family: "mainFont";
-    font-size: 30px;
+.statistic__loses {
+    font-family: "monsterrat-normal";
+    font-size: 2.3em;
+    color: #c75252;
 }
 
-.personalStates {
-    font-size: 30px;
-    color: #2b0053;
-    letter-spacing: 3px;
+.select-course {
+    margin-top: 30px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-@media(max-width: 320px) {
-    .content {
-        padding: 10% 2%;
+    .select-course label {
+        font-family: "monsterrat-normal";
+        color: #5298c7;
+        font-size: 1.3em;
     }
 
-    .card {
-        padding: 20px;
+.select {
+    margin-top: 10px;
+}
+
+    .select select {
+        width: 200px !important;
+        text-align: center;
+        font-size: 1em !important;
+        margin-left: 20px;
+    }
+
+.select-language {
+    width: 200px;
+}
+
+.header__text {
+    font-size: 2.3em;
+    font-family: "monsterrat-normal";
+    text-align: center;
+    padding: 30px 0;
+}
+
+.challenge {
+    max-width: 350px;
+    height: auto;
+    border-radius: 20px;
+    margin-left: 30px;
+}
+
+.challenges-swiper {
+    padding: 30px;
+}
+
+.challenge_create {
+    border: 1px solid #98ff94;
+    background-color: #98ff94;
+}
+
+.challenge__image {
+    height: 200px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.challenge__avatar {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    border-radius: 50%;
+}
+
+.challenge-content {
+    padding: 30px;
+}
+
+.challenges-swiper > .swiper-button-next {
+    color: #ff4f4f !important;
+    font-size: 80px !important;
+}
+
+.challenges-swiper > .swiper-button-prev {
+    color: #ff4f4f !important;
+    font-size: 80px !important;
+}
+
+.challenge__avatar img {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.challenge__username {
+    text-align: center;
+    color: #002c8a;
+    font-family: "monsterrat-normal";
+    font-size: 1.7em;
+}
+
+.challenge__info {
+    text-align: center;
+    color: #002c8a;
+    font-family: "monsterrat-light";
+    font-size: 1.3em;
+}
+
+.challenge__button {
+    min-height: 30px;
+    border-radius: 20px;
+    width: auto;
+    transition: all 0.5s ease 0s;
+    font-family: "monsterrat-light";
+    font-size: 1.7em;
+    padding: 5px;
+    text-align: center;
+}
+
+.challenge__button_accept {
+    color: #fff;
+    background-color: #fc5858;
+}
+
+.challenge__button_create {
+    color: #fff;
+    background-color: #00ed86;
+}
+
+    .challenge__button_create:hover,
+    .challenge__button_accept:hover {
+        opacity: 0.7;
+        box-shadow: 2px 2px 2px #999;
+    }
+
+.challenge_accept {
+    border: 1px solid #ff9494;
+    background-color: #ff9494;
+    margin-top: 30px;
+}
+.swiper-wrapper{
+    height: auto !important;
+}
+
+.incoming {
+    display: flex;
+    -ms-display: flex;
+    -moz-display: flex;
+    -webkit-display: flex;
+    -o-display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+    margin-left: 30px;
+}
+
+.button__next {
+    margin: 0 auto;
+    max-width: 300px;
+    height: 50px;
+    font-size: 1.5em;
+    border-radius: 30px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: center;
+    padding: 5px 0;
+    transition: all 0.3s ease 0s !important;
+}
+
+    .button__next:hover {
+        opacity: 0.7 !important;
+        box-shadow: 5px 5px 5px #b1b1b1;
+        cursor: pointer;
+    }
+
+.button_incoming {
+    background-color: #ff9494;
+}
+
+.button_outgoing {
+    background-color: #00ed86;
+}
+
+@media (max-width: 990px) {
+    .incoming {
+        justify-content: center;
+        margin-left: 0;
+    }
+
+    .challenge {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 800px) {
+    .main {
+        padding: 30px;
+    }
+}
+
+@media (max-width: 440px) {
+    .statistic {
+        flex-direction: column;
+    }
+
+    .select-course {
+        flex-direction: column;
+    }
+
+    .select {
+        margin-left: 0;
+    }
+
+    .challenge-content {
+        padding: 10px;
+    }
+
+    .challenge {
+        max-width: 300px;
     }
 }

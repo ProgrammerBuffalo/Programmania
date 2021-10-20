@@ -133,7 +133,7 @@ a {
 }
 
 .header__title {
-    font-size: 5vh;
+    font-size: 4em;
     margin: 0;
     text-align: center;
     width: 100%;
@@ -248,7 +248,7 @@ a {
 
     .left-menu-content li {
         margin-top: 30px;
-        font-size: 2.5vh;
+        font-size: 1.7em;
         font-family: "monsterrat-light";
     }
 
@@ -258,8 +258,8 @@ a {
         }
 
             .left-menu-content li a:hover {
-                color: #0083ab;
-                font-size: 3vh;
+                color: #0083ab !important;
+                font-size: 1.3em;
             }
 
 .arrow {
@@ -289,10 +289,20 @@ a {
 
 .container__title {
     text-align: center;
-    font-size: 4vh;
+    font-size: 2.8em;
     font-weight: 700;
     font-family: "monsterrat-thin";
 }
+
+.title_link {
+    display: block;
+    color: #31adeb !important;
+    transition: all 0.3s ease 0s !important;
+}
+    .title_link:hover {
+        color: #1752b3 !important;
+        font-weight: 900;
+    }
 
 .current-course {
     display: flex;
@@ -313,7 +323,7 @@ a {
 .current-course__title,
 .course__title {
     text-align: center;
-    font-size: 3vh;
+    font-size: 1.8em;
     font-family: "monsterrat-bold";
     margin-top: 10px;
 }
@@ -321,7 +331,7 @@ a {
 .current-course__info,
 .course__info {
     text-align: center;
-    font-size: 2.5vh;
+    font-size: 1.5em;
     font-family: "monsterrat-light";
 }
 
@@ -344,39 +354,42 @@ a {
 
     .current-course__percent .ldBar-label,
     .course__percent .ldBar-label {
-        font-size: 3vh;
+        font-size: 2em;
         color: #66a8ff;
     }
 
 .current-course__button {
+    font-family: monsterrat-light;
     min-height: 20px;
     width: 500px;
     padding: 20px;
-    border: 1px solid #66a8ff;
-    color: #66a8ff;
-    font-size: 2.5vh;
+    font-size: 1.8em;
     margin-top: 30px;
     border-radius: 20px;
-    transition: all 0.5s ease 0s;
+    transition: all 0.5s ease 0s !important;
     margin: 0 auto;
     margin-top: 30px;
     text-align: center;
+    background-color: #66a8ff;
+    color: #fff;
 }
 
     .current-course__button:hover,
-    .course__button:hover {
-        background-color: #66a8ff;
-        color: #fff;
-        border-color: #fff;
+    .course__button:hover,
+    .challenge__button_accept:hover,
+    .challenge__button_create:hover,
+    .news__button:hover {
+        opacity: 0.7;
+        box-shadow: 2px 2px 2px #999;
     }
 
 .courses-container {
     min-height: 300px;
-    padding: 50px 0;
 }
 
 .courses {
     margin-top: 20px;
+    padding-bottom: 30px;
 }
 
 .course {
@@ -385,6 +398,7 @@ a {
     border: 1px solid #66a8ff;
     border-radius: 20px;
     margin: 0 auto;
+    box-shadow: 0px 8px 24px 4px rgba(174, 174, 192, 0.3), 0px 4px 12px 2px rgba(174, 174, 192, 0.3) !important;
 }
 
 .course-content {
@@ -402,10 +416,15 @@ a {
     border-top-right-radius: 20px;
 }
 
+.course__info{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .course__percent {
     width: 150px;
     margin: 0 auto;
-    height: 250px;
+    height: 150px;
 }
 
 .swiper-wrapper{
@@ -414,12 +433,13 @@ a {
 
 
 .course__button {
+    font-family: monsterrat-light;
     width: auto;
     min-height: 20px;
     padding: 20px;
-    border: 1px solid #66a8ff;
-    color: #66a8ff;
-    font-size: 2.5vh;
+    background-color: #66a8ff;
+    color: #fff;
+    font-size: 1.8em;
     margin-top: 30px;
     border-radius: 20px;
     transition: all 0.5s ease 0s;
@@ -443,7 +463,7 @@ a {
 
 .level__title {
     margin-top: 50px;
-    font-size: 4vh;
+    font-size: 2.8em;
     font-family: "monsterrat-bold";
     color: #00c738;
 }
@@ -464,13 +484,13 @@ a {
     }
 
     .level__percent .ldBar-label {
-        font-size: 3vh;
+        font-size: 1.8em;
         font-family: "monsterrat-light";
         color: #00c738;
     }
 
 .level__info {
-    font-size: 2.5vh;
+    font-size: 1.7em;
     color: #00c738;
     font-family: "monsterrat-light";
     margin-top: 100px;
@@ -479,7 +499,7 @@ a {
 .level__xp {
     color: #00c738;
     font-family: "monsterrat-light";
-    font-size: 2.5vh;
+    font-size: 1.7em;
     text-align: center;
     margin-top: 30px;
 }
@@ -508,10 +528,9 @@ a {
     padding: 0;
 }
 
-.challenges-winrate {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+.challenge__info{
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .winrate__percent {
@@ -531,15 +550,15 @@ a {
 
     .winrate__percent .ldBar-label {
         color: #ff4f4f;
-        font-size: 3vh;
+        font-size: 2em;
         font-family: "monsterrat-normal";
     }
 
-.winrate__info {
-    margin-left: 150px;
+.winrate__info {    
     color: #ff4f4f;
-    font-size: 4vh;
+    font-size: 2.8em;
     margin-top: 70px;
+    text-align: center;
 }
 
 .challenge {
@@ -547,6 +566,7 @@ a {
     height: auto;
     border-radius: 20px;
     margin: 0 auto;
+    box-shadow: 0px 8px 24px 4px rgba(174, 174, 192, 0.3), 0px 4px 12px 2px rgba(174, 174, 192, 0.3) !important;
 }
 
 .challenges-swiper {
@@ -576,7 +596,8 @@ a {
 }
 
 .challenge-content {
-    padding: 30px;
+    padding: 20px;
+    padding-top: 10px;
 }
 
 .challenges-swiper > .swiper-button-next {
@@ -599,7 +620,7 @@ a {
     text-align: center;
     color: #002c8a;
     font-family: "monsterrat-normal";
-    font-size: 3vh;
+    font-size: 2em;
 }
 
 .challenge__info {
@@ -615,30 +636,20 @@ a {
     width: auto;
     transition: all 0.5s ease 0s;
     font-family: "monsterrat-light";
-    font-size: 3vh;
+    font-size: 2em;
     padding: 20px;
     text-align: center;
 }
 
 .challenge__button_accept {
-    color: #fc5858;
-    background-color: #fff;
+    color: #fff;
+    background-color: #fc5858;
 }
-
-    .challenge__button_accept:hover {
-        color: #fff;
-        background-color: #fc5858;
-    }
 
 .challenge__button_create {
-    color: #00ed86;
-    background-color: #fff;
+    color: #fff;
+    background-color: #00ed86;
 }
-
-    .challenge__button_create:hover {
-        color: #fff;
-        background-color: #00ed86;
-    }
 
 .challenge_accept {
     border: 1px solid #ff9494;
@@ -648,6 +659,7 @@ a {
 .achievment-container {
     min-height: 300px;
     padding: 50px 0;
+    margin-top: 10px;
 }
 
 .achievment {
@@ -669,7 +681,7 @@ a {
     margin-top: 30px;
     text-align: center;
     font-family: "monsterrat-bold";
-    font-size: 3vh;
+    font-size: 2em;
     color: #ff9147;
 }
 
@@ -677,7 +689,7 @@ a {
     margin-top: 30px;
     text-align: center;
     font-family: "monsterrat-normal";
-    font-size: 2.5vh;
+    font-size: 1.5em;
     color: #ff9147;
 }
 
@@ -698,7 +710,7 @@ a {
     .achievment__percent .ldBar-label {
         color: #ff9147;
         font-family: "monsterrat-light";
-        font-size: 3vh;
+        font-size: 2em;
     }
 
 .news-container {
@@ -735,7 +747,7 @@ a {
 .news-el-header__text {
     color: #530091;
     font-family: "monsterrat-bold";
-    font-size: 3vh;
+    font-size: 1.8em;
 }
 
 .news-el-header__avatar {
@@ -753,32 +765,27 @@ a {
 .news__content {
     font-family: "monsterrat-thin";
     color: #530091;
-    font-size: 2.5vh;
+    font-size: 1.5em;
 }
 
 .news__date {
     font-family: "monsterrat-thin";
     color: #530091;
-    font-size: 2.3vh;
+    font-size: 1.3em;
 }
 
 .news__button {
-    border: 1px solid #7f00de;
     border-radius: 20px;
     padding: 10px;
     width: auto;
     min-height: 30px;
-    color: #530091;
+    background-color: #7f00de;
+    color: #fff;
     transition: all 0.5s ease 0s;
     font-family: "monsterrat-normal";
-    font-size: 3vh;
+    font-size: 2em;
     text-align: center;
 }
-
-    .news__button:hover {
-        color: #fff;
-        background-color: #7f00de;
-    }
 
 @media (max-width: 1362px) {
     .current-course {
@@ -815,10 +822,17 @@ a {
 @media (max-width: 800px) {
     .current-course {
         flex-direction: column;
+        padding: 10px 30px;
     }
 
     .current-course__button {
         width: 350px;
+        margin-top: 10px;
+    }
+
+    .current-course__info{
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 
     .level {
@@ -853,6 +867,16 @@ a {
         margin: 0 auto;
         width: 200px;
     }
+}
+.link_active {
+    color: #17b34b !important;
+}
+
+.dev-text{
+    text-align: center;
+    font-family: "monsterrat-bold";
+    font-size: 4em;
+    margin-top: 50px;
 }
 
 @media (max-width: 650px) {

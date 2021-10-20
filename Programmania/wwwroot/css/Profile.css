@@ -165,18 +165,18 @@ hr {
 
     .profile-info__item h3 {
         font-family: "monsterrat-normal";
-        font-size: 2.5vh;
+        font-size: 1.8em;
     }
 
     .profile-info__item p {
         font-family: "monsterrat-light";
-        font-size: 2vh;
+        font-size: 1.4em;
         text-align: justify;
     }
 
 .profile-info__change {
     width: 100%;
-    font-size: 2vh !important;
+    font-size: 1.4em !important;
     font-family: "monsterrat-normal" !important;
     border-radius: 20px !important;
 }
@@ -228,7 +228,7 @@ hr {
 .tab {
     overflow: hidden;
     background-color: #ceecff;
-    font-size: 2vh;
+    font-size: 1.4em;
     font-family: "monsterrat-light";
 }
 
@@ -285,13 +285,13 @@ hr {
 
 .ldBar-label {
     color: #64bcff;
-    font-size: 2.5vh;
+    font-size: 1.8em;
     font-family: "monsterrat-normal";
 }
 
 .level__content {
     color: #64bcff;
-    font-size: 4vh;
+    font-size: 2.5em;
     font-family: "monsterrat-bold";
 }
 
@@ -351,6 +351,6 @@ hr {
 
 @media (max-width: 430px) {
     .profile__name {
-        font-size: 3.5vh;
+        font-size: 2.2em;
     }
 }

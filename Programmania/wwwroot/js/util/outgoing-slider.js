@@ -1,4 +1,4 @@
-new Swiper('.courses', {
+new Swiper('.outgoing-challenges', {
 	navigation: {
 		nextEl: '.swiper-button-next',
 		prevEl: '.swiper-button-prev'
@@ -7,16 +7,12 @@ new Swiper('.courses', {
 	centeredSlides: true,
 	spaceBetween: 30,
 	speed: 800,
-	loop: true,
 	breakpoints: {
-		1500: {
-			slidesPerView: 4
-        },
-		1200: {
+		1252: {
 			slidesPerView: 3
 		},
-		800: {
+		887: {
 			slidesPerView: 2
 		}
 	}
-});
+})

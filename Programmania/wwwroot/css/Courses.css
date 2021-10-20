@@ -75,24 +75,45 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /*--------------------*/
+@font-face {
+    font-family: monsterrat-thin;
+    src: url("../fonts/Montserrat-Thin.ttf");
+}
+
+@font-face {
+    font-family: monsterrat-light;
+    src: url("../fonts/Montserrat-Light.ttf");
+}
+
+@font-face {
+    font-family: monsterrat-normal;
+    src: url("../fonts/Montserrat-Regular.ttf");
+}
+
+@font-face {
+    font-family: monsterrat-bold;
+    src: url("../fonts/Montserrat-Bold.ttf");
+}
+
 body {
 }
 
 .header-text {
-    background-color: rgb(78, 67, 15);
+    background-color: #64bcff;
     height: 155px;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
 }
 
-    .header-text h3 {
-        color: white;
-        text-shadow: rgb(255 255 255 / 60%) 1px 1px 1px, rgb(0 0 0 / 60%) -1px -1px 1px;
-        text-align: center;
-        vertical-align: middle;
-        line-height: 155px;
-        font-size: 5vh;
-        font-family: montserrat, sans-serif;
-        font-weight: 700;
-    }
+.header-text h3 {
+    color: white;
+    text-shadow: rgb(255 255 255 / 60%) 1px 1px 1px, rgb(0 0 0 / 60%) -1px -1px 1px;
+    font-size: 4em;
+    font-family: monsterrat-bold;
+    font-weight: 700;
+}
 
 .content {
     padding: 0 10%;
@@ -106,15 +127,10 @@ body {
     -ms-display: flex;
     -o-display: flex;
     -webkit-display: flex;
-    justify-content: space-between;
+    justify-content: left;
     flex-flow: row wrap;
     align-items: center;
 }
-
-/*.courses::after{
-    content: "";
-    flex: auto;
-}*/
 
 .course {
     flex: 1 0 25%;
@@ -122,9 +138,10 @@ body {
     height: auto;
     border: 1px solid #66a8ff;
     border-radius: 20px;
-    margin-top: 10px;
-    margin-left: 1vw;
+    margin-top: 30px;
+    margin-left: 30px;
     box-sizing: border-box;
+    box-shadow: 0px 8px 24px 4px rgba(174, 174, 192, 0.3), 0px 4px 12px 2px rgba(174, 174, 192, 0.3) !important;
 }
 
     .course:hover {
@@ -133,7 +150,7 @@ body {
     }
 
 .course_selected {
-    background-color: rgb(182, 174, 174);
+    background-color: #efefef;
 }
 
 .course__image {
@@ -166,15 +183,16 @@ body {
 }
 
 .course__title {
+    font-family: monsterrat-bold;
     text-align: center;
-    font-size: 3vh;
+    font-size: 1.8em;
     font-family: "monsterrat-bold";
     margin-top: 10px;
 }
 
 .course__info {
     text-align: center;
-    font-size: 2.5vh;
+    font-size: 1.5em;
     font-family: "monsterrat-light";
 }
 
@@ -202,9 +220,10 @@ body {
     }
 
 .ldBar-label {
-    font-size: 3vh;
+    font-family: monsterrat-normal;
+    font-size: 2em;
     color: #66a8ff;
-    text-align: center
+    text-align: center;
 }
 
 
@@ -248,6 +267,10 @@ body {
 
     .course {
         margin-left: 0;
+    }
+
+    .header-text{
+        height: 100px;
     }
 }
 
