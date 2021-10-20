@@ -7,7 +7,11 @@ new Swiper('.courses', {
 	centeredSlides: true,
 	spaceBetween: 30,
 	speed: 800,
+	loop: true,
 	breakpoints: {
+		1500: {
+			slidesPerView: 4
+        },
 		1200: {
 			slidesPerView: 3
 		},

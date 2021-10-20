@@ -6,8 +6,12 @@ new Swiper('.challenges-swiper', {
 	slidesPerView: 1,
 	spaceBetween: 30,
 	speed: 800,
+	loop: true,
 	centeredSlides: true,
 	breakpoints: {
+		1600: {
+			slidesPerView: 4
+        },
 		1330: {
 			slidesPerView: 3
 		},
