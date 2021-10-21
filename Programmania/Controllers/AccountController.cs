@@ -68,7 +68,7 @@ namespace Programmania.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> MakeAuthorization(AuthenticationRequestVM authenticationRequest)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 Models.User user = dbContext.Users.FirstOrDefault(u => u.Login == authenticationRequest.Email && u.Password == authenticationRequest.Password);
                 if (user == null)
