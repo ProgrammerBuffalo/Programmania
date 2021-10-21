@@ -9,9 +9,9 @@ namespace Programmania.HtmlHelpers
         {
             StringBuilder @string = new StringBuilder();
             if (lesson.IsCompleted)
-                @string.AppendLine($"<div class='burger-content-elem burger-content-elem_read' data-id='{lesson.Id}'>");
+                @string.AppendLine($"<div class='burger-content-elem burger-content-elem_read' data-id='{{\"lessonId\": \"{lesson.Id}\", \"streamId\": \"{lesson.StreamId}\"}}'>");
             else
-                @string.AppendLine($"<div class='burger-content-elem burger-content-elem_unread' data-id='{lesson.Id}'>");
+                @string.AppendLine($"<div class='burger-content-elem burger-content-elem_unread' data-id='{{\"lessonId\": \"{lesson.Id}\", \"streamId\": \"{lesson.StreamId}\"}}'>");
             @string.AppendLine("<h3 class='burger-content-elem__text text-normal'>");
             @string.AppendLine($"#{order + 1} {lesson.Name}");
             @string.AppendLine($"</h3>");

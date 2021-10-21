@@ -1,10 +1,8 @@
-﻿using System;
-
-namespace Programmania.ViewModels
+﻿namespace Programmania.ViewModels
 {
     public class UserLessonVM1
     {
-        public Guid StreamId { get; set; }
+        public System.Guid StreamId { get; set; }
 
         public int Id { get; set; }
 

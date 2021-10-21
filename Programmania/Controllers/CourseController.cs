@@ -268,6 +268,7 @@ namespace Programmania.Controllers
 
         //this function should return UserLessonsVM (past name UserLessonsVM1)
         //userLessonVM.Lessons - contains lessonId, lessonName, streamId (html content of lesson), isCompleated
+        //userLessonVM.Name - name of current lessson
         //userLessonVM.HTML - html content of current lesson
         //userLessonVM.Test - test for current lesson
         private UserLessonsVM1 GetLessons(User user, int disciplineId)
@@ -286,12 +287,14 @@ namespace Programmania.Controllers
 
             var lastLesson = userLessonVM.Lessons.Last(l => l.IsCompleted);
 
-            userLessonVM.HTML = new Microsoft.AspNetCore.Html.HtmlString(
+            userLessonVM.CurrentLessonName = lastLesson.Name;
+
+            userLessonVM.CurrentLessonHTML = new Microsoft.AspNetCore.Html.HtmlString(
                 System.Text.Encoding.UTF8.GetString(
                 fileService.GetDocument(dbContext.Documents.FirstOrDefault(d => d.StreamId == lastLesson.StreamId).Path)));
 
             var test = dbContext.Lessons.First(l => l.Id == lastLesson.Id).Test;
-            userLessonVM.Test = new TestVM() { Question = test.Question, A1 = test.Answer1, A2 = test.Answer2, A3 = test.Answer3, A4 = test.Answer4 };
+            userLessonVM.CurrentLessonTest = new TestVM() { Question = test.Question, A1 = test.Answer1, A2 = test.Answer2, A3 = test.Answer3, A4 = test.Answer4 };
 
             return userLessonVM;
         }

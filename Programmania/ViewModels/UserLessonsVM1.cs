@@ -4,10 +4,12 @@ namespace Programmania.ViewModels
 {
     public class UserLessonsVM1
     {
-        public Microsoft.AspNetCore.Html.HtmlString HTML { get; set; }
+        public string CurrentLessonName { get; set; }
+
+        public Microsoft.AspNetCore.Html.HtmlString CurrentLessonHTML { get; set; }
 
         public IEnumerable<UserLessonVM1> Lessons { get; set; }
 
-        public TestVM Test { get; set; }
+        public TestVM CurrentLessonTest { get; set; }
     }
 }
