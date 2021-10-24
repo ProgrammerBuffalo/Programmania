@@ -4,7 +4,8 @@ namespace Programmania.HtmlHelpers
 {
     public static class CourseHelper
     {
-        public static HtmlString CreateCourse(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html, ViewModels.UserCourseVM course)
+        public static HtmlString CreateCourse(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html,
+            ViewModels.UserCourseVM course)
         {
             System.Text.StringBuilder @string = new System.Text.StringBuilder();
 

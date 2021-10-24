@@ -11,6 +11,8 @@
 $(document).ready(function () {
     $('.discipline').click(function () {
         let id = $(this).attr('data-id');
+
+        sessionStorage.setItem('disciplineId', id);
         sessionStorage.setItem('disciplineImage', $(this).find('.discipline__image > img').first().attr('src'));
         sessionStorage.setItem('disciplineName', $(this).find('.discipline__title').first().text());
 

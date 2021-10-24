@@ -1,5 +1,5 @@
 ﻿@using Programmania.HtmlHelpers;
-@model Programmania.ViewModels.UserLessonsVM1;
+@model IEnumerable<Programmania.ViewModels.UserLessonVM>;
 
 <!DOCTYPE html>
 <html>
@@ -38,10 +38,7 @@
                 </div>
 
                 <div class="burger-content">
-                    @foreach (var lesson in Model.Lessons)
-                    {
-                        @Html.CreateLesson(lesson, lesson.Order);
-                    }
+                    @Html.CreateLessonsMenu(Model);
 
                     @*<a href="#">
                             <div class="burger-content-elem burger-content-elem_read">
@@ -87,10 +84,10 @@
             </div>
 
             <div class="content">
-                <h3 id="lessonName" class="content__title text-normal" data-aos="fade-left" data-aos-duration="1000">@Model.CurrentLessonName</h3>
+                <h3 id="lessonName" class="content__title text-normal" data-aos="fade-left" data-aos-duration="1000">@(Model == null ? null : Model.First().Name)</h3>
 
                 <div id="lessonContent">
-                    @Model.CurrentLessonHTML
+                    @(Model == null? null : Model.First().HTML)
                 </div>
 
                 @*<p class="content__text text-thin" data-aos="fade-right" data-data-aos-duration="1000">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>*@
@@ -112,7 +109,7 @@
 
                 @*<p class="content__text text-thin" data-aos="fade-right" data-data-aos-duration="1000">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>*@
 
-                @*<div class="content-tests">
+                @*<div id="test" class="content-tests">
                         <div class="content-tests-test" data-aos="fade-right" data-aos-duration="1000">
                             <h3 class="content-tests__question text-normal">Some question...</h3>
 
@@ -142,7 +139,18 @@
                         </div>
                     </div>*@
 
-                @Html.CreateQuestion(Model.CurrentLessonTest)
+            <div id="test" class='content-tests-test' data-aos='fade-right' data-aos-duration='1000'>
+                @(Model == null ? null : Html.CreateTest(Model.First().Test))
+
+                @*@if (Model != null)
+                    @Html.CreateTest(Model.First().Test)*@
+            </div>
+
+                <button id='checkTest' class="button button-next">
+                    <span>
+                        <p class="text-normal">Check Next</p>
+                    </span>
+                </button>
 
                 <button class="button button-next">
                     <span>
@@ -161,6 +169,7 @@
         hljs.highlightAll();
     </script>
 
+    <script type="text/javascript" src="~/js/elements/test.js"></script>
     <script type="text/javascript" src="~/js/lessons.js"></script>
 </body>
 </html>

@@ -4,7 +4,8 @@ namespace Programmania.HtmlHelpers
 {
     public static class DisciplineHelper
     {
-        public static HtmlString CreateDiscipline(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html, ViewModels.UserDisciplineVM discipline)
+        public static HtmlString CreateDiscipline(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html,
+            ViewModels.UserDisciplineVM discipline)
         {
             System.Text.StringBuilder @string = new System.Text.StringBuilder();
 
