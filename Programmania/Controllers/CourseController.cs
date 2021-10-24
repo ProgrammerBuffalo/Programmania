@@ -93,7 +93,7 @@ namespace Programmania.Controllers
         public IActionResult CheckTest(int testIndex, int disciplineId, int lessonId)
         {
             User user = HttpContext.Items["User"] as User;
-            Lesson lesson = getRequestedLesson(user, disciplineId, lessonId);
+            Lesson lesson = getLessonFromDB(user, disciplineId, lessonId);
             if (lesson == null)
                 return NotFound();
 
@@ -115,24 +115,42 @@ namespace Programmania.Controllers
         [HttpGet]
         public IActionResult CheckLessonAccess(int lessonId, int disciplineId)
         {
-            Lesson lesson = getRequestedLesson(HttpContext.Items["User"] as User, disciplineId, lessonId);
+            RequestedLessonVM lesson = getRequestedLesson(HttpContext.Items["User"] as User, disciplineId, lessonId);
             if (lesson == null)
                 return NotFound();
 
-            return Content(System.Text.Encoding.UTF8.GetString(fileService.GetDocument(dbContext.Documents.FirstOrDefault(d => d.StreamId == lesson.StreamId).Path)));
+            return Json(lesson);
         }
 
-        private Lesson getRequestedLesson(User user, int disciplineId, int lessonId)
+        private Lesson getLessonFromDB(User user, int disciplineId, int lessonId)
         {
             int? order = dbContext.UserDisciplines.FirstOrDefault(ud => ud.UserId == user.Id && ud.DisciplineId == disciplineId)?.LessonOrder;
             if (order == null)
                 return null;
-            Lesson lesson = dbContext.Disciplines.FirstOrDefault(d => d.Id == disciplineId)?.Lessons.FirstOrDefault(l => l.Id == lessonId);
-            if (lesson != null)
-            {
-                return lesson.Order <= order ? lesson : null;
-            }
-            return null;
+
+            Lesson lesson = dbContext.Disciplines.FirstOrDefault(d => d.Id == disciplineId)?.Lessons
+                .FirstOrDefault(l => l.Id == lessonId && l.Order <= order);
+            
+            return lesson;
+        }
+
+        private RequestedLessonVM getRequestedLesson(User user, int disciplineId, int lessonId)
+        {
+            Lesson lesson = getLessonFromDB(user, disciplineId, lessonId);
+
+            if (lesson == null)
+                return null;
+
+            Test test = dbContext.Lessons.FirstOrDefault(l => l.Id == lesson.Id).Test;
+
+            RequestedLessonVM requestedLesson = new RequestedLessonVM
+            { 
+                Test = new TestVM { A1 = test.Answer1, A2 = test.Answer2, A3 = test.Answer3, A4 = test.Answer4, Question = test.Question},
+                HTML = new Microsoft.AspNetCore.Html.HtmlString(System.Text.Encoding.UTF8.GetString(
+                fileService.GetDocument(dbContext.Documents.FirstOrDefault(d => d.StreamId == lesson.StreamId).Path)))
+            };
+
+            return requestedLesson;
         }
 
         private UserLessonVM[] getLessons(User user, int disciplineId)
@@ -146,14 +164,13 @@ namespace Programmania.Controllers
             }
 
             userLessons = dbContext.Disciplines.FirstOrDefault(d => d.Id == userDiscipline.DisciplineId)?.Lessons.Select(s => new UserLessonVM
-            { Id = s.Id, Name = s.Name, Order = s.Order, IsCompleted = s.Order <= userDiscipline.LessonOrder ? true : false, StreamId = s.StreamId }).ToList();
+            { LessonId = s.Id, Name = s.Name, Order = s.Order, IsCompleted = s.Order <= userDiscipline.LessonOrder ? true : false }).ToList();
 
-            var lastLesson = userLessons.Last(l => l.IsCompleted);
-            lastLesson.HTML = System.Text.Encoding.UTF8.GetString(fileService
-                .GetDocument(dbContext.Documents.FirstOrDefault(d => d.StreamId == lastLesson.StreamId).Path));
-            Test test = dbContext.Lessons.First(l => l.Id == lastLesson.Id).Test;
-            lastLesson.Test = new TestVM { A1 = test.Answer1, A2 = test.Answer2, A3 = test.Answer3, A4 = test.Answer4, Question = test.Question };
-
+            //var lastLesson = userLessons.Last(l => l.IsCompleted);
+            //lastLesson.HTML = System.Text.Encoding.UTF8.GetString(fileService
+            //    .GetDocument(dbContext.Documents.FirstOrDefault(d => d.StreamId == lastLesson.StreamId).Path));
+            //Test test = dbContext.Lessons.First(l => l.Id == lastLesson.LessonId).Test;
+            //lastLesson.Test = new TestVM { A1 = test.Answer1, A2 = test.Answer2, A3 = test.Answer3, A4 = test.Answer4, Question = test.Question };
             return userLessons.ToArray();
         }
 
@@ -272,92 +289,5 @@ namespace Programmania.Controllers
 
             return userCourses.ToArray();
         }
-
-        //this function should return UserLessonsVM (past name UserLessonsVM1)
-        //userLessonVM.Lessons - contains lessonId, lessonName, streamId (html content of lesson), isCompleated
-        //userLessonVM.Name - name of current lessson
-        //userLessonVM.HTML - html content of current lesson
-        //userLessonVM.Test - test for current lesson
-        //private UserLessonsVM1 GetLessons(User user, int disciplineId)
-        //{
-        //    UserDiscipline userDiscipline = dbContext.UserDisciplines.Where(u => u.UserId == user.Id).FirstOrDefault(c => c.DisciplineId == disciplineId);
-
-        //    if (userDiscipline == null)
-        //    {
-        //        return null;
-        //    }
-
-        //    UserLessonsVM1 userLessonVM = new UserLessonsVM1();
-        //    userLessonVM.Lessons = dbContext.Disciplines.FirstOrDefault(d => d.Id == userDiscipline.DisciplineId)
-        //        ?.Lessons.Select(l => new UserLessonVM1() { Id = l.Id, Name = l.Name, IsCompleted = l.Order <= userDiscipline.LessonOrder ? true : false, StreamId = l.StreamId })
-        //        .OrderBy(l => l.Order);
-
-        //    var lastLesson = userLessonVM.Lessons.Last(l => l.IsCompleted);
-
-        //    userLessonVM.CurrentLessonName = lastLesson.Name;
-
-        //    userLessonVM.CurrentLessonHTML = new Microsoft.AspNetCore.Html.HtmlString(
-        //        System.Text.Encoding.UTF8.GetString(
-        //        fileService.GetDocument(dbContext.Documents.FirstOrDefault(d => d.StreamId == lastLesson.StreamId).Path)));
-
-        //    var test = dbContext.Lessons.First(l => l.Id == lastLesson.Id).Test;
-        //    userLessonVM.CurrentLessonTest = new TestVM() { Question = test.Question, A1 = test.Answer1, A2 = test.Answer2, A3 = test.Answer3, A4 = test.Answer4 };
-
-        //    return userLessonVM;
-        //}
-
-        //this function should return 2 items 
-        //first item - html content of lesson
-        //second item - test for current lessonId
-        //function is called when user presses to next button or clicking in burger lesson`s menu
-        //private IActionResult GetRequestedLesson(User user, int disciplineId, int lessonId, Guid streamId)
-        //{
-        //    Lesson lesson = CheckLessonAccess(user, disciplineId, lessonId);
-        //    if (lesson != null)
-        //    {
-        //        var tuple = (html: "", test: new TestVM());
-        //        tuple.html = System.Text.Encoding.UTF8.GetString(
-        //            fileService.GetDocument(dbContext.Documents.FirstOrDefault(d => d.StreamId == streamId).Path));
-
-        //        tuple.test = new TestVM() { Question = lesson.Test.Question, A1 = lesson.Test.Answer1, A2 = lesson.Test.Answer2, A3 = lesson.Test.Answer3, A4 = lesson.Test.Answer4 };
-
-        //        return Json(tuple);
-        //    }
-        //    else
-        //        return BadRequest();
-        //}   
-
-        //private Lesson CheckLessonAccess(User user, int disciplineId, int lessonId)
-        //{
-        //    var userDiscipline = dbContext.UserDisciplines.FirstOrDefault(ud => ud.UserId == user.Id && ud.DisciplineId == disciplineId);
-        //    if (userDiscipline?.LessonOrder == null)
-        //        return null;
-        //    Lesson lesson = dbContext.Disciplines.FirstOrDefault(d => d.Id == disciplineId)?.Lessons.FirstOrDefault(l => l.Id == lessonId);
-        //    if (lesson != null)
-        //    {
-        //        //user pressed next button
-        //        if (lesson.Order == userDiscipline.LessonOrder)
-        //        {
-        //            userDiscipline.LessonOrder++;
-        //            return lesson;
-        //        }
-        //        //user want to see previous lessons
-        //        else if (lesson.Order < userDiscipline.LessonOrder)
-        //        {
-        //            return lesson;
-        //            //return lesson.Order <= order ? lesson : null;
-        //        }
-        //    }
-        //    return null;
-        //}
-
-        //private IActionResult CheckTest(User user, int lessonId, int answerIndex)
-        //{
-        //    var test = dbContext.Lessons.Where(l => l.Id == lessonId).FirstOrDefault().Test;
-        //    if (test.Correct == answerIndex)
-        //        return Ok();
-        //    else
-        //        return BadRequest();
-        //}
     }
 }
