@@ -12,6 +12,20 @@ $(document).ready(function () {
         }
     }
     lessonIndex = 0;
+
+    $.ajax({
+        type: 'GET',
+        url: 'Disciplines/Lessons',
+        dataType: 'json',
+        processData: true,
+        data: { 'disciplineId': sessionStorage.getItem('disciplineId'), 'lessonId': lessonIndex },
+        success: function () {
+
+            $('#lessonName').val(data.name);
+            $('#lessonContent').val(data.html);
+            $('#testContent').val(createTest(data.test));
+        }
+    });
 });
 
 $(document).ready(function () {
@@ -19,7 +33,7 @@ $(document).ready(function () {
         if ($(this).find('burger-content-elem_read')) {
             $.ajax({
                 type: 'GET',
-                url: '',
+                url: 'Disciplines/Lessons',
                 dataType: 'json',
                 processData: true,
                 data: { 'disciplineId': sessionStorage.getItem('disciplineId'), 'lessonId': $(this).attr('data-id') },
@@ -37,11 +51,12 @@ $(document).ready(function () {
         else if (lessonIndex == 0 && $(this).before().find('burger-content-elem_read')) {
             $.ajax({
                 type: 'GET',
-                url: '',
+                url: 'Disciplines/Lessons',
                 dataType: 'json',
                 processData: true,
                 data: { 'disciplineId': sessionStorage.getItem('disciplineId'), 'lessonId': $(this).attr('data-id') },
                 success: function (data) {
+
                     $('#lessonName').val(data.name);
                     $('#lessonContent').val(data.html);
                     $('#testContent').val(createTest(data.test));
@@ -68,7 +83,7 @@ $(document).ready(function () {
 
             $.ajax({
                 type: 'GET',
-                url: '',
+                url: 'Disciplines/Lessons',
                 data: { 'disciplineId': sessionStorage.getItem('disciplineId'), 'lessonId': elem.attr('data-id') },
                 success: function (data) {
                     curLesson.removeClass('burger-content-elem_unread');
@@ -93,7 +108,7 @@ $(document).ready(function () {
         if (answerIndex != null) {
             $.ajax({
                 type: 'GET',
-                url: '',
+                url: 'Disciplines/Lessons/check-test',
                 data: { 'answer': answerIndex },
                 dataType: 'json',
                 processData: true,
@@ -122,4 +137,23 @@ function findChekedAnswer() {
         if (answerInputs[i].checked == true)
             return i;
     }
+}
+
+function getLesson(lesson, disciplineId, lessonId) {
+    $.ajax({
+        type: 'GET',
+        url: 'Disciplines/Lessons',
+        data: { 'disciplineId': sessionStorage.getItem('disciplineId'), 'lessonId': elem.attr('data-id') },
+        success: function (data) {
+            lesson.removeClass('burger-content-elem_unread');
+            lesson.addClass('burger-content-elem_read');
+
+            $('#lessonName').val(data.name);
+            $('#lessonContent').val(data.html);
+            $('#testContent').val(createTest(data.test));
+        },
+        error: function () {
+
+        }
+    });
 }

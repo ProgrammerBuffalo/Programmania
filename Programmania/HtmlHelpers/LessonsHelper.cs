@@ -17,9 +17,9 @@ namespace Programmania.HtmlHelpers
                 foreach (var lesson in orderedLessons)
                 {
                     if (lesson.IsCompleted)
-                        @string.AppendLine($"<div class='burger-content-elem burger-content-elem_read' data-id='{lesson.Id}'>");
+                        @string.AppendLine($"<div class='burger-content-elem burger-content-elem_read' data-id='{lesson.LessonId}'>");
                     else
-                        @string.AppendLine($"<div class='burger-content-elem burger-content-elem_unread' data-id='{lesson.Id}'>");
+                        @string.AppendLine($"<div class='burger-content-elem burger-content-elem_unread' data-id='{lesson.LessonId}'>");
                     @string.AppendLine("<h3 class='burger-content-elem__text text-normal'>");
                     @string.AppendLine($"#{lesson.Order + 1} {lesson.Name}");
                     @string.AppendLine($"</h3>");

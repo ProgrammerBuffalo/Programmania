@@ -87,7 +87,7 @@
                 <h3 id="lessonName" class="content__title text-normal" data-aos="fade-left" data-aos-duration="1000">@(Model == null ? null : Model.First().Name)</h3>
 
                 <div id="lessonContent">
-                    @(Model == null? null : Model.First().HTML)
+                    @*@(Model == null? null : Model.First().HTML)*@
                 </div>
 
                 @*<p class="content__text text-thin" data-aos="fade-right" data-data-aos-duration="1000">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>*@
@@ -140,7 +140,7 @@
                     </div>*@
 
             <div id="test" class='content-tests-test' data-aos='fade-right' data-aos-duration='1000'>
-                @(Model == null ? null : Html.CreateTest(Model.First().Test))
+                @*@(Model == null ? null : Html.CreateTest(Model.First().Test))*@
 
                 @*@if (Model != null)
                     @Html.CreateTest(Model.First().Test)*@

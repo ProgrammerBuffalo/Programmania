@@ -83,12 +83,12 @@ namespace Programmania.Controllers
             //userLessonVMs[3] = new UserLessonVM() { StreamId = Guid.NewGuid(), Id = 4, Order = 2, Name = "lesson3", IsCompleted = true };
             //userLessonVMs[4] = new UserLessonVM() { StreamId = Guid.NewGuid(), Id = 5, Order = 3, Name = "lesson4", IsCompleted = false };
             //userLessonVMs[5] = new UserLessonVM() { StreamId = Guid.NewGuid(), Id = 6, Order = 0, Name = "lesson1", IsCompleted = true };
-            return View(null);
+            //return View(null);
 
             return View(getLessons(HttpContext.Items["User"] as User, disciplineId));
         }
 
-        [Route("Courses/Disciplines/Lessons/check-test")]
+        [Route("Disciplines/Lessons/check-test")]
         [HttpPost]
         public IActionResult CheckTest(int testIndex, int disciplineId, int lessonId)
         {
@@ -111,7 +111,7 @@ namespace Programmania.Controllers
             return Json(false);
         }
 
-        [Route("Courses/Disciplines/Lessons/{id}")]
+        [Route("Disciplines/Lessons")]
         [HttpGet]
         public IActionResult CheckLessonAccess(int lessonId, int disciplineId)
         {
@@ -130,7 +130,7 @@ namespace Programmania.Controllers
 
             Lesson lesson = dbContext.Disciplines.FirstOrDefault(d => d.Id == disciplineId)?.Lessons
                 .FirstOrDefault(l => l.Id == lessonId && l.Order <= order);
-            
+
             return lesson;
         }
 
@@ -144,8 +144,8 @@ namespace Programmania.Controllers
             Test test = dbContext.Lessons.FirstOrDefault(l => l.Id == lesson.Id).Test;
 
             RequestedLessonVM requestedLesson = new RequestedLessonVM
-            { 
-                Test = new TestVM { A1 = test.Answer1, A2 = test.Answer2, A3 = test.Answer3, A4 = test.Answer4, Question = test.Question},
+            {
+                Test = new TestVM { A1 = test.Answer1, A2 = test.Answer2, A3 = test.Answer3, A4 = test.Answer4, Question = test.Question },
                 HTML = new Microsoft.AspNetCore.Html.HtmlString(System.Text.Encoding.UTF8.GetString(
                 fileService.GetDocument(dbContext.Documents.FirstOrDefault(d => d.StreamId == lesson.StreamId).Path)))
             };
