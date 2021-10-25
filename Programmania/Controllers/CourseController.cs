@@ -12,8 +12,8 @@ using Programmania.ViewModels;
 
 namespace Programmania.Controllers
 {
-    [Authorize]
     [Route("Courses")]
+    [Authorize]
     public class CourseController : Controller
     {
         private DAL.ProgrammaniaDBContext dbContext;
@@ -47,9 +47,10 @@ namespace Programmania.Controllers
 
         [Route("Disciplines")]
         [HttpGet]
-        public IActionResult Disciplines(int id)
+        [AllowAnonymous]
+        public IActionResult Disciplines(int courseId)
         {
-            return View(getDisciplines(HttpContext.Items["User"] as User, id));
+            return View(getDisciplines(HttpContext.Items["User"] as User, courseId));
         }
 
         [Route("Courses/Disciplines/discipline-begin")]
@@ -71,8 +72,9 @@ namespace Programmania.Controllers
             return BadRequest();
         }
 
-        [Route("Courses/Disciplines/Lessons")]
+        [Route("Disciplines/Lessons")]
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Lessons(int disciplineId)
         {
             return View(getLessons(HttpContext.Items["User"] as User, disciplineId));
@@ -83,7 +85,7 @@ namespace Programmania.Controllers
         public IActionResult CheckTest(int testIndex, int disciplineId, int lessonId)
         {
             User user = HttpContext.Items["User"] as User;
-            Lesson lesson = getRequestedLesson(user, disciplineId, lessonId);
+            Lesson lesson = getLessonFromDB(user, disciplineId, lessonId);
             if (lesson == null)
                 return NotFound();
 
@@ -105,45 +107,62 @@ namespace Programmania.Controllers
         [HttpGet]
         public IActionResult CheckLessonAccess(int lessonId, int disciplineId)
         {
-            Lesson lesson = getRequestedLesson(HttpContext.Items["User"] as User, disciplineId, lessonId);
+            RequestedLessonVM lesson = getRequestedLesson(HttpContext.Items["User"] as User, disciplineId, lessonId);
             if (lesson == null)
                 return NotFound();
 
-            return Content(System.Text.Encoding.UTF8.GetString(fileService.GetDocument(dbContext.Documents.FirstOrDefault(d => d.StreamId == lesson.StreamId).Path)));
+            return Json(lesson);
         }
 
-        private Lesson getRequestedLesson(User user, int disciplineId, int lessonId)
+        private Lesson getLessonFromDB(User user, int disciplineId, int lessonId)
         {
             int? order = dbContext.UserDisciplines.FirstOrDefault(ud => ud.UserId == user.Id && ud.DisciplineId == disciplineId)?.LessonOrder;
             if (order == null)
                 return null;
-            Lesson lesson = dbContext.Disciplines.FirstOrDefault(d => d.Id == disciplineId)?.Lessons.FirstOrDefault(l => l.Id == lessonId);
-            if (lesson != null)
-            {
-                return lesson.Order <= order ? lesson : null;
-            }
-            return null;
+
+            Lesson lesson = dbContext.Disciplines.FirstOrDefault(d => d.Id == disciplineId)?.Lessons
+                .FirstOrDefault(l => l.Id == lessonId && l.Order <= order);
+            
+            return lesson;
+        }
+
+        private RequestedLessonVM getRequestedLesson(User user, int disciplineId, int lessonId)
+        {
+            Lesson lesson = getLessonFromDB(user, disciplineId, lessonId);
+
+            if (lesson == null)
+                return null;
+
+            Test test = dbContext.Lessons.FirstOrDefault(l => l.Id == lesson.Id).Test;
+
+            RequestedLessonVM requestedLesson = new RequestedLessonVM
+            { 
+                Test = new TestVM { A1 = test.Answer1, A2 = test.Answer2, A3 = test.Answer3, A4 = test.Answer4, Question = test.Question},
+                HTML = new Microsoft.AspNetCore.Html.HtmlString(System.Text.Encoding.UTF8.GetString(
+                fileService.GetDocument(dbContext.Documents.FirstOrDefault(d => d.StreamId == lesson.StreamId).Path)))
+            };
+
+            return requestedLesson;
         }
 
         private UserLessonVM[] getLessons(User user, int disciplineId)
         {
             List<UserLessonVM> userLessons = new List<UserLessonVM>();
             UserDiscipline userDiscipline = dbContext.UserDisciplines.Where(u => u.UserId == user.Id).FirstOrDefault(c => c.DisciplineId == disciplineId);
-           
+
             if (userDiscipline == null)
             {
                 return null;
             }
 
             userLessons = dbContext.Disciplines.FirstOrDefault(d => d.Id == userDiscipline.DisciplineId)?.Lessons.Select(s => new UserLessonVM
-            { LessonId = s.Id, Name = s.Name, Order = s.Order, IsCompleted = s.Order <= userDiscipline.LessonOrder ? true : false, StreamId = s.StreamId }).ToList();
+            { LessonId = s.Id, Name = s.Name, Order = s.Order, IsCompleted = s.Order <= userDiscipline.LessonOrder ? true : false }).ToList();
 
-            var lastLesson = userLessons.Last(l => l.IsCompleted);
-            lastLesson.HTML = System.Text.Encoding.UTF8.GetString(fileService
-                .GetDocument(dbContext.Documents.FirstOrDefault(d => d.StreamId == lastLesson.StreamId).Path));
-            Test test = dbContext.Lessons.First(l => l.Id == lastLesson.LessonId).Test;
-            lastLesson.Test = new TestVM { A1 = test.Answer1, A2 = test.Answer2, A3 = test.Answer3, A4 = test.Answer4, Question = test.Question };
-
+            //var lastLesson = userLessons.Last(l => l.IsCompleted);
+            //lastLesson.HTML = System.Text.Encoding.UTF8.GetString(fileService
+            //    .GetDocument(dbContext.Documents.FirstOrDefault(d => d.StreamId == lastLesson.StreamId).Path));
+            //Test test = dbContext.Lessons.First(l => l.Id == lastLesson.LessonId).Test;
+            //lastLesson.Test = new TestVM { A1 = test.Answer1, A2 = test.Answer2, A3 = test.Answer3, A4 = test.Answer4, Question = test.Question };
             return userLessons.ToArray();
         }
 
@@ -159,7 +178,7 @@ namespace Programmania.Controllers
                     LessonsCompleted = s.LessonOrder,
                     StreamId = s.Discipline.StreamId
                 }).ToList();
-               
+
 
             List<UserDisciplineVM> userDisciplines = new List<UserDisciplineVM>();
 

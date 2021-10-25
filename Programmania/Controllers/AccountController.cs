@@ -40,7 +40,7 @@ namespace Programmania.Controllers
             if (accountService.RefreshTokens(rtCookie, HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString(),
                 out string generatedJWT, out string generatedRToken, out User user))
             {
-                  return Unauthorized("Invalid refresh token");
+                return Unauthorized("Invalid refresh token");
             }
 
             setCookieTokens(generatedRToken, generatedJWT);

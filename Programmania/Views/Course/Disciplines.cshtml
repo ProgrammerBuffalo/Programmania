@@ -2,30 +2,30 @@
 @model IEnumerable<Programmania.ViewModels.UserDisciplineVM>;
 
 <html>
- <head>
-  <title>Disciplines</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <script src="~/js/loading-bar.min.js"></script>
-  <link rel="stylesheet" href="~/css/loading-bar.min.css" />
-  <link rel="stylesheet" href="~/css/Disciplines.css" />
+<head>
+    <title>Disciplines</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="~/js/loading-bar.min.js"></script>
+    <link rel="stylesheet" href="~/css/loading-bar.min.css" />
+    <link rel="stylesheet" href="~/css/Disciplines.css">
 
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
- </head>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+</head>
 
- <body>
-  <div class="header-text">
-   <a href="Courses">
-    <div class="back">
+<body>
+    <div class="header-text">
+        <a href="Courses">
+            <div class="back">
 
-    </div>
-   </a>
+            </div>
+        </a>
 
         <div class="header-text__content">
-            <h3>C# Course</h3>
+            <h3></h3>
         </div>
     </div>
 
@@ -33,21 +33,24 @@
         <img />
     </div>
 
-  <div class="content">
-   <div class="desciplines">
+    <div class="content">
+        <div class="disciplines">
 
-    @foreach (var discipline in Model)
-    {
-     @Html.CreateDiscipline(discipline);
-    }
+            @if (Model != null)
+            {
+                @foreach (var discipline in Model)
+                {
+                    @Html.CreateDiscipline(discipline);
+                }
+            }
 
-   </div>
-  </div>
+        </div>
+    </div>
 
-  <script>
-   AOS.init();
-  </script>
+    <script>
+        AOS.init();
+    </script>
 
-  <script ript type="text/javascript" src="~/js/disciplines.js"></script>
- </body>
- </html>
+    <script ript type="text/javascript" src="~/js/disciplines.js"></script>
+</body>
+</html>
