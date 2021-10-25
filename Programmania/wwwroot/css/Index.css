@@ -94,6 +94,19 @@ h1, h2, h3, h4, h5, h6 {
     src: url("../fonts/Montserrat-Bold.ttf");
 }
 
+html,body{
+    height: 100%;
+}
+
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.main{
+    flex: 1 1 auto;
+}
 
 .header-text {
     height: 70px;

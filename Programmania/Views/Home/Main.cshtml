@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="~/css/Main.css" />
+	<link rel="stylesheet" href="~/css/Footer.css" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
 	<link rel="stylesheet" href="~/css/loading-bar.min.css">
 	<script src="~/js/loading-bar.min.js"></script>
@@ -23,7 +24,11 @@
 </head>
 
 <body>
-	<header class="header" style="background-image: url('images/mainHeader.jpg');">
+	<div class="wrapper">
+		
+
+	<main class="main">
+<header class="header" style="background-image: url('images/mainHeader.jpg');">
 		<div class="header__title">
 			Welcome to Programmania, username
 		</div>
@@ -32,9 +37,6 @@
 		</a>
 
 	</header>
-
-	<main class="main">
-
 		<div class="left-menu">
 			<div class="left-menu-content" id="menu-content">
 
@@ -99,7 +101,7 @@
 
 
 		<div class="courses-container" id="courses">
-			<h3 class="container__title">All courses</h3>
+			@*<h3 class="container__title">All courses</h3>
 			<div class="swiper">
 				<div class="courses swiper-container" data-aos="zoom-in" data-aos-duration="1000">
 
@@ -266,7 +268,100 @@
 					<div class="swiper-button-prev"></div>
 					<div class="swiper-button-next"></div>
 				</div>
+			</div>*@
+
+
+			<div class="swiper">
+		<div class="courses swiper-container">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide">
+					<div class="course" style="background-color: #fcc9c0;">
+						<div class="course__content">
+							<div class="course__info">
+								<h2 class="course__title title_ruby">Ruby</h2>
+								<div class="course__percent percent_ruby">
+									<div class="ldBar label-center" data-preset="circle" data-value="77"
+										data-transition-in="1000" style="width: 100%; height: 100%">
+									</div>
+								</div>
+							</div>
+
+							<div class="course__button button_ruby">
+								Go to course
+							</div>
+						</div>
+
+						<div class="flip">
+							<div class="flip__front course__image" style="background-image: url('images/rubyCourse.png');">
+
+							</div>
+
+							<div class="flip__back">
+								<p>Welcome to Ruby Course!</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="swiper-slide">
+					<div class="course" style="background-color: #c0f1fc;">
+						<div class="course__content">
+							<div class="course__info">
+								<h2 class="course__title title_cpp">Ruby</h2>
+								<div class="course__percent percent_cpp">
+									<div class="ldBar label-center" data-preset="circle" data-value="77"
+										data-transition-in="1000" style="width: 100%; height: 100%">
+									</div>
+								</div>
+							</div>
+
+							<div class="course__button button_cpp">
+								Go to course
+							</div>
+						</div>
+
+						<div class="flip">
+							<div class="flip__front course__image" style="background-image: url('images/cppCourse.png');">
+
+							</div>
+
+							<div class="flip__back">
+								<p>Welcome to C++ Course</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="swiper-slide">
+					<div class="course" style="background-color: #f5e4ff;">
+						<div class="course__content">
+							<div class="course__info">
+								<h2 class="course__title title_php">Ruby</h2>
+								<div class="course__percent percent_php">
+									<div class="ldBar label-center" data-preset="circle" data-value="77"
+										data-transition-in="1000" style="width: 100%; height: 100%">
+									</div>
+								</div>
+							</div>
+
+							<div class="course__button button_php">
+								Go to course
+							</div>
+						</div>
+						<div class="flip">
+							<div class="flip__front course__image" style="background-image: url('images/phpCourse.jpg');">
+
+							</div>
+
+							<div class="flip__back">
+								<p>Welcome to PHP Course</p>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
+		</div>
 		</div>
 
 
@@ -465,6 +560,34 @@
 
 	</main>
 
+	<footer class="footer">
+            <div class="footer-links" data-aos="zoom-in" data-aos-duration="700">
+                <a href="#" class="footer-links_first">
+                    <div class="footer-link__image">
+                        <img src="~/images/facebookLogo.png" />
+                    </div>
+                </a>
+
+                <a href="#">
+                    <div class="footer-link__image">
+                        <img src="~/images/twitterLogo.png" />
+                    </div>
+                </a>
+
+                <a href="#">
+                    <div class="footer-link__image">
+                        <img src="~/images/linkedinLogo.png" />
+                    </div>
+                </a>
+            </div>
+
+            <div class="footer__text" data-aos="zoom-in" data-aos-duration="700">
+                <h5>&#x24B8; 2021 Programmania. All rights reserved.</h5>
+            </div>
+    </footer>
+	</div>
+	
+
 	<script src="~/js/util/courses-slider.js"></script>
 	<script src="~/js/util/news-slider.js"></script>
 	<script src="~/js/util/challenges-slider.js"></script>
@@ -475,4 +598,6 @@
 	</script>
 </body>
 
-</html>
+
+
+	
