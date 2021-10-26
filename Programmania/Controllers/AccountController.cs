@@ -94,6 +94,7 @@ namespace Programmania.Controllers
 
         [Route("registration")]
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> MakeRegistration(RegistrationVM registrationVM)
         {
             if (ModelState.IsValid)
@@ -114,7 +115,7 @@ namespace Programmania.Controllers
                         xmlService.CreateXDeclaration(emptyFileContext);
                         user.HistoryId = emptyFileContext.StreamId;
 
-                        if (registrationVM.FormFile.Length > 0)
+                        if (registrationVM.FormFile != null)
                         {
                             SqlFileContext sqlFileContext = fileService.AddEmptyDocument(user.Name + Path.GetExtension(registrationVM.FormFile.FileName));
                             fileService.FillDocumentContent(sqlFileContext, registrationVM.FormFile);

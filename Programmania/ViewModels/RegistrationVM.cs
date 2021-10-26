@@ -5,7 +5,8 @@ namespace Programmania.ViewModels
     public class RegistrationVM
     {
         [Required]
-        [Range(5, 20, ErrorMessage = "Please enter nickname in range 5-20 symbols")]
+        [MinLength(5, ErrorMessage = "Please enter nickname in range 5-20 symbols")]
+        [MaxLength(20, ErrorMessage = "Please enter nickname in range 5-20 symbols")]
         public string Nickname { get; set; }
 
         [Required]

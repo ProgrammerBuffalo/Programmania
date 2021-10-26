@@ -31,22 +31,13 @@ namespace Programmania.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
         public IActionResult Courses()
         {
-            UserCourseVM[] userCourses = new UserCourseVM[6];
-            userCourses[0] = new UserCourseVM() { CourseName = "Name1", Description = "Lorem Ipsum", IsSelected = true, LessonsCompleted = 11, LessonsCount = 111, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
-            userCourses[1] = new UserCourseVM() { CourseName = "Name2", Description = "Lorem Ipsum", IsSelected = true, LessonsCompleted = 12, LessonsCount = 45, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
-            userCourses[2] = new UserCourseVM() { CourseName = "Name3", Description = "Lorem Ipsum", IsSelected = true, LessonsCompleted = 13, LessonsCount = 45, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
-            userCourses[3] = new UserCourseVM() { CourseName = "Name4", Description = "Lorem Ipsum", IsSelected = false, LessonsCompleted = 14, LessonsCount = 65, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
-            userCourses[4] = new UserCourseVM() { CourseName = "Name5", Description = "Lorem Ipsum", IsSelected = false, LessonsCompleted = 15, LessonsCount = 45, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
-            userCourses[5] = new UserCourseVM() { CourseName = "Name6", Description = "Lorem Ipsum", IsSelected = false, LessonsCompleted = 16, LessonsCount = 63, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
-            return View(userCourses/*getCourses(HttpContext.Items["User"] as User)*/);
+            return View(getCourses(HttpContext.Items["User"] as User));
         }
 
         [Route("Disciplines")]
         [HttpGet]
-        [AllowAnonymous]
         public IActionResult Disciplines(int courseId)
         {
             return View(getDisciplines(HttpContext.Items["User"] as User, courseId));
@@ -166,12 +157,7 @@ namespace Programmania.Controllers
             userLessons = dbContext.Disciplines.FirstOrDefault(d => d.Id == userDiscipline.DisciplineId)?.Lessons.Select(s => new UserLessonVM
             { LessonId = s.Id, Name = s.Name, Order = s.Order, IsCompleted = s.Order <= userDiscipline.LessonOrder ? true : false }).ToList();
 
-            //var lastLesson = userLessons.Last(l => l.IsCompleted);
-            //lastLesson.HTML = System.Text.Encoding.UTF8.GetString(fileService
-            //    .GetDocument(dbContext.Documents.FirstOrDefault(d => d.StreamId == lastLesson.StreamId).Path));
-            //Test test = dbContext.Lessons.First(l => l.Id == lastLesson.LessonId).Test;
-            //lastLesson.Test = new TestVM { A1 = test.Answer1, A2 = test.Answer2, A3 = test.Answer3, A4 = test.Answer4, Question = test.Question };
-            return userLessons.ToArray();
+             return userLessons.ToArray();
         }
 
         private UserDisciplineVM[] getDisciplines(User user, int courseId)
