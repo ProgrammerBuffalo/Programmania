@@ -1,4 +1,6 @@
-﻿namespace Programmania.ViewModels
+﻿using System;
+
+namespace Programmania.ViewModels
 {
     public class UserDisciplineVM
     {
@@ -10,7 +12,7 @@
 
         public int LessonsCompleted { get; set; }
 
-        public int Percentage => LessonsCompleted * 100 / LessonsCount;
+        public int Percentage => (int)Math.Round((double)(100 * LessonsCompleted) / LessonsCount);
 
         public byte[] Image { get; set; }
 

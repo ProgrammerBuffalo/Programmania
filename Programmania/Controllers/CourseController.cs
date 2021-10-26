@@ -31,7 +31,6 @@ namespace Programmania.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
         public IActionResult Courses()
         {
             return View(getCourses(HttpContext.Items["User"] as User));
@@ -39,7 +38,6 @@ namespace Programmania.Controllers
 
         [Route("Disciplines")]
         [HttpGet]
-        [AllowAnonymous]
         public IActionResult Disciplines(int courseId)
         {
             return View(getDisciplines(HttpContext.Items["User"] as User, courseId));
@@ -153,12 +151,7 @@ namespace Programmania.Controllers
             userLessons = dbContext.Disciplines.FirstOrDefault(d => d.Id == userDiscipline.DisciplineId)?.Lessons.Select(s => new UserLessonVM
             { LessonId = s.Id, Name = s.Name, Order = s.Order, IsCompleted = s.Order <= userDiscipline.LessonOrder ? true : false }).ToList();
 
-            //var lastLesson = userLessons.Last(l => l.IsCompleted);
-            //lastLesson.HTML = System.Text.Encoding.UTF8.GetString(fileService
-            //    .GetDocument(dbContext.Documents.FirstOrDefault(d => d.StreamId == lastLesson.StreamId).Path));
-            //Test test = dbContext.Lessons.First(l => l.Id == lastLesson.LessonId).Test;
-            //lastLesson.Test = new TestVM { A1 = test.Answer1, A2 = test.Answer2, A3 = test.Answer3, A4 = test.Answer4, Question = test.Question };
-            return userLessons.ToArray();
+             return userLessons.ToArray();
         }
 
         private UserDisciplineVM[] getDisciplines(User user, int courseId)
