@@ -84,7 +84,7 @@
             </div>
 
             <div class="content">
-                <h3 id="lessonName" class="content__title text-normal" data-aos="fade-left" data-aos-duration="1000">@(Model == null ? null : Model.First().Name)</h3>
+                <h3 id="lessonName" class="content__title text-normal" data-aos="fade-left" data-aos-duration="1000"></h3>
 
                 <div id="lessonContent">
                     @*@(Model == null? null : Model.First().HTML)*@
@@ -139,20 +139,20 @@
                         </div>
                     </div>*@
 
-            <div id="test" class='content-tests-test' data-aos='fade-right' data-aos-duration='1000'>
-                @*@(Model == null ? null : Html.CreateTest(Model.First().Test))*@
+                <div id="test" class='content-tests-test' data-aos='fade-right' data-aos-duration='1000'>
+                    @*@(Model == null ? null : Html.CreateTest(Model.First().Test))*@
 
-                @*@if (Model != null)
-                    @Html.CreateTest(Model.First().Test)*@
-            </div>
+                    @*@if (Model != null)
+                        @Html.CreateTest(Model.First().Test)*@
+                </div>
 
                 <button id='checkTest' class="button button-next">
                     <span>
-                        <p class="text-normal">Check Next</p>
+                        <p class="text-normal">Check Test</p>
                     </span>
                 </button>
 
-                <button class="button button-next">
+                <button id="next" class="button button-next">
                     <span>
                         <p class="text-normal">Next</p>
                     </span>

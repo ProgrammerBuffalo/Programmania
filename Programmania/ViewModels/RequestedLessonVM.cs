@@ -8,7 +8,7 @@ namespace Programmania.ViewModels
 {
     public class RequestedLessonVM
     {
-        public Microsoft.AspNetCore.Html.HtmlString HTML { get; set; }
+        public string HTML { get; set; }
 
         public TestVM Test { get; set; }
     }

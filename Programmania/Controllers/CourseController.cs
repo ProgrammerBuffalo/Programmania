@@ -34,14 +34,7 @@ namespace Programmania.Controllers
         [AllowAnonymous]
         public IActionResult Courses()
         {
-            UserCourseVM[] userCourses = new UserCourseVM[6];
-            userCourses[0] = new UserCourseVM() { CourseName = "Name1", Description = "Lorem Ipsum", IsSelected = true, LessonsCompleted = 11, LessonsCount = 111, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
-            userCourses[1] = new UserCourseVM() { CourseName = "Name2", Description = "Lorem Ipsum", IsSelected = true, LessonsCompleted = 12, LessonsCount = 45, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
-            userCourses[2] = new UserCourseVM() { CourseName = "Name3", Description = "Lorem Ipsum", IsSelected = true, LessonsCompleted = 13, LessonsCount = 45, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
-            userCourses[3] = new UserCourseVM() { CourseName = "Name4", Description = "Lorem Ipsum", IsSelected = false, LessonsCompleted = 14, LessonsCount = 65, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
-            userCourses[4] = new UserCourseVM() { CourseName = "Name5", Description = "Lorem Ipsum", IsSelected = false, LessonsCompleted = 15, LessonsCount = 45, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
-            userCourses[5] = new UserCourseVM() { CourseName = "Name6", Description = "Lorem Ipsum", IsSelected = false, LessonsCompleted = 16, LessonsCount = 63, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
-            return View(userCourses/*getCourses(HttpContext.Items["User"] as User)*/);
+            return View(getCourses(HttpContext.Items["User"] as User));
         }
 
         [Route("Disciplines")]
@@ -52,8 +45,9 @@ namespace Programmania.Controllers
             return View(getDisciplines(HttpContext.Items["User"] as User, courseId));
         }
 
-        [Route("Courses/Disciplines/discipline-begin")]
+        [Route("Disciplines/discipline-begin")]
         [HttpPost]
+        [AllowAnonymous]
         public IActionResult BeginDiscipline(int disciplineId)
         {
             var user = HttpContext.Items["User"] as User;
@@ -66,7 +60,7 @@ namespace Programmania.Controllers
 
                 dbContext.Update(userDiscipline);
                 dbContext.SaveChanges();
-                return RedirectToAction("Courses/Disciplines/Lessons", disciplineId);
+                return RedirectToAction("Disciplines/Lessons", disciplineId);
             }
             return BadRequest();
         }
@@ -76,20 +70,12 @@ namespace Programmania.Controllers
         [AllowAnonymous]
         public IActionResult Lessons(int disciplineId)
         {
-            //UserLessonVM[] userLessonVMs = new UserLessonVM[6];
-            //userLessonVMs[0] = new UserLessonVM() { StreamId = Guid.NewGuid(), Id = 1, Order = 4, Name = "lesson5", IsCompleted = false, Test = new TestVM() { A1 = "a", A2 = "b", A3 = "c", A4 = "d", Question = "que??" } };
-            //userLessonVMs[1] = new UserLessonVM() { StreamId = Guid.NewGuid(), Id = 2, Order = 5, Name = "lesson6", IsCompleted = false };
-            //userLessonVMs[2] = new UserLessonVM() { StreamId = Guid.NewGuid(), Id = 3, Order = 1, Name = "lesson2", IsCompleted = true };
-            //userLessonVMs[3] = new UserLessonVM() { StreamId = Guid.NewGuid(), Id = 4, Order = 2, Name = "lesson3", IsCompleted = true };
-            //userLessonVMs[4] = new UserLessonVM() { StreamId = Guid.NewGuid(), Id = 5, Order = 3, Name = "lesson4", IsCompleted = false };
-            //userLessonVMs[5] = new UserLessonVM() { StreamId = Guid.NewGuid(), Id = 6, Order = 0, Name = "lesson1", IsCompleted = true };
-            //return View(null);
-
             return View(getLessons(HttpContext.Items["User"] as User, disciplineId));
         }
 
         [Route("Disciplines/Lessons/check-test")]
         [HttpPost]
+        [AllowAnonymous]
         public IActionResult CheckTest(int testIndex, int disciplineId, int lessonId)
         {
             User user = HttpContext.Items["User"] as User;
@@ -111,8 +97,9 @@ namespace Programmania.Controllers
             return Json(false);
         }
 
-        [Route("Disciplines/Lessons")]
+        [Route("Disciplines/Lesson")]
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult CheckLessonAccess(int lessonId, int disciplineId)
         {
             RequestedLessonVM lesson = getRequestedLesson(HttpContext.Items["User"] as User, disciplineId, lessonId);
@@ -146,8 +133,8 @@ namespace Programmania.Controllers
             RequestedLessonVM requestedLesson = new RequestedLessonVM
             {
                 Test = new TestVM { A1 = test.Answer1, A2 = test.Answer2, A3 = test.Answer3, A4 = test.Answer4, Question = test.Question },
-                HTML = new Microsoft.AspNetCore.Html.HtmlString(System.Text.Encoding.UTF8.GetString(
-                fileService.GetDocument(dbContext.Documents.FirstOrDefault(d => d.StreamId == lesson.StreamId).Path)))
+                HTML = System.Text.Encoding.UTF8.GetString(fileService.GetDocument(
+                    dbContext.Documents.FirstOrDefault(d => d.StreamId == lesson.StreamId).Path))
             };
 
             return requestedLesson;

@@ -324,7 +324,7 @@ html,body{
 }
 
 .error {
-    font-size: 18px !important;
+    font-size: 15px !important;
     color: red;
     margin-left: 10px;
 }

@@ -1,14 +1,9 @@
 ﻿function createTest(test) {
-    return "" +
-        "<div class='content-tests'>" +
-        "<div class='content-tests-test' data-aos='fade-right' data-aos-duration='1000'>" +
-        `<h3 class='content-tests__question text-normal'>${test.Question}</h3>` +
-        createAnswer(test.A1) +
-        createAnswer(test.A2) +
-        createAnswer(test.A3) +
-        createAnswer(test.A3) +
-        "</div>" +
-        "</div>";
+    return `<h3 class='content-tests__question text-normal'>${test.question}</h3>` +
+        createAnswer(test.a1) +
+        createAnswer(test.a2) +
+        createAnswer(test.a3) +
+        createAnswer(test.a4);
 }
 
 function createAnswer(answer) {

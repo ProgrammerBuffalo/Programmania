@@ -9,7 +9,6 @@ namespace Programmania.HtmlHelpers
         {
             System.Text.StringBuilder @string = new System.Text.StringBuilder();
 
-            //@string.AppendLine("<a>");
             if (course.IsSelected)
                 @string.AppendLine($"<div class='course' data-id='{course.CourseId}'>");
             else
@@ -26,7 +25,6 @@ namespace Programmania.HtmlHelpers
             @string.AppendLine("</div>");
             @string.AppendLine("</div>");
             @string.AppendLine("</div>");
-            //@string.AppendLine("</a>");
 
             return new HtmlString(@string.ToString());
         }

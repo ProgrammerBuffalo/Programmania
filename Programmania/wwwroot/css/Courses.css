@@ -186,14 +186,13 @@ body {
     font-family: monsterrat-bold;
     text-align: center;
     font-size: 1.8em;
-    font-family: "monsterrat-bold";
     margin-top: 10px;
 }
 
 .course__info {
     text-align: center;
     font-size: 1.5em;
-    font-family: "monsterrat-light";
+    font-family: monsterrat-light;
 }
 
 .course__percent {
