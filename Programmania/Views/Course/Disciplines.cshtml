@@ -9,15 +9,17 @@
     <script src="~/js/loading-bar.min.js"></script>
     <link rel="stylesheet" href="~/css/loading-bar.min.css" />
     <link rel="stylesheet" href="~/css/Disciplines.css">
+    <link rel="stylesheet" href="~/css/Footer.css" />
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
-
 <body>
-    <div class="header-text">
+    <div class="wrapper">
+        <header class="header">
+            <div class="header-text">
         <a href="Courses">
             <div class="back">
 
@@ -25,13 +27,18 @@
         </a>
 
         <div class="header-text__content">
-            <h3></h3>
+            <h3>Ruby Course</h3>
         </div>
     </div>
+        </header>
 
-    <div class="course__img" data-aos="fade-left" data-aos-duration="1000">
-        <img />
+        <main class="main">
+             <div class="course__image-container">
+            <div class="course__img" data-aos="fade-left" data-aos-duration="1000">
+                 <img  src=~/images/rubyCourse.png/>
+            </div>
     </div>
+
 
     <div class="content">
         <div class="disciplines">
@@ -46,11 +53,44 @@
 
         </div>
     </div>
+        </main>
+
+         <footer class="footer">
+            <div class="footer-links" data-aos="zoom-in" data-aos-duration="700">
+                <a href="#" class="footer-links_first">
+                    <div class="footer-link__image">
+                        <img src="~/images/facebookLogo.png" />
+                    </div>
+                </a>
+
+                <a href="#">
+                    <div class="footer-link__image">
+                        <img src="~/images/twitterLogo.png" />
+                    </div>
+                </a>
+
+                <a href="#">
+                    <div class="footer-link__image">
+                        <img src="~/images/linkedinLogo.png" />
+                    </div>
+                </a>
+            </div>
+
+            <div class="footer__text" data-aos="zoom-in" data-aos-duration="700">
+                <h5>&#x24B8; 2021 Programmania. All rights reserved.</h5>
+            </div>
+    </footer>
+    </div>
+    
+
+   
+
+       
 
     <script>
         AOS.init();
     </script>
 
-    <script ript type="text/javascript" src="~/js/disciplines.js"></script>
+@*    <script ript type="text/javascript" src="~/js/disciplines.js"></script>*@
 </body>
 </html>
