@@ -13,20 +13,39 @@ namespace Programmania.Controllers
             return View(false);
         }
 
-        //AllowAnonymous is allowed for this action
-        [Route("change-image")]
+        [Route("change-nickname")]
         [AllowAnonymous]
-        public IActionResult ChangeImage(string image)
+        public IActionResult ChangeImage(string nickname)
         {
             return Ok();
         }
 
-        //AllowAnonymous is allowed for this action
-        [Route("change-nickname")]
+        [Route("change-avatar")]
         [AllowAnonymous]
-        public IActionResult ChangeNickname(string nickname)
+        public IActionResult ChangeNickname(Microsoft.AspNetCore.Http.IFormFile file)
         {
             return Ok();
+        }
+
+        [Route("get-games")]
+        [AllowAnonymous]
+        public IActionResult GetGames()
+        {
+            return Json(null);
+        }
+
+        [Route("get-achivments")]
+        [AllowAnonymous]
+        public IActionResult GetAchivments()
+        {
+            return Json(null);
+        }
+
+        [Route("get-user-info")]
+        [AllowAnonymous]
+        public IActionResult GetUserInfo()
+        {
+            return Json(null);
         }
     }
 }

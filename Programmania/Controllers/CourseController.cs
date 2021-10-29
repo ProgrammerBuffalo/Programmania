@@ -45,7 +45,6 @@ namespace Programmania.Controllers
 
         [Route("Disciplines/discipline-begin")]
         [HttpPost]
-        [AllowAnonymous]
         public IActionResult BeginDiscipline(int disciplineId)
         {
             var user = HttpContext.Items["User"] as User;
@@ -58,7 +57,7 @@ namespace Programmania.Controllers
 
                 dbContext.Update(userDiscipline);
                 dbContext.SaveChanges();
-                return RedirectToAction("Disciplines/Lessons", disciplineId);
+                return Ok();
             }
             return BadRequest();
         }
@@ -74,7 +73,7 @@ namespace Programmania.Controllers
         [Route("Disciplines/Lessons/check-test")]
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult CheckTest(int testIndex, int disciplineId, int lessonId)
+        public IActionResult CheckTest(int disciplineId, int lessonId, int testIndex)
         {
             User user = HttpContext.Items["User"] as User;
             Lesson lesson = getLessonFromDB(user, disciplineId, lessonId);
@@ -151,7 +150,7 @@ namespace Programmania.Controllers
             userLessons = dbContext.Disciplines.FirstOrDefault(d => d.Id == userDiscipline.DisciplineId)?.Lessons.Select(s => new UserLessonVM
             { LessonId = s.Id, Name = s.Name, Order = s.Order, IsCompleted = s.Order <= userDiscipline.LessonOrder ? true : false }).ToList();
 
-             return userLessons.ToArray();
+            return userLessons.ToArray();
         }
 
         private UserDisciplineVM[] getDisciplines(User user, int courseId)

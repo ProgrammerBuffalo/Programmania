@@ -54,26 +54,3 @@ function mergeColor(sourceColor, addColor) {
 function rgbToHex(rgb) {
     return "#" + componentToHex(rgb[0]) + componentToHex(rgb[1]) + componentToHex(rgb[2]);
 }
-
-//function temp() {
-
-//    var color1 = [255, 26, 26];
-//    var color2 = [111, 79, 121];
-//    console.log(colorsFamiliarPercent(color1, color2));
-
-//    color1 = [230, 25, 25];
-//    color2 = [217, 38, 38];
-//    console.log(colorsFamiliarPercent(color1, color2));
-
-//    color1 = [230, 25, 25];
-//    color2 = [164, 49, 72];
-//    console.log(colorsFamiliarPercent(color1, color2));
-
-//    color1 = [230, 25, 25];
-//    color2 = [255, 49, 72];
-//    console.log(colorsFamiliarPercent(color1, color2));
-
-//    color1 = [230, 25, 25];
-//    color2 = [255, 152, 146];
-//    console.log(colorsFamiliarPercent(color1, color2));
-//}

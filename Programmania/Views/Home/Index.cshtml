@@ -7,6 +7,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="~/css/util/zeroing.css" />
+    <link rel="stylesheet" href="~/css/util/fonts.css" />
+    <link rel="stylesheet" href="~/css/components/modal.css" />
     <link rel="stylesheet" href="~/css/Index.css" />
     <link rel="stylesheet" href="~/css/Footer.css" />
 
@@ -26,217 +29,217 @@
 
 <body>
     <div class="wrapper">
-    <header>
-        <div class="header-text">
-            <h3>PROGRAMMANIA</h3>
-        </div>
-
-        <div class="header-menu">
-            <a class="header-menu__item" href="#main">Main</a>
-            <a class="header-menu__item" href="#courses">Courses</a>
-            <a class="header-menu__item" href="#advantages">Advantages</a>
-            <a class="header-menu__item" href="#features">Features</a>
-            <a class="header-menu__item" id="registrBtnIn" href="#">Register</a>
-            <a class="header-menu__item" id="loginBtnIn" href="#">Login</a>
-        </div>
-
-        <div class="header-image">
-            <a name="main"></a>
-            <div class="header-image-text">
-                <h3>Programmania:</h3>
-                <h5>We will be glad to see you</h5>
+        <header>
+            <div class="header-text">
+                <h3>PROGRAMMANIA</h3>
             </div>
-        </div>
-    </header>
+
+            <div class="header-menu">
+                <a class="header-menu__item" href="#main">Main</a>
+                <a class="header-menu__item" href="#courses">Courses</a>
+                <a class="header-menu__item" href="#advantages">Advantages</a>
+                <a class="header-menu__item" href="#features">Features</a>
+                <a class="header-menu__item" id="enterRegisterModal" href="#">Register</a>
+                <a class="header-menu__item" id="enterLoginModal" href="#">Login</a>
+            </div>
+
+            <div class="header-image">
+                <a name="main"></a>
+                <div class="header-image-text">
+                    <h3>Programmania:</h3>
+                    <h5>We will be glad to see you</h5>
+                </div>
+            </div>
+        </header>
 
 
         <main class="main">
-        <div class="courses">
-            <h3 class="course__header">Our courses</h3>
-            <a name="courses"></a>
-            <div class="swiper">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="swiper-image">
-                            <img src="~/images/jsCourseSlider.jpg" />
+            <div class="courses">
+                <h3 class="course__header">Our courses</h3>
+                <a name="courses"></a>
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="swiper-image">
+                                <img src="~/images/jsCourseSlider.jpg" />
+                            </div>
+                            <div class="swiper-image__text">
+                                <h3>JavaScript Course</h3>
+                            </div>
                         </div>
-                        <div class="swiper-image__text">
-                            <h3>JavaScript Course</h3>
-                        </div>
-                    </div>
 
-                    <div class="swiper-slide">
-                        <div class="swiper-image">
-                            <img src="~/images/androidCourseSlider.jpg" />
+                        <div class="swiper-slide">
+                            <div class="swiper-image">
+                                <img src="~/images/androidCourseSlider.jpg" />
+                            </div>
+                            <div class="swiper-image__text">
+                                <h3>Android development Course</h3>
+                            </div>
                         </div>
-                        <div class="swiper-image__text">
-                            <h3>Android development Course</h3>
-                        </div>
-                    </div>
 
-                    <div class="swiper-slide">
-                        <div class="swiper-image">
-                            <img src="~/images/javaCourseSlider.jpg" />
+                        <div class="swiper-slide">
+                            <div class="swiper-image">
+                                <img src="~/images/javaCourseSlider.jpg" />
+                            </div>
+                            <div class="swiper-image__text">
+                                <h3>Java Course</h3>
+                            </div>
                         </div>
-                        <div class="swiper-image__text">
-                            <h3>Java Course</h3>
-                        </div>
-                    </div>
 
-                    <div class="swiper-slide">
-                        <div class="swiper-image">
-                            <img src="~/images/angularCourseSlider.jpg" />
+                        <div class="swiper-slide">
+                            <div class="swiper-image">
+                                <img src="~/images/angularCourseSlider.jpg" />
+                            </div>
+                            <div class="swiper-image__text">
+                                <h3>Angular Course</h3>
+                            </div>
                         </div>
-                        <div class="swiper-image__text">
-                            <h3>Angular Course</h3>
-                        </div>
-                    </div>
 
-                    <div class="swiper-slide">
-                        <div class="swiper-image">
-                            <img src="~/images/phpCourseSlider.jpg" />
+                        <div class="swiper-slide">
+                            <div class="swiper-image">
+                                <img src="~/images/phpCourseSlider.jpg" />
+                            </div>
+                            <div class="swiper-image__text">
+                                <h3>PHP Course</h3>
+                            </div>
                         </div>
-                        <div class="swiper-image__text">
-                            <h3>PHP Course</h3>
-                        </div>
-                    </div>
 
-                    
 
-                    <div class="swiper-slide">
-                        <div class="swiper-image">
-                            <img src="~/images/csharpCourseSlider.jpg" />
-                        </div>
-                        <div class="swiper-image__text">
-                            <h3>C# Course</h3>
+
+                        <div class="swiper-slide">
+                            <div class="swiper-image">
+                                <img src="~/images/csharpCourseSlider.jpg" />
+                            </div>
+                            <div class="swiper-image__text">
+                                <h3>C# Course</h3>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="advantages">
+            <div class="advantages">
 
-            <div data-aos="zoom-in" data-aos-duration="700" class="advantages__text">
-                <a name="advantages"></a>
-                <h3>Our advantages</h3>
-                <p>
-                    Difficult to find good courses at a reasonable price?
-                    Welcome to Programmania! Our courses are completely free.
-                    Very easy registration, a large number of courses with lectures
-                    and tests, the ability to compete with other people, share news
-                    and much more only on our website! Learn courses, take tests and
-                    develop in Programmania!
-                </p>
-            </div>
-
-            <div data-aos="zoom-in" data-aos-duration="700" class="advantages__image">
-                <img src="~/images/advantagesImage.jpg" />
-            </div>
-        </div>
-
-        <div class="features">
-            <a name="features"></a>
-            <h3>Our features</h3>
-            <div data-aos="zoom-in" data-aos-duration="700" class="features__list">
-                <ul>
-                    <li>All courses are free</li>
-                    <li>Convenient and intuitive interface</li>
-                    <li>User level system</li>
-                    <li>The ability to compete with other users</li>
-                    <li>Grade Schedule</li>
-                    <li>Ability to upload articles</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="modal" id="registerModal">
-            <div class="modal-content" style="width: 500px">
-                <span class="close">&times;</span>
-
-                <form name="registerForm" id="registerForm" method="post">
-
-                <div class="form-group">
-                    <label id="nicknameLabelReg">Nickname: </label>
-                    <input id="nicknameInputReg" type="text" class="form-control" placeholder="nickname" />
+                <div data-aos="zoom-in" data-aos-duration="700" class="advantages__text">
+                    <a name="advantages"></a>
+                    <h3>Our advantages</h3>
+                    <p>
+                        Difficult to find good courses at a reasonable price?
+                        Welcome to Programmania! Our courses are completely free.
+                        Very easy registration, a large number of courses with lectures
+                        and tests, the ability to compete with other people, share news
+                        and much more only on our website! Learn courses, take tests and
+                        develop in Programmania!
+                    </p>
                 </div>
 
-                <div class="form-group">
-                    <label id="emailLabelReg">Email: </label>
-                    <input id="emailInputReg" type="email" class="form-control" placeholder="email" />
+                <div data-aos="zoom-in" data-aos-duration="700" class="advantages__image">
+                    <img src="~/images/advantagesImage.jpg" />
                 </div>
-
-                <div class="form-group">
-                    <label id="passwordLabelReg">Password: </label>
-                    <input id="passwordInputReg" type="password" class="form-control" placeholder="password" />
-                </div>
-
-                <div class="form-group">
-                    <label id="passwordConfirmationLabelReg">Confirm password: </label>
-                    <input id="passwordConfirmationInputReg" type="password" class="form-control" placeholder="confirm password" />
-                </div>
-
-                <div class="form-group">
-                    <label id="avatarLabelReg">Avatar: </label>
-                    <input id="avatarInputReg" type="file" class="form-control" />
-                </div>
-
-                    <input type="button" id="uploadAvatarBtn" class="btn btn-primary" name="uploadAvatarBtn" value="Set profile image" />
-                    <input type="button" id="registerBtnOut" class="btn btn-danger" name="registerBtn" value="Register" />
-                </form>
             </div>
-        </div>
 
-        <div class="modal" id="loginModal">
-            <div class="modal-content" style="width: 500px">
-                <span class="close">&times;</span>
-
-                <form name="loginForm" id="loginForm">
-                    <div class="form-group">
-                        <label id="emailLabelLog" for="emailInputLog">Email: </label>
-                        <input id="emailInputLog" type="email" class="form-control" placeholder="email" name="emailInput" />
-                    </div>
-
-                    <div class="form-group">
-                        <label id="passwordLabelLog" for="passwordInputLog">Password: </label>
-                        <input id="passwordInputLog" type="password" class="form-control" placeholder="password" name="passwordInput" />
-                    </div>
-                    <input type="button" id="loginBtnOut" class="btn btn-success" name="loginBtn" value="Login" />
-                </form>
+            <div class="features">
+                <a name="features"></a>
+                <h3>Our features</h3>
+                <div data-aos="zoom-in" data-aos-duration="700" class="features__list">
+                    <ul>
+                        <li>All courses are free</li>
+                        <li>Convenient and intuitive interface</li>
+                        <li>User level system</li>
+                        <li>The ability to compete with other users</li>
+                        <li>Grade Schedule</li>
+                        <li>Ability to upload articles</li>
+                    </ul>
+                </div>
             </div>
-        </div>
 
-        
-    </main>
+            <div class="modal" id="registerModal">
+                <div class="modal-content" style="width: 500px">
+                    <span id="closeRegisterModal" class="close">&times;</span>
+
+                    <form name="registerForm" id="registerForm" method="post">
+
+                        <div class="form-group">
+                            <label id="nicknameLabelReg" class="modal__label">Nickname: </label>
+                            <input id="nicknameInputReg" type="text" class="form-control modal__input" placeholder="nickname" />
+                        </div>
+
+                        <div class="form-group">
+                            <label id="emailLabelReg" class="modal__label">Email: </label>
+                            <input id="emailInputReg" type="email" class="form-control modal__input" placeholder="email" />
+                        </div>
+
+                        <div class="form-group">
+                            <label id="passwordLabelReg" class="modal__label">Password: </label>
+                            <input id="passwordInputReg" type="password" class="form-control modal__input" placeholder="password" />
+                        </div>
+
+                        <div class="form-group">
+                            <label id="passwordConfirmationLabelReg" class="modal__label">Confirm password: </label>
+                            <input id="passwordConfirmationInputReg" type="password" class="form-control modal__input" placeholder="confirm password" />
+                        </div>
+
+                        <div class="form-group">
+                            <label id="avatarLabelReg" class="modal__label">Avatar: </label>
+                            <input id="avatarInputReg" type="file" class="form-control modal__input" />
+                        </div>
+
+                        <input type="button" id="uploadAvatarBtn" class="btn btn-primary" name="uploadAvatarBtn" value="Set profile image" />
+                        <input type="button" id="registerBtnOut" class="btn btn-danger modal__close" name="registerBtn" value="Register" />
+                    </form>
+                </div>
+            </div>
+
+            <div class="modal" id="loginModal">
+                <div class="modal-content" style="width: 500px">
+                    <span id="closeLoginModal" class="close">&times;</span>
+
+                    <form name="loginForm" id="loginForm">
+                        <div class="form-group">
+                            <label id="emailLabelLog" class="modal__label" for="emailInputLog">Email: </label>
+                            <input id="emailInputLog" type="email" class="form-control modal__input" placeholder="email" name="emailInput" />
+                        </div>
+
+                        <div class="form-group">
+                            <label id="passwordLabelLog" class="modal__label" for="passwordInputLog">Password: </label>
+                            <input id="passwordInputLog" type="password" class="form-control modal__input" placeholder="password" name="passwordInput" />
+                        </div>
+                        <input type="button" id="loginBtnOut" class="btn btn-success" name="loginBtn" value="Login" />
+                    </form>
+                </div>
+            </div>
+
+
+        </main>
     </div>
 
     <footer class="footer">
-            <div class="footer-links" data-aos="zoom-in" data-aos-duration="700">
-                <a href="#" class="footer-links_first">
-                    <div class="footer-link__image">
-                        <img src="~/images/facebookLogo.png" />
-                    </div>
-                </a>
+        <div class="footer-links" data-aos="zoom-in" data-aos-duration="700">
+            <a href="#" class="footer-links_first">
+                <div class="footer-link__image">
+                    <img src="~/images/facebookLogo.png" />
+                </div>
+            </a>
 
-                <a href="#">
-                    <div class="footer-link__image">
-                        <img src="~/images/twitterLogo.png" />
-                    </div>
-                </a>
+            <a href="#">
+                <div class="footer-link__image">
+                    <img src="~/images/twitterLogo.png" />
+                </div>
+            </a>
 
-                <a href="#">
-                    <div class="footer-link__image">
-                        <img src="~/images/linkedinLogo.png" />
-                    </div>
-                </a>
-            </div>
+            <a href="#">
+                <div class="footer-link__image">
+                    <img src="~/images/linkedinLogo.png" />
+                </div>
+            </a>
+        </div>
 
-            <div class="footer__text" data-aos="zoom-in" data-aos-duration="700">
-                <h5>&#x24B8; 2021 Programmania. All rights reserved.</h5>
-            </div>
+        <div class="footer__text" data-aos="zoom-in" data-aos-duration="700">
+            <h5>&#x24B8; 2021 Programmania. All rights reserved.</h5>
+        </div>
     </footer>
 
-    
+
     <script type="application/javascript" src="~/js/util/camelize.js"></script>
     <script type="application/javascript" src="~/js/index.js"></script>
     <script type="application/javascript" src="~/js/util/slider.js"></script>

@@ -1,5 +1,5 @@
 /*Обнуление*/
-* {
+/** {
     padding: 0;
     margin: 0;
     border: 0;
@@ -87,12 +87,12 @@ h5,
 h6 {
     font-size: inherit;
     font-weight: 400;
-}
+}*/
 
 /*----------------------------*/
-@font-face {
-    font-family: monsterrat-normal;
-    src: url("../fonts/Montserrat-Regular.ttf");
+/*@font-face {
+    font-family: monsterrat-thin;
+    src: url("../fonts/Montserrat-Thin.ttf");
 }
 
 @font-face {
@@ -101,14 +101,14 @@ h6 {
 }
 
 @font-face {
-    font-family: monsterrat-thin;
-    src: url("../fonts/Montserrat-Thin.ttf");
+    font-family: monsterrat-normal;
+    src: url("../fonts/Montserrat-Regular.ttf");
 }
 
 @font-face {
     font-family: monsterrat-bold;
     src: url("../fonts/Montserrat-Bold.ttf");
-}
+}*/
 
 hr {
     margin: 10px 0;
@@ -146,7 +146,7 @@ hr {
     }
 
 .profile-info {
-    font-family: "monsterrat-normal";
+    font-family: monsterrat-normal;
 }
 
 .profile-info__item {
@@ -164,12 +164,12 @@ hr {
 }
 
     .profile-info__item h3 {
-        font-family: "monsterrat-normal";
+        font-family: monsterrat-normal;
         font-size: 1.8em;
     }
 
     .profile-info__item p {
-        font-family: "monsterrat-light";
+        font-family: monsterrat-light;
         font-size: 1.4em;
         text-align: justify;
     }
@@ -177,36 +177,8 @@ hr {
 .profile-info__change {
     width: 100%;
     font-size: 1.4em !important;
-    font-family: "monsterrat-normal" !important;
+    font-family: monsterrat-normal !important;
     border-radius: 20px !important;
-}
-
-.modal {
-    padding: 10%;
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,.4);
-}
-
-.modal-content {
-    font-family: 'mainFont';
-    position: relative;
-    background-color: #fefefe;
-    margin: auto;
-    padding: 0;
-    border: 1px solid #888;
-    width: 80%;
-    padding: 1% 2%;
-    font-size: 3vh;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-    animation-name: animatetop;
-    animation-duration: 0.4s
 }
 
 .profile-col-2 {
@@ -216,7 +188,7 @@ hr {
 
 .profile__name {
     font-size: 5vh;
-    font-family: "monsterrat-normal";
+    font-family: monsterrat-normal;
     text-align: center;
     color: #5298c7;
 }
@@ -229,7 +201,7 @@ hr {
     overflow: hidden;
     background-color: #ceecff;
     font-size: 1.4em;
-    font-family: "monsterrat-light";
+    font-family: monsterrat-light;
 }
 
     /* Style the buttons that are used to open the tab content */
@@ -286,13 +258,13 @@ hr {
 .ldBar-label {
     color: #64bcff;
     font-size: 1.8em;
-    font-family: "monsterrat-normal";
+    font-family: monsterrat-normal;
 }
 
 .level__content {
     color: #64bcff;
     font-size: 2.5em;
-    font-family: "monsterrat-bold";
+    font-family: monsterrat-bold;
 }
 
 /* Change background color of buttons on hover */
