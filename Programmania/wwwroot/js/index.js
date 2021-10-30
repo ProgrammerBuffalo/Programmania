@@ -6,44 +6,28 @@
     initModal(document.getElementById('registerModal'),
         document.getElementById('enterRegisterModal'),
         document.getElementById('closeRegisterModal'));
-})
+});
 
 $(document).ready(function () {
-    $('#registrBtnIn').click(function () {
+    $('#enterRegisterModal').click(function () {
 
-        $('#nicknameInputReg').val('');
-        $('#emailInputReg').val('');
-        $('#passwordInputReg').val('');
-        $('#passwordConfirmationInput').val('');
-        $('#avatarInputReg').val(null);
-
-        $('#nicknameErrorReg').remove();
-        $('#emailErrorReg').remove();
-        $('#passwordErrorReg').remove();
-        $('#passwordConfirmationErrorReg').remove();
-        $('#registerError').remove();
+        $('.error').css('display', 'none');
+        $('.modal__input').val('');
     });
 });
 
 $(document).ready(function () {
-    $('#loginBtnIn').click(function () {
+    $('#enterLoginModal').click(function () {
 
-        $('#emailInputLog').val('');
-        $('#passwordInputLog').val('');
-
-        $('#emailErrorLog').remove();
-        $('#passwordErrorLog').remove();
-        $('#loginError').remove();
+        $('.error').css('display', 'none');
+        $('.modal__input').val('');
     });
 });
 
 $(document).ready(function () {
     $('#registerBtnOut').click(function () {
 
-        $('#nicknameErrorReg').remove();
-        $('#emailErrorReg').remove();
-        $('#passwordErrorReg').remove();
-        $('#passwordConfirmationErrorReg').remove();
+        $('.error').css('display', 'none');
 
         var data = new FormData();
         data.append('Nickname', $('#nicknameInputReg').val());
@@ -65,10 +49,15 @@ $(document).ready(function () {
                 var errors = JSON.parse(jqXHR.responseText);
                 for (var key in errors) {
                     var camel = camelize(key);
-                    $('#' + camel + 'LabelReg').after(`<label id='${camel + 'ErrorReg'}' class='error'>${errors[key]}</label>`);
+                    $('#' + camel + 'LabelReg').next()
+                        .css('display', 'inline')
+                        .text(errors[key]);
                 }
-                if (errors['error'] != null)
-                    $('#registerBtnOut').after(`<label id='registerError' class='error'>${errors['error']}</label>`);
+                if (errors['error'] != null) {
+                    $('#registerBtnOut').after()
+                        .css('display', 'inline')
+                        .text(errors[key]);
+                }
             }
         });
     });
@@ -77,8 +66,7 @@ $(document).ready(function () {
 $(document).ready(function () {
     $('#loginBtnOut').click(function () {
 
-        $('#emailErrorLog').remove();
-        $('#passwordErrorLog').remove();
+        $('.error').css('display', 'none');
 
         var data = new FormData();
         data.append('Email', $('#emailInputLog').val());
@@ -90,17 +78,22 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             data: data,
-            success: function (response) {
+            success: function () {
                 window.location.href = '/main';
             },
             error: function (jqXHR) {
                 var errors = JSON.parse(jqXHR.responseText);
                 for (var key in errors) {
                     var camel = camelize(key);
-                    $('#' + camel + 'LabelLog').after(`<label id='${camel + 'ErrorLog'}' class='error'>${errors[key]}</label>`);
+                    $('#' + camel + 'LabelLog').next()
+                        .css('display', 'inline')
+                        .text(errors[key]);
                 }
-                if (errors['error'] != null)
-                    $('#registerBtnOut').after(`<label id='loginError' class='error'>${errors['error']}</label>`);
+                if (errors['error'] != null) {
+                    $('#loginBtnOut').next()
+                        .css('display', 'inline')
+                        .text(errors['error']);
+                }
             }
         });
     });

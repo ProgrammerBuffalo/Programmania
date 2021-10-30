@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Programmania.Controllers
 {
+    [Route("Profile")]
+    [Authorize]
     public class ProfileController : Controller
     {
         [Route("")]
@@ -10,21 +12,38 @@ namespace Programmania.Controllers
         public IActionResult Profile()
         {
             //check this User or another
-            return View(false);
+            ViewModels.UserProfileVM profileVM = new ViewModels.UserProfileVM(true);
+            return View(profileVM);
         }
 
+        [HttpGet]
         [Route("change-nickname")]
         [AllowAnonymous]
-        public IActionResult ChangeImage(string nickname)
+        public IActionResult ChangeNickname(string a)
         {
-            return Ok();
+            if (ModelState.IsValid)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
         [Route("change-avatar")]
         [AllowAnonymous]
-        public IActionResult ChangeNickname(Microsoft.AspNetCore.Http.IFormFile file)
+        public IActionResult ChangeNickname([Attributes.FileValidation(1000000, ErrorMessage = "")]
+            Microsoft.AspNetCore.Http.IFormFile file)
         {
-            return Ok();
+            if (ModelState.IsValid)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
         [Route("get-games")]
@@ -46,6 +65,14 @@ namespace Programmania.Controllers
         public IActionResult GetUserInfo()
         {
             return Json(null);
+        }
+
+        [HttpGet]
+        [Route("temp")]
+        [AllowAnonymous]
+        public IActionResult Temp(string data1)
+        {
+            return Ok();
         }
     }
 }

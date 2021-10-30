@@ -1,14 +1,23 @@
-﻿function cropAvatarImage(img, file) {
+﻿function cropImage(canvas, file, width, height, maxSize) {
+    let context = canvas.getContext('2d');
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
     const reader = new FileReader();
     reader.onload = function (e) {
-        let img = document.createElement('img');
-       
-        img.width = 200;
-        img.height = 200;
-        img.setAttribute('imgPreview');
+        let img = new Image();
+        img.onload = function () {
+            if (this.width > this.height) {
+                let dx = (this.width - this.height) / 2;
+                context.drawImage(img, dx, 0, this.width - dx, this.height, 0, 0, width, height);
+            }
+            else {
+                let dy = (this.height - this.width) / 2;
+                context.drawImage(img, 0, dy, this.width, this.height - dy, 0, 0, width, height);
+            }
+
+        };
         img.setAttribute('src', e.target.result);
-        return img;
-    };
+    }
     reader.readAsDataURL(file);
 }
 

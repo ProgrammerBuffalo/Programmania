@@ -1,4 +1,3 @@
-@using Programmania.ViewModels;
 @model Programmania.ViewModels.UserProfileVM
 
 <!DOCTYPE html>
@@ -28,13 +27,12 @@
     <main class="content">
         <div class="profile">
             <div class="profile-col-1">
-                <div class="profile__image">
+                <div id="enterAvatarModal" class="profile__image">
                     <img id='profileImage' src="images/avatarImg.png" alt="">
-                    <input id="profileImageInput" type="file" style="display:none" />
                 </div>
 
                 <div class="profile-info">
-                    <div class="profile-info__item">
+                    <div id="enterNicknameModal" class="profile-info__item">
                         <h3>Username:</h3>
                         <p>JohnJohnson123</p>
                     </div>
@@ -112,23 +110,36 @@
 
         @if (Model.IsOwned)
         {
-            <div class="modal" id="profileModal">
-                <div class="modal-content" style="width: 500px">
-                    <span id="closeProfileModal" class="close">&times;</span>
+            <div class="modal" id="nicknameModal">
+                <div class="modal-content" style="width: 300px">
+                    <span id="closeNicknameModal" class="close">&times;</span>
 
-                    <form name="loginForm" id="loginForm">
-                        <div class="form-group">
-                            <label id="nicknameLabel" class="modal__label">Nickname: </label>
-                            <input id="nicknameInput" class="form-control modal__input" placeholder="nickname" />
-                        </div>
+                    <div class="form-group">
+                        <label id="nicknameLabel" class="modal__label">Nickname: </label>
+                        <input id="nicknameInput" class="form-control modal__input" placeholder="nickname" />
+                    </div>
 
-                        <div class="form-group">
-                            <label id="fileLabel" class="modal__label">Avatar: </label>
-                            <input id="fileInput" class="form-control" />
-                        </div>
+                    <input type="button" id="nicknameChangeBtn" class="btn btn-success modal__close" value="Change" />
+                </div>
+            </div>
+        }
 
-                        <input type="button" id="profileChangeBtn" class="btn btn-success modal__close" value="Change" />
-                    </form>
+        @if (Model.IsOwned)
+        {
+            <div class="modal" id="avatarModal">
+                <div class="modal-content" style="width:300px">
+                    <span id="closeAvatarModal" class="close">&times;</span>
+
+                    <div class="form-group">
+                        <label id="avatarLabel" class="modal__label">Avatar: </label>
+                        <input id="avatarInput" class="form-control" type="file" />
+                    </div>
+
+                    <canvas id="avatarCanvas" width="200" height="200"></canvas>
+
+                    <p id="avatarError" class="error">Error</p>
+
+                    <input type="button" id="avatarChangeBtn" class="btn btn-success modal__close" value="Change" />
                 </div>
             </div>
         }
