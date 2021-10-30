@@ -35,18 +35,18 @@ $(document).ready(function () {
 $(document).ready(function () {
     $('#checkTest').click(function () {
         let answerIndex = findChekedAnswer();
+        if (answerIndex == null) {
+            let formData = new FormData();
+            formData.append('lessonId', $('.burger-content')[0].children[lessonIndex].getAttribute('data-id'));
+            formData.append('disciplineId', sessionStorage.getItem('disciplineId'));
+            formData.append('testIndex', answerIndex);
 
-        if (answerIndex != null) {
             $.ajax({
-                type: 'GET',
+                type: 'POST',
                 url: 'Lessons/check-test',
-                data: {
-                    'testIndex': answerIndex,
-                    'disciplineId': sessionStorage.getItem('disciplineId'),
-                    'lessonId': $('.burger-content')[0].children[lessonIndex].getAttribute('data-id')
-                },
-                dataType: 'json',
-                processData: true,
+                data: formData,
+                contentType: false,
+                processData: false,
                 success: function () {
                     alert('correct answer');
                 },
@@ -58,39 +58,12 @@ $(document).ready(function () {
     });
 });
 
-$(document).ready(function () {
-    window.onunload = function () {
-        sessionStorage.removeItem('disciplineId');
-        sessionStorage.removeItem('disciplineName');
-        sessionStorage.removeItem('disciplineImage');
-    }
-});
-
 function findChekedAnswer() {
     let answerInputs = document.querySelectorAll('.rad-input');
     for (var i = 0; i < answerInputs.length; i++) {
         if (answerInputs[i].checked == true)
             return i;
     }
-}
-
-function getLesson(lesson, disciplineId, lessonId) {
-    $.ajax({
-        type: 'GET',
-        url: 'Disciplines/Lessons',
-        data: { 'disciplineId': sessionStorage.getItem('disciplineId'), 'lessonId': elem.attr('data-id') },
-        success: function (data) {
-            lesson.removeClass('burger-content-elem_unread');
-            lesson.addClass('burger-content-elem_read');
-
-            $('#lessonName').val(data.name);
-            $('#lessonContent').val(data.html);
-            $('#testContent').val(createTest(data.test));
-        },
-        error: function () {
-
-        }
-    });
 }
 
 function requestLesson(lessonEl, disciplineId, lessonId, isNext) {
@@ -109,10 +82,6 @@ function requestLesson(lessonEl, disciplineId, lessonId, isNext) {
     });
 }
 
-function changeLessonName(lessonEl) {
-    $('#lessonName').text(lessonEl.children[0].textContent);
-}
-
 function changeLesson(data, lessonEl, isNext) {
     $('#lessonName').text(lessonEl.children[0].textContent);
     $('#lessonContent').html(data.html);
@@ -126,42 +95,10 @@ function changeLesson(data, lessonEl, isNext) {
     }
 }
 
-//$.ajax({
-            //    type: 'GET',
-            //    url: 'Lessons',
-            //    dataType: 'json',
-            //    processData: true,
-            //    data: { 'disciplineId': sessionStorage.getItem('disciplineId'), 'lessonId': $(this).attr('data-id') },
-            //    success: function (data) {
-            //        lessonIndex = $(this).index();
-            //        changeLessonName();
-            //        $('#lessonContent').html(data.html);
-            //        $('#testContent').html(createTest(data.test));
-            //    },
-            //    error: function () {
-
-            //    }
-            //});
-        }
-        //else if (lessonIndex == 0 && $(this).before().find('burger-content-elem_read')) {
-        //    $.ajax({
-        //        type: 'GET',
-        //        url: 'Disciplines/Lessons',
-        //        dataType: 'json',
-        //        processData: true,
-        //        data: { 'disciplineId': sessionStorage.getItem('disciplineId'), 'lessonId': $(this).attr('data-id') },
-        //        success: function (data) {
-
-        //            changeLessonName();
-        //            $('#lessonContent').val(data.html);
-        //            $('#testContent').val(createTest(data.test));
-
-        //            lessonIndex = $(this).index();
-        //            $(this).removeClass('burger-content-elem_unread')
-        //            $(this).addClass('burger-content-elem_read');
-        //        },
-        //        error: function () {
-
-        //        }
-        //    });
-        //}
+$(document).ready(function () {
+    window.onunload = function () {
+        sessionStorage.removeItem('disciplineId');
+        sessionStorage.removeItem('disciplineName');
+        sessionStorage.removeItem('disciplineImage');
+    }
+});

@@ -1,0 +1,19 @@
+﻿@font-face {
+    font-family: monsterrat-thin;
+    src: url("../../fonts/Montserrat-Thin.ttf");
+}
+
+@font-face {
+    font-family: monsterrat-light;
+    src: url("../../fonts/Montserrat-Light.ttf");
+}
+
+@font-face {
+    font-family: monsterrat-normal;
+    src: url("../../fonts/Montserrat-Regular.ttf");
+}
+
+@font-face {
+    font-family: monsterrat-bold;
+    src: url("../../fonts/Montserrat-Bold.ttf");
+}

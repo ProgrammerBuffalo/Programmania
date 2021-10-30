@@ -16,33 +16,21 @@ $(document).ready(function () {
         sessionStorage.setItem('disciplineImage', $(this).find('.discipline__image > img').first().attr('src'));
         sessionStorage.setItem('disciplineName', $(this).find('.discipline__title').first().text());
 
-        //$.ajax({
-        //    type: 'POST',
-        //    url: 'Disciplines/discipline-begin',
-        //    processData: true,
-        //    dataType: 'json',
-        //    data: { 'disciplineId': id },
-        //    success: function (xhr) {
+        if ($(this).find('discipline_selected').length == 0) {
+            let formData = new FormData();
+            formData.append('disciplineId', id);
 
-        //    },
-        //    error: function (error) {
-
-        //    }
-        //});
-
-        if ($(this).find('discipline_selected').length != 0) {
-            //let xhr = new XMLHttpRequest();
-            //xhr.open('POST', 'Disciplines/discipline-begin', true);
-            //xhr.setRequestHeader("Content-Type", "application/json");
-            //xhr.send(JSON.stringify({ 'disciplineId': id }));
-
-            //xhr.onreadystatechange = function () {
-            //    if (xhr.readyState === 4) {
-            //        console.log(xhr.status);
-            //        console.log(xhr.responseText);
-            //    }
-            //};
-            //window.location.href = `Disciplines/discipline-begin?disciplineId=${id}`;
+            $.ajax({
+                type: 'POST',
+                url: 'Disciplines/discipline-begin',
+                processData: false,
+                contentType: false,
+                data: formData,
+                success: function () {
+                    $(this).addClass('discipline_selected');
+                    window.location.href = `Disciplines/Lessons?disciplineId=${id}`;
+                }
+            });
         }
         else
             window.location.href = `Disciplines/Lessons?disciplineId=${id}`;

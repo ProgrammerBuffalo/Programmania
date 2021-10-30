@@ -1,4 +1,14 @@
 ﻿$(document).ready(function () {
+    initModal(document.getElementById('loginModal'),
+        document.getElementById('enterLoginModal'),
+        document.getElementById('closeLoginModal'));
+
+    initModal(document.getElementById('registerModal'),
+        document.getElementById('enterRegisterModal'),
+        document.getElementById('closeRegisterModal'));
+})
+
+$(document).ready(function () {
     $('#registrBtnIn').click(function () {
 
         $('#nicknameInputReg').val('');

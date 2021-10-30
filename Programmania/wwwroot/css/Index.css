@@ -1,5 +1,5 @@
 /*Обнуление*/
-* {
+/** {
     padding: 0;
     margin: 0;
     border: 0;
@@ -70,11 +70,11 @@ img {
 h1, h2, h3, h4, h5, h6 {
     font-size: inherit;
     font-weight: 400;
-}
+}*/
 
 /*----------------------------*/
 
-@font-face {
+/*@font-face {
     font-family: monsterrat-thin;
     src: url("../fonts/Montserrat-Thin.ttf");
 }
@@ -94,17 +94,17 @@ h1, h2, h3, h4, h5, h6 {
     src: url("../fonts/Montserrat-Bold.ttf");
 }
 
-html,body{
+html, body {
     height: 100%;
-}
+}*/
 
-.wrapper{
+.wrapper {
     display: flex;
     flex-direction: column;
     min-height: 100%;
 }
 
-.main{
+.main {
     flex: 1 1 auto;
 }
 
@@ -203,7 +203,7 @@ html,body{
     height: 400px !important;
 }
 
-.swiper-image{
+.swiper-image {
     height: 400px;
 }
 
@@ -225,7 +225,7 @@ html,body{
         text-align: center;
     }
 
-.advantages {   
+.advantages {
     display: flex;
     flex-direction: row;
     flex: 1 1 50.00%;
@@ -235,67 +235,68 @@ html,body{
     align-items: center;
 }
 
-.advantages__image{
+.advantages__image {
     width: 100%;
     min-height: 100%;
 }
 
-.advantages__image img{
-    height: 100%;
-    width: 100%;
-}
+    .advantages__image img {
+        height: 100%;
+        width: 100%;
+    }
 
-.advantages__text{
+.advantages__text {
     padding: 30px;
 }
 
-.advantages__text h3 {
-    font-family: monsterrat-light;
-    text-align: center;
-    font-size: 2.4em;
-    font-weight: 200;
-}
-.advantages__text p{
-    font-family: monsterrat-light;
-    margin-top: 50px;
-    font-weight: 300;
-    font-size: 1.5em;
-}
+    .advantages__text h3 {
+        font-family: monsterrat-light;
+        text-align: center;
+        font-size: 2.4em;
+        font-weight: 200;
+    }
+
+    .advantages__text p {
+        font-family: monsterrat-light;
+        margin-top: 50px;
+        font-weight: 300;
+        font-size: 1.5em;
+    }
 
 .features {
     padding: 50px;
     background-color: #f0fff0;
 }
 
-.features h3 {
-    font-family: monsterrat-light;
-    text-align: center;
-    font-size: 2.4em;
-    font-weight: 200;
-}
+    .features h3 {
+        font-family: monsterrat-light;
+        text-align: center;
+        font-size: 2.4em;
+        font-weight: 200;
+    }
 
-.features__list{
+.features__list {
     max-width: 400px;
     margin: 0 auto;
     margin-top: 30px;
 }
 
 
-.features__list ul {
-    font-family: monsterrat-light;
-    list-style: none;
-    font-size: 1.5em;
-    font-weight: 200;
-}
+    .features__list ul {
+        font-family: monsterrat-light;
+        list-style: none;
+        font-size: 1.5em;
+        font-weight: 200;
+    }
 
-.features__list li{
-    margin-top: 20px;
-    background: url("../images/successImage.png") left no-repeat;
-    padding: 0 0 0 100px;
-}
+    .features__list li {
+        margin-top: 20px;
+        background: url("../images/successImage.png") left no-repeat;
+        padding: 0 0 0 100px;
+    }
 
 
-.modal {
+/*.modal {
     padding: 10%;
     display: none;
     position: fixed;
@@ -370,11 +371,7 @@ html,body{
 #registerBtnOut, #loginBtnOut {
     margin: 30px;
     float: right;
-}
-
-
-
-
+}*/
 
 @media(max-width: 1200px) {
     .header-image {
@@ -392,7 +389,8 @@ html,body{
         .header-image-text h5 {
             font-size: 1.8em !important;
         }
-    .advantages__image{
+
+    .advantages__image {
         width: 100%;
     }
 
@@ -427,14 +425,16 @@ html,body{
         .header-image-text h5 {
             font-size: 1.2em !important;
         }
+
     .swiper-slide {
         height: 300px !important;
     }
-    .swiper-image{
+
+    .swiper-image {
         height: 300px;
     }
 
-    .swiper-image__text{
+    .swiper-image__text {
         height: 100px;
     }
 
@@ -446,32 +446,30 @@ html,body{
         width: 100%;
     }
 
-    .features{
+    .features {
         padding: 0;
     }
-    
+
 
     .features__list li {
         padding: 0 0 0 50px;
         background-size: 25px;
     }
 
-    .modal-content{
+    /*.modal-content {
         width: 400px !important;
-    }
+    }*/
 
-    .header-menu__item{
+    .header-menu__item {
         font-size: 1em;
     }
 }
 
-@media(max-width: 448px) {
+/*@media(max-width: 448px) {
     .modal-content {
         width: 300px !important;
     }
-
-    
-}
+}*/
 
 @media(max-width: 340px) {
     .header-menu__item {
@@ -491,7 +489,8 @@ html,body{
     .swiper-image__text {
         height: 75px;
     }
-    .modal-content {
+
+    /*.modal-content {
         width: 250px !important;
-    }
+    }*/
 }
