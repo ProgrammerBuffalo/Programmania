@@ -26,5 +26,11 @@ namespace Programmania.Models
         [Range(1, 4)]
         public int Correct { get; set; }
 
+        [Key, Column(Order = 0), DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int TestId { get; set; }
+
+        public Test Test { get; set; }
+
+
     }
 }
