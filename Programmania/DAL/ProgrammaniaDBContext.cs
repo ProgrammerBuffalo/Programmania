@@ -18,6 +18,8 @@ namespace Programmania.DAL
         public DbSet<UserDiscipline> UserDisciplines { get; set; } 
         public DbSet<RefreshToken> RefreshTokens { get; set; }
         public DbSet<Test> Tests { get; set; }
+        public DbSet<UserChallenge> UserChallenges { get; set; }
+        public DbSet<Challenge> Challenges { get; set; }
 
         public ProgrammaniaDBContext(DbContextOptions<ProgrammaniaDBContext> options) : base(options) { }
 
@@ -27,6 +29,12 @@ namespace Programmania.DAL
             builder.Entity<UserDiscipline>().HasKey(table => new {
                 table.UserId,
                 table.DisciplineId
+            });
+
+            builder.Entity<UserChallenge>().HasKey(table => new
+            {
+                table.UserId,
+                table.ChallengeId
             });
 
             builder.Entity<Test>(entity => entity.HasCheckConstraint("CK_Tests_Correct", "[Correct] > 0 AND [Correct] < 5"));

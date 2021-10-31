@@ -16,12 +16,10 @@ namespace Programmania.Models
 
         [Column("Name")]
         public string Name { get; set; }
-
-        public int DisciplineId { get; set; }
         
-        public int TestId { get; set; }
-
         public Discipline Discipline { get; set; }
+
+        public int TestId { get; set; }
 
         public Test Test { get; set; }
 

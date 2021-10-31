@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Programmania.Models
 {
+    [Table("Challenges")]
     public class Challenge
     {
         [Column("Id")]
@@ -14,5 +15,20 @@ namespace Programmania.Models
         public int Id { get; private set; }
 
         public DateTime Created { get; set; }
+
+        public int AnswersCount { get; set; }
+
+        public Course Course { get; set; }
+
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public ICollection<Test> Tests { get; set; }
+
+        public ICollection<UserChallenge> ChallengeUsers { get; set; }
+
+        public Challenge()
+        {
+            Tests = new List<Test>();
+        }
+
     }
 }

@@ -35,6 +35,8 @@ namespace Programmania.Models
 
         public ICollection<UserDiscipline> UserDisciplines { get; set; }
 
+        public ICollection<UserChallenge> UserChallenges { get; set; }
+
         public ICollection<RefreshToken> RefreshTokens { get; set; }
 
         [Column("img_stream_id")]

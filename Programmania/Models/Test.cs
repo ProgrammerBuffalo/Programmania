@@ -26,11 +26,14 @@ namespace Programmania.Models
         [Range(1, 4)]
         public int Correct { get; set; }
 
-        [Key, Column(Order = 0), DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int TestId { get; set; }
+        public Course Course { get; set; }
 
-        public Test Test { get; set; }
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public ICollection<Challenge> Challenges { get; set; }
 
-
+        public Test()
+        {
+            Challenges = new List<Challenge>();
+        }
     }
 }
