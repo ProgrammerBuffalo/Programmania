@@ -45,8 +45,9 @@
 
 .error {
     font-size: 15px !important;
-    color: red;
-    margin-left: 10px;
+    color: red !important;
+    margin-left: 5px;
+    display: none;
 }
 
 .close {

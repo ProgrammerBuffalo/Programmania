@@ -161,31 +161,36 @@
 
                         <div class="form-group">
                             <label id="nicknameLabelReg" class="modal__label">Nickname: </label>
+                            <p class="error"></p>
                             <input id="nicknameInputReg" type="text" class="form-control modal__input" placeholder="nickname" />
                         </div>
 
                         <div class="form-group">
                             <label id="emailLabelReg" class="modal__label">Email: </label>
+                            <p class="error"></p>
                             <input id="emailInputReg" type="email" class="form-control modal__input" placeholder="email" />
                         </div>
 
                         <div class="form-group">
                             <label id="passwordLabelReg" class="modal__label">Password: </label>
+                            <p class="error"></p>
                             <input id="passwordInputReg" type="password" class="form-control modal__input" placeholder="password" />
                         </div>
 
                         <div class="form-group">
                             <label id="passwordConfirmationLabelReg" class="modal__label">Confirm password: </label>
+                            <p class="error"></p>
                             <input id="passwordConfirmationInputReg" type="password" class="form-control modal__input" placeholder="confirm password" />
                         </div>
 
                         <div class="form-group">
                             <label id="avatarLabelReg" class="modal__label">Avatar: </label>
+                            <p class="error"></p>
                             <input id="avatarInputReg" type="file" class="form-control modal__input" />
                         </div>
 
-                        <input type="button" id="uploadAvatarBtn" class="btn btn-primary" name="uploadAvatarBtn" value="Set profile image" />
                         <input type="button" id="registerBtnOut" class="btn btn-danger modal__close" name="registerBtn" value="Register" />
+                        <p class="error"></p>
                     </form>
                 </div>
             </div>
@@ -197,14 +202,18 @@
                     <form name="loginForm" id="loginForm">
                         <div class="form-group">
                             <label id="emailLabelLog" class="modal__label" for="emailInputLog">Email: </label>
+                            <p class="error"></p>
                             <input id="emailInputLog" type="email" class="form-control modal__input" placeholder="email" name="emailInput" />
                         </div>
 
                         <div class="form-group">
                             <label id="passwordLabelLog" class="modal__label" for="passwordInputLog">Password: </label>
+                            <p class="error"></p>
                             <input id="passwordInputLog" type="password" class="form-control modal__input" placeholder="password" name="passwordInput" />
                         </div>
+
                         <input type="button" id="loginBtnOut" class="btn btn-success" name="loginBtn" value="Login" />
+                        <p class="error"></p>
                     </form>
                 </div>
             </div>
