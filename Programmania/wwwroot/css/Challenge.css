@@ -287,6 +287,27 @@ h6 {
     transition: 0.3s;
 }
 
+.answers-nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    flex-wrap: wrap;
+    height: 100%;
+    padding: 50px 15%;
+}
+.answer_choose {
+    margin-left: 20px !important;
+    border-left: 25px solid #48bb6a !important;
+    margin-top: 10px;
+}
+
+.answer_unchoose {
+    margin-left: 20px !important;
+    border-left: 25px solid #b3b3b3 !important;
+    pointer-events: none;
+    margin-top: 10px;
+}
+
 .rad-input:checked ~ .rad-text {
     color: hsl(0, 0%, 40%);
 }
@@ -330,33 +351,76 @@ h6 {
 
 .buttons {
     margin-top: 50px;
-    display: flex;
-    justify-content: space-between;
+    width: 100%;
 }
 
 .btn__arrows {
     display: flex;
+    justify-content: space-between;
 }
 
-.btn__submit {
-    width: 150px;
-    min-height: 50px;
-    color: #fff;
+.flip {
+    transition: all 0.3s ease 0s;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.flip:hover{
+    cursor: pointer;
+}
+
+.block_end {
+    padding: 0;
+    box-shadow: none;
+}
+
+
+
+.flip:hover .flip__front {
+    transform: rotateY(180deg);
+}
+.flip:hover .flip__back {
+    transform: rotateY(360deg);
+}
+
+.flip__front {
+    width: 100%;
+    height: 100%;
     background-color: #4880bb;
-    font-size: 1.5em;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 5px;
-    font-family: monsterrat-normal;
-    transition: all 0.3s ease 0s;
+    border: 4px solid #003369;
+    backface-visibility: hidden;
+    transition: all 0.5s ease 0s;
 }
 
-    .btn__submit:hover {
-        opacity: 0.8;
-        box-shadow: 1px 1px 1px 1px #999;
-        cursor: pointer;
-    }
+.flip__front h3{
+    text-align: center;
+    font-size: 2em;
+    color: #fff;
+}
+
+.flip__back {
+    width: 100%;
+    height: 100%;
+    background-color: #ffae6b;
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all 0.5s ease 0s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 4px solid #692f00;
+}
+.flip__back h3{
+    text-align: center;
+    font-size: 1.5em;
+    color: #fff;
+}
 
 .btn__prev {
     width: 0;
@@ -390,6 +454,9 @@ h6 {
 }
 
 @media (max-width: 1180px) {
+    .block_end{
+        margin-left: 50px;
+    }
     .content {
         flex-direction: column-reverse;
     }
@@ -407,6 +474,19 @@ h6 {
 }
 
 @media (max-width: 520px) {
+    .flip__front{
+        min-height: 100px !important;
+    }
+    .block_end{
+        margin-left: 0;
+    }
+    .statistic{
+        flex-direction: column;
+    }
+    .statistic-block{
+        width: 100%;
+        min-height: 100px;
+    }
     .buttons {
         flex-direction: column-reverse;
         justify-content: center;
