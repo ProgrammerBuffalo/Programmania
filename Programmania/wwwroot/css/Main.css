@@ -53,7 +53,6 @@ button {
 
 a, a:visited {
     text-decoration: none !important;
-    color: #000 !important;
 }
 
     a:hover {
@@ -140,7 +139,6 @@ html, body {
     background-position: center;
     -webkit-background-size: cover;
     background-size: cover;
-    filter: brightness(70%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -402,6 +400,8 @@ html, body {
 }
 
 
+
+
 .swiper-wrapper{
     height: auto !important;
 }
@@ -426,6 +426,8 @@ body {
     justify-content: center;
     flex-direction: column;
 }
+
+
 
 .course__info {
     display: flex;
@@ -495,14 +497,19 @@ body {
     margin: 0 auto;
     width: 500px;
     height: auto;
-    font-size: 3em;
-    color: #fff;
+
+
     padding: 10px;
     text-align: center;
     border-radius: 40px;
     margin-top: 100px;
     transition: all 0.3s ease 0s;
 }
+
+    .course__button a {
+        font-size: 3em;
+        color: #fff !important;
+    }
 
     .course__button:hover {
         opacity: 0.7;
@@ -643,7 +650,7 @@ body {
 .challenges-container {
     min-height: 300px;
     background-color: #fffafa;
-    padding: 0;
+    padding: 50px 0;
 }
 
 .challenges {
