@@ -20,6 +20,8 @@ namespace Programmania.Models
 
         public Challenge Challenge { get; set; }
 
+        public int AnswersCount { get; set; }
+
         public bool IsFinished { get; set; }
 
     }
