@@ -4,8 +4,6 @@
 	let timer = setInterval(function () {
 		let seconds = time % 60;
 		let minutes = parseInt(time / 60);
-		console.log(minutes);
-		console.log(seconds);
 		if (time <= 0) {
 			clearInterval(timer);
 		}

@@ -1,117 +1,4 @@
-﻿/*Обнуление*/
-* {
-    padding: 0;
-    margin: 0;
-    border: 0;
-}
-
-    *,
-    *:before,
-    *:after {
-        -moz-box-sizing: border-box;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-    }
-
-:focus,
-:active {
-    outline: none;
-}
-
-a:focus,
-a:active {
-    outline: none !important;
-}
-
-nav,
-footer,
-header,
-aside {
-    display: block;
-}
-
-html,
-body {
-    height: 100%;
-    width: 100%;
-    font-size: 100%;
-    line-height: 1;
-    font-size: 14px;
-    -ms-text-size-adjust: 100%;
-    -moz-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%;
-}
-
-input,
-button,
-textarea {
-    font-family: inherit;
-}
-
-    input::-ms-clear {
-        display: none;
-    }
-
-button {
-    cursor: pointer;
-}
-
-    button::-moz-focus-inner {
-        padding: 0;
-        border: 0;
-    }
-
-a,
-a:visited {
-    text-decoration: none !important;
-    color: #000;
-}
-
-    a:hover {
-        text-decoration: none !important;
-    }
-
-ul-li {
-    list-style: none;
-}
-
-img {
-    vertical-align: top;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-size: inherit;
-    font-weight: 400;
-}
-
-/*----------------------------*/
-
-@font-face {
-    font-family: monsterrat-thin;
-    src: url("fonts/Montserrat-Thin.ttf");
-}
-
-@font-face {
-    font-family: monsterrat-light;
-    src: url("fonts/Montserrat-Light.ttf");
-}
-
-@font-face {
-    font-family: monsterrat-normal;
-    src: url("fonts/Montserrat-Regular.ttf");
-}
-
-@font-face {
-    font-family: monsterrat-bold;
-    src: url("fonts/Montserrat-Bold.ttf");
-}
-
-.wrapper {
+﻿.wrapper {
     display: flex;
     flex-direction: column;
 }
@@ -238,6 +125,10 @@ h6 {
     line-height: 28px;
 }
 
+.rad-label:hover{
+    cursor: pointer;
+}
+
 .rad-input {
     position: absolute;
     left: 0;
@@ -295,17 +186,28 @@ h6 {
     height: 100%;
     padding: 50px 15%;
 }
-.answer_choose {
+
+.answer {
+    width: 30px;
+    height: 40px;
+    transform: skewX(-20deg);
     margin-left: 20px !important;
-    border-left: 25px solid #48bb6a !important;
     margin-top: 10px;
+    transition: all 0.5s ease 0s;
+}
+.answer:hover {
+    transform: rotateY(-180deg) skewX(-20deg);
+    box-shadow: 2px 2px 2px 2px #ccc;
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.answer_choose {
+    background-color: #48bb6a !important;
 }
 
 .answer_unchoose {
-    margin-left: 20px !important;
-    border-left: 25px solid #b3b3b3 !important;
-    pointer-events: none;
-    margin-top: 10px;
+    background-color: #b3b3b3 !important;
 }
 
 .rad-input:checked ~ .rad-text {
