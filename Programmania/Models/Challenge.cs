@@ -7,33 +7,28 @@ using System.Threading.Tasks;
 
 namespace Programmania.Models
 {
-    public class Test
+    [Table("Challenges")]
+    public class Challenge
     {
         [Column("Id")]
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; private set; }
 
-        public string Answer1 { get; set; }
+        public DateTime Created { get; set; }
 
-        public string Answer2 { get; set; }
-        
-        public string Answer3 { get; set; }
-        
-        public string Answer4 { get; set; }
-
-        public string Question { get; set; }
-
-        [Range(1, 4)]
-        public int Correct { get; set; }
+        public int AnswersCount { get; set; }
 
         public Course Course { get; set; }
 
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public ICollection<Challenge> Challenges { get; set; }
+        public ICollection<Test> Tests { get; set; }
 
-        public Test()
+        public ICollection<UserChallenge> ChallengeUsers { get; set; }
+
+        public Challenge()
         {
-            Challenges = new List<Challenge>();
+            Tests = new List<Test>();
         }
+
     }
 }
