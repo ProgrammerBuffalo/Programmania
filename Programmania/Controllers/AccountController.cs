@@ -9,6 +9,7 @@ using System.IO;
 using System.Text;
 using Newtonsoft.Json;
 using Programmania.Attributes;
+using Programmania.Services.Interfaces;
 
 namespace Programmania.Controllers
 {
@@ -68,7 +69,7 @@ namespace Programmania.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> MakeAuthorization(AuthenticationRequestVM authenticationRequest)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 Models.User user = dbContext.Users.FirstOrDefault(u => u.Login == authenticationRequest.Email && u.Password == authenticationRequest.Password);
                 if (user == null)
@@ -97,7 +98,7 @@ namespace Programmania.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> MakeRegistration(RegistrationVM registrationVM)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 User user = dbContext.Users.FirstOrDefault(u => u.Login == registrationVM.Email || u.Name == registrationVM.Nickname);
                 if (user == null)

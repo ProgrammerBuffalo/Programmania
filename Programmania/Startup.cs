@@ -1,24 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
+using Programmania.Middlewares;
 using Programmania.Models;
 using Programmania.Services;
-using System.Security.Claims;
-using Programmania.Middlewares;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.AspNetCore.Http;
+using Programmania.Services.Interfaces;
 
 namespace Programmania
 {
@@ -45,6 +34,8 @@ namespace Programmania
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IFileService, FileService>();
             services.AddScoped<IXMLService, XMLService>();
+            services.AddScoped<IProfileService, ProfileService>();
+            services.AddScoped<IPerformanceService, PerformanceService>();
 
             services.AddControllersWithViews();
         }

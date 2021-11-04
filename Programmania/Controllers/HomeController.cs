@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Programmania.Attributes;
 using Programmania.Models;
-using Programmania.Services;
+using Programmania.Services.Interfaces;
 using Programmania.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,10 +19,10 @@ namespace Programmania.Controllers
         private IFileService fileService;
         private IAccountService accountService;
 
-        public HomeController(DAL.ProgrammaniaDBContext context, IFileService file_service, IAccountService accountService)
+        public HomeController(DAL.ProgrammaniaDBContext context, IFileService fileService, IAccountService accountService)
         {
             this.dbContext = context;
-            this.fileService = file_service;
+            this.fileService = fileService;
             this.accountService = accountService;
         }
 
@@ -32,7 +32,7 @@ namespace Programmania.Controllers
         [AllowAnonymous]
         public IActionResult Index()
         {
-            //return RedirectToAction("", "Profile");
+            return RedirectToAction("", "Profile");
             return View();
         }
 

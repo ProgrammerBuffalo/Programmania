@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Programmania.Services
+namespace Programmania.Services.Interfaces
 {
     public interface IXMLService
     {

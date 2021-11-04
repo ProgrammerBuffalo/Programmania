@@ -1,4 +1,6 @@
-﻿$(document).ready(function () {
+﻿var _URL = window.URL || window.webkitURL;
+
+$(document).ready(function () {
     initModal(document.getElementById('nicknameModal'),
         document.getElementById('enterNicknameModal'),
         document.getElementById('closeNicknameModal'));
@@ -7,19 +9,14 @@
         document.getElementById('enterAvatarModal'),
         document.getElementById('closeAvatarModal'));
 
-    //$.ajax({
-    //    type: 'GET',
-    //    url: 'temp',
-    //    processData: true,
-    //    dataType: 'json',
-    //    data: { 'data1': 'aaaa' },
-    //    success: function (data) {
-    //        alert('ok');
-    //    },
-    //    error: function () {
+    initTab(document.getElementById('userInfo'),
+        document.getElementById('userInfoTab'));
 
-    //    }
-    //});
+    initTab(document.getElementById('games'),
+        document.getElementById('gamesTab'));
+
+    initTab(document.getElementById('achievments'),
+        document.getElementById('achievmentsTab'));
 });
 
 $(document).ready(function () {
@@ -70,29 +67,14 @@ $(document).ready(function () {
 $(document).ready(function () {
     $('#nicknameChangeBtn').click(function () {
 
-        //let dataForm = new FormData();
-        //dataForm.append('Nickname', 'aa');
-
-        //$.ajax({
-        //    type: 'POST',
-        //    url: 'Profile/change-nickname',
-        //    processData: false,
-        //    contentType: false,
-        //    data: dataForm,
-        //    success: function () {
-
-        //    },
-        //    error: function () {
-
-        //    }
-        //});
+        let dataForm = new FormData(document.getElementById('nicknameForm'));
 
         $.ajax({
-            type: 'GET',
-            url: 'change-nickname',
-            processData: true,
-            dataType: 'json',
-            data: { a: 'hello' },
+            type: 'POST',
+            url: 'Profile/change-nickname',
+            processData: false,
+            contentType: false,
+            data: dataForm,
             success: function () {
 
             }
@@ -102,19 +84,31 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $('#avatarInput').change(function () {
-        let canvas = document.getElementById('canvas');
+        let canvas = document.getElementById('avatarCanvas');
+        context.clearRect(0, 0, 200, 200);
+
         if (this.files[0].size > 100000) {
             alert('error image');
             $(this).parent().find('.error');
+            $(this).val('');
         }
         else {
-            cropImage(canvas, this.files[0], canvas.width, canvas.height);
+            cropImage(canvas, this.files[0], 200, 200);
+
+            let img = new Image();
+            img.naturalWidth
+            let objUrl = _URL.createObjectURL(this.files[0]);
+            img.onload = function () {
+                _URL.revokeObjectURL(objUrl);
+            }
+            img.src = objUrl;
         }
     });
 });
 
 $(document).ready(function () {
     $('#avatarChangeBtn').click(function () {
+        $('#avatar').val(document.getElementById('avatarCanvas').toDataURL());
 
         $.ajax({
             type: 'GET',

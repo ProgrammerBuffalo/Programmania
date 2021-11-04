@@ -65,13 +65,13 @@
 
                 <div class="tabs-container">
                     <div class="tab">
-                        <button class="tablinks" onclick="openContent(event, 'userInfo')">User info</button>
-                        <button class="tablinks" onclick="openContent(event, 'games')">Games</button>
-                        <button class="tablinks" onclick="openContent(event, 'achievments')">Achievments</button>
+                        <button id="userInfo" class="tablinks">User info</button>
+                        <button id="games" class="tablinks">Games</button>
+                        <button id="achievments" class="tablinks">Achievments</button>
                     </div>
 
                     <!-- Tab content -->
-                    <div id="userInfo" class="tabcontent">
+                    <div id="userInfoTab" class="tabcontent">
                         <div class="profile-info">
                             <div class="profile-info__item">
                                 <h3>XP:</h3>
@@ -86,7 +86,7 @@
                         </div>
                     </div>
 
-                    <div id="games" class="tabcontent">
+                    <div id="gamesTab" class="tabcontent">
                         <div class="profile-info">
                             <div class="profile-info__item">
                                 <h3>Games played:</h3>
@@ -101,7 +101,7 @@
                         </div>
                     </div>
 
-                    <div id="achievments" class="tabcontent">
+                    <div id="achievmentsTab" class="tabcontent">
 
                     </div>
                 </div>
@@ -114,12 +114,14 @@
                 <div class="modal-content" style="width: 300px">
                     <span id="closeNicknameModal" class="close">&times;</span>
 
-                    <div class="form-group">
-                        <label id="nicknameLabel" class="modal__label">Nickname: </label>
-                        <input id="nicknameInput" class="form-control modal__input" placeholder="nickname" />
-                    </div>
+                    <form id="nicknameForm">
+                        <div class="form-group">
+                            <label id="nicknameLabel" class="modal__label">Nickname: </label>
+                            <input id="nicknameInput" class="form-control modal__input" placeholder="nickname" />
+                        </div>
 
-                    <input type="button" id="nicknameChangeBtn" class="btn btn-success modal__close" value="Change" />
+                        <input type="button" id="nicknameChangeBtn" class="btn btn-success modal__close" value="Change" />
+                    </form>
                 </div>
             </div>
         }
@@ -135,7 +137,7 @@
                         <input id="avatarInput" class="form-control" type="file" />
                     </div>
 
-                    <canvas id="avatarCanvas" width="200" height="200"></canvas>
+                    <canvas id="avatarCanvas" style="width:200px; height:200px"></canvas>
 
                     <p id="avatarError" class="error">Error</p>
 

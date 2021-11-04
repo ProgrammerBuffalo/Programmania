@@ -1,15 +1,11 @@
-﻿using Microsoft.Data.SqlClient;
-using Microsoft.Data.SqlTypes;
+﻿using Microsoft.Data.SqlTypes;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
-using Newtonsoft.Json;
 using Programmania.Models;
+using Programmania.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
-using System.Transactions;
 using System.Xml;
 using System.Xml.Linq;
 

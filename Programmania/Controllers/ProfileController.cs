@@ -1,5 +1,11 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Programmania.Attributes;
+using Programmania.DAL;
+using Programmania.Models;
+using Programmania.Services.Interfaces;
+using Programmania.ViewModels;
+using Programmania.ViewModels.Validators;
+using System.Linq;
 
 namespace Programmania.Controllers
 {
@@ -7,23 +13,135 @@ namespace Programmania.Controllers
     [Authorize]
     public class ProfileController : Controller
     {
-        [Route("")]
+        private ProgrammaniaDBContext dBContext;
+        private IFileService fileService;
+
+        public ProfileController(ProgrammaniaDBContext dBContext, IFileService fileService)
+        {
+            this.dBContext = dBContext;
+            this.fileService = fileService;
+        }
+
+        //[Authorize]
         [AllowAnonymous]
+        [HttpGet("")]
         public IActionResult Profile()
         {
-            //check this User or another
-            ViewModels.UserProfileVM profileVM = new ViewModels.UserProfileVM(true);
-            return View(profileVM);
+            //var user = HttpContext.Items["User"] as Models.User;
+            //UserProfileVM profileVM = new UserProfileVM(true)
+            //{
+            //    Nickname = user.Name,
+            //    Avatar = fileService.GetSqlFileContext(user.ImageId)?.TransactionContext,
+            //    Email = user.Login,
+            //    Expierence = user.Exp,
+            //};
+            return View("/Views/Home/Profile.cshtml", new UserProfileVM(true));
         }
 
-        [HttpGet]
-        [Route("change-nickname")]
         [AllowAnonymous]
-        public IActionResult ChangeNickname(string a)
+        [HttpGet("show")]
+        public IActionResult Profile(string userIdCode)
+        {
+            int userId = int.Parse(Utilities.Encryptor.DecryptString(userIdCode));
+            //var profileVM = dBContext.Users.Where(u => u.Id == userId)
+            //    .Select(p => new UserProfileVM(false)
+            //    {
+            //        Nickname = p.Name,
+            //        Avatar = fileService.GetSqlFileContext()?.TransactionContext,
+            //        Expierence = p.Exp,
+            //    });
+
+            //var a = HttpContext.Items["User"] as Models.User;
+            return View("/Views/Home/Profile.cshtml", null);
+        }
+
+        //
+        [AllowAnonymous]
+        [HttpPost("change-nickname")]
+        public IActionResult ChangeNickname(NicknameValidator nickname)
         {
             if (ModelState.IsValid)
             {
-                return Ok();
+                var user = HttpContext.Items["User"] as Models.User;
+                var dbUser = dBContext.Users.FirstOrDefault(u => u.Id == user.Id);
+                if (dbUser != null)
+                {
+                    if (user.Login == dbUser.Login)
+                    {
+                        dbUser.Name = nickname.Nickname;
+                        dBContext.SaveChanges();
+                        return Ok();
+                    }
+                    return BadRequest();
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            else
+            {
+                string json = Utilities.FormError.MakeModelError(ModelState);
+                return BadRequest(json);
+            }
+        }
+
+        //
+        [AllowAnonymous]
+        [HttpPost("change-avatar")]
+        public IActionResult ChangeNickname(FileValidator file)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = HttpContext.Items["User"] as Models.User;
+                var dbUser = dBContext.Users.FirstOrDefault(u => u.Id == user.Id);
+                if (dbUser != null)
+                {
+                    if (user.Login == dbUser.Login)
+                    {
+                        fileService.UpdateDocument(user.ImageId, file.File);
+                        dBContext.SaveChanges();
+                        return Ok();
+                    }
+                    return BadRequest();
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            else
+            {
+                string json = Utilities.FormError.MakeModelError(ModelState);
+                return BadRequest(json);
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPost("change-password")]
+        public IActionResult ChangePassword(ChangePasswordValidator validator)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = HttpContext.Items["User"] as User;
+                if(user.Password == validator.OldPassword)
+                {
+                    var password = dBContext.Users.FirstOrDefault(u => u.Password == validator.NewPassword);
+                    if(password == null)
+                    {
+                        user.Password = validator.NewPassword;
+                        dBContext.SaveChanges();
+                        return Ok();
+                    }
+                    else
+                    {
+                        return BadRequest();
+                    }
+                }
+                else
+                {
+                    return BadRequest();
+                }
             }
             else
             {
@@ -31,48 +149,37 @@ namespace Programmania.Controllers
             }
         }
 
-        [Route("change-avatar")]
+        //
         [AllowAnonymous]
-        public IActionResult ChangeNickname([Attributes.FileValidation(1000000, ErrorMessage = "")]
-            Microsoft.AspNetCore.Http.IFormFile file)
-        {
-            if (ModelState.IsValid)
-            {
-                return Ok();
-            }
-            else
-            {
-                return BadRequest();
-            }
-        }
-
-        [Route("get-games")]
-        [AllowAnonymous]
+        [HttpGet("get-games")]
         public IActionResult GetGames()
         {
             return Json(null);
         }
 
-        [Route("get-achivments")]
+        //
         [AllowAnonymous]
+        [HttpGet("get-achivments")]
         public IActionResult GetAchivments()
         {
             return Json(null);
         }
 
-        [Route("get-user-info")]
+        //
         [AllowAnonymous]
+        [HttpGet("get-user-info")]
         public IActionResult GetUserInfo()
         {
             return Json(null);
         }
-
-        [HttpGet]
-        [Route("temp")]
-        [AllowAnonymous]
-        public IActionResult Temp(string data1)
-        {
-            return Ok();
-        }
     }
 }
+
+//[Route("")]
+//[AllowAnonymous]
+//public IActionResult Profile(int userId)
+//{
+//    var a = HttpContext.Items["User"] as Models.User;
+//    ViewModels.UserProfileVM profileVM = new ViewModels.UserProfileVM(true);
+//    return View("/Views/Home/Profile.cshtml", profileVM);
+//}
