@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Programmania.DAL;
 
 namespace Programmania.Migrations
 {
     [DbContext(typeof(ProgrammaniaDBContext))]
-    partial class ProgrammaniaDBContextModelSnapshot : ModelSnapshot
+    [Migration("20211030105749_ProgmanDBUsersChallengesCreateMigration")]
+    partial class ProgmanDBUsersChallengesCreateMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -86,18 +88,10 @@ namespace Programmania.Migrations
                         .HasColumnName("Id")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AnswersCount")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CourseId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CourseId");
 
                     b.ToTable("Challenges");
                 });
@@ -211,7 +205,8 @@ namespace Programmania.Migrations
 
                     b.HasIndex("DisciplineId");
 
-                    b.HasIndex("TestId");
+                    b.HasIndex("TestId")
+                        .IsUnique();
 
                     b.ToTable("Lessons");
                 });
@@ -280,15 +275,10 @@ namespace Programmania.Migrations
                     b.Property<int>("Correct")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CourseId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Question")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CourseId");
 
                     b.ToTable("Tests");
 
@@ -404,15 +394,6 @@ namespace Programmania.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Programmania.Models.Challenge", b =>
-                {
-                    b.HasOne("Programmania.Models.Course", "Course")
-                        .WithMany()
-                        .HasForeignKey("CourseId");
-
-                    b.Navigation("Course");
-                });
-
             modelBuilder.Entity("Programmania.Models.Discipline", b =>
                 {
                     b.HasOne("Programmania.Models.Course", "Course")
@@ -429,8 +410,8 @@ namespace Programmania.Migrations
                         .HasForeignKey("DisciplineId");
 
                     b.HasOne("Programmania.Models.Test", "Test")
-                        .WithMany()
-                        .HasForeignKey("TestId")
+                        .WithOne("Lesson")
+                        .HasForeignKey("Programmania.Models.Lesson", "TestId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -446,15 +427,6 @@ namespace Programmania.Migrations
                         .HasForeignKey("UserId");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Programmania.Models.Test", b =>
-                {
-                    b.HasOne("Programmania.Models.Course", "Course")
-                        .WithMany()
-                        .HasForeignKey("CourseId");
-
-                    b.Navigation("Course");
                 });
 
             modelBuilder.Entity("Programmania.Models.UserChallenge", b =>
@@ -505,6 +477,11 @@ namespace Programmania.Migrations
                     b.Navigation("Lessons");
 
                     b.Navigation("UserDisciplines");
+                });
+
+            modelBuilder.Entity("Programmania.Models.Test", b =>
+                {
+                    b.Navigation("Lesson");
                 });
 
             modelBuilder.Entity("Programmania.Models.User", b =>
