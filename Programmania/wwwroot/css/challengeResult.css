@@ -1,0 +1,252 @@
+﻿/*HEADER*/
+
+.header {
+    width: 100%;
+    height: 100%;
+}
+
+.header__content {
+    width: 100%;
+    height: 100%;
+    padding: 20px 50px;
+    display: flex;
+    -ms-display: flex;
+    -o-display: flex;
+    -moz-display: flex;
+    -webkit-display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #2a60af;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+.item {
+    display: flex;
+    -ms-display: flex;
+    -o-display: flex;
+    -moz-display: flex;
+    -webkit-display: flex;
+    flex-direction: row;
+    color: #fff;
+    font-family: monsterrat-normal;
+    align-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.username {
+    font-size: 2.5em;
+    color: #fff;
+    font-family: monsterrat-bold;
+}
+
+.item__title {
+    font-size: 1.5em;
+    font-family: monsterrat-normal;
+}
+
+.item__subtitle {
+    margin-left: 20px;
+    font-size: 2em;
+    font-family: monsterrat-bold;
+}
+
+.avatar__image {
+    max-width: 150px;
+    max-height: 150px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+    .avatar__image img {
+        width: 100%;
+        height: 100%;
+    }
+
+.arrow-left {
+    width: 0;
+    height: 0;
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+    border-right: 30px solid #fff;
+    transition: all 0.5s ease 0s;
+}
+
+    .arrow-left:hover {
+        cursor: pointer;
+        border-top: 40px solid transparent;
+        border-bottom: 40px solid transparent;
+        border-right: 40px solid #75acff;
+    }
+/*HEADER*/
+
+.main {
+    padding: 50px 20%;
+}
+
+.tiles {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.col-1,
+.col-2 {
+    flex: 0 1 50%;
+}
+
+.col-1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.statistic-block {
+    min-height: 100px;
+    margin-top: 30px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    padding: 20px;
+    width: 350px;
+    margin-left: 50px;
+}
+
+.statistic-block__title {
+    text-align: center;
+    font-size: 1.8em;
+    font-family: monsterrat-light;
+}
+
+.statistic-block__text {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 2.2em;
+    font-family: monsterrat-bold;
+}
+
+.block_answers {
+    background-color: #8cff99;
+    color: #016609;
+}
+
+.block_course {
+    background-color: #fff28c;
+    color: #665a01;
+}
+
+.block_discipline {
+    background-color: #8cdbff;
+    color: #012d66;
+}
+
+.block_win,
+.block_lose {
+    width: 100%;
+    min-height: 200px;
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 2em;
+}
+
+.block_win {
+    background-color: #8e8cff;
+    color: #230166;
+}
+
+.block_lose {
+    background-color: #ff8c8c;
+    color: #660101;
+}
+
+.btn {
+    min-width: 150px;
+    max-width: 300px;
+    min-height: 50px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 10px;
+    font-size: 3em;
+    text-align: center;
+    font-family: monsterrat-normal;
+}
+
+.btn__back {
+    background-color: #8cfbff;
+    color: #015366;
+    transition: all 0.3s ease 0s;
+    position: relative;
+}
+
+    .btn__back:hover {
+        opacity: 0.7;
+        cursor: pointer;
+    }
+
+        .btn__back:hover .front {
+            transform: rotateY(180deg);
+        }
+
+        .btn__back:hover .back {
+            transform: rotateY(360deg);
+        }
+
+.front {
+    backface-visibility: hidden;
+    width: 100%;
+    height: 100%;
+    transition: all 0.5s ease 0s;
+}
+
+.back {
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: all 0.5s ease 0s;
+}
+
+@media (max-width: 1050px) {
+    .main {
+        padding: 50px 10%;
+    }
+}
+
+@media (max-width: 750px) {
+    .col-1 {
+        flex-direction: column;
+    }
+
+    .statistic-block {
+        margin: 0 auto;
+        margin-top: 20px;
+    }
+
+    .block_lose,
+    .block_win {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 440px) {
+    .statistic-block {
+        width: 250px;
+    }
+
+    .block_lose,
+    .block_win {
+        font-size: 1em;
+    }
+
+    .btn {
+        font-size: 2em;
+    }
+}
