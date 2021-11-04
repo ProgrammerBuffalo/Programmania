@@ -53,6 +53,7 @@ namespace Programmania.Controllers
         }
 
         [HttpPost]
+        [Route("send-answers")]
         public async Task<IActionResult> SendAnswersPacket(Dictionary<int, int> answers)
         {
             User user = HttpContext.Items["User"] as User;
@@ -72,8 +73,8 @@ namespace Programmania.Controllers
                 Test test = listTests.FirstOrDefault(t => t.Id == kvp.Key);
                 if (test == null)
                     continue;
-                
-                if(test.Correct == kvp.Value)
+
+                if (test.Correct == kvp.Value)
                     counter++;
             }
 
@@ -81,25 +82,31 @@ namespace Programmania.Controllers
                 .FirstOrDefault(uc => uc.ChallengeId == challengeId.Value
                                     && uc.UserId == user.Id && !uc.IsFinished);
 
-            if(userChallenge != null)
+            if (userChallenge != null)
             {
                 userChallenge.AnswersCount = counter;
                 userChallenge.IsFinished = true;
                 dbContext.Update(userChallenge);
                 await dbContext.SaveChangesAsync();
             }
-            //else
-            //{
-            //    await dbContext.Database.ExecuteSqlRawAsync("exec dbo.SetChallengeForUsersPROC @creatorId," +
-            //        "@opponentId, @challengeId, @creatorAnswersCount", user.Id)
-            //}
+            else
+            {
+                int? opponentId = HttpContext.Session.GetInt32("opponent");
 
+                if (opponentId == null)
+                    return BadRequest();
+
+                await dbContext.Database.ExecuteSqlRawAsync("exec dbo.SetChallengeForUsersPROC @creatorId," +
+                    "@opponentId, @challengeId, @creatorAnswersCount", user.Id, opponentId.Value, challengeId.Value, counter);
+            }
+
+            HttpContext.Session.Clear();
             return Ok();
         }
 
         [Route("create-challenge")]
         [HttpPost]
-        public async Task<IActionResult> CreateChallenge(int courseId)
+        public async Task<IActionResult> CreateChallenge(int courseId, int userId)
         {
             var challengeParam = new SqlParameter
             {
@@ -109,6 +116,8 @@ namespace Programmania.Controllers
             };
 
             await dbContext.Database.ExecuteSqlRawAsync("exec dbo.GenerateChallengePROC @courseId, @challengeId OUT", courseId, challengeParam);
+            HttpContext.Session.SetInt32("opponent", userId);
+
             return RedirectToAction("accept-challenge", (int)challengeParam.Value);
         }
 
@@ -120,7 +129,7 @@ namespace Programmania.Controllers
             return RedirectToAction("tests");
         }
 
-        [Route("tests")]
+        [Route("get-tests")]
         [HttpGet]
         public IActionResult GetTestsOfChallenge()
         {
@@ -134,7 +143,7 @@ namespace Programmania.Controllers
             if (tests == null)
                 return BadRequest();
 
-           List<TestVM> testsVM = new List<TestVM>();
+            List<TestVM> testsVM = new List<TestVM>();
             foreach (var test in tests)
                 testsVM.Add(new TestVM
                 {
@@ -146,7 +155,7 @@ namespace Programmania.Controllers
                     A4 = test.Answer4
                 });
 
-            return View(tests);       
+            return View(tests);
         }
 
         private List<Test> getChallengeTests(User user, int challengeId)
