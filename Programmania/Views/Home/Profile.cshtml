@@ -40,13 +40,13 @@
 
                     @if (Model.IsOwned)
                     {
-                        <div class="profile-info__item">
-                            <h3>Email:</h3>
-                            <p>John123@gmail.com</p>
-                        </div>
-                        <hr />
+                    <div class="profile-info__item">
+                        <h3>Email:</h3>
+                        <p>John123@gmail.com</p>
+                    </div>
+                    <hr />
 
-                        <button id="enterProfileModal" class="btn btn-primary profile-info__change">Change profile data</button>
+                    <button id="enterProfileModal" class="btn btn-primary profile-info__change">Change profile data</button>
                     }
                 </div>
             </div>
@@ -110,44 +110,44 @@
 
         @if (Model.IsOwned)
         {
-            <div class="modal" id="nicknameModal">
-                <div class="modal-content" style="width: 300px">
-                    <span id="closeNicknameModal" class="close">&times;</span>
+        <div class="modal" id="nicknameModal">
+            <div class="modal-content" style="width: 300px">
+                <span id="closeNicknameModal" class="close">&times;</span>
 
-                    <form id="nicknameForm">
-                        <div class="form-group">
-                            <label id="nicknameLabel" class="modal__label">Nickname:</label>
-                            <p id="nicknameError" class="error"></p>
-                            <input id="nicknameInput" name="Nickname" class="form-control modal__input" placeholder="nickname" />
-                        </div>
+                <form id="nicknameForm">
+                    <div class="form-group">
+                        <label id="nicknameLabel" class="modal__label">Nickname:</label>
+                        <p id="nicknameError" class="error"></p>
+                        <input id="nicknameInput" name="Nickname" class="form-control modal__input" placeholder="nickname" />
+                    </div>
 
-                        <input type="button" id="nicknameChangeBtn" class="btn btn-success modal__close" value="Change" />
-                    </form>
-                </div>
+                    <input type="button" id="nicknameChangeBtn" class="btn btn-success modal__close" value="Change" />
+                </form>
             </div>
+        </div>
         }
 
         @if (Model.IsOwned)
         {
-            <div class="modal" id="avatarModal">
-                <div class="modal-content" style="width:300px">
-                    <span id="closeAvatarModal" class="close">&times;</span>
+        <div class="modal" id="avatarModal">
+            <div class="modal-content" style="width:300px">
+                <span id="closeAvatarModal" class="close">&times;</span>
 
-                    <form id="avatarForm">
-                        <div class="form-group">
-                            <label id="avatarLabel" class="modal__label">Avatar: </label>
-                            <p  id="avatarError" class="error"></p>
-                            <input id="avatarInput" name="File" class="form-control" type="file" />
-                        </div>
+                <form id="avatarForm">
+                    <div class="form-group">
+                        <label id="avatarLabel" class="modal__label">Avatar: </label>
+                        <p id="avatarError" class="error"></p>
+                        <input id="avatarInput" name="File" class="form-control" type="file" />
+                    </div>
 
-                        <canvas id="avatarCanvas" style="width:200px; height:200px; margin:0px, auto !important"></canvas>
+                    <canvas id="avatarCanvas" style="width:200px; height:200px; margin:0px, auto !important"></canvas>
 
-                        <p id="avatarError" class="error">Error</p>
+                    <p id="avatarError" class="error">Error</p>
 
-                        <input type="button" id="avatarChangeBtn" class="btn btn-success modal__close" value="Change" />
-                    </form>
-                </div>
+                    <input type="button" id="avatarChangeBtn" class="btn btn-success modal__close" value="Change" />
+                </form>
             </div>
+        </div>
         }
     </main>
 

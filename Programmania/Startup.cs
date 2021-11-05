@@ -37,7 +37,10 @@ namespace Programmania
             services.AddScoped<IProfileService, ProfileService>();
             services.AddScoped<IPerformanceService, PerformanceService>();
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+                .AddViewLocalization();
+
+            services.AddLocalization(options => options.ResourcesPath = "Resources");
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -51,6 +54,18 @@ namespace Programmania
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
+            var supportedCultures =  new[] {
+                new System.Globalization.CultureInfo("en"),
+                new System.Globalization.CultureInfo("ru")
+            };
+
+            app.UseRequestLocalization(new RequestLocalizationOptions() {
+                DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("en"),
+                SupportedCultures = supportedCultures,
+                SupportedUICultures = supportedCultures
+            });
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
