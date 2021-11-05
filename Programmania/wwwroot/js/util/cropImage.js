@@ -1,6 +1,5 @@
 ﻿function cropImage(canvas, file, width, height) {
     let context = canvas.getContext('2d');
-    context.clearRect(0, 0, width, height);
 
     const reader = new FileReader();
     reader.onload = function (e) {

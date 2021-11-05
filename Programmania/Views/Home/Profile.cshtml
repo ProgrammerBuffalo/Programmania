@@ -116,8 +116,9 @@
 
                     <form id="nicknameForm">
                         <div class="form-group">
-                            <label id="nicknameLabel" class="modal__label">Nickname: </label>
-                            <input id="nicknameInput" class="form-control modal__input" placeholder="nickname" />
+                            <label id="nicknameLabel" class="modal__label">Nickname:</label>
+                            <p id="nicknameError" class="error"></p>
+                            <input id="nicknameInput" name="Nickname" class="form-control modal__input" placeholder="nickname" />
                         </div>
 
                         <input type="button" id="nicknameChangeBtn" class="btn btn-success modal__close" value="Change" />
@@ -132,16 +133,19 @@
                 <div class="modal-content" style="width:300px">
                     <span id="closeAvatarModal" class="close">&times;</span>
 
-                    <div class="form-group">
-                        <label id="avatarLabel" class="modal__label">Avatar: </label>
-                        <input id="avatarInput" class="form-control" type="file" />
-                    </div>
+                    <form id="avatarForm">
+                        <div class="form-group">
+                            <label id="avatarLabel" class="modal__label">Avatar: </label>
+                            <p  id="avatarError" class="error"></p>
+                            <input id="avatarInput" name="File" class="form-control" type="file" />
+                        </div>
 
-                    <canvas id="avatarCanvas" style="width:200px; height:200px"></canvas>
+                        <canvas id="avatarCanvas" style="width:200px; height:200px; margin:0px, auto !important"></canvas>
 
-                    <p id="avatarError" class="error">Error</p>
+                        <p id="avatarError" class="error">Error</p>
 
-                    <input type="button" id="avatarChangeBtn" class="btn btn-success modal__close" value="Change" />
+                        <input type="button" id="avatarChangeBtn" class="btn btn-success modal__close" value="Change" />
+                    </form>
                 </div>
             </div>
         }

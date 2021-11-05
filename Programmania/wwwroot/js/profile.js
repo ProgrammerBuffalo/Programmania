@@ -1,6 +1,4 @@
-﻿var _URL = window.URL || window.webkitURL;
-
-$(document).ready(function () {
+﻿$(document).ready(function () {
     initModal(document.getElementById('nicknameModal'),
         document.getElementById('enterNicknameModal'),
         document.getElementById('closeNicknameModal'));
@@ -67,54 +65,53 @@ $(document).ready(function () {
 $(document).ready(function () {
     $('#nicknameChangeBtn').click(function () {
 
-        let dataForm = new FormData(document.getElementById('nicknameForm'));
+        let formData = new FormData(document.getElementById('nicknameForm'));
 
         $.ajax({
             type: 'POST',
             url: 'Profile/change-nickname',
             processData: false,
             contentType: false,
-            data: dataForm,
+            data: formData,
             success: function () {
 
+            },
+            error: function () {
+
             }
-        })
+        });
     });
 });
 
 $(document).ready(function () {
     $('#avatarInput').change(function () {
         let canvas = document.getElementById('avatarCanvas');
-        context.clearRect(0, 0, 200, 200);
+        canvas.getContext('2d').clearRect(0, 0, 200, 200);
 
-        if (this.files[0].size > 100000) {
+        if (this.files[0].size > 1000000) {
             alert('error image');
             $(this).parent().find('.error');
             $(this).val('');
         }
         else {
             cropImage(canvas, this.files[0], 200, 200);
-
-            let img = new Image();
-            img.naturalWidth
-            let objUrl = _URL.createObjectURL(this.files[0]);
-            img.onload = function () {
-                _URL.revokeObjectURL(objUrl);
-            }
-            img.src = objUrl;
         }
     });
 });
 
 $(document).ready(function () {
     $('#avatarChangeBtn').click(function () {
-        $('#avatar').val(document.getElementById('avatarCanvas').toDataURL());
+        //$('#avatar').val(document.getElementById('avatarCanvas').toDataURL());
+
+        let formData = new FormData(document.getElementById('avatarForm'));
+        //formData.append('Nickname', ('#nicknameInput').val());
 
         $.ajax({
-            type: 'GET',
-            url: 'Profile/get-achivments',
-            processData: true,
-            dataType: 'json',
+            type: 'POST',
+            url: 'Profile/change-avatar',
+            processData: false,
+            contentType: false,
+            data: formData,
             success: function () {
 
             },

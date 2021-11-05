@@ -58,17 +58,17 @@ namespace Programmania.Controllers
         //
         [AllowAnonymous]
         [HttpPost("change-nickname")]
-        public IActionResult ChangeNickname(NicknameValidator nickname)
+        public IActionResult ChangeNickname(NicknameValidator inputs)
         {
             if (ModelState.IsValid)
             {
-                var user = HttpContext.Items["User"] as Models.User;
+                var user = HttpContext.Items["User"] as User;
                 var dbUser = dBContext.Users.FirstOrDefault(u => u.Id == user.Id);
                 if (dbUser != null)
                 {
                     if (user.Login == dbUser.Login)
                     {
-                        dbUser.Name = nickname.Nickname;
+                        dbUser.Name = inputs.Nickname;
                         dBContext.SaveChanges();
                         return Ok();
                     }
@@ -89,7 +89,7 @@ namespace Programmania.Controllers
         //
         [AllowAnonymous]
         [HttpPost("change-avatar")]
-        public IActionResult ChangeNickname(FileValidator file)
+        public IActionResult ChangeNickname(FileValidator inputs)
         {
             if (ModelState.IsValid)
             {
@@ -99,7 +99,7 @@ namespace Programmania.Controllers
                 {
                     if (user.Login == dbUser.Login)
                     {
-                        fileService.UpdateDocument(user.ImageId, file.File);
+                        fileService.UpdateDocument(user.ImageId, inputs.File);
                         dBContext.SaveChanges();
                         return Ok();
                     }
@@ -124,10 +124,10 @@ namespace Programmania.Controllers
             if (ModelState.IsValid)
             {
                 var user = HttpContext.Items["User"] as User;
-                if(user.Password == validator.OldPassword)
+                if (user.Password == validator.OldPassword)
                 {
                     var password = dBContext.Users.FirstOrDefault(u => u.Password == validator.NewPassword);
-                    if(password == null)
+                    if (password == null)
                     {
                         user.Password = validator.NewPassword;
                         dBContext.SaveChanges();
