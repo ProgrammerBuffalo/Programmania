@@ -5,6 +5,8 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="~/css/Main.css" />
+	<link rel="stylesheet" href="~/css/util/zeroing.css" />
+	<link rel="stylesheet" href="~/css/util/fonts.css" />
 	<link rel="stylesheet" href="~/css/Footer.css" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
 	<link rel="stylesheet" href="~/css/loading-bar.min.css">
@@ -27,297 +29,141 @@
 	<div class="wrapper">
 		
 
-	<main class="main">
-<header class="header" style="background-image: url('images/mainHeader.jpg');">
-		<div class="header__title">
-			Welcome to Programmania, username
-		</div>
-		<a href="#curr-course">
-			<span class="arrowbtn arrowbtn-down"></span>
-		</a>
+		<main class="main">
+			<header class="header" style="background-image: url('images/mainHeader.jpg');">
+				<div class="header__title">
+					Welcome to Programmania, username
+				</div>
+				<a href="#curr-course">
+					<span class="arrowbtn arrowbtn-down"></span>
+				</a>
 
-	</header>
-		<div class="left-menu">
-			<div class="left-menu-content" id="menu-content">
+			</header>
+			<div class="left-menu">
+				<div class="left-menu-content" id="menu-content">
 
-				<ul>
-					<li>
-						<a href="#curr-course">Current Course</a>
-					</li>
-					<li>
-						<a href="#courses">All Courses</a>
-					</li>
-					<li>
-						<a href="#level">Level</a>
-					</li>
-					<li>
-						<a href="#performance">Performance</a>
-					</li>
-					<li>
-						<a href="#challenges">Challenges</a>
-					</li>
-					<li>
-						<a href="#achievments">Achievments</a>
-					</li>
-					<li>
-						<a href="#news">News</a>
-					</li>
-				</ul>
-			</div>
-
-			<div class="left-menu__button" id="hide-btn">
-				<i class="arrow arrow-right" id="arrow"></i>
-			</div>
-		</div>
-
-		<div class="current-course-container" id="curr-course">
-			<h3 class="container__title">Current course</h3>
-			<div class="current-course">
-				<div class="current-course-col-1" data-aos="fade-right" data-aos-duration="1000">
-					<div class="current-course__image" style="background-image: url('images/CSharp.jpg');">
-
-					</div>
-
-					<h3 class="current-course__title">C#</h3>
-					<p class="current-course__info">Lesson count: 77/100</p>
+					<ul>
+						<li>
+							<a href="#curr-course">Current Course</a>
+						</li>
+						<li>
+							<a href="#courses">All Courses</a>
+						</li>
+						<li>
+							<a href="#level">Level</a>
+						</li>
+						<li>
+							<a href="#performance">Performance</a>
+						</li>
+						<li>
+							<a href="#challenges">Challenges</a>
+						</li>
+						<li>
+							<a href="#achievments">Achievments</a>
+						</li>
+						<li>
+							<a href="#news">News</a>
+						</li>
+					</ul>
 				</div>
 
-				<div class="current-course-col-2" data-aos="fade-left" data-aos-duration="1000">
-					<div class="current-course__percent">
-						<div class="ldBar label-center" data-preset="circle" data-value="77" data-transition-in="1000"
-							style="width: 100%; height: 100%">
+				<div class="left-menu__button" id="hide-btn">
+					<i class="arrow arrow-right" id="arrow"></i>
+				</div>
+			</div>
+
+			<div class="current-course-container" id="curr-course">
+				<h3 class="container__title">Current Course</h3>
+				<div class="course" style="background-color: #fcc9c0;">
+					
+
+					<div class="flip flip_right">
+						<div class="flip__front course__image" style="background-image: url('images/rubyCourse.png');">
+
+						</div>
+
+						<div class="flip__back">
+							<p>Welcome to Ruby Course!</p>
 						</div>
 					</div>
 
+					<div class="course__content">
+						<div class="course__info">
+							<h2 class="course__title title_ruby">Ruby</h2>
+							<div class="course__percent percent_ruby">
+								<div class="ldBar label-center" data-preset="circle" data-value="77"
+								data-transition-in="1000" style="width: 100%; height: 100%">
+							</div>
+						</div>
+					</div>
+
+					<div class="course__button button_ruby">
+						<a href="Courses">
+							Go to course
+						</a>
+					</div>
 				</div>
 			</div>
-			<a href="#">
-				<div class="current-course__button" data-aos="flip-left" data-aos-duration="1000">Last lesson: Working with
-					sockets</div>
-			</a>
 		</div>
 
 
 
 
 		<div class="courses-container" id="courses">
-			@*<h3 class="container__title">All courses</h3>
-			<div class="swiper">
-				<div class="courses swiper-container" data-aos="zoom-in" data-aos-duration="1000">
+			<h3 class="container__title">All Courses</h3>
 
+
+			<div class="swiper">
+				<div class="courses swiper-container">
 					<div class="swiper-wrapper">
 						<div class="swiper-slide">
-							<div class="course">
-								<div class="course__image" style="background-image: url('images/CSharp.jpg');">
-								</div>
-								<div class="course-content">
-									<h3 class="course__title">
-										C#
-									</h3>
-									<p class="course__info">
-										Lessons count: 77/100
-									</p>
-
-									<div class="course__percent">
-										<div class="ldBar label-center" data-preset="circle" data-value="77"
+							<div class="course" style="background-color: #fcc9c0;">
+								<div class="course__content">
+									<div class="course__info">
+										<h2 class="course__title title_ruby">Ruby</h2>
+										<div class="course__percent percent_ruby">
+											<div class="ldBar label-center" data-preset="circle" data-value="77"
 											data-transition-in="1000" style="width: 100%; height: 100%">
 										</div>
 									</div>
+								</div>
 
-									<a href="#">
-										<div class="course__button">
-											Last lesson: Working with sockets
-										</div>
+								<div class="course__button button_ruby">
+									<a href="Courses">
+										Go to course
 									</a>
-
 								</div>
-
 							</div>
-						</div>
 
-						<div class="swiper-slide">
-							<div class="course">
-								<div class="course__image" style="background-image: url('images/javaCourse.jpg');">
-								</div>
-								<div class="course-content">
-									<h3 class="course__title">
-										Java
-									</h3>
-									<p class="course__info">
-										Lessons count: 77/100
-									</p>
+							<div class="flip">
+								<div class="flip__front course__image" style="background-image: url('images/rubyCourse.png');">
 
-									<div class="course__percent">
-										<div class="ldBar label-center" data-preset="circle" data-value="77"
-											data-transition-in="1000" style="width: 100%; height: 100%">
-										</div>
-									</div>
-
-									<div class="course__button">
-										Last lesson: Working with sockets
-									</div>
 								</div>
 
-							</div>
-						</div>
-
-						<div class="swiper-slide">
-							<div class="course">
-								<div class="course__image" style="background-image: url('images/JSLogo.png');">
+								<div class="flip__back">
+									<p>Welcome to Ruby Course!</p>
 								</div>
-								<div class="course-content">
-									<h3 class="course__title">
-										JavaScript
-									</h3>
-									<p class="course__info">
-										Lessons count: 77/100
-									</p>
-
-									<div class="course__percent">
-										<div class="ldBar label-center" data-preset="circle" data-value="77"
-											data-transition-in="1000" style="width: 100%; height: 100%">
-										</div>
-									</div>
-
-									<div class="course__button">
-										Last lesson: Working with sockets
-									</div>
-								</div>
-
-							</div>
-						</div>
-
-						<div class="swiper-slide">
-							<div class="course">
-								<div class="course__image" style="background-image: url('images/phpCourse.jpg');">
-								</div>
-								<div class="course-content">
-									<h3 class="course__title">
-										PHP
-									</h3>
-									<p class="course__info">
-										Lessons count: 77/100
-									</p>
-
-									<div class="course__percent">
-										<div class="ldBar label-center" data-preset="circle" data-value="77"
-											data-transition-in="1000" style="width: 100%; height: 100%">
-										</div>
-									</div>
-
-									<div class="course__button">
-										Last lesson: Working with sockets
-									</div>
-								</div>
-
-							</div>
-						</div>
-
-						<div class="swiper-slide">
-							<div class="course">
-								<div class="course__image" style="background-image: url('images/rubyCourse.png');">
-								</div>
-								<div class="course-content">
-									<h3 class="course__title">
-										Ruby
-									</h3>
-									<p class="course__info">
-										Lessons count: 77/100
-									</p>
-
-									<div class="course__percent">
-										<div class="ldBar label-center" data-preset="circle" data-value="77"
-											data-transition-in="1000" style="width: 100%; height: 100%">
-										</div>
-									</div>
-
-									<div class="course__button">
-										Last lesson: Working with sockets
-									</div>
-								</div>
-
-							</div>
-						</div>
-
-						<div class="swiper-slide">
-							<div class="course">
-								<div class="course__image" style="background-image: url('images/pythonCourse.png');">
-								</div>
-								<div class="course-content">
-									<h3 class="course__title">
-										Python
-									</h3>
-									<p class="course__info">
-										Lessons count: 77/100
-									</p>
-
-									<div class="course__percent">
-										<div class="ldBar label-center" data-preset="circle" data-value="77"
-											data-transition-in="1000" style="width: 100%; height: 100%">
-										</div>
-									</div>
-
-									<div class="course__button">
-										Last lesson: Working with sockets
-									</div>
-								</div>
-
 							</div>
 						</div>
 					</div>
-					<div class="swiper-button-prev"></div>
-					<div class="swiper-button-next"></div>
-				</div>
-			</div>*@
 
 
-			<div class="swiper">
-		<div class="courses swiper-container">
-			<div class="swiper-wrapper">
-				<div class="swiper-slide">
-					<div class="course" style="background-color: #fcc9c0;">
-						<div class="course__content">
-							<div class="course__info">
-								<h2 class="course__title title_ruby">Ruby</h2>
-								<div class="course__percent percent_ruby">
-									<div class="ldBar label-center" data-preset="circle" data-value="77"
-										data-transition-in="1000" style="width: 100%; height: 100%">
-									</div>
-								</div>
-							</div>
-
-							<div class="course__button button_ruby">
-								Go to course
-							</div>
-						</div>
-
-						<div class="flip">
-							<div class="flip__front course__image" style="background-image: url('images/rubyCourse.png');">
-
-							</div>
-
-							<div class="flip__back">
-								<p>Welcome to Ruby Course!</p>
-							</div>
-						</div>
-					</div>
-				</div>
-
-
-				<div class="swiper-slide">
-					<div class="course" style="background-color: #c0f1fc;">
-						<div class="course__content">
-							<div class="course__info">
-								<h2 class="course__title title_cpp">Ruby</h2>
-								<div class="course__percent percent_cpp">
-									<div class="ldBar label-center" data-preset="circle" data-value="77"
+					<div class="swiper-slide">
+						<div class="course" style="background-color: #c0f1fc;">
+							<div class="course__content">
+								<div class="course__info">
+									<h2 class="course__title title_cpp">C++</h2>
+									<div class="course__percent percent_cpp">
+										<div class="ldBar label-center" data-preset="circle" data-value="77"
 										data-transition-in="1000" style="width: 100%; height: 100%">
 									</div>
 								</div>
 							</div>
 
 							<div class="course__button button_cpp">
-								Go to course
+								<a href="Courses">
+									Go to course
+								</a>
 							</div>
 						</div>
 
@@ -337,267 +183,246 @@
 					<div class="course" style="background-color: #f5e4ff;">
 						<div class="course__content">
 							<div class="course__info">
-								<h2 class="course__title title_php">Ruby</h2>
+								<h2 class="course__title title_php">PHP</h2>
 								<div class="course__percent percent_php">
 									<div class="ldBar label-center" data-preset="circle" data-value="77"
-										data-transition-in="1000" style="width: 100%; height: 100%">
-									</div>
+									data-transition-in="1000" style="width: 100%; height: 100%">
 								</div>
 							</div>
+						</div>
 
-							<div class="course__button button_php">
+						<div class="course__button button_php">
+							<a href="Courses">
 								Go to course
-							</div>
+							</a>
 						</div>
-						<div class="flip">
-							<div class="flip__front course__image" style="background-image: url('images/phpCourse.jpg');">
+					</div>
 
-							</div>
+					<div class="flip">
+						<div class="flip__front course__image" style="background-image: url('images/phpCourse.jpg');">
+							
+						</div>
 
-							<div class="flip__back">
-								<p>Welcome to PHP Course</p>
-							</div>
+						<div class="flip__back">
+							<p>Welcome to PHP Course</p>
 						</div>
 					</div>
 				</div>
 			</div>
+			<div class="swiper-button-prev"></div>
+			<div class="swiper-button-next"></div>
 		</div>
-		</div>
-
-
-
-		<div class="level-container" id="level">
-			<h3 class="container__title">Level</h3>
-			<div class="level">
-				<div class="level-col-1" data-aos="fade-right" data-aos-duration="1000">
-					<div class="level__percent">
-						<div class="ldBar label-center" data-preset="circle" data-value="77" data-transition-in="1000"
-							style="width: 100%; height: 100%">
-						</div>
-					</div>
-
-					<h3 class="level__xp">25.600 / 28.850 XP</h3>
-				</div>
-				<div class="level-col-2" data-aos="fade-left" data-aos-duration="1000">
-					<h3 class="level__title">Level: 32</h3>
-					<p class="level__info">To 32 lvl 3.250xp left</p>
-				</div>
-
-
-			</div>
-		</div>
-
-
-
-
-		<div class="performance-container" id="performance">
-			<a href="Performance" class="container__title title_link">Performance</a>
-			<div class="performance" data-aos="zoom-in" data-aos-duration="1000">
-				<div class="chartArea">
-					<div class="chart-container">
-						<canvas id="performanceChart">
-						</canvas>
-					</div>
-				</div>
-			</div>
-		</div>
-
-
-
-		<div class="challenges-container" id="challenges">
-			<h3 class="container__title">Challenges</h3>
-			<div class="challenges" data-aos="zoom-in" data-aos-duration="1000">
-
-				<h3 class="winrate__info">Games win: 7/10</h3>
-				<div class="swiper">
-					<div class="challenges-swiper swiper-container">
-						<div class="swiper-wrapper">
-							<div class="swiper-slide">
-								<div class="challenge challenge_create">
-									<div class="challenge__image" style="background-image: url('images/pythonCourse.png');">
-
-									</div>
-
-									<div class="challenge-content">
-										<div class="challenge__avatar">
-											<img src="images/avatarImg.png" alt="Avatar image" />
-										</div>
-
-										<h3 class="challenge__username">John Johnson</h3>
-										<p class="challenge__info">Propose a challenge in Python language</p>
-										<a href="#">
-											<div class="challenge__button challenge__button_create">Create</div>
-										</a>
-									</div>
-
-
-								</div>
-							</div>
-
-							<div class="swiper-slide">
-								<div class="challenge challenge_accept">
-									<div class="challenge__image" style="background-image: url('images/CSharp.jpg');">
-
-									</div>
-									<div class="challenge-content">
-										<div class="challenge__avatar">
-											<img src="images/avatarImg.png" alt="Avatar image" />
-										</div>
-
-										<h3 class="challenge__username">Jack Jackson</h3>
-										<p class="challenge__info">Challenged you on the C# language</p>
-										<a href="#">
-											<div class="challenge__button challenge__button_accept">Accept</div>
-										</a>
-									</div>
-								</div>
-							</div>
-
-							<div class="swiper-slide">
-								<div class="challenge challenge_create">
-									<div class="challenge__image" style="background-image: url('images/pythonCourse.png');">
-
-									</div>
-
-									<div class="challenge-content">
-										<div class="challenge__avatar">
-											<img src="images/avatarImg.png" alt="Avatar image" />
-										</div>
-
-										<h3 class="challenge__username">John Johnson</h3>
-										<p class="challenge__info">Propose a challenge in Python language</p>
-										<a href="#">
-											<div class="challenge__button challenge__button_create">Create</div>
-										</a>
-									</div>
-
-
-								</div>
-							</div>
-
-							<div class="swiper-slide">
-								<div class="challenge challenge_accept">
-									<div class="challenge__image" style="background-image: url('images/CSharp.jpg');">
-
-									</div>
-									<div class="challenge-content">
-										<div class="challenge__avatar">
-											<img src="images/avatarImg.png" alt="Avatar image" />
-										</div>
-
-										<h3 class="challenge__username">Jack Jackson</h3>
-										<p class="challenge__info">Challenged you on the C# language</p>
-										<a href="#">
-											<div class="challenge__button challenge__button_accept">Accept</div>
-										</a>
-									</div>
-								</div>
-							</div>
-
-							<div class="swiper-slide">
-								<div class="challenge challenge_create">
-									<div class="challenge__image" style="background-image: url('images/pythonCourse.png');">
-
-									</div>
-
-									<div class="challenge-content">
-										<div class="challenge__avatar">
-											<img src="images/avatarImg.png" alt="Avatar image" />
-										</div>
-
-										<h3 class="challenge__username">John Johnson</h3>
-										<p class="challenge__info">Propose a challenge in Python language</p>
-										<a href="#">
-											<div class="challenge__button challenge__button_create">Create</div>
-										</a>
-									</div>
-
-
-								</div>
-							</div>
-
-							<div class="swiper-slide">
-								<div class="challenge challenge_accept">
-									<div class="challenge__image" style="background-image: url('images/CSharp.jpg');">
-
-									</div>
-									<div class="challenge-content">
-										<div class="challenge__avatar">
-											<img src="images/avatarImg.png" alt="Avatar image" />
-										</div>
-
-										<h3 class="challenge__username">Jack Jackson</h3>
-										<p class="challenge__info">Challenged you on the C# language</p>
-										<a href="#">
-											<div class="challenge__button challenge__button_accept">Accept</div>
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-button-prev"></div>
-					<div class="swiper-button-next"></div>
-				</div>
-
-			</div>
-		</div>
-
-
-
-		<div class="achievment-container" id="achievments">
-			<h3 class="container__title">Achievments</h3>
-			<h3 class="dev-text">In development</h3>
-		</div>
-
-
-
-
-		<div class="news-container" id="news">
-			<div class="container__title">News</div>
-			<h3 class="dev-text">In development</h3>
-		</div>
-
-	</main>
-
-	<footer class="footer">
-            <div class="footer-links" data-aos="zoom-in" data-aos-duration="700">
-                <a href="#" class="footer-links_first">
-                    <div class="footer-link__image">
-                        <img src="~/images/facebookLogo.png" />
-                    </div>
-                </a>
-
-                <a href="#">
-                    <div class="footer-link__image">
-                        <img src="~/images/twitterLogo.png" />
-                    </div>
-                </a>
-
-                <a href="#">
-                    <div class="footer-link__image">
-                        <img src="~/images/linkedinLogo.png" />
-                    </div>
-                </a>
-            </div>
-
-            <div class="footer__text" data-aos="zoom-in" data-aos-duration="700">
-                <h5>&#x24B8; 2021 Programmania. All rights reserved.</h5>
-            </div>
-    </footer>
 	</div>
-	
+</div>
 
-	<script src="~/js/util/courses-slider.js"></script>
-	<script src="~/js/util/news-slider.js"></script>
-	<script src="~/js/util/challenges-slider.js"></script>
-	<script src="~/js/util/createChartInMain.js"></script>
-	<script type="text/javascript" src="~/js/util/open-menu.js"></script>
-	<script type="text/javascript">
-		AOS.init();
-	</script>
+
+
+<div class="level-container" id="level">
+	<h3 class="container__title">Level</h3>
+	<div class="level">
+		<div class="level-col-1" data-aos="fade-right" data-aos-duration="1000">
+			<div class="level__percent">
+				<div class="ldBar label-center" data-preset="circle" data-value="77" data-transition-in="1000"
+				style="width: 100%; height: 100%">
+			</div>
+		</div>
+
+		<h3 class="level__xp">25.600 / 28.850 XP</h3>
+	</div>
+	<div class="level-col-2" data-aos="fade-left" data-aos-duration="1000">
+		<h3 class="level__title">Level: 32</h3>
+		<p class="level__info">To 32 lvl 3.250xp left</p>
+	</div>
+
+
+</div>
+</div>
+
+
+
+
+<div class="performance-container" id="performance">
+	<a href="Performance" class="container__title title_link">Performance</a>
+	<div class="performance" data-aos="zoom-in" data-aos-duration="1000">
+		<div class="chartArea">
+			<div class="chart-container">
+				<canvas id="performanceChart">
+				</canvas>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="challenges-container" id="challenges">
+	<a href="Challenges" class="container__title title_link">Challenges</a>
+	<div class="challenges" data-aos="zoom-in" data-aos-duration="1000">
+
+		<h3 class="winrate__info">Games win: 7/10</h3>
+		<div class="swiper">
+			<div class="challenges-swiper swiper-container">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+						<a href="#">
+							<div class="challenge challenge_create">
+								<div class="challenge-front">
+									<div class="challenge__image" style="background-image: url('images/pythonCourse.png');">
+
+									</div>
+
+									<div class="challenge-content">
+										<div class="challenge__avatar">
+											<img src="images/avatarImg.png" alt="Avatar image" />
+										</div>
+
+										<h3 class="challenge__username">John Johnson</h3>
+										<p class="challenge__info">Propose a challenge in Python language</p>
+									</div>
+								</div>
+								
+								<div class="challenge-back challenge-back_create">
+									<h3>Create the competition</h3>
+								</div>
+							</div>
+						</a>
+					</div>
+					
+					<div class="swiper-slide">
+						<a href="#">
+							<div class="challenge challenge_accept">
+								<div class="challenge-front">
+									<div class="challenge__image" style="background-image: url('images/CSharp.jpg');">
+
+									</div>
+									<div class="challenge-content">
+										<div class="challenge__avatar">
+											<img src="images/avatarImg.png" alt="Avatar image" />
+										</div>
+
+										<h3 class="challenge__username">Jack Jackson</h3>
+										<p class="challenge__info">Challenged you on the C# language</p>
+									</div>
+								</div>
+								
+								<div class="challenge-back challenge-back_accept">
+									<h3>Accept the competition</h3>
+								</div>
+							</div>
+						</a>		
+					</div>
+
+					<div class="swiper-slide">
+						<a href="#">
+							<div class="challenge challenge_create">
+								<div class="challenge-front">
+									<div class="challenge__image" style="background-image: url('images/pythonCourse.png');">
+
+									</div>
+
+									<div class="challenge-content">
+										<div class="challenge__avatar">
+											<img src="images/avatarImg.png" alt="Avatar image" />
+										</div>
+
+										<h3 class="challenge__username">John Johnson</h3>
+										<p class="challenge__info">Propose a challenge in Python language</p>
+									</div>
+								</div>
+								
+								<div class="challenge-back challenge-back_create">
+									<h3>Create the competition</h3>
+								</div>
+							</div>
+						</a>
+					</div>
+					
+					<div class="swiper-slide">
+						<a href="#">
+							<div class="challenge challenge_accept">
+								<div class="challenge-front">
+									<div class="challenge__image" style="background-image: url('images/CSharp.jpg');">
+
+									</div>
+									<div class="challenge-content">
+										<div class="challenge__avatar">
+											<img src="images/avatarImg.png" alt="Avatar image" />
+										</div>
+
+										<h3 class="challenge__username">Jack Jackson</h3>
+										<p class="challenge__info">Challenged you on the C# language</p>
+									</div>
+								</div>
+								
+								<div class="challenge-back challenge-back_accept">
+									<h3>Accept the competition</h3>
+								</div>
+							</div>
+						</a>		
+					</div>
+		</div>
+	</div>
+	<div class="swiper-button-prev"></div>
+	<div class="swiper-button-next"></div>
+</div>
+
+</div>
+</div>
+
+
+
+<div class="achievment-container" id="achievments">
+	<h3 class="container__title">Achievments</h3>
+	<h3 class="dev-text">In development</h3>
+</div>
+
+
+
+
+<div class="news-container" id="news">
+	<div class="container__title">News</div>
+	<h3 class="dev-text">In development</h3>
+</div>
+
+</main>
+
+<footer class="footer">
+	<div class="footer-links" data-aos="zoom-in" data-aos-duration="700">
+		<a href="#" class="footer-links_first">
+			<div class="footer-link__image">
+				<img src="~/images/facebookLogo.png" />
+			</div>
+		</a>
+
+		<a href="#">
+			<div class="footer-link__image">
+				<img src="~/images/twitterLogo.png" />
+			</div>
+		</a>
+
+		<a href="#">
+			<div class="footer-link__image">
+				<img src="~/images/linkedinLogo.png" />
+			</div>
+		</a>
+	</div>
+
+	<div class="footer__text" data-aos="zoom-in" data-aos-duration="700">
+		<h5>&#x24B8; 2021 Programmania. All rights reserved.</h5>
+	</div>
+</footer>
+</div>
+
+
+<script src="~/js/util/courses-slider.js"></script>
+<script src="~/js/util/news-slider.js"></script>
+<script src="~/js/util/challenges-slider.js"></script>
+<script src="~/js/util/createChartInMain.js"></script>
+<script type="text/javascript" src="~/js/util/open-menu.js"></script>
+<script type="text/javascript">
+	AOS.init();
+</script>
 </body>
 
 
 
-	

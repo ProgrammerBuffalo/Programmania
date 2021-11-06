@@ -10,11 +10,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/css/HamburgerMenu.css" />
     <link rel="stylesheet" href="~/css/Courses.css" />
+    <link rel="stylesheet" href="~/css/util/zeroing.css" />
+    <link rel="stylesheet" href="~/css/util/fonts.css" />
     <link rel="stylesheet" href="~/css/Footer.css" />
 
     <link rel="stylesheet" href="~/css/loading-bar.min.css" />
     <script src="~/js/loading-bar.min.js"></script>
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -22,7 +23,8 @@
 </head>
 
 <body>
-    <header class="header">
+    <div class="wrapper">
+        <header class="header">
         <div class="header-container">
             <div class="container__text">Programmania</div>
             <div class="header__burger">
@@ -40,7 +42,7 @@
                         </li>
 
                         <li>
-                            <a href="News" class="header__link">News</a>
+                            <a href="Performance" class="header__link">Performance</a>
                         </li>
 
                         <li>
@@ -56,7 +58,7 @@
         </div>
     </header>
 
-    <main>
+    <main class="main">
         <div class="header-text">
             <h3>Courses</h3>
         </div>
@@ -73,6 +75,12 @@
             </div>
         </div>
     </main>
+
+    <footer class="footer">
+
+    </footer>
+    </div>
+    
 
     <script type="text/javascript" src="~/js/util/burger.js"></script>
     <script type="text/javascript" src="~/js/util/imageAnylizer.js"></script>

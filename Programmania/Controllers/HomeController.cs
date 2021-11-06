@@ -97,6 +97,13 @@ namespace Programmania.Controllers
             return View();
         }
 
+        [Route("ChallengeResult")]
+        [AllowAnonymous]
+        public IActionResult ChallengeResult()
+        {
+            return View();
+        }
+
         //[AllowAnonymous]
         //[Route("Lessons")]
         //public IActionResult Lessons()

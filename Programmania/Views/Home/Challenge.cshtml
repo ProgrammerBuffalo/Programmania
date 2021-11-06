@@ -6,9 +6,13 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="~/css/challenge.css">
+	<link rel="stylesheet" href="~/css/util/zeroing.css" />
+    <link rel="stylesheet" href="~/css/util/fonts.css" />
 	<link rel="stylesheet" href="~/css/Footer.css" />
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 	<title>Challenge</title>
 </head>
 
@@ -33,7 +37,28 @@
 		</header>
 
 		<main class="main">
+			<div class="answers-nav">
+				<a>
+					<div class="answer answer_choose"></div>
+				</a>
+				<a>
+					<div class="answer answer_choose"></div>
+				</a>
+				<a>
+					<div class="answer answer_unchoose"></div>
+				</a>
+				<a>
+					<div class="answer answer_unchoose"></div>
+				</a>
+				<a>
+					<div class="answer answer_unchoose"></div>
+				</a>
+				<a>
+					<div class="answer answer_choose"></div>
+				</a>
+				</div>
 			<div class="content">
+				
 				<div class="question">
 					<h2 class="question__title">Question:</h2>
 					<h3 class="question__text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
@@ -43,33 +68,31 @@
 
 					<div class="question__answers">
 						<label class="rad-label">
-							<input type="radio" class="rad-input" name="rad" />
+							<input type="radio" class="rad-input" name="rad" value="answer1"/>
 							<div class="rad-design"></div>
 							<div class="rad-text text-light">Answer 1</div>
 						</label>
 
 						<label class="rad-label">
-							<input type="radio" class="rad-input" name="rad" />
+							<input type="radio" class="rad-input" name="rad" value="answer2"/>
 							<div class="rad-design"></div>
 							<div class="rad-text text-light">Answer 2</div>
 						</label>
 
 						<label class="rad-label">
-							<input type="radio" class="rad-input" name="rad" />
+							<input type="radio" class="rad-input" name="rad" value="answer3"/>
 							<div class="rad-design"></div>
 							<div class="rad-text text-light">Answer 3</div>
 						</label>
 
 						<label class="rad-label">
-							<input type="radio" class="rad-input" name="rad" />
+							<input type="radio" class="rad-input" name="rad" value="answer4" />
 							<div class="rad-design"></div>
 							<div class="rad-text text-light">Answer 4</div>
 						</label>
 					</div>
 
 					<div class="buttons">
-						<div class="btn__submit">Submit</div>
-
 						<div class="btn__arrows">
 							<div class="btn__prev"></div>
 							<div class="btn__next"></div>
@@ -86,6 +109,18 @@
 					<div class="statistic-block block_time">
 						<h3 class="statistic-block__title">Time left: </h3>
 						<h5 class="statistic-block__text" id="timer-show">01:30</h5>
+					</div>
+
+					<div class="statistic-block block_end" style="">
+						<div class="flip">
+							<div class="flip__front">
+								<h3>End test</h3>
+							</div>
+
+							<div class="flip__back">
+								<h3>If you end the test, you can't return to your answers</h3>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -118,6 +153,9 @@
     </footer>
 	</div>
 	<script src="~/js/util/timer.js"></script>
+	<script src="~/js/loadAnswer.js"></script>
+	<script src="~/js/saveAnswer.js"></script>
+	<script>AOS.init();</script> 
 </body>
 
 </html>

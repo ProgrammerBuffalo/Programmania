@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Programmania.DAL;
 
 namespace Programmania.Migrations
 {
     [DbContext(typeof(ProgrammaniaDBContext))]
-    partial class ProgrammaniaDBContextModelSnapshot : ModelSnapshot
+    [Migration("20211030141431_ProgmanDBTestsFixMigration")]
+    partial class ProgmanDBTestsFixMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -85,9 +87,6 @@ namespace Programmania.Migrations
                         .HasColumnType("int")
                         .HasColumnName("Id")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("AnswersCount")
-                        .HasColumnType("int");
 
                     b.Property<int?>("CourseId")
                         .HasColumnType("int");
