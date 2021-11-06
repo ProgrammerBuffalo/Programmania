@@ -83,21 +83,21 @@ $(document).ready(function () {
     });
 });
 
-$(document).ready(function () {
-    $('#avatarInput').change(function () {
-        let canvas = document.getElementById('avatarCanvas');
-        canvas.getContext('2d').clearRect(0, 0, 200, 200);
+//$(document).ready(function () {
+//    $('#avatarInput').change(function () {
+//        let canvas = document.getElementById('avatarCanvas');
+//        canvas.getContext('2d').clearRect(0, 0, 200, 200);
 
-        if (this.files[0].size > 1000000) {
-            alert('error image');
-            $(this).parent().find('.error');
-            $(this).val('');
-        }
-        else {
-            cropImage(canvas, this.files[0], 200, 200);
-        }
-    });
-});
+//        if (this.files[0].size > 1000000) {
+//            alert('error image');
+//            $(this).parent().find('.error');
+//            $(this).val('');
+//        }
+//        else {
+//            cropImage(canvas, this.files[0], 200, 200);
+//        }
+//    });
+//});
 
 $(document).ready(function () {
     $('#avatarChangeBtn').click(function () {

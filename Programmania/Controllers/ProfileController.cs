@@ -5,7 +5,6 @@ using Programmania.Models;
 using Programmania.Services.Interfaces;
 using Programmania.ViewModels;
 using Programmania.ViewModels.Validators;
-using System.Linq;
 
 namespace Programmania.Controllers
 {
@@ -13,13 +12,11 @@ namespace Programmania.Controllers
     [Authorize]
     public class ProfileController : Controller
     {
-        private ProgrammaniaDBContext dBContext;
-        private IFileService fileService;
+        private IProfileService profileService;
 
-        public ProfileController(ProgrammaniaDBContext dBContext, IFileService fileService)
+        public ProfileController(ProgrammaniaDBContext dBContext, IProfileService profileService)
         {
-            this.dBContext = dBContext;
-            this.fileService = fileService;
+            this.profileService = profileService;
         }
 
         //[Authorize]
@@ -27,22 +24,30 @@ namespace Programmania.Controllers
         [HttpGet("")]
         public IActionResult Profile()
         {
-            //var user = HttpContext.Items["User"] as Models.User;
-            //UserProfileVM profileVM = new UserProfileVM(true)
-            //{
-            //    Nickname = user.Name,
-            //    Avatar = fileService.GetSqlFileContext(user.ImageId)?.TransactionContext,
-            //    Email = user.Login,
-            //    Expierence = user.Exp,
-            //};
-            return View("/Views/Home/Profile.cshtml", new UserProfileVM(true));
+            var user = HttpContext.Items["User"] as User;
+            var userProfileVM = profileService.GetProfileData(user);
+            if (userProfileVM != null)
+                return View("/Views/Home/Profile.cshtml", userProfileVM);
+            else
+                return NotFound();
+            //return View("", new UserProfileVM(true));
         }
 
         [AllowAnonymous]
         [HttpGet("show")]
         public IActionResult Profile(string userIdCode)
         {
-            int userId = int.Parse(Utilities.Encryptor.DecryptString(userIdCode));
+            int? result = Utilities.Encryptor.DecryptToInt(userIdCode);
+            if (result != null)
+            {
+                UserProfileVM userProfileVM = profileService.GetProfileData(result.Value);
+                if (userProfileVM != null)
+                    return View("/Views/Home/Profile.cshtml", userProfileVM);
+                else
+                    return NotFound();
+            }
+            else
+                return NotFound();
             //var profileVM = dBContext.Users.Where(u => u.Id == userId)
             //    .Select(p => new UserProfileVM(false)
             //    {
@@ -50,12 +55,11 @@ namespace Programmania.Controllers
             //        Avatar = fileService.GetSqlFileContext()?.TransactionContext,
             //        Expierence = p.Exp,
             //    });
-
             //var a = HttpContext.Items["User"] as Models.User;
-            return View("/Views/Home/Profile.cshtml", null);
+            //return View("/Views/Home/Profile.cshtml", null);
         }
 
-        //
+        //[Authorize]
         [AllowAnonymous]
         [HttpPost("change-nickname")]
         public IActionResult ChangeNickname(NicknameValidator inputs)
@@ -63,20 +67,15 @@ namespace Programmania.Controllers
             if (ModelState.IsValid)
             {
                 var user = HttpContext.Items["User"] as User;
-                var dbUser = dBContext.Users.FirstOrDefault(u => u.Id == user.Id);
-                if (dbUser != null)
+                int result = profileService.ChangeNickname(user, inputs.Nickname);
+                if (result == 1)
                 {
-                    if (user.Login == dbUser.Login)
-                    {
-                        dbUser.Name = inputs.Nickname;
-                        dBContext.SaveChanges();
-                        return Ok();
-                    }
-                    return BadRequest();
+                    return Ok();
                 }
                 else
                 {
-                    return BadRequest();
+                    string json = Utilities.FormError.MakeServerError("Nickname", "Nickname not changed please try again");
+                    return BadRequest(json);
                 }
             }
             else
@@ -86,27 +85,21 @@ namespace Programmania.Controllers
             }
         }
 
-        //
         [AllowAnonymous]
         [HttpPost("change-avatar")]
         public IActionResult ChangeNickname(FileValidator inputs)
         {
             if (ModelState.IsValid)
             {
-                var user = HttpContext.Items["User"] as Models.User;
-                var dbUser = dBContext.Users.FirstOrDefault(u => u.Id == user.Id);
-                if (dbUser != null)
+                var user = HttpContext.Items["User"] as User;
+                int result = profileService.ChangeAvatar(user, inputs.File);
+                if (result == 1)
                 {
-                    if (user.Login == dbUser.Login)
-                    {
-                        fileService.UpdateDocument(user.ImageId, inputs.File);
-                        dBContext.SaveChanges();
-                        return Ok();
-                    }
-                    return BadRequest();
+                    return Ok();
                 }
                 else
                 {
+                    Utilities.FormError.MakeServerError("AvatarError", "Avatar not changed please try again");
                     return BadRequest();
                 }
             }
@@ -114,38 +107,6 @@ namespace Programmania.Controllers
             {
                 string json = Utilities.FormError.MakeModelError(ModelState);
                 return BadRequest(json);
-            }
-        }
-
-        [AllowAnonymous]
-        [HttpPost("change-password")]
-        public IActionResult ChangePassword(ChangePasswordValidator validator)
-        {
-            if (ModelState.IsValid)
-            {
-                var user = HttpContext.Items["User"] as User;
-                if (user.Password == validator.OldPassword)
-                {
-                    var password = dBContext.Users.FirstOrDefault(u => u.Password == validator.NewPassword);
-                    if (password == null)
-                    {
-                        user.Password = validator.NewPassword;
-                        dBContext.SaveChanges();
-                        return Ok();
-                    }
-                    else
-                    {
-                        return BadRequest();
-                    }
-                }
-                else
-                {
-                    return BadRequest();
-                }
-            }
-            else
-            {
-                return BadRequest();
             }
         }
 
@@ -182,4 +143,36 @@ namespace Programmania.Controllers
 //    var a = HttpContext.Items["User"] as Models.User;
 //    ViewModels.UserProfileVM profileVM = new ViewModels.UserProfileVM(true);
 //    return View("/Views/Home/Profile.cshtml", profileVM);
+//}
+
+//[AllowAnonymous]
+//[HttpPost("change-password")]
+//public IActionResult ChangePassword(ChangePasswordValidator validator)
+//{
+//    if (ModelState.IsValid)
+//    {
+//        var user = HttpContext.Items["User"] as User;
+//        if (user.Password == validator.OldPassword)
+//        {
+//            var password = dBContext.Users.FirstOrDefault(u => u.Password == validator.NewPassword);
+//            if (password == null)
+//            {
+//                user.Password = validator.NewPassword;
+//                dBContext.SaveChanges();
+//                return Ok();
+//            }
+//            else
+//            {
+//                return BadRequest();
+//            }
+//        }
+//        else
+//        {
+//            return BadRequest();
+//        }
+//    }
+//    else
+//    {
+//        return BadRequest();
+//    }
 //}

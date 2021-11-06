@@ -15,7 +15,7 @@ namespace Programmania.Utilities
                 writer.WriteStartObject();
                 while (key.MoveNext() && modelEntry.MoveNext())
                 {
-                    if (modelEntry.Current.ValidationState == Microsoft.AspNetCore.Mvc.ModelBinding.ModelValidationState.Invalid)
+                    if (modelEntry.Current.ValidationState == ModelValidationState.Invalid)
                     {
                         writer.WritePropertyName(key.Current);
                         writer.WriteValue(modelEntry.Current.Errors[0].ErrorMessage);
