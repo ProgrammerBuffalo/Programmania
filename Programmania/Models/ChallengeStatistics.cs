@@ -2,22 +2,26 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Programmania.Models
 {
-    [Table("Courses")]
-    public class Course
+    [Table("ChallengeStatistics")]
+    public class ChallengeStatistics
     {
         [Column("Id")]
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; private set; }
 
-        [Column("Name")]
-        public string Name { get; set; }
+        public int Wins { get; set; }
 
-        public int LessonCount { get; set; }
+        public int Loses { get; set; }
 
-        [Column("stream_id")]
-        public Guid StreamId { get; set; }
+        public int Draws { get; set; }
+
+        public int UserId { get; set; }
+
+        public User User { get; set; }
     }
 }

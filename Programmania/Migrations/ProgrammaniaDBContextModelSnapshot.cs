@@ -86,9 +86,6 @@ namespace Programmania.Migrations
                         .HasColumnName("Id")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AnswersCount")
-                        .HasColumnType("int");
-
                     b.Property<int?>("CourseId")
                         .HasColumnType("int");
 
@@ -100,6 +97,34 @@ namespace Programmania.Migrations
                     b.HasIndex("CourseId");
 
                     b.ToTable("Challenges");
+                });
+
+            modelBuilder.Entity("Programmania.Models.ChallengeStatistics", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("Id")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Draws")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Loses")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Wins")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("ChallengeStatistics");
                 });
 
             modelBuilder.Entity("Programmania.Models.Course", b =>
@@ -116,10 +141,6 @@ namespace Programmania.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Name");
-
-                    b.Property<int>("Points")
-                        .HasColumnType("int")
-                        .HasColumnName("Points");
 
                     b.Property<Guid>("StreamId")
                         .HasColumnType("uniqueidentifier")
@@ -257,6 +278,33 @@ namespace Programmania.Migrations
                     b.ToTable("Tokens");
                 });
 
+            modelBuilder.Entity("Programmania.Models.Reward", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("Id")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Experience")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Rewards");
+                });
+
             modelBuilder.Entity("Programmania.Models.Test", b =>
                 {
                     b.Property<int>("Id")
@@ -307,10 +355,6 @@ namespace Programmania.Migrations
                         .HasColumnType("int")
                         .HasColumnName("Experience");
 
-                    b.Property<Guid>("HistoryId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("hstr_stream_id");
-
                     b.Property<Guid>("ImageId")
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("img_stream_id");
@@ -344,6 +388,9 @@ namespace Programmania.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("ChallengeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AnswersCount")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsFinished")
@@ -413,6 +460,17 @@ namespace Programmania.Migrations
                     b.Navigation("Course");
                 });
 
+            modelBuilder.Entity("Programmania.Models.ChallengeStatistics", b =>
+                {
+                    b.HasOne("Programmania.Models.User", "User")
+                        .WithOne("ChallengeStatistics")
+                        .HasForeignKey("Programmania.Models.ChallengeStatistics", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Programmania.Models.Discipline", b =>
                 {
                     b.HasOne("Programmania.Models.Course", "Course")
@@ -443,6 +501,15 @@ namespace Programmania.Migrations
                 {
                     b.HasOne("Programmania.Models.User", "User")
                         .WithMany("RefreshTokens")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Programmania.Models.Reward", b =>
+                {
+                    b.HasOne("Programmania.Models.User", "User")
+                        .WithMany("Rewards")
                         .HasForeignKey("UserId");
 
                     b.Navigation("User");
@@ -509,7 +576,11 @@ namespace Programmania.Migrations
 
             modelBuilder.Entity("Programmania.Models.User", b =>
                 {
+                    b.Navigation("ChallengeStatistics");
+
                     b.Navigation("RefreshTokens");
+
+                    b.Navigation("Rewards");
 
                     b.Navigation("UserChallenges");
 
