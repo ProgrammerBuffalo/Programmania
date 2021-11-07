@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Programmania.Controllers
 {
+    [Route("Profile")]
+    [Authorize]
     public class ProfileController : Controller
     {
         [Route("")]
@@ -10,21 +12,65 @@ namespace Programmania.Controllers
         public IActionResult Profile()
         {
             //check this User or another
-            return View(false);
+            ViewModels.UserProfileVM profileVM = new ViewModels.UserProfileVM(true);
+            return View(profileVM);
         }
 
-        //AllowAnonymous is allowed for this action
-        [Route("change-image")]
-        [AllowAnonymous]
-        public IActionResult ChangeImage(string image)
-        {
-            return Ok();
-        }
-
-        //AllowAnonymous is allowed for this action
+        [HttpGet]
         [Route("change-nickname")]
         [AllowAnonymous]
-        public IActionResult ChangeNickname(string nickname)
+        public IActionResult ChangeNickname(string a)
+        {
+            if (ModelState.IsValid)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
+        [Route("change-avatar")]
+        [AllowAnonymous]
+        public IActionResult ChangeNickname([Attributes.FileValidation(1000000, ErrorMessage = "")]
+            Microsoft.AspNetCore.Http.IFormFile file)
+        {
+            if (ModelState.IsValid)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
+        [Route("get-games")]
+        [AllowAnonymous]
+        public IActionResult GetGames()
+        {
+            return Json(null);
+        }
+
+        [Route("get-achivments")]
+        [AllowAnonymous]
+        public IActionResult GetAchivments()
+        {
+            return Json(null);
+        }
+
+        [Route("get-user-info")]
+        [AllowAnonymous]
+        public IActionResult GetUserInfo()
+        {
+            return Json(null);
+        }
+
+        [HttpGet]
+        [Route("temp")]
+        [AllowAnonymous]
+        public IActionResult Temp(string data1)
         {
             return Ok();
         }

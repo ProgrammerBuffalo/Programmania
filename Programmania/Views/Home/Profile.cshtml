@@ -1,3 +1,5 @@
+@model Programmania.ViewModels.UserProfileVM
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,62 +8,83 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
-    <link rel="stylesheet" href="~/css/profile.css">
+
+    <link rel="stylesheet" href="~/css/components/modal.css" />
+    <link rel="stylesheet" href="~/css/HamburgerMenu.css" />
+    <link rel="stylesheet" href="~/css/loading-bar.min.css">
+    <link rel="stylesheet" href="~/css/profile.css" />
+    <link rel="stylesheet" href="~/css/util/zeroing.css" />
+    <link rel="stylesheet" href="~/css/util/forms.css" />
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="~/css/HamburgerMenu.css" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" href="~/css/loading-bar.min.css">
+    <link rel="stylesheet" href="~/css/Footer.css" />
+
     <script src="~/js/loading-bar.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="~/js/util/burger.js"></script>
 </head>
 
 <body>
+    <div class="wrapper">
+        <header class="header">
+        <div class="header-container">
+            <div class="container__text">Programmania</div>
+            <div class="header__burger">
+                <span></span>
+            </div>
+            <div class="container-menu">
+                <nav class="header__menu">
+                    <ul class="header__list">
+                        <li>
+                            <a href="Main" class="header__link">Main</a>
+                        </li>
 
-    <main class="content">
+                        <li>
+                            <a href="Courses" class="header__link">Courses</a>
+                        </li>
+
+                        <li>
+                            <a href="Performance" class="header__link">Performance</a>
+                        </li>
+
+                        <li>
+                            <a href="Challenges" class="header__link">Challenges</a>
+                        </li>
+
+                        <li>
+                            <a href="Profile" class="header__link">Profile</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+        <main class="content main">
         <div class="profile">
             <div class="profile-col-1">
-                <div class="profile__image">
+                <div id="enterAvatarModal" class="profile__image">
                     <img id='profileImage' src="images/avatarImg.png" alt="">
-                    <input id="profileImageInput" type="file" style="display:none" />
                 </div>
 
                 <div class="profile-info">
-                    <div class="profile-info__item">
+                    <div id="enterNicknameModal" class="profile-info__item">
                         <h3>Username:</h3>
                         <p>JohnJohnson123</p>
                     </div>
                     <hr />
 
-                    <div class="profile-info__item">
-                        <h3>Email:</h3>
-                        <p>John123@gmail.com</p>
-                    </div>
-                    <hr />
-
-                    <button id="profileModalShow" class="btn btn-primary profile-info__change">Change profile data</button>
-
-                    <div class="modal" id="profileModal">
-                        <div class="modal-content" style="width: 500px">
-                            <span class="close">&times;</span>
-
-                            <form name="loginForm" id="loginForm">
-                                <div class="form-group">
-                                    <label id="emailLabelLog" for="emailInputLog">Email: </label>
-                                    <input id="emailInputLog" type="email" class="form-control" placeholder="email" name="emailInput" />
-                                </div>
-
-                                <div class="form-group">
-                                    <label id="passwordLabelLog" for="passwordInputLog">Password: </label>
-                                    <input id="passwordInputLog" type="password" class="form-control" placeholder="password" name="passwordInput" />
-                                </div>
-                                <input type="button" id="loginBtnOut" class="btn btn-success" name="loginBtn" value="Login" />
-                            </form>
+                    @if (Model.IsOwned)
+                    {
+                        <div class="profile-info__item">
+                            <h3>Email:</h3>
+                            <p>John123@gmail.com</p>
                         </div>
-                    </div>
+                        <hr />
 
+                        <button id="enterProfileModal" class="btn btn-primary profile-info__change">Change profile data</button>
+                    }
                 </div>
             </div>
 
@@ -79,13 +102,13 @@
 
                 <div class="tabs-container">
                     <div class="tab">
-                        <button class="tablinks" onclick="openContent(event, 'user-info')">User info</button>
+                        <button class="tablinks" onclick="openContent(event, 'userInfo')">User info</button>
                         <button class="tablinks" onclick="openContent(event, 'games')">Games</button>
                         <button class="tablinks" onclick="openContent(event, 'achievments')">Achievments</button>
                     </div>
 
                     <!-- Tab content -->
-                    <div id="user-info" class="tabcontent">
+                    <div id="userInfo" class="tabcontent">
                         <div class="profile-info">
                             <div class="profile-info__item">
                                 <h3>XP:</h3>
@@ -96,7 +119,7 @@
                                 <h3>Courses ended:</h3>
                                 <p>3</p>
                             </div>
-                            <hr />
+                            <hr/>
                         </div>
                     </div>
 
@@ -121,10 +144,76 @@
                 </div>
             </div>
         </div>
+
+        @if (Model.IsOwned)
+        {
+            <div class="modal" id="nicknameModal">
+                <div class="modal-content" style="width: 300px">
+                    <span id="closeNicknameModal" class="close">&times;</span>
+
+                    <div class="form-group">
+                        <label id="nicknameLabel" class="modal__label">Nickname: </label>
+                        <input id="nicknameInput" class="form-control modal__input" placeholder="nickname" />
+                    </div>
+
+                    <input type="button" id="nicknameChangeBtn" class="btn btn-success modal__close" value="Change" />
+                </div>
+            </div>
+        }
+
+        @if (Model.IsOwned)
+        {
+            <div class="modal" id="avatarModal">
+                <div class="modal-content" style="width:300px">
+                    <span id="closeAvatarModal" class="close">&times;</span>
+
+                    <div class="form-group">
+                        <label id="avatarLabel" class="modal__label">Avatar: </label>
+                        <input id="avatarInput" class="form-control" type="file" />
+                    </div>
+
+                    <canvas id="avatarCanvas" width="200" height="200"></canvas>
+
+                    <p id="avatarError" class="error">Error</p>
+
+                    <input type="button" id="avatarChangeBtn" class="btn btn-success modal__close" value="Change" />
+                </div>
+            </div>
+        }
     </main>
 
-    <script src="~/js/profile.js"></script>
+     <footer class="footer">
+            <div class="footer-links" data-aos="zoom-in" data-aos-duration="700">
+                <a href="#" class="footer-links_first">
+                    <div class="footer-link__image">
+                        <img src="~/images/facebookLogo.png" />
+                    </div>
+                </a>
+
+                <a href="#">
+                    <div class="footer-link__image">
+                        <img src="~/images/twitterLogo.png" />
+                    </div>
+                </a>
+
+                <a href="#">
+                    <div class="footer-link__image">
+                        <img src="~/images/linkedinLogo.png" />
+                    </div>
+                </a>
+            </div>
+
+            <div class="footer__text" data-aos="zoom-in" data-aos-duration="700">
+                <h5>&#x24B8; 2021 Programmania. All rights reserved.</h5>
+            </div>
+    </footer>
+    </div>
+    
+
     <script src="~/js/util/tabs.js"></script>
+    <script src="~/js/util/openModal.js"></script>
+    <script src="~/js/util/cropImage.js"></script>
+    <script src="~/js/profile.js"></script>
 </body>
 
 </html>

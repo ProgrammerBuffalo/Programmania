@@ -9,6 +9,10 @@
 
     <link rel="stylesheet" href="~/css/nice-select2.css" />
     <script src="~/js/nice-select2.js"></script>
+    <link rel="stylesheet" href="~/css/Footer.css"/>
+    <link rel="stylesheet" href="~/css/util/zeroing.css" />
+    <link rel="stylesheet" href="~/css/util/forms.css" />
+    <link rel="stylesheet" href="~/css/HamburgerMenu.css" />
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
     <link rel="stylesheet" href="~/css/Perfomance.css" />
@@ -18,7 +22,42 @@
 </head>
 
 <body>
-    <div class="content">
+    <div class="wrapper">
+        <header class="header">
+        <div class="header-container">
+            <div class="container__text">Programmania</div>
+            <div class="header__burger">
+                <span></span>
+            </div>
+            <div class="container-menu">
+                <nav class="header__menu">
+                    <ul class="header__list">
+                        <li>
+                            <a href="Main" class="header__link">Main</a>
+                        </li>
+
+                        <li>
+                            <a href="Courses" class="header__link">Courses</a>
+                        </li>
+
+                        <li>
+                            <a href="Performance" class="header__link">Performance</a>
+                        </li>
+
+                        <li>
+                            <a href="Challenges" class="header__link">Challenges</a>
+                        </li>
+
+                        <li>
+                            <a href="Profile" class="header__link">Profile</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+        <main class="main">
+             <div class="content">
         <div class="chart card _anim-items flexImage">
             <div class="chartArea">
                 <div class="chart-container">
@@ -57,10 +96,40 @@
             </div>
         </div>
     </div>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-links" data-aos="zoom-in" data-aos-duration="700">
+                <a href="#" class="footer-links_first">
+                    <div class="footer-link__image">
+                        <img src="~/images/facebookLogo.png" />
+                    </div>
+                </a>
+
+                <a href="#">
+                    <div class="footer-link__image">
+                        <img src="~/images/twitterLogo.png" />
+                    </div>
+                </a>
+
+                <a href="#">
+                    <div class="footer-link__image">
+                        <img src="~/images/linkedinLogo.png" />
+                    </div>
+                </a>
+            </div>
+
+            <div class="footer__text" data-aos="zoom-in" data-aos-duration="700">
+                <h5>&#x24B8; 2021 Programmania. All rights reserved.</h5>
+            </div>
+    </footer>
+    </div>
+   
 
     <script type="text/javascript" src="~/js/util/scrollAnimation.js"></script>
     <script type="text/javascript" src="~/js/elements/rewards.js"></script>
     <script type="text/javascript" src="~/js/performance.js"></script>
+    <script type="text/javascript" src="~/js/util/burger.js"></script>
 
     <script type="text/javascript">
         NiceSelect.bind(document.getElementById("chart-type"));

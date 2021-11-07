@@ -32,6 +32,7 @@ namespace Programmania.Controllers
         [AllowAnonymous]
         public IActionResult Index()
         {
+            //return RedirectToAction("", "Profile");
             return View();
         }
 
@@ -43,21 +44,21 @@ namespace Programmania.Controllers
             return View();
         }
 
-        [Route("Profile")]
-        [AllowAnonymous]
-        [HttpGet]
-        public IActionResult Profile()
-        {
-            //var user = getUser(HttpContext.User.Claims.ToList());
+        //[Route("Profile")]
+        //[AllowAnonymous]
+        //[HttpGet]
+        //public IActionResult Profile()
+        //{
+        //    //var user = getUser(HttpContext.User.Claims.ToList());
 
-            //if (user == null)
-            //{
-            //  return NotFound("Token invalid");
-            //}
+        //    //if (user == null)
+        //    //{
+        //    //  return NotFound("Token invalid");
+        //    //}
 
-            return View(new UserProfileVM(true));
-            //return View(/*new UserProfileVM(true, user.Login, user.Name, user.Exp, getUserCourses(user), getUserAchievements(user))*/);
-        }
+        //    return View(new UserProfileVM(true));
+        //    //return View(/*new UserProfileVM(true, user.Login, user.Name, user.Exp, getUserCourses(user), getUserAchievements(user))*/);
+        //}
 
         [Route("News")]
         public IActionResult News()
@@ -83,17 +84,32 @@ namespace Programmania.Controllers
             return View();
         }
 
+        [AllowAnonymous]
+        [Route("Challenge")]
+        public IActionResult Challenge()
+        {
+            return View();
+        }
+
         [Route("Challenges/Game")]
         public IActionResult Game()
         {
             return View();
         }
+
+        [Route("ChallengeResult")]
         [AllowAnonymous]
-        [Route("Lessons")]
-        public IActionResult Lessons()
+        public IActionResult ChallengeResult()
         {
             return View();
         }
+
+        //[AllowAnonymous]
+        //[Route("Lessons")]
+        //public IActionResult Lessons()
+        //{
+        //    return View();
+        //}
 
         private User getUser(List<Claim> claims)
         {

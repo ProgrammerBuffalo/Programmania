@@ -65,7 +65,7 @@ namespace Programmania.Controllers
 
                 dbContext.Update(userDiscipline);
                 dbContext.SaveChanges();
-                return RedirectToAction("Disciplines/Lessons", disciplineId);
+                return Ok();
             }
             return BadRequest();
         }
@@ -156,7 +156,7 @@ namespace Programmania.Controllers
             userLessons = dbContext.Disciplines.FirstOrDefault(d => d.Id == userDiscipline.DisciplineId)?.Lessons.Select(s => new UserLessonVM
             { LessonId = s.Id, Name = s.Name, Order = s.Order, IsCompleted = s.Order <= userDiscipline.LessonOrder ? true : false }).ToList();
 
-             return userLessons.ToArray();
+            return userLessons.ToArray();
         }
 
         private UserDisciplineVM[] getDisciplines(User user, int courseId)

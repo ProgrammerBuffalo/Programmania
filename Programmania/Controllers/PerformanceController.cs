@@ -1,6 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Programmania.Models;
+using Programmania.Services;
 using Programmania.ViewModels;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Programmania.Controllers
 {
@@ -8,17 +12,42 @@ namespace Programmania.Controllers
     [Authorize]
     public class PerformanceController : Controller
     {
+        private DAL.ProgrammaniaDBContext dbContext;
+        private XMLService xmlService;
+
+        public PerformanceController(DAL.ProgrammaniaDBContext dBContext)
+        {
+            this.dbContext = dBContext;
+        }
         [Route("")]
         public IActionResult Perfomance()
         {
             return View("/Views/Home/Performance.cshtml");
         }
 
-        //loading of diagram retrurn Reward[] array and put it into PerformanceViewModel then return it using Json
+        //loading of diagram return Reward[] array and put it into PerformanceViewModel then return it using Json
         [Route("rewards-init")]
         public IActionResult GetPerformanceRewards(string type, System.DateTime date)
         {
-            PerformanceViewModel viewModel = new PerformanceViewModel(null);
+            var user = HttpContext.Items["User"] as User;
+            Reward[] rewards = null;
+            if (dbContext.Users.Any(ud => ud.HistoryId == user.HistoryId && ud.Id == user.Id))
+            {
+
+                string fullPath = dbContext.Documents.FirstOrDefault().Path;
+                rewards = xmlService.GetNodes(30, fullPath).ToArray();
+            }
+
+            List<Reward> currRewards = new List<Reward>();
+            foreach (var reward in rewards)
+            {
+                if (reward.Type == type && reward.Date == date)
+                {
+                    currRewards.Add(reward);
+                }
+            }
+
+            PerformanceViewModel viewModel = new PerformanceViewModel(currRewards.ToArray());
             return Json(viewModel);
         }
 
