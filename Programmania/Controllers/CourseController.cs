@@ -37,24 +37,22 @@ namespace Programmania.Controllers
         }
 
         [Route("Disciplines")]
-        [AllowAnonymous]
         [HttpGet]
         public IActionResult Disciplines(int courseId)
         {
-            UserDisciplineVM[] userDisciplines = new UserDisciplineVM[6];
-            userDisciplines[0] = new UserDisciplineVM() { DisciplineName = "discp1", DisciplineId = 10, LessonsCount = 100, LessonsCompleted = 24, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
-            userDisciplines[1] = new UserDisciplineVM() { DisciplineName = "discp1", DisciplineId = 20, LessonsCount = 100, LessonsCompleted = 24, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
-            userDisciplines[2] = new UserDisciplineVM() { DisciplineName = "discp1", DisciplineId = 30, LessonsCount = 100, LessonsCompleted = 24, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
-            userDisciplines[3] = new UserDisciplineVM() { DisciplineName = "discp1", DisciplineId = 40, LessonsCount = 100, LessonsCompleted = 24, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
-            userDisciplines[4] = new UserDisciplineVM() { DisciplineName = "discp1", DisciplineId = 50, LessonsCount = 100, LessonsCompleted = 24, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
-            userDisciplines[5] = new UserDisciplineVM() { DisciplineName = "discp1", DisciplineId = 60, LessonsCount = 100, LessonsCompleted = 24, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
-            //return View(getDisciplines(HttpContext.Items["User"] as User, courseId));
-            return View(userDisciplines);
+            //UserDisciplineVM[] userDisciplines = new UserDisciplineVM[6];
+            //userDisciplines[0] = new UserDisciplineVM() { DisciplineName = "discp1", DisciplineId = 10, LessonsCount = 100, LessonsCompleted = 24, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
+            //userDisciplines[1] = new UserDisciplineVM() { DisciplineName = "discp1", DisciplineId = 20, LessonsCount = 100, LessonsCompleted = 24, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
+            //userDisciplines[2] = new UserDisciplineVM() { DisciplineName = "discp1", DisciplineId = 30, LessonsCount = 100, LessonsCompleted = 24, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
+            //userDisciplines[3] = new UserDisciplineVM() { DisciplineName = "discp1", DisciplineId = 40, LessonsCount = 100, LessonsCompleted = 24, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
+            //userDisciplines[4] = new UserDisciplineVM() { DisciplineName = "discp1", DisciplineId = 50, LessonsCount = 100, LessonsCompleted = 24, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
+            //userDisciplines[5] = new UserDisciplineVM() { DisciplineName = "discp1", DisciplineId = 60, LessonsCount = 100, LessonsCompleted = 24, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
+            return View(getDisciplines(HttpContext.Items["User"] as User, courseId));
+            //return View(userDisciplines);
         }
 
         [Route("Disciplines/discipline-begin")]
         [HttpPost]
-        [AllowAnonymous]
         public IActionResult BeginDiscipline(int disciplineId)
         {
             var user = HttpContext.Items["User"] as User;
@@ -74,7 +72,6 @@ namespace Programmania.Controllers
 
         [Route("Disciplines/Lessons")]
         [HttpGet]
-        [AllowAnonymous]
         public IActionResult Lessons(int disciplineId)
         {
             return View(getLessons(HttpContext.Items["User"] as User, disciplineId));
@@ -82,7 +79,6 @@ namespace Programmania.Controllers
 
         [Route("Disciplines/Lessons/check-test")]
         [HttpPost]
-        [AllowAnonymous]
         public IActionResult CheckTest(int testIndex, int disciplineId, int lessonId)
         {
             User user = HttpContext.Items["User"] as User;
@@ -106,7 +102,6 @@ namespace Programmania.Controllers
 
         [Route("Disciplines/Lesson")]
         [HttpGet]
-        [AllowAnonymous]
         public IActionResult CheckLessonAccess(int lessonId, int disciplineId)
         {
             RequestedLessonVM lesson = getRequestedLesson(HttpContext.Items["User"] as User, disciplineId, lessonId);
@@ -150,7 +145,8 @@ namespace Programmania.Controllers
         private UserLessonVM[] getLessons(User user, int disciplineId)
         {
             List<UserLessonVM> userLessons = new List<UserLessonVM>();
-            UserDiscipline userDiscipline = dbContext.UserDisciplines.Where(u => u.UserId == user.Id).FirstOrDefault(c => c.DisciplineId == disciplineId);
+            UserDiscipline userDiscipline = dbContext.UserDisciplines.Where(u => u.UserId == user.Id).
+                FirstOrDefault(c => c.DisciplineId == disciplineId);
 
             if (userDiscipline == null)
             {
@@ -192,7 +188,7 @@ namespace Programmania.Controllers
                 });
             }
 
-            List<Discipline> allAvailableDisciplines = dbContext.Disciplines.Where(d => d.Course.Id == courseId).ToList();
+            List<Discipline> allAvailableDisciplines = dbContext.Disciplines.Include(d => d.Lessons).Where(d => d.Course.Id == courseId).ToList();
 
             foreach (var item in allAvailableDisciplines)
             {
