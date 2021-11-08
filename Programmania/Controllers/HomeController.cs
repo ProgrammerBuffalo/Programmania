@@ -10,9 +10,6 @@ using System.Security.Claims;
 
 namespace Programmania.Controllers
 {
-    [Route("Home")]
-    [Route("")]
-    [Authorize]
     public class HomeController : Controller
     {
         private DAL.ProgrammaniaDBContext dbContext;
@@ -27,116 +24,22 @@ namespace Programmania.Controllers
         }
 
         [Route("")]
-        [Route("Index")]
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Index()
         {
-            return RedirectToAction("", "Profile");
             return View();
         }
 
-        [AllowAnonymous]
         [Route("Main")]
         [HttpGet]
+        [Authorize]
         public IActionResult Main()
         {
+            var user = HttpContext.Items["User"] as User;   
+
             return View();
         }
-
-        //[Route("Profile")]
-        //[AllowAnonymous]
-        //[HttpGet]
-        //public IActionResult Profile()
-        //{
-        //    //var user = getUser(HttpContext.User.Claims.ToList());
-
-        //    //if (user == null)
-        //    //{
-        //    //  return NotFound("Token invalid");
-        //    //}
-
-        //    return View(new UserProfileVM(true));
-        //    //return View(/*new UserProfileVM(true, user.Login, user.Name, user.Exp, getUserCourses(user), getUserAchievements(user))*/);
-        //}
-
-        [Route("News")]
-        public IActionResult News()
-        {
-            return View();
-        }
-
-        [Route("News/PostNews")]
-        public IActionResult PostNews()
-        {
-            return View();
-        }
-
-        [Route("Codes")]
-        public IActionResult Codes()
-        {
-            return View();
-        }
-        [AllowAnonymous]
-        [Route("Challenges")]
-        public IActionResult Challenges()
-        {
-            return View();
-        }
-
-        [AllowAnonymous]
-        [Route("Challenge")]
-        public IActionResult Challenge()
-        {
-            return View();
-        }
-
-        [Route("Challenges/Game")]
-        public IActionResult Game()
-        {
-            return View();
-        }
-
-        [Route("ChallengeResult")]
-        [AllowAnonymous]
-        public IActionResult ChallengeResult()
-        {
-            return View();
-        }
-
-        //[AllowAnonymous]
-        //[Route("Lessons")]
-        //public IActionResult Lessons()
-        //{
-        //    return View();
-        //}
-
-        private User getUser(List<Claim> claims)
-        {
-            var users = dbContext.Users;
-
-            if (claims.Count < 1)
-                return null;
-
-            var user = dbContext.Users.AsEnumerable().FirstOrDefault(u => u.Id == int.Parse(claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value) && u.Login == claims.First(c => c.Type == ClaimTypes.Name).Value);
-            return user;
-        }
-
-        private List<UserAchievementVM> getUserAchievements(User user)
-        {
-            List<UserAchievementVM> list = dbContext.Users.Include(u => u.Achievements)
-                .First(u => u == user).Achievements.Select(s => new UserAchievementVM
-                {
-                    Name = s.Name,
-                    Description = s.Desc,
-                    Points = s.Points,
-                    Image = fileService.GetDocument(dbContext.Documents
-                        .FirstOrDefault(d => d.StreamId == s.StreamId).Path)
-                }).ToList();
-
-            return list;
-        }
-
 
     }
 }

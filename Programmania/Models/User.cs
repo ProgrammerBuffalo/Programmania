@@ -39,16 +39,18 @@ namespace Programmania.Models
 
         public ICollection<RefreshToken> RefreshTokens { get; set; }
 
+        public ICollection<Reward> Rewards { get; set; }
+
+        public ChallengeStatistics ChallengeStatistics { get; set; }
+        
         [Column("img_stream_id")]
         public Guid ImageId { get; set; }
-
-        [Column("hstr_stream_id")]
-        public Guid HistoryId { get; set; }
 
         public User()
         {
             Achievements = new List<Achievement>();
             RefreshTokens = new List<RefreshToken>();
+            Rewards = new List<Reward>();
         }
     }
 }

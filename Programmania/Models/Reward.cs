@@ -3,27 +3,19 @@ using System;
 
 namespace Programmania.Models
 {
+    [Table("Rewards")]
     public class Reward
     {
-        public Reward()
-        {
+        [Column("Id")]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
 
-        }
+        public string Description { get; set; }
 
-        public Reward(string type, int expierence, DateTime date)
-        {
-            Type = type;
-            Expierence = expierence;
-            Date = date;
-        }
+        public int Experience { get; set; }
 
-        [JsonProperty(PropertyName = "type")]
-        public string Type { get; set; }
+        public DateTime CreatedAt { get; set; }
 
-        [JsonProperty(PropertyName = "exp")]
-        public int Expierence { get; set; }
-
-        [JsonProperty(PropertyName = "date")]
-        public DateTime Date { get; set; }
+        public User User { get; set; }
     }
 }

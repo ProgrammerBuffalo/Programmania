@@ -16,8 +16,6 @@ namespace Programmania.Models
 
         public DateTime Created { get; set; }
 
-        public int AnswersCount { get; set; }
-
         public Course Course { get; set; }
 
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]

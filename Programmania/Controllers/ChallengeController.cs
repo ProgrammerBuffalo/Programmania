@@ -27,6 +27,23 @@ namespace Programmania.Controllers
         }
 
         [HttpGet]
+        [Route("challenge-stats")]
+        public IActionResult GetUserStats()
+        {
+            var user = HttpContext.Items["User"] as User;
+
+            if (user == null)
+                return BadRequest();
+
+            var stats = dbContext.ChallengeStatistics.FirstOrDefault(s => s.UserId == user.Id);
+
+            if (stats == null)
+                return BadRequest();
+
+            return Json(new UserChallengeStatsVM { Wins = stats.Wins, Loses = stats.Loses, Draws = stats.Draws });
+        }
+
+        [HttpGet]
         public IActionResult GetChallenges()
         {
             var user = HttpContext.Items["User"] as User;

@@ -112,9 +112,6 @@ namespace Programmania.Controllers
                             Password = registrationVM.Password,
                             Login = registrationVM.Email
                         };
-                        SqlFileContext emptyFileContext = fileService.AddEmptyDocument(user.Name + ".xml");
-                        xmlService.CreateXDeclaration(emptyFileContext);
-                        user.HistoryId = emptyFileContext.StreamId;
 
                         if (registrationVM.FormFile != null)
                         {
