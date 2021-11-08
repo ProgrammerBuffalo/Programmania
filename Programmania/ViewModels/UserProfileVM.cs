@@ -13,9 +13,12 @@ namespace Programmania.ViewModels
 
         public int Expierence { get; set; }
 
-        public int Level => (int)(Math.Sqrt(Expierence) / 50);
+        public int Level => (int)(Math.Sqrt(Expierence) / 150);
 
         public byte[] Avatar { get; set; }
+
+        public UserChallengeStatsVM ChallengeStats { get; set; }
+
 
         //public ICollection<UserCourseVM> UserCourses { get; set; }
 

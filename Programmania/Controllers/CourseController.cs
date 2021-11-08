@@ -51,6 +51,42 @@ namespace Programmania.Controllers
             //return View(userDisciplines);
         }
 
+        [HttpGet]
+        [Route("Disciplines/get-course-description")]
+        public IActionResult GetCourseShortDescription(int courseId)
+        {
+            Course course = dbContext.Courses.FirstOrDefault(c => c.Id == courseId);
+
+            if (course == null)
+                return NotFound();
+
+            var image = fileService.GetDocument(dbContext.Documents
+                .FirstOrDefault(d => d.StreamId == course.StreamId)?.Path);
+            var name = course.Name;
+
+            var info = new { Image = image, Name = name };
+
+            return Json(info);
+        }
+
+        [HttpGet]
+        [Route("Disciplines/Lessons/get-discipline-description")]
+        public IActionResult GetDisciplineShortDescription(int disciplineId)
+        {
+            Discipline discipline = dbContext.Disciplines.FirstOrDefault(c => c.Id == disciplineId);
+
+            if (discipline == null)
+                return NotFound();
+
+            var image = fileService.GetDocument(dbContext.Documents
+                .FirstOrDefault(d => d.StreamId == discipline.StreamId)?.Path);
+            var name = discipline.Name;
+
+            var info = new { Image = image, Name = name };
+
+            return Json(info);
+        }
+
         [Route("Disciplines/discipline-begin")]
         [HttpPost]
         public IActionResult BeginDiscipline(int disciplineId)
@@ -136,7 +172,7 @@ namespace Programmania.Controllers
             {
                 Test = new TestVM { A1 = test.Answer1, A2 = test.Answer2, A3 = test.Answer3, A4 = test.Answer4, Question = test.Question },
                 HTML = System.Text.Encoding.UTF8.GetString(fileService.GetDocument(
-                    dbContext.Documents.FirstOrDefault(d => d.StreamId == lesson.StreamId).Path))
+                    dbContext.Documents.FirstOrDefault(d => d.StreamId == lesson.StreamId)?.Path))
             };
 
             return requestedLesson;
@@ -184,7 +220,7 @@ namespace Programmania.Controllers
                     LessonsCount = item.LessonsCount,
                     LessonsCompleted = item.LessonsCompleted,
                     Image = fileService.GetDocument(dbContext.Documents
-                        .FirstOrDefault(d => d.StreamId == item.StreamId).Path)
+                        .FirstOrDefault(d => d.StreamId == item.StreamId)?.Path)
                 });
             }
 
@@ -201,7 +237,7 @@ namespace Programmania.Controllers
                     LessonsCount = item.Lessons.Count,
                     LessonsCompleted = 0,
                     Image = fileService.GetDocument(dbContext.Documents
-                        .FirstOrDefault(d => d.StreamId == item.StreamId).Path),
+                        .FirstOrDefault(d => d.StreamId == item.StreamId)?.Path),
                 });
             }
 
@@ -245,7 +281,7 @@ namespace Programmania.Controllers
                         LessonsCompleted = item.lastLesson,
                         IsSelected = true,
                         Image = fileService.GetDocument(dbContext.Documents
-                        .FirstOrDefault(d => d.StreamId == item.streamId).Path)
+                        .FirstOrDefault(d => d.StreamId == item.streamId)?.Path)
                     });
                 }
                 else
@@ -267,7 +303,7 @@ namespace Programmania.Controllers
                     IsSelected = false,
                     LessonsCount = item.LessonCount,
                     Image = fileService.GetDocument(dbContext.Documents
-                        .FirstOrDefault(d => d.StreamId == item.StreamId).Path),
+                        .FirstOrDefault(d => d.StreamId == item.StreamId)?.Path),
                     LessonsCompleted = 0
                 });
             }

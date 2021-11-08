@@ -29,26 +29,27 @@ namespace Programmania.Controllers
         [Route("rewards-init")]
         public IActionResult GetPerformanceRewards(string type, System.DateTime date)
         {
-            var user = HttpContext.Items["User"] as User;
-            Reward[] rewards = null;
-            if (dbContext.Users.Any(ud => ud.HistoryId == user.HistoryId && ud.Id == user.Id))
-            {
+            //var user = HttpContext.Items["User"] as User;
+            //Reward[] rewards = null;
+            //if (dbContext.Users.Any(ud => ud.HistoryId == user.HistoryId && ud.Id == user.Id))
+            //{
 
-                string fullPath = dbContext.Documents.FirstOrDefault().Path;
-                rewards = xmlService.GetNodes(30, fullPath).ToArray();
-            }
+            //    string fullPath = dbContext.Documents.FirstOrDefault().Path;
+            //    rewards = xmlService.GetNodes(30, fullPath).ToArray();
+            //}
 
-            List<Reward> currRewards = new List<Reward>();
-            foreach (var reward in rewards)
-            {
-                if (reward.Type == type && reward.Date == date)
-                {
-                    currRewards.Add(reward);
-                }
-            }
+            //List<Reward> currRewards = new List<Reward>();
+            //foreach (var reward in rewards)
+            //{
+            //    if (reward.Type == type && reward.Date == date)
+            //    {
+            //        currRewards.Add(reward);
+            //    }
+            //}
 
-            PerformanceViewModel viewModel = new PerformanceViewModel(currRewards.ToArray());
-            return Json(viewModel);
+            //PerformanceViewModel viewModel = new PerformanceViewModel(currRewards.ToArray());
+            //return Json(viewModel);
+            return Ok();
         }
 
         //type - type of diagram (day, month, year)
