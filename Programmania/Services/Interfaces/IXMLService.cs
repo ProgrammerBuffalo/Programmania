@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Programmania.Services.Interfaces
 {
@@ -7,9 +6,10 @@ namespace Programmania.Services.Interfaces
     {
         public bool CreateXDeclaration(Models.SqlFileContext emptyFileContext);
 
-        public bool AddNode(Models.Reward reward, Guid guid);
+        public bool AddNode(Models.Reward reward, System.Guid guid);
 
         public ICollection<Models.Reward> GetNodes(int offset, string fullPath);
 
+        public ICollection<Models.Reward> GetNodes(int count, int offset, string fullPath);
     }
 }

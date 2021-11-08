@@ -19,48 +19,33 @@ namespace Programmania.Controllers
             this.profileService = profileService;
         }
 
+        [AllowAnonymous]
         //[Authorize]
-        [AllowAnonymous]
         [HttpGet("")]
-        public IActionResult Profile()
-        {
-            var user = HttpContext.Items["User"] as User;
-            var userProfileVM = profileService.GetProfileData(user);
-            if (userProfileVM != null)
-                return View("/Views/Home/Profile.cshtml", userProfileVM);
-            else
-                return NotFound();
-            //return View("", new UserProfileVM(true));
-        }
-
-        [AllowAnonymous]
-        [HttpGet("show")]
         public IActionResult Profile(string userIdCode)
         {
-            int? result = Utilities.Encryptor.DecryptToInt(userIdCode);
-            if (result != null)
-            {
-                UserProfileVM userProfileVM = profileService.GetProfileData(result.Value);
-                if (userProfileVM != null)
-                    return View("/Views/Home/Profile.cshtml", userProfileVM);
-                else
-                    return NotFound();
-            }
-            else
-                return NotFound();
-            //var profileVM = dBContext.Users.Where(u => u.Id == userId)
-            //    .Select(p => new UserProfileVM(false)
-            //    {
-            //        Nickname = p.Name,
-            //        Avatar = fileService.GetSqlFileContext()?.TransactionContext,
-            //        Expierence = p.Exp,
-            //    });
-            //var a = HttpContext.Items["User"] as Models.User;
-            //return View("/Views/Home/Profile.cshtml", null);
+            //UserProfileVM profileVM;
+            //if (userIdCode == null)
+            //{
+            //    var user = HttpContext.Items["User"] as User;
+            //    profileVM = profileService.GetProfileData(user);
+            //}
+            //else
+            //{
+            //    int? result = Utilities.Encryptor.DecryptToInt(userIdCode);
+            //    if (result != null)
+            //        profileVM = profileService.GetProfileData(result.Value);
+            //    else
+            //        return NotFound();
+            //}
+            //if (profileVM != null)
+            //    return View("/Views/Home/Profile.cshtml", profileVM);
+            //else
+            //    return NotFound();
+            return View("/Views/Home/Profile.cshtml", new UserProfileVM(true));
         }
 
-        //[Authorize]
-        [AllowAnonymous]
+        [Authorize]
         [HttpPost("change-nickname")]
         public IActionResult ChangeNickname(NicknameValidator inputs)
         {
@@ -85,7 +70,7 @@ namespace Programmania.Controllers
             }
         }
 
-        [AllowAnonymous]
+        [Authorize]
         [HttpPost("change-avatar")]
         public IActionResult ChangeNickname(FileValidator inputs)
         {
@@ -110,69 +95,43 @@ namespace Programmania.Controllers
             }
         }
 
-        //
-        [AllowAnonymous]
+        [Authorize]
         [HttpGet("get-games")]
-        public IActionResult GetGames()
+        public IActionResult GetGames(string userIdCode)
         {
+            int? userId;
+            if (userIdCode == null)
+                userId = Utilities.Encryptor.DecryptToInt(userIdCode);
+            else
+            {
+                var user = HttpContext.Items["User"] as User;
+                userId = user.Id;
+            }
             return Json(null);
+            //return Json(profileService.GetGames(userId.Value));
         }
 
-        //
-        [AllowAnonymous]
+        [Authorize]
         [HttpGet("get-achivments")]
-        public IActionResult GetAchivments()
+        public IActionResult GetAchivments(string uerIdCode)
         {
             return Json(null);
         }
 
-        //
-        [AllowAnonymous]
+        [Authorize]
         [HttpGet("get-user-info")]
-        public IActionResult GetUserInfo()
+        public IActionResult GetUserInfo(string userIdCode)
         {
+            int? userId;
+            if (userIdCode == null)
+                userId = Utilities.Encryptor.DecryptToInt(userIdCode);
+            else
+            {
+                var user = HttpContext.Items["User"] as User;
+                userId = user.Id;
+            }
             return Json(null);
+            //return Json(profileService.GetInfo(userId.Value));
         }
     }
 }
-
-//[Route("")]
-//[AllowAnonymous]
-//public IActionResult Profile(int userId)
-//{
-//    var a = HttpContext.Items["User"] as Models.User;
-//    ViewModels.UserProfileVM profileVM = new ViewModels.UserProfileVM(true);
-//    return View("/Views/Home/Profile.cshtml", profileVM);
-//}
-
-//[AllowAnonymous]
-//[HttpPost("change-password")]
-//public IActionResult ChangePassword(ChangePasswordValidator validator)
-//{
-//    if (ModelState.IsValid)
-//    {
-//        var user = HttpContext.Items["User"] as User;
-//        if (user.Password == validator.OldPassword)
-//        {
-//            var password = dBContext.Users.FirstOrDefault(u => u.Password == validator.NewPassword);
-//            if (password == null)
-//            {
-//                user.Password = validator.NewPassword;
-//                dBContext.SaveChanges();
-//                return Ok();
-//            }
-//            else
-//            {
-//                return BadRequest();
-//            }
-//        }
-//        else
-//        {
-//            return BadRequest();
-//        }
-//    }
-//    else
-//    {
-//        return BadRequest();
-//    }
-//}

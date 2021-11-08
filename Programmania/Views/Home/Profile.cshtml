@@ -29,166 +29,170 @@
 <body>
     <div class="wrapper">
         <header class="header">
-        <div class="header-container">
-            <div class="container__text">Programmania</div>
-            <div class="header__burger">
-                <span></span>
+            <div class="header-container">
+                <div class="container__text">Programmania</div>
+                <div class="header__burger">
+                    <span></span>
+                </div>
+                <div class="container-menu">
+                    <nav class="header__menu">
+                        <ul class="header__list">
+                            <li>
+                                <a href="Main" class="header__link">Main</a>
+                            </li>
+
+                            <li>
+                                <a href="Courses" class="header__link">Courses</a>
+                            </li>
+
+                            <li>
+                                <a href="Performance" class="header__link">Performance</a>
+                            </li>
+
+                            <li>
+                                <a href="Challenges" class="header__link">Challenges</a>
+                            </li>
+
+                            <li>
+                                <a href="Profile" class="header__link">Profile</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
-            <div class="container-menu">
-                <nav class="header__menu">
-                    <ul class="header__list">
-                        <li>
-                            <a href="Main" class="header__link">Main</a>
-                        </li>
-
-                        <li>
-                            <a href="Courses" class="header__link">Courses</a>
-                        </li>
-
-                        <li>
-                            <a href="Performance" class="header__link">Performance</a>
-                        </li>
-
-                        <li>
-                            <a href="Challenges" class="header__link">Challenges</a>
-                        </li>
-
-                        <li>
-                            <a href="Profile" class="header__link">Profile</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
+        </header>
         <main class="content main">
-        <div class="profile">
-            <div class="profile-col-1">
-                <div id="enterAvatarModal" class="profile__image">
-                    <img id='profileImage' src="images/avatarImg.png" alt="">
-                </div>
-
-                <div class="profile-info">
-                    <div id="enterNicknameModal" class="profile-info__item">
-                        <h3>Username:</h3>
-                        <p>JohnJohnson123</p>
-                    </div>
-                    <hr />
-
-                    @if (Model.IsOwned)
-                    {
-                    <div class="profile-info__item">
-                        <h3>Email:</h3>
-                        <p>John123@gmail.com</p>
-                    </div>
-                    <hr />
-
-                    <button id="enterProfileModal" class="btn btn-primary profile-info__change">Change profile data</button>
-                    }
-                </div>
-            </div>
-
-            <div class="profile-col-2">
-                <h1 class="profile__name">JohnJohnson123</h1>
-
-                <div class="level">
-                    <div class="level__percent">
-                        <div class="ldBar label-center" data-preset="circle" data-value="30" data-transition-in="1000"
-                             style="width: 100%; height: 100%;"></div>
+            <div class="profile">
+                <div class="profile-col-1">
+                    <div id="enterAvatarModal" class="profile__image">
+                        @{
+                            @if (Model.Avatar != null)
+                            {
+                                string base64String = System.Convert.ToBase64String(Model.Avatar, 0, Model.Avatar.Length);
+                                <img id="profileImage" src="data:image/*;base64,@base64String" />
+                            }
+                        }
                     </div>
 
-                    <div class="level__content">Level: 12</div>
-                </div>
-
-                <div class="tabs-container">
-                    <div class="tab">
-                        <button id="userInfo" class="tablinks">User info</button>
-                        <button id="games" class="tablinks">Games</button>
-                        <button id="achievments" class="tablinks">Achievments</button>
-                    </div>
-
-                    <!-- Tab content -->
-                    <div id="userInfoTab" class="tabcontent">
-                        <div class="profile-info">
-                            <div class="profile-info__item">
-                                <h3>XP:</h3>
-                                <p>3500</p>
-                            </div>
-                            <hr />
-                            <div class="profile-info__item">
-                                <h3>Courses ended:</h3>
-                                <p>3</p>
-                            </div>
-                            <hr/>
+                    <div class="profile-info">
+                        <div id="enterNicknameModal" class="profile-info__item">
+                            <h3>Username:</h3>
+                            <p id="profileNickname">@Model.Nickname</p>
                         </div>
-                    </div>
+                        <hr />
 
-                    <div id="gamesTab" class="tabcontent">
-                        <div class="profile-info">
+                        @if (Model.IsOwned)
+                        {
                             <div class="profile-info__item">
-                                <h3>Games played:</h3>
-                                <p>13</p>
+                                <h3>Email:</h3>
+                                <p>@Model.Email</p>
                             </div>
                             <hr />
-                            <div class="profile-info__item">
-                                <h3>Games wins:</h3>
-                                <p>7</p>
-                            </div>
-                            <hr />
+                        }
+                    </div>
+                </div>
+
+                <div class="profile-col-2">
+                    <h1 class="profile__name">@Model.Nickname</h1>
+
+                    <div class="level">
+                        <div class="level__percent">
+                            <div class="ldBar label-center" data-preset="circle" data-value="30" data-transition-in="1000"
+                                 style="width: 100%; height: 100%;"></div>
                         </div>
+
+                        <div class="level__content">Level: @Model.Level</div>
                     </div>
 
-                    <div id="achievmentsTab" class="tabcontent">
+                    <div class="tabs-container">
+                        <div class="tab">
+                            <button id="userInfo" class="tablinks">User info</button>
+                            <button id="games" class="tablinks">Games</button>
+                            @*<button id="achievments" class="tablinks">Achievments</button>*@
+                        </div>
 
+                        <!-- Tab content -->
+                        <div id="userInfoTab" class="tabcontent">
+                            <div class="profile-info">
+                                <div class="profile-info__item">
+                                    <h3>XP:</h3>
+                                    <p id="totalXp"></p>
+                                </div>
+                                <hr />
+                                <div class="profile-info__item">
+                                    <h3>Courses ended:</h3>
+                                    <p id="coursesEnded"></p>
+                                </div>
+                                <hr />
+                            </div>
+                        </div>
+
+                        <div id="gamesTab" class="tabcontent">
+                            <div class="profile-info">
+                                <div class="profile-info__item">
+                                    <h3>Games played:</h3>
+                                    <p id="gamesPlayed"></p>
+                                </div>
+                                <hr />
+                                <div class="profile-info__item">
+                                    <h3>Games wins:</h3>
+                                    <p id="gamesWined"></p>
+                                </div>
+                                <hr />
+                            </div>
+                        </div>
+
+                        @*<div id="achievmentsTab" class="tabcontent">
+
+                            </div>*@
                     </div>
                 </div>
             </div>
-        </div>
 
-        @if (Model.IsOwned)
-        {
-        <div class="modal" id="nicknameModal">
-            <div class="modal-content" style="width: 300px">
-                <span id="closeNicknameModal" class="close">&times;</span>
+            @if (Model.IsOwned)
+            {
+                <div class="modal" id="nicknameModal">
+                    <div class="modal-content" style="width: 300px">
+                        <span id="closeNicknameModal" class="close">&times;</span>
 
-                <form id="nicknameForm">
-                    <div class="form-group">
-                        <label id="nicknameLabel" class="modal__label">Nickname:</label>
-                        <p id="nicknameError" class="error"></p>
-                        <input id="nicknameInput" name="Nickname" class="form-control modal__input" placeholder="nickname" />
+                        <form id="nicknameForm">
+                            <div class="form-group">
+                                <label id="nicknameLabel" class="modal__label">Nickname:</label>
+                                <p id="nicknameError" class="error"></p>
+                                <input id="nicknameInput" name="Nickname" class="form-control modal__input" placeholder="nickname" />
+                            </div>
+
+                            <input type="button" id="nicknameChangeBtn" class="btn btn-success modal__close" value="Change" />
+                            <p class="error"></p>
+                        </form>
                     </div>
+                </div>
+            }
 
-                    <input type="button" id="nicknameChangeBtn" class="btn btn-success modal__close" value="Change" />
-                </form>
-            </div>
-        </div>
-        }
+            @if (Model.IsOwned)
+            {
+                <div class="modal" id="avatarModal">
+                    <div class="modal-content" style="width:300px">
+                        <span id="closeAvatarModal" class="close">&times;</span>
 
-        @if (Model.IsOwned)
-        {
-        <div class="modal" id="avatarModal">
-            <div class="modal-content" style="width:300px">
-                <span id="closeAvatarModal" class="close">&times;</span>
+                        <form id="avatarForm">
+                            <div class="form-group">
+                                <label id="avatarLabel" class="modal__label">Avatar: </label>
+                                <p id="avatarError" class="error"></p>
+                                <input id="avatarInput" name="File" class="form-control" type="file" />
+                            </div>
 
-                <form id="avatarForm">
-                    <div class="form-group">
-                        <label id="avatarLabel" class="modal__label">Avatar: </label>
-                        <p id="avatarError" class="error"></p>
-                        <input id="avatarInput" name="File" class="form-control" type="file" />
+                            @*<canvas id="avatarCanvas" style="width:200px; height:200px; margin:0px, auto !important"></canvas>*@
+
+                            <input type="button" id="avatarChangeBtn" class="btn btn-success modal__close" value="Change" />
+                            <p class="error"></p>
+                        </form>
                     </div>
+                </div>
+            }
+        </main>
 
-                    <canvas id="avatarCanvas" style="width:200px; height:200px; margin:0px, auto !important"></canvas>
-
-                    <p id="avatarError" class="error">Error</p>
-
-                    <input type="button" id="avatarChangeBtn" class="btn btn-success modal__close" value="Change" />
-                </form>
-            </div>
-        </div>
-        }
-    </main>
-
-     <footer class="footer">
+        <footer class="footer">
             <div class="footer-links" data-aos="zoom-in" data-aos-duration="700">
                 <a href="#" class="footer-links_first">
                     <div class="footer-link__image">
@@ -212,9 +216,9 @@
             <div class="footer__text" data-aos="zoom-in" data-aos-duration="700">
                 <h5>&#x24B8; 2021 Programmania. All rights reserved.</h5>
             </div>
-    </footer>
+        </footer>
     </div>
-    
+
 
     <script src="~/js/util/tabs.js"></script>
     <script src="~/js/util/openModal.js"></script>

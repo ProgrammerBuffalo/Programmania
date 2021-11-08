@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlTypes;
 using Microsoft.EntityFrameworkCore;
+using Programmania.DAL;
 using Programmania.Models;
 using Programmania.Services.Interfaces;
 using System;
@@ -13,11 +14,11 @@ namespace Programmania.Services
 {
     public class XMLService : IXMLService
     {
-        private DAL.ProgrammaniaDBContext dbContext;
+        private ProgrammaniaDBContext dbContext;
 
-        public XMLService(DAL.ProgrammaniaDBContext context)
+        public XMLService(ProgrammaniaDBContext dbContext)
         {
-            this.dbContext = context;
+            this.dbContext = dbContext;
         }
 
         public bool CreateXDeclaration(SqlFileContext emptyFileContext)
@@ -35,7 +36,6 @@ namespace Programmania.Services
 
         public bool AddNode(Reward reward, Guid guid)
         {
-
             using (var transaction = dbContext.Database.BeginTransaction())
             {
                 var doc = dbContext.Documents.FromSqlRaw("SELECT *, GET_FILESTREAM_TRANSACTION_CONTEXT() " +
@@ -65,10 +65,9 @@ namespace Programmania.Services
             return true;
         }
 
-        public ICollection<Reward> GetNodes(int offset, string fullPath)
+        public ICollection<Reward> GetNodes(int count, string fullPath)
         {
             List<Reward> rewards = new List<Reward>();
-
             Type type = typeof(Reward);
             var properties = type.GetProperties();
 
@@ -90,6 +89,11 @@ namespace Programmania.Services
                 }
             }
             return rewards;
+        }
+
+        public ICollection<Reward> GetNodes(int count, int offset, string fullPath)
+        {
+            throw new NotImplementedException();
         }
     }
 }

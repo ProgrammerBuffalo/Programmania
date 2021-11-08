@@ -13,8 +13,8 @@
     initTab(document.getElementById('games'),
         document.getElementById('gamesTab'));
 
-    initTab(document.getElementById('achievments'),
-        document.getElementById('achievmentsTab'));
+    //initTab(document.getElementById('achievments'),
+    //    document.getElementById('achievmentsTab'));
 });
 
 $(document).ready(function () {
@@ -25,9 +25,10 @@ $(document).ready(function () {
             url: 'Profile/get-user-info',
             processData: true,
             dataType: 'json',
-            success: function () {
-
-            }
+            success: function (data) {
+                $('#totalXp').text(data.coursesEndedCount);
+                $('#coursesEnded').text(data.totalXp);
+            },
         });
     });
 });
@@ -40,8 +41,9 @@ $(document).ready(function () {
             url: 'Profile/get-games',
             processData: true,
             dataType: 'json',
-            success: function () {
-
+            success: function (data) {
+                $('#gamesPlayed').text(data.gamesWined);
+                $('#gamesWined').text(data.gamesPlayed);
             }
         });
     });
@@ -74,10 +76,25 @@ $(document).ready(function () {
             contentType: false,
             data: formData,
             success: function () {
-
+                $('.error').css('display', 'none');
+                $('#userNickname').val($('#profileNickname').val());
+                $('#nicknameInput').val('');
             },
-            error: function () {
+            error: function (errors) {
+                $('.error').css('display', 'none');
 
+                var errors = JSON.parse(jqXHR.responseText);
+                for (var key in errors) {
+                    var camel = camelize(key);
+                    $('#' + camel + 'Label').next()
+                        .css('display', 'inline')
+                        .text(errors[key]);
+                }
+                if (errors['error'] != null) {
+                    $('#nicknameChangeBtn').after()
+                        .css('display', 'inline')
+                        .text(errors[key]);
+                }
             }
         });
     });
@@ -113,10 +130,30 @@ $(document).ready(function () {
             contentType: false,
             data: formData,
             success: function () {
+                $('.error').css('display', 'none');
 
+                var reader = new FileReader();
+                reader.onload = function (event) {
+                    imgtag.src = event.target.result;
+                };
+                reader.readAsDataURL($('#avatarInput').get(0).files[0]);
+
+                $('#profileImage').val('');
             },
             error: function () {
+                $('.error').css('display', 'none');
 
+                for (var key in errors) {
+                    var camel = camelize(key);
+                    $('#' + camel + 'Label').next()
+                        .css('display', 'inline')
+                        .text(errors[key]);
+                }
+                if (errors['error'] != null) {
+                    $('#nicknameChangeBtn').after()
+                        .css('display', 'inline')
+                        .text(errors[key]);
+                }
             }
         });
     });

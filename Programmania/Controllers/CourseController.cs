@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Programmania.Attributes;
 using Programmania.Models;
-using Programmania.Services;
 using Programmania.Services.Interfaces;
 using Programmania.ViewModels;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Programmania.Controllers
 {
@@ -18,27 +14,31 @@ namespace Programmania.Controllers
     public class CourseController : Controller
     {
         private DAL.ProgrammaniaDBContext dbContext;
-        private IAccountService accountService;
-        private IXMLService xmlService;
         private IFileService fileService;
 
-        public CourseController(DAL.ProgrammaniaDBContext context, IAccountService accountService,
-    IXMLService xmlService, IFileService fileService)
+        public CourseController(DAL.ProgrammaniaDBContext dbContext, IFileService fileService)
         {
-            this.dbContext = context;
-            this.accountService = accountService;
-            this.xmlService = xmlService;
+            this.dbContext = dbContext;
             this.fileService = fileService;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Courses()
         {
+            UserCourseVM[] userCourses = new UserCourseVM[6];
+            userCourses[0] = new UserCourseVM() { CourseName = "Name1", Description = "Lorem Ipsum", IsSelected = true, LessonsCompleted = 11, LessonsCount = 111, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
+            userCourses[1] = new UserCourseVM() { CourseName = "Name2", Description = "Lorem Ipsum", IsSelected = true, LessonsCompleted = 12, LessonsCount = 45, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
+            userCourses[2] = new UserCourseVM() { CourseName = "Name3", Description = "Lorem Ipsum", IsSelected = true, LessonsCompleted = 13, LessonsCount = 45, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
+            userCourses[3] = new UserCourseVM() { CourseName = "Name4", Description = "Lorem Ipsum", IsSelected = false, LessonsCompleted = 14, LessonsCount = 65, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
+            userCourses[4] = new UserCourseVM() { CourseName = "Name5", Description = "Lorem Ipsum", IsSelected = false, LessonsCompleted = 15, LessonsCount = 45, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
+            userCourses[5] = new UserCourseVM() { CourseName = "Name6", Description = "Lorem Ipsum", IsSelected = false, LessonsCompleted = 16, LessonsCount = 63, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
+            return View(userCourses);
             return View(getCourses(HttpContext.Items["User"] as User));
         }
 
-        [Route("Disciplines")]
         [AllowAnonymous]
+        [Route("Disciplines")]
         [HttpGet]
         public IActionResult Disciplines(int courseId)
         {
@@ -46,13 +46,23 @@ namespace Programmania.Controllers
             userDisciplines[0] = new UserDisciplineVM() { DisciplineName = "discp1", DisciplineId = 10, LessonsCount = 100, LessonsCompleted = 24, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
             userDisciplines[1] = new UserDisciplineVM() { DisciplineName = "discp1", DisciplineId = 20, LessonsCount = 100, LessonsCompleted = 24, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
             userDisciplines[2] = new UserDisciplineVM() { DisciplineName = "discp1", DisciplineId = 30, LessonsCount = 100, LessonsCompleted = 24, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
-            userDisciplines[3] = new UserDisciplineVM() { DisciplineName = "discp1", DisciplineId = 40, LessonsCount = 100, LessonsCompleted = 24, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
-            userDisciplines[4] = new UserDisciplineVM() { DisciplineName = "discp1", DisciplineId = 50, LessonsCount = 100, LessonsCompleted = 24, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
-            userDisciplines[5] = new UserDisciplineVM() { DisciplineName = "discp1", DisciplineId = 60, LessonsCount = 100, LessonsCompleted = 24, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
+            userDisciplines[3] = new UserDisciplineVM() { DisciplineName = "discp1", DisciplineId = 40, LessonsCount = 100, LessonsCompleted = 0, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
+            userDisciplines[4] = new UserDisciplineVM() { DisciplineName = "discp1", DisciplineId = 50, LessonsCount = 100, LessonsCompleted = 0, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
+            userDisciplines[5] = new UserDisciplineVM() { DisciplineName = "discp1", DisciplineId = 60, LessonsCount = 100, LessonsCompleted = 0, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
             //return View(getDisciplines(HttpContext.Items["User"] as User, courseId));
             return View(userDisciplines);
         }
 
+        [AllowAnonymous]
+        [HttpGet("Disciplines/get-course-description")]
+        public IActionResult SelectedCourseInfo()
+        {
+            //this method should return image and name of selected course
+            //var data = new { CourseName = "hello1", CourseImage = new byte[0] };
+            return Json(null);
+        }
+
+        [AllowAnonymous]
         [Route("Disciplines/discipline-begin")]
         [HttpPost]
         public IActionResult BeginDiscipline(int disciplineId)
@@ -72,17 +82,26 @@ namespace Programmania.Controllers
             return BadRequest();
         }
 
+        [AllowAnonymous]
         [Route("Disciplines/Lessons")]
         [HttpGet]
-        [AllowAnonymous]
         public IActionResult Lessons(int disciplineId)
         {
             return View(getLessons(HttpContext.Items["User"] as User, disciplineId));
         }
 
+        [AllowAnonymous]
+        [HttpGet("Disciplines/Lessons/get-discipline-description")]
+        public IActionResult SelectedDisciplineInfo()
+        {
+            //this method should return image and name of selected discipline
+            //var data = new { DisciplineName = "", DisciplineImage = new byte[0] };
+            return Json(null);
+        }
+
+        [AllowAnonymous]
         [Route("Disciplines/Lessons/check-test")]
         [HttpPost]
-        [AllowAnonymous]
         public IActionResult CheckTest(int disciplineId, int lessonId, int testIndex)
         {
             User user = HttpContext.Items["User"] as User;
@@ -104,11 +123,12 @@ namespace Programmania.Controllers
             return Json(false);
         }
 
+        [AllowAnonymous]
         [Route("Disciplines/Lesson")]
         [HttpGet]
-        [AllowAnonymous]
         public IActionResult CheckLessonAccess(int lessonId, int disciplineId)
         {
+            return Json(null);
             RequestedLessonVM lesson = getRequestedLesson(HttpContext.Items["User"] as User, disciplineId, lessonId);
             if (lesson == null)
                 return NotFound();

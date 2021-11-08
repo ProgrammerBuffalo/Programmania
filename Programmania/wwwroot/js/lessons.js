@@ -1,16 +1,28 @@
 ﻿var lessonIndex;
 
 $(document).ready(function () {
-    $('#disciplineImage').attr('src', sessionStorage.getItem('disciplineImage'));
-    $('#disciplineName').text(sessionStorage.getItem('disciplineName'));
+    //$('#disciplineImage').attr('src', sessionStorage.getItem('disciplineImage'));
+    //$('#disciplineName').text(sessionStorage.getItem('disciplineName'));
 
     let lessonEl = $('.burger-content').find('.burger-content-elem_unread').first();
     lessonIndex = lessonEl.index();
     if (lessonIndex == -1)
         lessonIndex = 0;
 
-    let lessonId = lessonEl.attr('data-id');
-    requestLesson(lessonEl[0], sessionStorage.getItem('disciplineId'), lessonId, false);
+    $.ajax({
+        type: 'GET',
+        url: 'Lessons/get-discipline-description',
+        processData: true,
+        dataType: 'json',
+        data: { 'disciplineId': sessionStorage.getItem('disciplineId') },
+        success: function (data) {
+            $('#disciplineName').text(data.disciplineName);
+            $('#disciplineImage').attr('src', 'data:image*;base64,' + data.disciplineImage);
+        }
+    });
+
+    //let lessonId = lessonEl.attr('data-id');
+    //requestLesson(lessonEl[0], sessionStorage.getItem('disciplineId'), lessonId, false);
 });
 
 $(document).ready(function () {
@@ -97,8 +109,8 @@ function changeLesson(data, lessonEl, isNext) {
 
 $(document).ready(function () {
     window.onunload = function () {
-        sessionStorage.removeItem('disciplineId');
-        sessionStorage.removeItem('disciplineName');
-        sessionStorage.removeItem('disciplineImage');
+        //sessionStorage.removeItem('disciplineId');
+        //sessionStorage.removeItem('disciplineName');
+        //sessionStorage.removeItem('disciplineImage');
     }
 });

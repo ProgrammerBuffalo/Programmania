@@ -50,14 +50,18 @@ namespace Programmania.Services
 
         public UserProfileVM GetProfileData(User user)
         {
-            UserProfileVM profileVM = new UserProfileVM(true)
+            if(user != null)
             {
-                Nickname = user.Name,
-                Avatar = fileService.GetSqlFileContext(user.ImageId)?.TransactionContext,
-                Email = user.Login,
-                Expierence = user.Exp,
-            };
-            return profileVM;
+                UserProfileVM profileVM = new UserProfileVM(true)
+                {
+                    Nickname = user.Name,
+                    Avatar = fileService.GetSqlFileContext(user.ImageId)?.TransactionContext,
+                    Email = user.Login,
+                    Expierence = user.Exp,
+                };
+                return profileVM;
+            }
+            return null;
         }
 
         public UserProfileVM GetProfileData(int userId)
@@ -74,6 +78,6 @@ namespace Programmania.Services
                 return profileVM;
             }
             return null;
-        }
+        }        
     }
 }
