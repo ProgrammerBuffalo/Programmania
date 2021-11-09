@@ -6,16 +6,16 @@
     //getPossibleChallenges();
     //getOfferedChallenges();
 
-    $('#nickname').text('test')
-    $('#courseBackground').css('background-color', 'red');
-    $('#courseImage').attr('src', '/images/AngularLogo.png');
-    $('#courseDescription').text('test')
-    $('#courseName').text('test');
-    $('#courseDiagram').attr('data-value', '10');
-    $('#levelDiagram').attr('data-value', '10');
-    $('#level').text('test');
-    $('#expiriance').text('test');
-    $('#gamesRate').text('test');
+    //$('#nickname').text('test')
+    //$('#courseBackground').css('background-color', 'red');
+    //$('#courseImage').attr('src', '/images/AngularLogo.png');
+    //$('#courseDescription').text('test')
+    //$('#courseName').text('test');
+    //$('#courseDiagram').attr('data-value', '10');
+    //$('#levelDiagram').attr('data-value', '10');
+    //$('#level').text('test');
+    //$('#expiriance').text('test');
+    //$('#gamesRate').text('test');
 });
 
 function getUserInfo() {
