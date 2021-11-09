@@ -18,15 +18,13 @@ namespace Programmania.Controllers
     {
         private DAL.ProgrammaniaDBContext dbContext;
         private IAccountService accountService;
-        private IXMLService xmlService;
         private IFileService fileService;
 
         public AccountController(DAL.ProgrammaniaDBContext context, IAccountService accService,
-            IXMLService xmlService, IFileService fileService)
+            IFileService fileService)
         {
             this.dbContext = context;
             this.accountService = accService;
-            this.xmlService = xmlService;
             this.fileService = fileService;
         }
 
