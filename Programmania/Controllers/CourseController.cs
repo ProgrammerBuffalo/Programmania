@@ -18,22 +18,23 @@ namespace Programmania.Controllers
     {
         private DAL.ProgrammaniaDBContext dbContext;
         private IAccountService accountService;
-        private IXMLService xmlService;
         private IFileService fileService;
+        private IStaticService staticService;
 
         public CourseController(DAL.ProgrammaniaDBContext context, IAccountService accountService,
-    IXMLService xmlService, IFileService fileService)
+    IStaticService staticService, IFileService fileService)
         {
             this.dbContext = context;
             this.accountService = accountService;
-            this.xmlService = xmlService;
+            this.staticService = staticService;
             this.fileService = fileService;
         }
 
         [HttpGet]
         public IActionResult Courses()
         {
-            return View(getCourses(HttpContext.Items["User"] as User));
+            UserCourseVM[] userCourses = staticService.GetCourses(HttpContext.Items["User"] as User, fileService);
+            return View(userCourses);
         }
 
         [Route("Disciplines")]
@@ -192,6 +193,9 @@ namespace Programmania.Controllers
             userLessons = dbContext.Disciplines.FirstOrDefault(d => d.Id == userDiscipline.DisciplineId)?.Lessons.Select(s => new UserLessonVM
             { LessonId = s.Id, Name = s.Name, Order = s.Order, IsCompleted = s.Order <= userDiscipline.LessonOrder ? true : false }).ToList();
 
+            userDiscipline.LastDate = DateTime.Now;
+            dbContext.SaveChanges();
+
             return userLessons.ToArray();
         }
 
@@ -245,70 +249,6 @@ namespace Programmania.Controllers
 
         }
 
-        private UserCourseVM[] getCourses(User user)
-        {
-            var list = dbContext.UserDisciplines.Where(u => u.UserId == user.Id)
-                  .Join(dbContext.Disciplines, userDiscipline => userDiscipline.DisciplineId,
-                                 discipline => discipline.Id,
-                                 (userDiscipline, discipline) => new
-                                 {
-                                     Discipline = userDiscipline.Discipline,
-                                     Course = discipline.Course,
-                                     LastLesson = userDiscipline.LessonOrder,
-                                     LessonCount = discipline.Course.LessonCount,
-                                     StreamIdCourse = discipline.Course.StreamId
-                                 }).Select(s => new
-                                 {
-                                     discipline = s.Discipline,
-                                     course = s.Course,
-                                     lastLesson = s.LastLesson,
-                                     lessonCount = s.LessonCount,
-                                     streamId = s.StreamIdCourse
-                                 }).ToList();
-
-            List<UserCourseVM> userCourses = new List<UserCourseVM>();
-
-            foreach (var item in list)
-            {
-                var userCourse = userCourses.FirstOrDefault(uc => uc.CourseId == item.course.Id);
-                if (userCourse == null)
-                {
-                    userCourses.Add(new UserCourseVM
-                    {
-                        CourseId = item.course.Id,
-                        CourseName = item.course.Name,
-                        LessonsCount = item.lessonCount,
-                        LessonsCompleted = item.lastLesson,
-                        IsSelected = true,
-                        Image = fileService.GetDocument(dbContext.Documents
-                        .FirstOrDefault(d => d.StreamId == item.streamId)?.Path)
-                    });
-                }
-                else
-                {
-                    userCourse.LessonsCompleted += item.lastLesson;
-                }
-            }
-
-            List<Course> allAvailableCourses = dbContext.Courses.ToList();
-
-            foreach (var item in allAvailableCourses)
-            {
-                if (userCourses.Any(uc => uc.CourseId == item.Id))
-                    continue;
-                userCourses.Add(new UserCourseVM
-                {
-                    CourseId = item.Id,
-                    CourseName = item.Name,
-                    IsSelected = false,
-                    LessonsCount = item.LessonCount,
-                    Image = fileService.GetDocument(dbContext.Documents
-                        .FirstOrDefault(d => d.StreamId == item.StreamId)?.Path),
-                    LessonsCompleted = 0
-                });
-            }
-
-            return userCourses.ToArray();
-        }
+        
     }
 }
