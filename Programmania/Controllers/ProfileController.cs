@@ -1,5 +1,10 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Programmania.Attributes;
+using Programmania.DAL;
+using Programmania.Models;
+using Programmania.Services.Interfaces;
+using Programmania.ViewModels;
+using Programmania.ViewModels.Validators;
 
 namespace Programmania.Controllers
 {
@@ -7,72 +12,83 @@ namespace Programmania.Controllers
     [Authorize]
     public class ProfileController : Controller
     {
-        [Route("")]
-        [AllowAnonymous]
-        public IActionResult Profile()
+        private IProfileService profileService;
+
+        public ProfileController(ProgrammaniaDBContext dBContext, IProfileService profileService)
         {
-            //check this User or another
-            ViewModels.UserProfileVM profileVM = new ViewModels.UserProfileVM(true);
-            return View(profileVM);
+            this.profileService = profileService;
         }
 
-        [HttpGet]
-        [Route("change-nickname")]
-        [AllowAnonymous]
-        public IActionResult ChangeNickname(string a)
+        [HttpGet("")]
+        public IActionResult Profile(string userIdCode)
         {
-            if (ModelState.IsValid)
+            UserProfileVM profileVM;
+            if (userIdCode == null)
             {
-                return Ok();
+                var user = HttpContext.Items["User"] as User;
+                profileVM = profileService.GetProfileData(user);
             }
             else
             {
-                return BadRequest();
+                int? result = Utilities.Encryptor.DecryptToInt(userIdCode);
+                if (result != null)
+                    profileVM = profileService.GetProfileData(result.Value);
+                else
+                    return NotFound();
             }
+            if (profileVM != null)
+                return View("/Views/Home/Profile.cshtml", profileVM);
+            else
+                return NotFound();
+            //return View("/Views/Home/Profile.cshtml", new UserProfileVM(true));
         }
 
-        [Route("change-avatar")]
-        [AllowAnonymous]
-        public IActionResult ChangeNickname([Attributes.FileValidation(1000000, ErrorMessage = "")]
-            Microsoft.AspNetCore.Http.IFormFile file)
+        [HttpPost("change-nickname")]
+        public IActionResult ChangeNickname(NicknameValidator inputs)
         {
             if (ModelState.IsValid)
             {
-                return Ok();
+                var user = HttpContext.Items["User"] as User;
+                int result = profileService.ChangeNickname(user, inputs.Nickname);
+                if (result == 1)
+                {
+                    return Ok();
+                }
+                else
+                {
+                    string json = Utilities.FormError.MakeServerError("Nickname", "Nickname not changed please try again");
+                    return BadRequest(json);
+                }
             }
             else
             {
-                return BadRequest();
+                string json = Utilities.FormError.MakeModelError(ModelState);
+                return BadRequest(json);
             }
         }
 
-        [Route("get-games")]
-        [AllowAnonymous]
-        public IActionResult GetGames()
+        [HttpPost("change-avatar")]
+        public IActionResult ChangeNickname(FileValidator inputs)
         {
-            return Json(null);
-        }
-
-        [Route("get-achivments")]
-        [AllowAnonymous]
-        public IActionResult GetAchivments()
-        {
-            return Json(null);
-        }
-
-        [Route("get-user-info")]
-        [AllowAnonymous]
-        public IActionResult GetUserInfo()
-        {
-            return Json(null);
-        }
-
-        [HttpGet]
-        [Route("temp")]
-        [AllowAnonymous]
-        public IActionResult Temp(string data1)
-        {
-            return Ok();
+            if (ModelState.IsValid)
+            {
+                var user = HttpContext.Items["User"] as User;
+                int result = profileService.ChangeAvatar(user, inputs.File);
+                if (result == 1)
+                {
+                    return Ok();
+                }
+                else
+                {
+                    Utilities.FormError.MakeServerError("AvatarError", "Avatar not changed please try again");
+                    return BadRequest();
+                }
+            }
+            else
+            {
+                string json = Utilities.FormError.MakeModelError(ModelState);
+                return BadRequest(json);
+            }
         }
     }
 }

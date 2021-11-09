@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Programmania.Attributes;
 using Programmania.Models;
-using Programmania.Services;
+using Programmania.Services.Interfaces;
 using Programmania.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Programmania.Controllers
 {
@@ -30,6 +28,7 @@ namespace Programmania.Controllers
             this.fileService = fileService;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Courses()
         {
@@ -88,6 +87,16 @@ namespace Programmania.Controllers
             return Json(info);
         }
 
+        [AllowAnonymous]
+        [HttpGet("Disciplines/get-course-description")]
+        public IActionResult SelectedCourseInfo()
+        {
+            //this method should return image and name of selected course
+            //var data = new { CourseName = "hello1", CourseImage = new byte[0] };
+            return Json(null);
+        }
+
+        [AllowAnonymous]
         [Route("Disciplines/discipline-begin")]
         [HttpPost]
         public IActionResult BeginDiscipline(int disciplineId)
@@ -107,6 +116,7 @@ namespace Programmania.Controllers
             return BadRequest();
         }
 
+        [AllowAnonymous]
         [Route("Disciplines/Lessons")]
         [HttpGet]
         public IActionResult Lessons(int disciplineId)
@@ -114,6 +124,16 @@ namespace Programmania.Controllers
             return View(getLessons(HttpContext.Items["User"] as User, disciplineId));
         }
 
+        [AllowAnonymous]
+        [HttpGet("Disciplines/Lessons/get-discipline-description")]
+        public IActionResult SelectedDisciplineInfo()
+        {
+            //this method should return image and name of selected discipline
+            //var data = new { DisciplineName = "", DisciplineImage = new byte[0] };
+            return Json(null);
+        }
+
+        [AllowAnonymous]
         [Route("Disciplines/Lessons/check-test")]
         [HttpPost]
         public IActionResult CheckTest(int testIndex, int disciplineId, int lessonId)
@@ -137,10 +157,12 @@ namespace Programmania.Controllers
             return Json(false);
         }
 
+        [AllowAnonymous]
         [Route("Disciplines/Lesson")]
         [HttpGet]
         public IActionResult CheckLessonAccess(int lessonId, int disciplineId)
         {
+            return Json(null);
             RequestedLessonVM lesson = getRequestedLesson(HttpContext.Items["User"] as User, disciplineId, lessonId);
             if (lesson == null)
                 return NotFound();

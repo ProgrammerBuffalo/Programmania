@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 
 namespace Programmania.ViewModels
 {
@@ -19,7 +20,7 @@ namespace Programmania.ViewModels
                 Days[i] = array[i].ToString();
         }
 
-        public PerformanceViewModel(Models.Reward[] rewards) : this()
+        public PerformanceViewModel(IEnumerable<Models.Reward> rewards) : this()
         {
             Rewards = rewards;
         }
@@ -31,6 +32,6 @@ namespace Programmania.ViewModels
         public string[] Days { get; set; }
 
         [JsonProperty("rewards")]
-        public Models.Reward[] Rewards { get; set; }
+        public IEnumerable<Models.Reward> Rewards { get; set; }
     }
 }

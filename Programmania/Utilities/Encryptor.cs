@@ -6,7 +6,7 @@ namespace Programmania.Utilities
     {
         private static string key = "b14ca5898a4e4133bbce2ea2315a1916";
 
-        public static string EncryptString(string plainText)
+        public static string Encrypt(string plainText)
         {
             using (Aes aes = Aes.Create())
             {
@@ -27,7 +27,8 @@ namespace Programmania.Utilities
                 }
             }
         }
-        public static string DecryptString(string cipherText)
+
+        public static string Decrypt(string cipherText)
         {
             byte[] buffer = System.Convert.FromBase64String(cipherText);
             using (Aes aes = Aes.Create())
@@ -47,6 +48,21 @@ namespace Programmania.Utilities
                     }
                 }
             }
+        }
+
+        public static string DecryptToString(string cipherText)
+        {
+            return Decrypt(cipherText);
+        }
+
+        public static int? DecryptToInt(string cipherText)
+        {
+            string result = Decrypt(cipherText);
+            int number;
+            if (int.TryParse(result, out number))
+                return number;
+            else
+                return null;
         }
     }
 }
