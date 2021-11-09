@@ -102,7 +102,7 @@ namespace Programmania.Controllers
         [HttpGet]
         public IActionResult GetUserPerformance()
         {
-            return Json("test");
+            return Json("");
         }
 
         [Route("Main/get-offered-challenges")]
