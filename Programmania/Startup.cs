@@ -43,6 +43,7 @@ namespace Programmania
             services.AddScoped<IXMLService, XMLService>();
             services.AddScoped<IProfileService, ProfileService>();
             services.AddScoped<IPerformanceService, PerformanceService>();
+            services.AddScoped<IStaticService, StaticService>();
 
             services.AddControllersWithViews()
                 .AddViewLocalization();
