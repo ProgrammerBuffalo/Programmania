@@ -14,11 +14,16 @@ namespace Programmania.Controllers
     public class CourseController : Controller
     {
         private DAL.ProgrammaniaDBContext dbContext;
+        private IAccountService accountService;
         private IFileService fileService;
+        private IStaticService staticService;
 
-        public CourseController(DAL.ProgrammaniaDBContext dbContext, IFileService fileService)
+        public CourseController(DAL.ProgrammaniaDBContext context, IAccountService accountService,
+    IStaticService staticService, IFileService fileService)
         {
-            this.dbContext = dbContext;
+            this.dbContext = context;
+            this.accountService = accountService;
+            this.staticService = staticService;
             this.fileService = fileService;
         }
 
@@ -26,15 +31,8 @@ namespace Programmania.Controllers
         [HttpGet]
         public IActionResult Courses()
         {
-            UserCourseVM[] userCourses = new UserCourseVM[6];
-            userCourses[0] = new UserCourseVM() { CourseName = "Name1", Description = "Lorem Ipsum", IsSelected = true, LessonsCompleted = 11, LessonsCount = 111, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
-            userCourses[1] = new UserCourseVM() { CourseName = "Name2", Description = "Lorem Ipsum", IsSelected = true, LessonsCompleted = 12, LessonsCount = 45, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
-            userCourses[2] = new UserCourseVM() { CourseName = "Name3", Description = "Lorem Ipsum", IsSelected = true, LessonsCompleted = 13, LessonsCount = 45, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
-            userCourses[3] = new UserCourseVM() { CourseName = "Name4", Description = "Lorem Ipsum", IsSelected = false, LessonsCompleted = 14, LessonsCount = 65, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
-            userCourses[4] = new UserCourseVM() { CourseName = "Name5", Description = "Lorem Ipsum", IsSelected = false, LessonsCompleted = 15, LessonsCount = 45, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
-            userCourses[5] = new UserCourseVM() { CourseName = "Name6", Description = "Lorem Ipsum", IsSelected = false, LessonsCompleted = 16, LessonsCount = 63, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
+            UserCourseVM[] userCourses = staticService.GetCourses(HttpContext.Items["User"] as User, fileService);
             return View(userCourses);
-            return View(getCourses(HttpContext.Items["User"] as User));
         }
 
         [Route("Disciplines")]
@@ -216,6 +214,9 @@ namespace Programmania.Controllers
             userLessons = dbContext.Disciplines.FirstOrDefault(d => d.Id == userDiscipline.DisciplineId)?.Lessons.Select(s => new UserLessonVM
             { LessonId = s.Id, Name = s.Name, Order = s.Order, IsCompleted = s.Order <= userDiscipline.LessonOrder ? true : false }).ToList();
 
+            userDiscipline.LastDate = DateTime.Now;
+            dbContext.SaveChanges();
+
             return userLessons.ToArray();
         }
 
@@ -269,70 +270,6 @@ namespace Programmania.Controllers
 
         }
 
-        private UserCourseVM[] getCourses(User user)
-        {
-            var list = dbContext.UserDisciplines.Where(u => u.UserId == user.Id)
-                  .Join(dbContext.Disciplines, userDiscipline => userDiscipline.DisciplineId,
-                                 discipline => discipline.Id,
-                                 (userDiscipline, discipline) => new
-                                 {
-                                     Discipline = userDiscipline.Discipline,
-                                     Course = discipline.Course,
-                                     LastLesson = userDiscipline.LessonOrder,
-                                     LessonCount = discipline.Course.LessonCount,
-                                     StreamIdCourse = discipline.Course.StreamId
-                                 }).Select(s => new
-                                 {
-                                     discipline = s.Discipline,
-                                     course = s.Course,
-                                     lastLesson = s.LastLesson,
-                                     lessonCount = s.LessonCount,
-                                     streamId = s.StreamIdCourse
-                                 }).ToList();
-
-            List<UserCourseVM> userCourses = new List<UserCourseVM>();
-
-            foreach (var item in list)
-            {
-                var userCourse = userCourses.FirstOrDefault(uc => uc.CourseId == item.course.Id);
-                if (userCourse == null)
-                {
-                    userCourses.Add(new UserCourseVM
-                    {
-                        CourseId = item.course.Id,
-                        CourseName = item.course.Name,
-                        LessonsCount = item.lessonCount,
-                        LessonsCompleted = item.lastLesson,
-                        IsSelected = true,
-                        Image = fileService.GetDocument(dbContext.Documents
-                        .FirstOrDefault(d => d.StreamId == item.streamId)?.Path)
-                    });
-                }
-                else
-                {
-                    userCourse.LessonsCompleted += item.lastLesson;
-                }
-            }
-
-            List<Course> allAvailableCourses = dbContext.Courses.ToList();
-
-            foreach (var item in allAvailableCourses)
-            {
-                if (userCourses.Any(uc => uc.CourseId == item.Id))
-                    continue;
-                userCourses.Add(new UserCourseVM
-                {
-                    CourseId = item.Id,
-                    CourseName = item.Name,
-                    IsSelected = false,
-                    LessonsCount = item.LessonCount,
-                    Image = fileService.GetDocument(dbContext.Documents
-                        .FirstOrDefault(d => d.StreamId == item.StreamId)?.Path),
-                    LessonsCompleted = 0
-                });
-            }
-
-            return userCourses.ToArray();
-        }
+        
     }
 }

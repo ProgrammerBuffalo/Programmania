@@ -15,6 +15,8 @@ namespace Programmania.Models
         [Column("Name")]
         public string Name { get; set; }
 
+        public string Description { get; set; }
+
         public int LessonCount { get; set; }
 
         [Column("stream_id")]

@@ -19,11 +19,13 @@ namespace Programmania.Controllers
     {
         private DAL.ProgrammaniaDBContext dbContext;
         private IFileService fileService;
+        private IStaticService staticService;
 
-        public ChallengeController(DAL.ProgrammaniaDBContext context, IFileService fileService)
+        public ChallengeController(DAL.ProgrammaniaDBContext context, IFileService fileService, IStaticService staticService)
         {
             this.dbContext = context;
             this.fileService = fileService;
+            this.staticService = staticService;
         }
 
         [HttpGet]
@@ -31,9 +33,6 @@ namespace Programmania.Controllers
         public IActionResult GetUserStats()
         {
             var user = HttpContext.Items["User"] as User;
-
-            if (user == null)
-                return BadRequest();
 
             var stats = dbContext.ChallengeStatistics.FirstOrDefault(s => s.UserId == user.Id);
 
@@ -43,30 +42,25 @@ namespace Programmania.Controllers
             return Json(new UserChallengeStatsVM { Wins = stats.Wins, Loses = stats.Loses, Draws = stats.Draws });
         }
 
+        [Route("get-acceptable-challenges")]
         [HttpGet]
-        public IActionResult GetChallenges()
+        public IActionResult GetAcceptableChallenges()
         {
             var user = HttpContext.Items["User"] as User;
 
-            if (user == null)
-                return BadRequest();
+            List<OfferedChallengeVM> offeredChallenges = staticService.GetOfferedChallenges(user, fileService);
+            return View(offeredChallenges);
+        }
 
-            List<ChallengeVM> challenges =
-                dbContext.UserChallenges.Where(uc => uc.UserId == user.Id && !uc.IsFinished).
-                                         Select(s => new ChallengeVM
-                                         {
-                                             Id = s.ChallengeId,
-                                             Course = s.Challenge.Course.Name,
-                                             Date = s.Challenge.Created,
-                                             OpponentDescription = new UserShortDescriptionVM
-                                             {
-                                                 Id = s.UserId,
-                                                 Name = s.User.Name,
-                                                 Avatar = fileService.GetDocument(dbContext.Documents
-                                                                     .FirstOrDefault(d => d.StreamId == s.User.ImageId).Path)
-                                             }
-                                         }).ToList();
-            return View(challenges);
+        [Route("get-creatable-challenges")]
+        [HttpGet]
+        public IActionResult GetCreatableChallenges()
+        {
+            var user = HttpContext.Items["User"] as User;
+
+            List<PossibleChallengeVM> offeredChallenges = staticService.GetPossibleChallenges(fileService, 10);
+
+            return View(offeredChallenges);
         }
 
         [HttpPost]
