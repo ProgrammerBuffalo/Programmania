@@ -50,7 +50,7 @@ namespace Programmania.Services
 
         public UserProfileVM GetProfileData(User user)
         {
-            if(user != null)
+            if (user != null)
             {
                 UserProfileVM profileVM = new UserProfileVM(true)
                 {
@@ -58,6 +58,10 @@ namespace Programmania.Services
                     Avatar = fileService.GetSqlFileContext(user.ImageId)?.TransactionContext,
                     Email = user.Login,
                     Expierence = user.Exp,
+                    ChallengeStats = dBContext.ChallengeStatistics
+                    .Where(cs => cs.UserId == user.Id)
+                    .Select(cs => new UserChallengeStatsVM() { Wins = cs.Wins, Draws = cs.Draws, Loses = cs.Loses })
+                    .FirstOrDefault()
                 };
                 return profileVM;
             }
@@ -74,10 +78,14 @@ namespace Programmania.Services
                     Nickname = user.Name,
                     Avatar = fileService.GetSqlFileContext(user.ImageId)?.TransactionContext,
                     Expierence = user.Exp,
+                    ChallengeStats = dBContext.ChallengeStatistics
+                    .Where(cs => cs.UserId == user.Id)
+                    .Select(cs => new UserChallengeStatsVM() { Wins = cs.Wins, Draws = cs.Draws, Loses = cs.Loses })
+                    .FirstOrDefault()
                 };
                 return profileVM;
             }
             return null;
-        }        
+        }
     }
 }

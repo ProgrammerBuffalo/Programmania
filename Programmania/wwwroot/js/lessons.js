@@ -16,13 +16,13 @@ $(document).ready(function () {
         dataType: 'json',
         data: { 'disciplineId': sessionStorage.getItem('disciplineId') },
         success: function (data) {
-            $('#disciplineName').text(data.disciplineName);
-            $('#disciplineImage').attr('src', 'data:image*;base64,' + data.disciplineImage);
+            $('#disciplineName').text(data.name);
+            $('#disciplineImage').attr('src', 'data:image*;base64,' + data.image);
         }
     });
 
-    //let lessonId = lessonEl.attr('data-id');
-    //requestLesson(lessonEl[0], sessionStorage.getItem('disciplineId'), lessonId, false);
+    let lessonId = lessonEl.attr('data-id');
+    requestLesson(lessonEl[0], sessionStorage.getItem('disciplineId'), lessonId, false);
 });
 
 $(document).ready(function () {

@@ -3,6 +3,7 @@ using Programmania.Models;
 using Programmania.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Programmania.Services
 {
@@ -17,16 +18,18 @@ namespace Programmania.Services
 
         public IEnumerable<Reward> GetRewards(User user, DateTime from, DateTime to)
         {
-            LinkedList<Reward> rewards = new LinkedList<Reward>();
-            //dBContext.Rewards.Select();
-            return null;
+            var rewards = dBContext.Rewards
+                .OrderByDescending(r => r.CreatedAt)
+                .Where(r => r.User.Id == user.Id && from <= r.CreatedAt && to >= r.CreatedAt);
+            return rewards;
         }
 
         public IEnumerable<Reward> GetRewards(User user, int count, int offset)
         {
-            LinkedList<Reward> rewards = new LinkedList<Reward>();
-            //dBContext.Rewards.Select();
-            return null;
+            var rewards = dBContext.Rewards
+                .OrderByDescending(r => r.CreatedAt)
+                .Where(r => r.User.Id == user.Id).Skip(offset).Take(count);
+            return rewards;
         }
     }
 }

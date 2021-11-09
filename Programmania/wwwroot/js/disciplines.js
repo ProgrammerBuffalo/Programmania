@@ -10,8 +10,8 @@
         dataType: 'json',
         data: { 'courseId': sessionStorage.getItem('courseId') },
         success: function (data) {
-            $('.header-text__content > h3').first().text(data.courseName);
-            $('.course__img > img').attr('src', 'data:image*;base64,' + data.courseImage);
+            $('.header-text__content > h3').first().text(data.name);
+            $('.course__img > img').attr('src', 'data:image*;base64,' + data.image);
         }
     });
 

@@ -1,15 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Programmania.Attributes;
 using Programmania.Models;
 using Programmania.Services.Interfaces;
-using Programmania.ViewModels;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
 
 namespace Programmania.Controllers
 {
+    //[Authorize]
     public class HomeController : Controller
     {
         private DAL.ProgrammaniaDBContext dbContext;
@@ -23,23 +19,42 @@ namespace Programmania.Controllers
             this.accountService = accountService;
         }
 
-        [Route("")]
-        [HttpGet]
+        [HttpGet("")]
         [AllowAnonymous]
         public IActionResult Index()
         {
             return View();
         }
 
-        [Route("Main")]
-        [HttpGet]
-        [Authorize]
+        [HttpGet("Main")]
         public IActionResult Main()
         {
-            var user = HttpContext.Items["User"] as User;   
-
+            var user = HttpContext.Items["User"] as User;
             return View();
         }
 
+        //[HttpGet("get-current-course")]
+        //public IActionResult CurrentCourse()
+        //{
+        //    return Json(true);
+        //}
+
+        //[HttpGet("get-performance")]
+        //public IActionResult Performance()
+        //{
+        //    return Json(null);
+        //}
+
+        //[HttpGet("get-course")]
+        //public IActionResult Courses()
+        //{
+        //    return Json(null);
+        //}
+
+        //[HttpGet("get-info")]
+        //public IActionResult Info()
+        //{
+        //    return Json(null);
+        //}
     }
 }

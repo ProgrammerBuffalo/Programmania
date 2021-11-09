@@ -19,33 +19,30 @@ namespace Programmania.Controllers
             this.profileService = profileService;
         }
 
-        [AllowAnonymous]
-        //[Authorize]
         [HttpGet("")]
         public IActionResult Profile(string userIdCode)
         {
-            //UserProfileVM profileVM;
-            //if (userIdCode == null)
-            //{
-            //    var user = HttpContext.Items["User"] as User;
-            //    profileVM = profileService.GetProfileData(user);
-            //}
-            //else
-            //{
-            //    int? result = Utilities.Encryptor.DecryptToInt(userIdCode);
-            //    if (result != null)
-            //        profileVM = profileService.GetProfileData(result.Value);
-            //    else
-            //        return NotFound();
-            //}
-            //if (profileVM != null)
-            //    return View("/Views/Home/Profile.cshtml", profileVM);
-            //else
-            //    return NotFound();
-            return View("/Views/Home/Profile.cshtml", new UserProfileVM(true));
+            UserProfileVM profileVM;
+            if (userIdCode == null)
+            {
+                var user = HttpContext.Items["User"] as User;
+                profileVM = profileService.GetProfileData(user);
+            }
+            else
+            {
+                int? result = Utilities.Encryptor.DecryptToInt(userIdCode);
+                if (result != null)
+                    profileVM = profileService.GetProfileData(result.Value);
+                else
+                    return NotFound();
+            }
+            if (profileVM != null)
+                return View("/Views/Home/Profile.cshtml", profileVM);
+            else
+                return NotFound();
+            //return View("/Views/Home/Profile.cshtml", new UserProfileVM(true));
         }
 
-        [Authorize]
         [HttpPost("change-nickname")]
         public IActionResult ChangeNickname(NicknameValidator inputs)
         {
@@ -70,7 +67,6 @@ namespace Programmania.Controllers
             }
         }
 
-        [Authorize]
         [HttpPost("change-avatar")]
         public IActionResult ChangeNickname(FileValidator inputs)
         {
@@ -93,45 +89,6 @@ namespace Programmania.Controllers
                 string json = Utilities.FormError.MakeModelError(ModelState);
                 return BadRequest(json);
             }
-        }
-
-        [Authorize]
-        [HttpGet("get-games")]
-        public IActionResult GetGames(string userIdCode)
-        {
-            int? userId;
-            if (userIdCode == null)
-                userId = Utilities.Encryptor.DecryptToInt(userIdCode);
-            else
-            {
-                var user = HttpContext.Items["User"] as User;
-                userId = user.Id;
-            }
-            return Json(null);
-            //return Json(profileService.GetGames(userId.Value));
-        }
-
-        [Authorize]
-        [HttpGet("get-achivments")]
-        public IActionResult GetAchivments(string uerIdCode)
-        {
-            return Json(null);
-        }
-
-        [Authorize]
-        [HttpGet("get-user-info")]
-        public IActionResult GetUserInfo(string userIdCode)
-        {
-            int? userId;
-            if (userIdCode == null)
-                userId = Utilities.Encryptor.DecryptToInt(userIdCode);
-            else
-            {
-                var user = HttpContext.Items["User"] as User;
-                userId = user.Id;
-            }
-            return Json(null);
-            //return Json(profileService.GetInfo(userId.Value));
         }
     }
 }
