@@ -1,7 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Programmania.Attributes;
 using Programmania.Models;
 using Programmania.Services.Interfaces;
+using Programmania.ViewModels;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Programmania.Controllers
 {
@@ -10,15 +14,13 @@ namespace Programmania.Controllers
     {
         private DAL.ProgrammaniaDBContext dbContext;
         private IFileService fileService;
-        private IAccountService accountService;
         private IStaticService staticService;
 
-        public HomeController(DAL.ProgrammaniaDBContext context, IStaticService staticService, 
-            IFileService file_service, IAccountService accountService)
+        public HomeController(DAL.ProgrammaniaDBContext dbContext, IStaticService staticService,
+            IFileService fileService)
         {
-            this.dbContext = context;
+            this.dbContext = dbContext;
             this.fileService = fileService;
-            this.accountService = accountService;
             this.staticService = staticService;
         }
 
@@ -33,6 +35,15 @@ namespace Programmania.Controllers
         public IActionResult Main()
         {
             return View();
+        }
+
+        [Route("Main/get-user-info")]
+        [HttpGet]
+        public IActionResult GetUserLevel()
+        {
+            var user = HttpContext.Items["User"] as User;
+
+            return Json(new UserProfileVM(true) { Nickname = user.Name, Expierence = user.Exp });
         }
 
         [Route("Main/get-user-course")]
@@ -56,15 +67,17 @@ namespace Programmania.Controllers
                                 Where(ud => ud.UserId == user.Id && ud.Discipline.Course.Id == course.Id).ToArray();
 
             UserCourseVM userCourseVM = new UserCourseVM
-            { 
-                CourseId = course.Id, CourseName = course.Name,
-                Description = course.Description, LessonsCount = course.LessonCount,
+            {
+                CourseId = course.Id,
+                CourseName = course.Name,
+                Description = course.Description,
+                LessonsCount = course.LessonCount,
                 Image = fileService.GetDocument(dbContext.Documents
                 .FirstOrDefault(d => d.StreamId == course.StreamId)?.Path),
                 LessonsCompleted = 0
             };
 
-            foreach(var item in userDisciplines)
+            foreach (var item in userDisciplines)
             {
                 userCourseVM.LessonsCompleted += item.LessonOrder;
             }
@@ -80,15 +93,6 @@ namespace Programmania.Controllers
 
             UserCourseVM[] userCourses = staticService.GetCourses(user, fileService);
             return Json(userCourses);
-        }
-
-        [Route("Main/get-user-level")]
-        [HttpGet]
-        public IActionResult GetUserLevel()
-        {
-            var user = HttpContext.Items["User"] as User;
-
-            return Json(new { Expierence = user.Exp, Level = (int)(System.Math.Sqrt(user.Exp) / 150) });
         }
 
         [Route("Main/get-user-performance")]

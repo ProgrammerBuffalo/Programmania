@@ -47,7 +47,7 @@ namespace Programmania
             services.AddControllersWithViews()
                 .AddViewLocalization();
 
-            services.AddLocalization(options => options.ResourcesPath = "Resources");
+            //services.AddLocalization(options => options.ResourcesPath = "Resources");
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -62,16 +62,16 @@ namespace Programmania
                 app.UseHsts();
             }
 
-            var supportedCultures =  new[] {
-                new System.Globalization.CultureInfo("en"),
-                new System.Globalization.CultureInfo("ru")
-            };
+            //var supportedCultures =  new[] {
+            //    new System.Globalization.CultureInfo("en"),
+            //    new System.Globalization.CultureInfo("ru")
+            //};
 
-            app.UseRequestLocalization(new RequestLocalizationOptions() {
-                DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("en"),
-                SupportedCultures = supportedCultures,
-                SupportedUICultures = supportedCultures
-            });
+            //app.UseRequestLocalization(new RequestLocalizationOptions() {
+            //    DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("en"),
+            //    SupportedCultures = supportedCultures,
+            //    SupportedUICultures = supportedCultures
+            //});
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
