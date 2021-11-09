@@ -24,7 +24,7 @@ namespace Programmania.Controllers
             return View("/Views/Home/Performance.cshtml");
         }
 
-        [Route("rewards-init")]
+        [HttpGet("rewards-init")]
         public IActionResult GetPerformanceRewards(System.DateTime from, System.DateTime to)
         {
             var user = HttpContext.Items["User"] as User;
@@ -38,7 +38,7 @@ namespace Programmania.Controllers
                 return BadRequest();
         }
 
-        [Route("rewards")]
+        [HttpGet("rewards")]
         public IActionResult GetRewards(string type, System.DateTime from, System.DateTime to)
         {
             var user = HttpContext.Items["User"] as User;
@@ -51,7 +51,7 @@ namespace Programmania.Controllers
                 return BadRequest();
         }
 
-        [Route("more-rewards")]
+        [HttpGet("more-rewards")]
         public IActionResult GetMoreRewards(int count, int offset)
         {
             User user = HttpContext.Items["User"] as User;

@@ -11,33 +11,28 @@ using System.Linq;
 namespace Programmania.Controllers
 {
     [Route("Courses")]
-    [Authorize]
+    //[Authorize]
     public class CourseController : Controller
     {
         private DAL.ProgrammaniaDBContext dbContext;
-        private IAccountService accountService;
         private IFileService fileService;
         private IStaticService staticService;
 
-        public CourseController(DAL.ProgrammaniaDBContext context, IAccountService accountService,
-    IStaticService staticService, IFileService fileService)
+        public CourseController(DAL.ProgrammaniaDBContext context, IStaticService staticService, IFileService fileService)
         {
             this.dbContext = context;
-            this.accountService = accountService;
             this.staticService = staticService;
             this.fileService = fileService;
         }
 
-        [AllowAnonymous]
-        [HttpGet]
+        [HttpGet("")]
         public IActionResult Courses()
         {
             UserCourseVM[] userCourses = staticService.GetCourses(HttpContext.Items["User"] as User, fileService);
             return View(userCourses);
         }
 
-        [Route("Disciplines")]
-        [HttpGet]
+        [HttpGet("Disciplines")]
         public IActionResult Disciplines(int courseId)
         {
             //UserDisciplineVM[] userDisciplines = new UserDisciplineVM[6];
@@ -51,8 +46,7 @@ namespace Programmania.Controllers
             //return View(userDisciplines);
         }
 
-        [HttpGet]
-        [Route("Disciplines/get-course-description")]
+        [HttpGet("Disciplines/get-course-description")]
         public IActionResult GetCourseShortDescription(int courseId)
         {
             Course course = dbContext.Courses.FirstOrDefault(c => c.Id == courseId);
@@ -69,8 +63,7 @@ namespace Programmania.Controllers
             return Json(info);
         }
 
-        [HttpGet]
-        [Route("Disciplines/Lessons/get-discipline-description")]
+        [HttpGet("Disciplines/Lessons/get-discipline-description")]
         public IActionResult GetDisciplineShortDescription(int disciplineId)
         {
             Discipline discipline = dbContext.Disciplines.FirstOrDefault(c => c.Id == disciplineId);
@@ -87,7 +80,6 @@ namespace Programmania.Controllers
             return Json(info);
         }
 
-        [AllowAnonymous]
         [HttpGet("Disciplines/get-course-description")]
         public IActionResult SelectedCourseInfo()
         {
@@ -96,7 +88,6 @@ namespace Programmania.Controllers
             return Json(null);
         }
 
-        [AllowAnonymous]
         [Route("Disciplines/discipline-begin")]
         [HttpPost]
         public IActionResult BeginDiscipline(int disciplineId)
@@ -116,15 +107,12 @@ namespace Programmania.Controllers
             return BadRequest();
         }
 
-        [AllowAnonymous]
-        [Route("Disciplines/Lessons")]
-        [HttpGet]
+        [HttpGet("Disciplines/Lessons")]
         public IActionResult Lessons(int disciplineId)
         {
             return View(getLessons(HttpContext.Items["User"] as User, disciplineId));
         }
 
-        [AllowAnonymous]
         [HttpGet("Disciplines/Lessons/get-discipline-description")]
         public IActionResult SelectedDisciplineInfo()
         {
@@ -133,7 +121,6 @@ namespace Programmania.Controllers
             return Json(null);
         }
 
-        [AllowAnonymous]
         [Route("Disciplines/Lessons/check-test")]
         [HttpPost]
         public IActionResult CheckTest(int testIndex, int disciplineId, int lessonId)
@@ -271,6 +258,6 @@ namespace Programmania.Controllers
 
         }
 
-        
+
     }
 }

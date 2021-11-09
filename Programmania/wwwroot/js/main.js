@@ -1,10 +1,21 @@
 ﻿$(document).ready(function () {
-    getUserInfo();
-    getCurrentCourse();
-    getAllCourses();
-    getPerformance();
-    getPossibleChallenges();
-    getOfferedChallenges();
+    //getUserInfo();
+    //getCurrentCourse();
+    //getAllCourses();
+    //getPerformance();
+    //getPossibleChallenges();
+    //getOfferedChallenges();
+
+    $('#nickname').text('test')
+    $('#courseBackground').css('background-color', 'red');
+    $('#courseImage').attr('src', '/images/AngularLogo.png');
+    $('#courseDescription').text('test')
+    $('#courseName').text('test');
+    $('#courseDiagram').attr('data-value', '10');
+    $('#levelDiagram').attr('data-value', '10');
+    $('#level').text('test');
+    $('#expiriance').text('test');
+    $('#gamesRate').text('test');
 });
 
 function getUserInfo() {
@@ -18,7 +29,6 @@ function getUserInfo() {
             //data.expierence;
             //data.level;
             //data.expToNextLevelPercentage
-            return Json(new { Expierence = user.Exp, Level = (int)(System.Math.Sqrt(user.Exp) / 150) });
         }
     });
 }
@@ -30,9 +40,8 @@ function getCurrentCourse() {
         processData: true,
         dataType: 'json',
         success: function (data) {
-            return Json(new { CurrentCourse = userCourseVM, CurrentDiscipline = userDiscipline.Discipline.Name });
-            data.currentCourse
-            data.currentDiscipline.name
+            //data.currentCourse
+            //data.currentDiscipline.name
         }
     });
 }

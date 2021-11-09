@@ -21,15 +21,14 @@ namespace Programmania.Controllers
         private IFileService fileService;
         private IStaticService staticService;
 
-        public ChallengeController(DAL.ProgrammaniaDBContext context, IFileService fileService, IStaticService staticService)
+        public ChallengeController(DAL.ProgrammaniaDBContext dbContext, IFileService fileService, IStaticService staticService)
         {
-            this.dbContext = context;
+            this.dbContext = dbContext;
             this.fileService = fileService;
             this.staticService = staticService;
         }
 
-        [HttpGet]
-        [Route("challenge-stats")]
+        [HttpGet("challenge-stats")]
         public IActionResult GetUserStats()
         {
             var user = HttpContext.Items["User"] as User;
@@ -42,8 +41,7 @@ namespace Programmania.Controllers
             return Json(new UserChallengeStatsVM { Wins = stats.Wins, Loses = stats.Loses, Draws = stats.Draws });
         }
 
-        [Route("get-acceptable-challenges")]
-        [HttpGet]
+        [HttpGet("get-acceptable-challenges")]
         public IActionResult GetAcceptableChallenges()
         {
             var user = HttpContext.Items["User"] as User;
@@ -52,8 +50,7 @@ namespace Programmania.Controllers
             return View(offeredChallenges);
         }
 
-        [Route("get-creatable-challenges")]
-        [HttpGet]
+        [HttpGet("get-creatable-challenges")]
         public IActionResult GetCreatableChallenges()
         {
             var user = HttpContext.Items["User"] as User;
@@ -63,8 +60,7 @@ namespace Programmania.Controllers
             return View(offeredChallenges);
         }
 
-        [HttpPost]
-        [Route("send-answers")]
+        [HttpPost("send-answers")]
         public async Task<IActionResult> SendAnswersPacket(Dictionary<int, int> answers)
         {
             User user = HttpContext.Items["User"] as User;
@@ -115,8 +111,7 @@ namespace Programmania.Controllers
             return Ok();
         }
 
-        [Route("create-challenge")]
-        [HttpPost]
+        [HttpPost("create-challenge")]
         public async Task<IActionResult> CreateChallenge(int courseId, int userId)
         {
             var challengeParam = new SqlParameter
@@ -132,16 +127,14 @@ namespace Programmania.Controllers
             return RedirectToAction("accept-challenge", (int)challengeParam.Value);
         }
 
-        [Route("accept-challenge")]
-        [HttpPost]
+        [HttpPost("accept-challenge")]
         public IActionResult AcceptChallenge(int challengeId)
         {
             HttpContext.Session.SetInt32("challenge", challengeId);
             return RedirectToAction("tests");
         }
 
-        [Route("get-tests")]
-        [HttpGet]
+        [HttpGet("get-tests")]
         public IActionResult GetTestsOfChallenge()
         {
             int? challengeId = HttpContext.Session.GetInt32("challenge");

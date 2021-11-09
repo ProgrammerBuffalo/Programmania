@@ -29,9 +29,8 @@ namespace Programmania.Controllers
             this.fileService = fileService;
         }
 
-        [Route("refresh-token")]
-        [HttpPost]
         [AllowAnonymous]
+        [HttpPost("refresh-token")]
         public IActionResult RefreshTokensAuthentication()
         {
             var rtCookie = Request.Cookies["RefreshToken"];
@@ -47,8 +46,7 @@ namespace Programmania.Controllers
             return Ok();
         }
 
-        [Route("revoke-token")]
-        [HttpPost]
+        [HttpPost("revoke-token")]
         public async Task<IActionResult> RevokeToken()
         {
             var rtCookie = Request.Cookies["RefreshToken"];
@@ -62,9 +60,8 @@ namespace Programmania.Controllers
             return Ok("Token revorked");
         }
 
-        [Route("authorization")]
-        [HttpPost]
         [AllowAnonymous]
+        [HttpPost("authorization")]
         public async Task<IActionResult> MakeAuthorization(AuthenticationRequestVM authenticationRequest)
         {
             if (!ModelState.IsValid)
@@ -91,9 +88,8 @@ namespace Programmania.Controllers
             }
         }
 
-        [Route("registration")]
-        [HttpPost]
         [AllowAnonymous]
+        [HttpPost("registration")]
         public async Task<IActionResult> MakeRegistration(RegistrationVM registrationVM)
         {
             if (!ModelState.IsValid)

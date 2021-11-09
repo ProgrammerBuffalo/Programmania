@@ -15,30 +15,33 @@ namespace Programmania.Controllers
         private DAL.ProgrammaniaDBContext dbContext;
         private IFileService fileService;
         private IStaticService staticService;
+        private IPerformanceService performanceService;
 
-        public HomeController(DAL.ProgrammaniaDBContext dbContext, IStaticService staticService,
-            IFileService fileService)
+        public HomeController(DAL.ProgrammaniaDBContext dbContext, IStaticService staticService, 
+            IFileService fileService, IPerformanceService performanceService)
         {
             this.dbContext = dbContext;
             this.fileService = fileService;
             this.staticService = staticService;
+            this.performanceService = performanceService;
         }
 
-        [HttpGet("")]
         [AllowAnonymous]
+        [HttpGet("")]
         public IActionResult Index()
         {
             return View();
         }
 
+        [AllowAnonymous]
         [HttpGet("Main")]
         public IActionResult Main()
         {
             return View();
         }
 
-        [Route("Main/get-user-info")]
-        [HttpGet]
+        [AllowAnonymous]
+        [HttpGet("Main/get-user-info")]
         public IActionResult GetUserLevel()
         {
             var user = HttpContext.Items["User"] as User;
@@ -46,8 +49,8 @@ namespace Programmania.Controllers
             return Json(new UserProfileVM(true) { Nickname = user.Name, Expierence = user.Exp });
         }
 
-        [Route("Main/get-user-course")]
-        [HttpGet]
+        [AllowAnonymous]
+        [HttpGet("Main/get-user-course")]
         public IActionResult GetUserCourse()
         {
             var user = HttpContext.Items["User"] as User;
@@ -85,8 +88,8 @@ namespace Programmania.Controllers
             return Json(new { CurrentCourse = userCourseVM, CurrentDiscipline = userDiscipline.Discipline.Name });
         }
 
-        [Route("Main/get-all-courses")]
-        [HttpGet]
+        [AllowAnonymous]
+        [HttpGet("Main/get-all-courses")]
         public IActionResult GetAllCourses()
         {
             var user = HttpContext.Items["User"] as User;
@@ -95,15 +98,21 @@ namespace Programmania.Controllers
             return Json(userCourses);
         }
 
-        [Route("Main/get-user-performance")]
-        [HttpGet]
+        [AllowAnonymous]
+        [HttpGet("Main/get-user-performance")]
         public IActionResult GetUserPerformance()
         {
-            return Json("");
+            var user = HttpContext.Items["User"] as User;
+            if(user != null)
+            {
+                IEnumerable<Reward> rewards = performanceService.GetRewards(user, 30, 0);
+                return Json(rewards);
+            }
+            return BadRequest();
         }
 
-        [Route("Main/get-offered-challenges")]
-        [HttpGet]
+        [AllowAnonymous]
+        [HttpGet("Main/get-offered-challenges")]
         public IActionResult GetOfferedChallenges()
         {
             var user = HttpContext.Items["User"] as User;
@@ -112,8 +121,8 @@ namespace Programmania.Controllers
             return Json(offeredChallenges);
         }
 
-        [Route("Main/get-possible-challenges")]
-        [HttpGet]
+        [AllowAnonymous]
+        [HttpGet("Main/get-possible-challenges")]
         public IActionResult GetPossibleChallenges(int count)
         {
             var user = HttpContext.Items["User"] as User;
