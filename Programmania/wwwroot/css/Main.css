@@ -423,6 +423,7 @@ body {
     height: 400px;
     transform: skew(-10deg, 0);
     transition: all 0.3s ease 0s;
+    position: relative;
 }
 .flip_right {
     transform: skew(10deg, 0) !important;
@@ -501,7 +502,7 @@ body {
 .flip__back {
     background-color: #fff;
     width: 100%;
-    height: 100%;
+    height: 100% !important;
     transform: rotateY(180deg);
     backface-visibility: hidden;
     position: absolute;
@@ -926,7 +927,23 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    transition: all 0.3s ease 0s;
 }
+.btn:hover{
+    cursor: pointer;
+    opacity: 0.7;
+    box-shadow: 2px 2px 2px 2px #999;
+}
+
+.btn_logout{
+    position: absolute;
+    top: 0;
+    right: 20px;
+    background-color: #ff4f4f;
+    color: #fff;
+    font-size: 2em;
+}
+
 
 .btn_link {
     position: relative;
@@ -990,6 +1007,30 @@ body {
     background-color: #ff9999;
 }
 
+.button_ruby-white {
+    background-color: #fff;
+}
+
+
+    .button_ruby-white a {
+        color: rgb(189, 38, 38) !important;
+    }
+
+.level__text {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 3em;
+    color: #00c738;
+    font-family: monsterrat-normal;
+    margin-bottom: 100px;
+}
+.flip__front{
+    width: 100%;
+    height: 100%;
+}
+
 @media (max-width: 1362px) {
     .current-course {
         padding: 50px 200px;
@@ -1040,9 +1081,7 @@ body {
     }
     .flip__back{
         width: auto;
-        height: 400px;
-        position: relative;
-        margin-top: -400px;
+        height: 100%;
         font-size: 10px;
     }
     .course__title{
@@ -1145,6 +1184,48 @@ body {
 
     .performance {
         padding: 50px 50px;
+    }
+
+    .btn{
+        min-width: 100px;
+    }
+    .btn_logout{
+        right: 10px;
+        font-size: 1.5em;
+    }
+
+    .course__title{
+        font-size: 2em;
+    }
+    .course__percent{
+        width: 150px;
+        height: 150px;
+    }
+    .percent_ruby{
+        font-size: 0.7em;
+    }
+    .percent_cpp {
+        font-size: 0.7em;
+    }
+    .percent_php {
+        font-size: 0.7em;
+    }
+    .course__button a{
+        font-size: 2em;
+    }
+    .flip{
+        height: 300px;
+    }
+    .level__text{
+        font-size: 2em;
+        margin-top: 20px;
+        margin-bottom: 0;
+    }
+    .dev-text{
+        font-size: 3em;
+    }
+    .btn_link{
+        margin: 0 20px;
     }
 }
 
