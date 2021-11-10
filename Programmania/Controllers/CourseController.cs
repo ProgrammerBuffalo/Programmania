@@ -33,6 +33,7 @@ namespace Programmania.Controllers
         }
 
         [HttpGet("Disciplines")]
+        [AllowAnonymous]
         public IActionResult Disciplines(int courseId)
         {
             //UserDisciplineVM[] userDisciplines = new UserDisciplineVM[6];
