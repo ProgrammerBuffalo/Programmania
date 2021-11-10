@@ -1,25 +1,73 @@
-﻿function cropImage(canvas, file, width, height, maxSize) {
+﻿function cropImage(canvas, file, width, height) {
     let context = canvas.getContext('2d');
-    context.clearRect(0, 0, canvas.width, canvas.height);
 
     const reader = new FileReader();
     reader.onload = function (e) {
         let img = new Image();
         img.onload = function () {
-            if (this.width > this.height) {
-                let dx = (this.width - this.height) / 2;
-                context.drawImage(img, dx, 0, this.width - dx, this.height, 0, 0, width, height);
+
+            if (this.naturalWidth > this.naturalHeight) {
+                let dx = 0;
+                if (this.naturalWidth > width) {
+                    canvas.width = this.naturalWidth * width / height;
+                    dx = (this.naturalWidth - canvas.width) / 2;
+                }
+                else
+                    canvas.width = width;
+
+                if (this.naturalHeight > height)
+                    canvas.height = this.naturalHeight;
+                else
+                    canvas.height = height;
+
+                context.drawImage(this, dx, 0, this.naturalWidth - dx * 2, this.naturalHeight, 0, 0, width, height);
             }
             else {
-                let dy = (this.height - this.width) / 2;
-                context.drawImage(img, 0, dy, this.width, this.height - dy, 0, 0, width, height);
+                let dy = 0;
+                if (this.naturalWidth > width)
+                    canvas.width = this.naturalWidth;
+                else
+                    canvas.width = width;
+
+                if (this.naturalHeight > height) {
+                    canvas.height = this.naturalHeight * height / width;
+                    dy = (this.naturalHeight - canvas.height) / 2;
+                }
+                else
+                    canvas.height = height;
+
+                context.drawImage(this, 0, dy, this.naturalWidth, this.naturalHeight - dy * 2, 0, 0, width, height);
             }
+
+            //canvas.width = res.width;
+            //canvas.height = res.height;
+
+
+            //if (this.width > this.height) {
+            //    let dx = (this.width - this.height) / 2;
+            //    context.drawImage(img, dx, 0, this.width - dx, this.height, 0, 0, width, height);
+            //}
+            //else {
+            //    let dy = (this.height - this.width) / 2;
+            //    context.drawImage(img, 0, dy, this.width, this.height - dy, 0, 0, width, height);
+            //}
 
         };
         img.setAttribute('src', e.target.result);
     }
     reader.readAsDataURL(file);
 }
+
+//function temp(naturalWidth, naturalHeight, width, height) {
+//    if (naturalWidth > naturalHeight) {
+//        res.height = naturalHeight;
+//        res.width = naturalHeight * x / y;
+//    }
+//    else {
+//        res.width = naturalWidth;
+//        res.height = naturalWidth * y / x;
+//    }
+//}
 
 //const canvas = document.getElementById('canvas');
 //const ctx = canvas.getContext('2d');

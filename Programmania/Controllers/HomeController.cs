@@ -2,141 +2,133 @@
 using Microsoft.EntityFrameworkCore;
 using Programmania.Attributes;
 using Programmania.Models;
-using Programmania.Services;
+using Programmania.Services.Interfaces;
 using Programmania.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
 
 namespace Programmania.Controllers
 {
-    [Route("Home")]
-    [Route("")]
-    [Authorize]
+    //[Authorize]
     public class HomeController : Controller
     {
         private DAL.ProgrammaniaDBContext dbContext;
         private IFileService fileService;
-        private IAccountService accountService;
+        private IStaticService staticService;
+        private IPerformanceService performanceService;
 
-        public HomeController(DAL.ProgrammaniaDBContext context, IFileService file_service, IAccountService accountService)
+        public HomeController(DAL.ProgrammaniaDBContext dbContext, IStaticService staticService, 
+            IFileService fileService, IPerformanceService performanceService)
         {
-            this.dbContext = context;
-            this.fileService = file_service;
-            this.accountService = accountService;
+            this.dbContext = dbContext;
+            this.fileService = fileService;
+            this.staticService = staticService;
+            this.performanceService = performanceService;
         }
 
-        [Route("")]
-        [Route("Index")]
-        [HttpGet]
         [AllowAnonymous]
+        [HttpGet("")]
         public IActionResult Index()
         {
-            //return RedirectToAction("", "Profile");
             return View();
         }
 
         [AllowAnonymous]
-        [Route("Main")]
-        [HttpGet]
+        [HttpGet("Main")]
         public IActionResult Main()
         {
             return View();
         }
 
-        //[Route("Profile")]
-        //[AllowAnonymous]
-        //[HttpGet]
-        //public IActionResult Profile()
-        //{
-        //    //var user = getUser(HttpContext.User.Claims.ToList());
-
-        //    //if (user == null)
-        //    //{
-        //    //  return NotFound("Token invalid");
-        //    //}
-
-        //    return View(new UserProfileVM(true));
-        //    //return View(/*new UserProfileVM(true, user.Login, user.Name, user.Exp, getUserCourses(user), getUserAchievements(user))*/);
-        //}
-
-        [Route("News")]
-        public IActionResult News()
-        {
-            return View();
-        }
-
-        [Route("News/PostNews")]
-        public IActionResult PostNews()
-        {
-            return View();
-        }
-
-        [Route("Codes")]
-        public IActionResult Codes()
-        {
-            return View();
-        }
         [AllowAnonymous]
-        [Route("Challenges")]
-        public IActionResult Challenges()
+        [HttpGet("Main/get-user-info")]
+        public IActionResult GetUserLevel()
         {
-            return View();
+            var user = HttpContext.Items["User"] as User;
+
+            return Json(new UserProfileVM(true) { Nickname = user.Name, Expierence = user.Exp });
         }
 
         [AllowAnonymous]
-        [Route("Challenge")]
-        public IActionResult Challenge()
+        [HttpGet("Main/get-user-course")]
+        public IActionResult GetUserCourse()
         {
-            return View();
+            var user = HttpContext.Items["User"] as User;
+
+            UserDiscipline userDiscipline = dbContext.UserDisciplines.Include(ud => ud.Discipline)
+                .Where(ud => ud.UserId == user.Id)
+                .OrderByDescending(d => d.LastDate).FirstOrDefault();
+
+            if (userDiscipline == null)
+            {
+                return Json(null);
+            }
+
+            Course course = dbContext.UserDisciplines.Find(userDiscipline).Discipline.Course;
+
+            UserDiscipline[] userDisciplines = dbContext.UserDisciplines.Include(ud => ud.Discipline).ThenInclude(ud => ud.Course).
+                                Where(ud => ud.UserId == user.Id && ud.Discipline.Course.Id == course.Id).ToArray();
+
+            UserCourseVM userCourseVM = new UserCourseVM
+            {
+                CourseId = course.Id,
+                CourseName = course.Name,
+                Description = course.Description,
+                LessonsCount = course.LessonCount,
+                Image = fileService.GetDocument(dbContext.Documents
+                .FirstOrDefault(d => d.StreamId == course.StreamId)?.Path),
+                LessonsCompleted = 0
+            };
+
+            foreach (var item in userDisciplines)
+            {
+                userCourseVM.LessonsCompleted += item.LessonOrder;
+            }
+
+            return Json(new { CurrentCourse = userCourseVM, CurrentDiscipline = userDiscipline.Discipline.Name });
         }
 
-        [Route("Challenges/Game")]
-        public IActionResult Game()
-        {
-            return View();
-        }
-
-        [Route("ChallengeResult")]
         [AllowAnonymous]
-        public IActionResult ChallengeResult()
+        [HttpGet("Main/get-all-courses")]
+        public IActionResult GetAllCourses()
         {
-            return View();
+            var user = HttpContext.Items["User"] as User;
+
+            UserCourseVM[] userCourses = staticService.GetCourses(user, fileService);
+            return Json(userCourses);
         }
 
-        //[AllowAnonymous]
-        //[Route("Lessons")]
-        //public IActionResult Lessons()
-        //{
-        //    return View();
-        //}
-
-        private User getUser(List<Claim> claims)
+        [AllowAnonymous]
+        [HttpGet("Main/get-user-performance")]
+        public IActionResult GetUserPerformance()
         {
-            var users = dbContext.Users;
-
-            if (claims.Count < 1)
-                return null;
-
-            var user = dbContext.Users.AsEnumerable().FirstOrDefault(u => u.Id == int.Parse(claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value) && u.Login == claims.First(c => c.Type == ClaimTypes.Name).Value);
-            return user;
+            var user = HttpContext.Items["User"] as User;
+            if(user != null)
+            {
+                IEnumerable<Reward> rewards = performanceService.GetRewards(user, 30, 0);
+                return Json(rewards);
+            }
+            return BadRequest();
         }
 
-        private List<UserAchievementVM> getUserAchievements(User user)
+        [AllowAnonymous]
+        [HttpGet("Main/get-offered-challenges")]
+        public IActionResult GetOfferedChallenges()
         {
-            List<UserAchievementVM> list = dbContext.Users.Include(u => u.Achievements)
-                .First(u => u == user).Achievements.Select(s => new UserAchievementVM
-                {
-                    Name = s.Name,
-                    Description = s.Desc,
-                    Points = s.Points,
-                    Image = fileService.GetDocument(dbContext.Documents
-                        .FirstOrDefault(d => d.StreamId == s.StreamId).Path)
-                }).ToList();
+            var user = HttpContext.Items["User"] as User;
 
-            return list;
+            List<OfferedChallengeVM> offeredChallenges = staticService.GetOfferedChallenges(user, fileService);
+            return Json(offeredChallenges);
         }
 
+        [AllowAnonymous]
+        [HttpGet("Main/get-possible-challenges")]
+        public IActionResult GetPossibleChallenges(int count)
+        {
+            var user = HttpContext.Items["User"] as User;
 
+            List<PossibleChallengeVM> possibleChallenges = staticService.GetPossibleChallenges(fileService, count);
+            return Json(possibleChallenges);
+        }
     }
 }

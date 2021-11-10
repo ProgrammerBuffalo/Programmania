@@ -8,7 +8,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Programmania.Attributes;
 using Programmania.Models;
-using Programmania.Services;
+using Programmania.Services.Interfaces;
 using Programmania.ViewModels;
 
 namespace Programmania.Controllers
@@ -19,41 +19,48 @@ namespace Programmania.Controllers
     {
         private DAL.ProgrammaniaDBContext dbContext;
         private IFileService fileService;
+        private IStaticService staticService;
 
-        public ChallengeController(DAL.ProgrammaniaDBContext context, IFileService fileService)
+        public ChallengeController(DAL.ProgrammaniaDBContext dbContext, IFileService fileService, IStaticService staticService)
         {
-            this.dbContext = context;
+            this.dbContext = dbContext;
             this.fileService = fileService;
+            this.staticService = staticService;
         }
 
-        [HttpGet]
-        public IActionResult GetChallenges()
+        [HttpGet("challenge-stats")]
+        public IActionResult GetUserStats()
         {
             var user = HttpContext.Items["User"] as User;
 
-            if (user == null)
+            var stats = dbContext.ChallengeStatistics.FirstOrDefault(s => s.UserId == user.Id);
+
+            if (stats == null)
                 return BadRequest();
 
-            List<ChallengeVM> challenges =
-                dbContext.UserChallenges.Where(uc => uc.UserId == user.Id && !uc.IsFinished).
-                                         Select(s => new ChallengeVM
-                                         {
-                                             Id = s.ChallengeId,
-                                             Course = s.Challenge.Course.Name,
-                                             Date = s.Challenge.Created,
-                                             OpponentDescription = new UserShortDescriptionVM
-                                             {
-                                                 Id = s.UserId,
-                                                 Name = s.User.Name,
-                                                 Avatar = fileService.GetDocument(dbContext.Documents
-                                                                     .FirstOrDefault(d => d.StreamId == s.User.ImageId).Path)
-                                             }
-                                         }).ToList();
-            return View(challenges);
+            return Json(new UserChallengeStatsVM { Wins = stats.Wins, Loses = stats.Loses, Draws = stats.Draws });
         }
 
-        [HttpPost]
-        [Route("send-answers")]
+        [HttpGet("get-acceptable-challenges")]
+        public IActionResult GetAcceptableChallenges()
+        {
+            var user = HttpContext.Items["User"] as User;
+
+            List<OfferedChallengeVM> offeredChallenges = staticService.GetOfferedChallenges(user, fileService);
+            return View(offeredChallenges);
+        }
+
+        [HttpGet("get-creatable-challenges")]
+        public IActionResult GetCreatableChallenges()
+        {
+            var user = HttpContext.Items["User"] as User;
+
+            List<PossibleChallengeVM> offeredChallenges = staticService.GetPossibleChallenges(fileService, 10);
+
+            return View(offeredChallenges);
+        }
+
+        [HttpPost("send-answers")]
         public async Task<IActionResult> SendAnswersPacket(Dictionary<int, int> answers)
         {
             User user = HttpContext.Items["User"] as User;
@@ -104,8 +111,7 @@ namespace Programmania.Controllers
             return Ok();
         }
 
-        [Route("create-challenge")]
-        [HttpPost]
+        [HttpPost("create-challenge")]
         public async Task<IActionResult> CreateChallenge(int courseId, int userId)
         {
             var challengeParam = new SqlParameter
@@ -121,16 +127,14 @@ namespace Programmania.Controllers
             return RedirectToAction("accept-challenge", (int)challengeParam.Value);
         }
 
-        [Route("accept-challenge")]
-        [HttpPost]
+        [HttpPost("accept-challenge")]
         public IActionResult AcceptChallenge(int challengeId)
         {
             HttpContext.Session.SetInt32("challenge", challengeId);
             return RedirectToAction("tests");
         }
 
-        [Route("get-tests")]
-        [HttpGet]
+        [HttpGet("get-tests")]
         public IActionResult GetTestsOfChallenge()
         {
             int? challengeId = HttpContext.Session.GetInt32("challenge");

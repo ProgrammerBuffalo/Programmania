@@ -6,6 +6,28 @@ var offset = 0;
 var monthNames;
 var dayNames;
 
+function getNextDate(type) {
+    let date = new Date(curDate);
+    if (type == 'Day')
+        date.setMonth(curDate.getMonth() + 1);
+    else if (type == 'Week')
+        date.setDate(curDate.getDate() + 7);
+    else
+        date.setFullYear(curDate.getFullYear() + 1);
+    return date;
+}
+
+function getPreviousDate(type) {
+    let date = new Date(curDate);
+    if (type == 'Day')
+        date.setMonth(curDate.getMonth() - 1);
+    else if (type == 'Week')
+        date.setDate(curDate.getDate() - 7);
+    else
+        date.setFullYear(curDate.getFullYear() - 1);
+    return date;
+}
+
 function getDaysInMonth() {
     return new Date(curDate.getFullYear(), curDate.getMonth(), 0).getDate();
 }
@@ -185,13 +207,14 @@ function createChart(data, labels, headerLabel, xAxis) {
 
 $(document).ready(function () {
     let type = $('#chart-type').val();
+    let from = getPreviousDate(type);
 
     $.ajax({
         type: 'GET',
         url: 'performance/rewards-init',
         dataType: 'json',
         processData: true,
-        data: { 'type': type, 'date': curDate.toISOString() },
+        data: { 'from': from.toISOString(), 'to': curDate.toISOString() },
         success: function (data) {
             monthNames = data.months;
             dayNames = data.days;
@@ -203,15 +226,16 @@ $(document).ready(function () {
 
 
 $(".chart-arrow-left").click(function () {
-    let type = $('#chart-type').val();
     performanceChart.destroy();
+    let type = $('#chart-type').val();
+    let from = getPreviousDate(type);
 
     $.ajax({
         type: 'GET',
         url: 'performance/rewards',
         dataType: 'json',
         processData: true,
-        data: JSON.stringify({ 'type': type, 'date': curDate.toISOString() }),
+        data: JSON.stringify({ 'from': from.toISOString(), 'to': curDate.toISOString() }),
         contentType: 'application/json',
         success: function (data) {
             if (type == "Month")
@@ -227,16 +251,19 @@ $(".chart-arrow-left").click(function () {
 });
 
 $(".chart-arrow-right").click(function () {
-    let type = $('#chart-type').val();
     performanceChart.destroy();
+    let type = $('#chart-type').val();
+    let to = getNextDate(type);
 
     $.ajax({
         type: 'GET',
         url: 'performance/rewards',
         dataType: 'json',
         processData: true,
-        data: { 'type': type, 'date': curDate.toISOString() },
+        data: { 'from': curDate.toISOString(), 'from': to.toISOString() },
         success: function (data) {
+            curDate  = 
+
             if (type == "Month")
                 curDate.setFullYear(curDate.getFullYear() + 1);
             else if (type == "Week")
@@ -250,15 +277,16 @@ $(".chart-arrow-right").click(function () {
 });
 
 $('#chart-type').change(function () {
-    let type = $('#chart-type').val();
     performanceChart.destroy();
+    let type = $('#chart-type').val();
+    let from = getPreviousDate(type);
 
     $.ajax({
         type: 'GET',
         url: 'performance/rewards',
         dataType: 'json',
         processData: true,
-        data: { 'type': type, 'date': curDate.toISOString() },
+        data: { 'from': from.toISOString(), 'to': curDate.toISOString() },
         success: function (data) {
             updateChart(data, type);
         }

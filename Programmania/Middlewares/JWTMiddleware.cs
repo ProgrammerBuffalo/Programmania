@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Programmania.Attributes;
 using Programmania.Models;
-using Programmania.Services;
-using System;
-using System.Collections.Generic;
+using Programmania.Services.Interfaces;
 using System.Linq;
 using System.Threading.Tasks;
 

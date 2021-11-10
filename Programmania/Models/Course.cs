@@ -15,8 +15,7 @@ namespace Programmania.Models
         [Column("Name")]
         public string Name { get; set; }
 
-        [Column("Points")]
-        public int Points { get; set; }
+        public string Description { get; set; }
 
         public int LessonCount { get; set; }
 

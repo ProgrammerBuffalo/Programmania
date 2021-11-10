@@ -1,15 +1,13 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.Data.SqlTypes;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Programmania.Models;
+using Programmania.Services.Interfaces;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Programmania.Services
 {
@@ -99,7 +97,10 @@ namespace Programmania.Services
         {
             var doc = dbContext.Documents
                 .FromSqlRaw("SELECT *, GET_FILESTREAM_TRANSACTION_CONTEXT() FROM DataFT WHERE stream_id = {0}", guid).FirstOrDefault();
-            return new SqlFileContext { Path = doc.Path, StreamId = doc.StreamId, TransactionContext = doc.Transaction_Context };
+            if (doc != null)
+                return new SqlFileContext { Path = doc.Path, StreamId = doc.StreamId, TransactionContext = doc.Transaction_Context };
+            else
+                return null;
         }
     }
 }

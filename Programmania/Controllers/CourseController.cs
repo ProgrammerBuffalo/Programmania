@@ -1,55 +1,91 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Programmania.Attributes;
 using Programmania.Models;
-using Programmania.Services;
+using Programmania.Services.Interfaces;
 using Programmania.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Programmania.Controllers
 {
     [Route("Courses")]
-    [Authorize]
+    //[Authorize]
     public class CourseController : Controller
     {
         private DAL.ProgrammaniaDBContext dbContext;
-        private IAccountService accountService;
-        private IXMLService xmlService;
         private IFileService fileService;
+        private IStaticService staticService;
 
-        public CourseController(DAL.ProgrammaniaDBContext context, IAccountService accountService,
-    IXMLService xmlService, IFileService fileService)
+        public CourseController(DAL.ProgrammaniaDBContext context, IStaticService staticService, IFileService fileService)
         {
             this.dbContext = context;
-            this.accountService = accountService;
-            this.xmlService = xmlService;
+            this.staticService = staticService;
             this.fileService = fileService;
         }
 
-        [HttpGet]
+        [HttpGet("")]
         public IActionResult Courses()
         {
-            return View(getCourses(HttpContext.Items["User"] as User));
+            UserCourseVM[] userCourses = staticService.GetCourses(HttpContext.Items["User"] as User, fileService);
+            return View(userCourses);
         }
 
-        [Route("Disciplines")]
-        [AllowAnonymous]
-        [HttpGet]
+        [HttpGet("Disciplines")]
         public IActionResult Disciplines(int courseId)
         {
-            UserDisciplineVM[] userDisciplines = new UserDisciplineVM[6];
-            userDisciplines[0] = new UserDisciplineVM() { DisciplineName = "discp1", DisciplineId = 10, LessonsCount = 100, LessonsCompleted = 24, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
-            userDisciplines[1] = new UserDisciplineVM() { DisciplineName = "discp1", DisciplineId = 20, LessonsCount = 100, LessonsCompleted = 24, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
-            userDisciplines[2] = new UserDisciplineVM() { DisciplineName = "discp1", DisciplineId = 30, LessonsCount = 100, LessonsCompleted = 24, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
-            userDisciplines[3] = new UserDisciplineVM() { DisciplineName = "discp1", DisciplineId = 40, LessonsCount = 100, LessonsCompleted = 24, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
-            userDisciplines[4] = new UserDisciplineVM() { DisciplineName = "discp1", DisciplineId = 50, LessonsCount = 100, LessonsCompleted = 24, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
-            userDisciplines[5] = new UserDisciplineVM() { DisciplineName = "discp1", DisciplineId = 60, LessonsCount = 100, LessonsCompleted = 24, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
-            //return View(getDisciplines(HttpContext.Items["User"] as User, courseId));
-            return View(userDisciplines);
+            //UserDisciplineVM[] userDisciplines = new UserDisciplineVM[6];
+            //userDisciplines[0] = new UserDisciplineVM() { DisciplineName = "discp1", DisciplineId = 10, LessonsCount = 100, LessonsCompleted = 24, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
+            //userDisciplines[1] = new UserDisciplineVM() { DisciplineName = "discp1", DisciplineId = 20, LessonsCount = 100, LessonsCompleted = 24, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
+            //userDisciplines[2] = new UserDisciplineVM() { DisciplineName = "discp1", DisciplineId = 30, LessonsCount = 100, LessonsCompleted = 24, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
+            //userDisciplines[3] = new UserDisciplineVM() { DisciplineName = "discp1", DisciplineId = 40, LessonsCount = 100, LessonsCompleted = 24, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
+            //userDisciplines[4] = new UserDisciplineVM() { DisciplineName = "discp1", DisciplineId = 50, LessonsCount = 100, LessonsCompleted = 24, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
+            //userDisciplines[5] = new UserDisciplineVM() { DisciplineName = "discp1", DisciplineId = 60, LessonsCount = 100, LessonsCompleted = 24, Image = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg") };
+            return View(getDisciplines(HttpContext.Items["User"] as User, courseId));
+            //return View(userDisciplines);
+        }
+
+        [HttpGet("Disciplines/get-course-description")]
+        public IActionResult GetCourseShortDescription(int courseId)
+        {
+            Course course = dbContext.Courses.FirstOrDefault(c => c.Id == courseId);
+
+            if (course == null)
+                return NotFound();
+
+            var image = fileService.GetDocument(dbContext.Documents
+                .FirstOrDefault(d => d.StreamId == course.StreamId)?.Path);
+            var name = course.Name;
+
+            var info = new { Image = image, Name = name };
+
+            return Json(info);
+        }
+
+        [HttpGet("Disciplines/Lessons/get-discipline-description")]
+        public IActionResult GetDisciplineShortDescription(int disciplineId)
+        {
+            Discipline discipline = dbContext.Disciplines.FirstOrDefault(c => c.Id == disciplineId);
+
+            if (discipline == null)
+                return NotFound();
+
+            var image = fileService.GetDocument(dbContext.Documents
+                .FirstOrDefault(d => d.StreamId == discipline.StreamId)?.Path);
+            var name = discipline.Name;
+
+            var info = new { Image = image, Name = name };
+
+            return Json(info);
+        }
+
+        [HttpGet("Disciplines/get-course-description")]
+        public IActionResult SelectedCourseInfo()
+        {
+            //this method should return image and name of selected course
+            //var data = new { CourseName = "hello1", CourseImage = new byte[0] };
+            return Json(null);
         }
 
         [Route("Disciplines/discipline-begin")]
@@ -71,18 +107,23 @@ namespace Programmania.Controllers
             return BadRequest();
         }
 
-        [Route("Disciplines/Lessons")]
-        [HttpGet]
-        [AllowAnonymous]
+        [HttpGet("Disciplines/Lessons")]
         public IActionResult Lessons(int disciplineId)
         {
             return View(getLessons(HttpContext.Items["User"] as User, disciplineId));
         }
 
+        [HttpGet("Disciplines/Lessons/get-discipline-description")]
+        public IActionResult SelectedDisciplineInfo()
+        {
+            //this method should return image and name of selected discipline
+            //var data = new { DisciplineName = "", DisciplineImage = new byte[0] };
+            return Json(null);
+        }
+
         [Route("Disciplines/Lessons/check-test")]
         [HttpPost]
-        [AllowAnonymous]
-        public IActionResult CheckTest(int disciplineId, int lessonId, int testIndex)
+        public IActionResult CheckTest(int testIndex, int disciplineId, int lessonId)
         {
             User user = HttpContext.Items["User"] as User;
             Lesson lesson = getLessonFromDB(user, disciplineId, lessonId);
@@ -103,11 +144,12 @@ namespace Programmania.Controllers
             return Json(false);
         }
 
+        [AllowAnonymous]
         [Route("Disciplines/Lesson")]
         [HttpGet]
-        [AllowAnonymous]
         public IActionResult CheckLessonAccess(int lessonId, int disciplineId)
         {
+            return Json(null);
             RequestedLessonVM lesson = getRequestedLesson(HttpContext.Items["User"] as User, disciplineId, lessonId);
             if (lesson == null)
                 return NotFound();
@@ -140,7 +182,7 @@ namespace Programmania.Controllers
             {
                 Test = new TestVM { A1 = test.Answer1, A2 = test.Answer2, A3 = test.Answer3, A4 = test.Answer4, Question = test.Question },
                 HTML = System.Text.Encoding.UTF8.GetString(fileService.GetDocument(
-                    dbContext.Documents.FirstOrDefault(d => d.StreamId == lesson.StreamId).Path))
+                    dbContext.Documents.FirstOrDefault(d => d.StreamId == lesson.StreamId)?.Path))
             };
 
             return requestedLesson;
@@ -149,7 +191,8 @@ namespace Programmania.Controllers
         private UserLessonVM[] getLessons(User user, int disciplineId)
         {
             List<UserLessonVM> userLessons = new List<UserLessonVM>();
-            UserDiscipline userDiscipline = dbContext.UserDisciplines.Where(u => u.UserId == user.Id).FirstOrDefault(c => c.DisciplineId == disciplineId);
+            UserDiscipline userDiscipline = dbContext.UserDisciplines.Where(u => u.UserId == user.Id).
+                FirstOrDefault(c => c.DisciplineId == disciplineId);
 
             if (userDiscipline == null)
             {
@@ -158,6 +201,9 @@ namespace Programmania.Controllers
 
             userLessons = dbContext.Disciplines.FirstOrDefault(d => d.Id == userDiscipline.DisciplineId)?.Lessons.Select(s => new UserLessonVM
             { LessonId = s.Id, Name = s.Name, Order = s.Order, IsCompleted = s.Order <= userDiscipline.LessonOrder ? true : false }).ToList();
+
+            userDiscipline.LastDate = DateTime.Now;
+            dbContext.SaveChanges();
 
             return userLessons.ToArray();
         }
@@ -187,11 +233,11 @@ namespace Programmania.Controllers
                     LessonsCount = item.LessonsCount,
                     LessonsCompleted = item.LessonsCompleted,
                     Image = fileService.GetDocument(dbContext.Documents
-                        .FirstOrDefault(d => d.StreamId == item.StreamId).Path)
+                        .FirstOrDefault(d => d.StreamId == item.StreamId)?.Path)
                 });
             }
 
-            List<Discipline> allAvailableDisciplines = dbContext.Disciplines.Where(d => d.Course.Id == courseId).ToList();
+            List<Discipline> allAvailableDisciplines = dbContext.Disciplines.Include(d => d.Lessons).Where(d => d.Course.Id == courseId).ToList();
 
             foreach (var item in allAvailableDisciplines)
             {
@@ -204,7 +250,7 @@ namespace Programmania.Controllers
                     LessonsCount = item.Lessons.Count,
                     LessonsCompleted = 0,
                     Image = fileService.GetDocument(dbContext.Documents
-                        .FirstOrDefault(d => d.StreamId == item.StreamId).Path),
+                        .FirstOrDefault(d => d.StreamId == item.StreamId)?.Path),
                 });
             }
 
@@ -212,70 +258,6 @@ namespace Programmania.Controllers
 
         }
 
-        private UserCourseVM[] getCourses(User user)
-        {
-            var list = dbContext.UserDisciplines.Where(u => u.UserId == user.Id)
-                  .Join(dbContext.Disciplines, userDiscipline => userDiscipline.DisciplineId,
-                                 discipline => discipline.Id,
-                                 (userDiscipline, discipline) => new
-                                 {
-                                     Discipline = userDiscipline.Discipline,
-                                     Course = discipline.Course,
-                                     LastLesson = userDiscipline.LessonOrder,
-                                     LessonCount = discipline.Course.LessonCount,
-                                     StreamIdCourse = discipline.Course.StreamId
-                                 }).Select(s => new
-                                 {
-                                     discipline = s.Discipline,
-                                     course = s.Course,
-                                     lastLesson = s.LastLesson,
-                                     lessonCount = s.LessonCount,
-                                     streamId = s.StreamIdCourse
-                                 }).ToList();
 
-            List<UserCourseVM> userCourses = new List<UserCourseVM>();
-
-            foreach (var item in list)
-            {
-                var userCourse = userCourses.FirstOrDefault(uc => uc.CourseId == item.course.Id);
-                if (userCourse == null)
-                {
-                    userCourses.Add(new UserCourseVM
-                    {
-                        CourseId = item.course.Id,
-                        CourseName = item.course.Name,
-                        LessonsCount = item.lessonCount,
-                        LessonsCompleted = item.lastLesson,
-                        IsSelected = true,
-                        Image = fileService.GetDocument(dbContext.Documents
-                        .FirstOrDefault(d => d.StreamId == item.streamId).Path)
-                    });
-                }
-                else
-                {
-                    userCourse.LessonsCompleted += item.lastLesson;
-                }
-            }
-
-            List<Course> allAvailableCourses = dbContext.Courses.ToList();
-
-            foreach (var item in allAvailableCourses)
-            {
-                if (userCourses.Any(uc => uc.CourseId == item.Id))
-                    continue;
-                userCourses.Add(new UserCourseVM
-                {
-                    CourseId = item.Id,
-                    CourseName = item.Name,
-                    IsSelected = false,
-                    LessonsCount = item.LessonCount,
-                    Image = fileService.GetDocument(dbContext.Documents
-                        .FirstOrDefault(d => d.StreamId == item.StreamId).Path),
-                    LessonsCompleted = 0
-                });
-            }
-
-            return userCourses.ToArray();
-        }
     }
 }

@@ -9,6 +9,7 @@ using System.IO;
 using System.Text;
 using Newtonsoft.Json;
 using Programmania.Attributes;
+using Programmania.Services.Interfaces;
 
 namespace Programmania.Controllers
 {
@@ -18,21 +19,18 @@ namespace Programmania.Controllers
     {
         private DAL.ProgrammaniaDBContext dbContext;
         private IAccountService accountService;
-        private IXMLService xmlService;
         private IFileService fileService;
 
         public AccountController(DAL.ProgrammaniaDBContext context, IAccountService accService,
-            IXMLService xmlService, IFileService fileService)
+            IFileService fileService)
         {
             this.dbContext = context;
             this.accountService = accService;
-            this.xmlService = xmlService;
             this.fileService = fileService;
         }
 
-        [Route("refresh-token")]
-        [HttpPost]
         [AllowAnonymous]
+        [HttpPost("refresh-token")]
         public IActionResult RefreshTokensAuthentication()
         {
             var rtCookie = Request.Cookies["RefreshToken"];
@@ -48,8 +46,7 @@ namespace Programmania.Controllers
             return Ok();
         }
 
-        [Route("revoke-token")]
-        [HttpPost]
+        [HttpPost("revoke-token")]
         public async Task<IActionResult> RevokeToken()
         {
             var rtCookie = Request.Cookies["RefreshToken"];
@@ -63,12 +60,11 @@ namespace Programmania.Controllers
             return Ok("Token revorked");
         }
 
-        [Route("authorization")]
-        [HttpPost]
         [AllowAnonymous]
+        [HttpPost("authorization")]
         public async Task<IActionResult> MakeAuthorization(AuthenticationRequestVM authenticationRequest)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 Models.User user = dbContext.Users.FirstOrDefault(u => u.Login == authenticationRequest.Email && u.Password == authenticationRequest.Password);
                 if (user == null)
@@ -92,12 +88,11 @@ namespace Programmania.Controllers
             }
         }
 
-        [Route("registration")]
-        [HttpPost]
         [AllowAnonymous]
+        [HttpPost("registration")]
         public async Task<IActionResult> MakeRegistration(RegistrationVM registrationVM)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 User user = dbContext.Users.FirstOrDefault(u => u.Login == registrationVM.Email || u.Name == registrationVM.Nickname);
                 if (user == null)
@@ -111,9 +106,6 @@ namespace Programmania.Controllers
                             Password = registrationVM.Password,
                             Login = registrationVM.Email
                         };
-                        SqlFileContext emptyFileContext = fileService.AddEmptyDocument(user.Name + ".xml");
-                        xmlService.CreateXDeclaration(emptyFileContext);
-                        user.HistoryId = emptyFileContext.StreamId;
 
                         if (registrationVM.FormFile != null)
                         {

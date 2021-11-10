@@ -21,5 +21,7 @@ namespace Programmania.Models
         public Discipline Discipline { get; set; }
 
         public int LessonOrder { get; set; }
+
+        public DateTime LastDate { get; set; }
     }
 }

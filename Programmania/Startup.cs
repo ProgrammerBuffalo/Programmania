@@ -1,24 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
+using Programmania.Middlewares;
 using Programmania.Models;
 using Programmania.Services;
-using System.Security.Claims;
-using Programmania.Middlewares;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.AspNetCore.Http;
+using Programmania.Services.Interfaces;
+using System;
 
 namespace Programmania
 {
@@ -51,8 +41,14 @@ namespace Programmania
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IFileService, FileService>();
             services.AddScoped<IXMLService, XMLService>();
+            services.AddScoped<IProfileService, ProfileService>();
+            services.AddScoped<IPerformanceService, PerformanceService>();
+            services.AddScoped<IStaticService, StaticService>();
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+                .AddViewLocalization();
+
+            //services.AddLocalization(options => options.ResourcesPath = "Resources");
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -66,6 +62,18 @@ namespace Programmania
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
+            //var supportedCultures =  new[] {
+            //    new System.Globalization.CultureInfo("en"),
+            //    new System.Globalization.CultureInfo("ru")
+            //};
+
+            //app.UseRequestLocalization(new RequestLocalizationOptions() {
+            //    DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("en"),
+            //    SupportedCultures = supportedCultures,
+            //    SupportedUICultures = supportedCultures
+            //});
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

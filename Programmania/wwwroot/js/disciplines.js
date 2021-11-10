@@ -1,11 +1,23 @@
 ﻿$(document).ready(function () {
     $('.header-text').css('background-color', sessionStorage.getItem('courseColor'));
-    $('.course__img > img').attr('src', sessionStorage.getItem('courseImage'));
-    $('.header-text__content > h3').first().text(sessionStorage.getItem('courseName'));
+    //$('.course__img > img').attr('src', sessionStorage.getItem('courseImage'));
+    //$('.header-text__content > h3').first().text(sessionStorage.getItem('courseName'));
 
-    sessionStorage.removeItem('courseImage');
-    sessionStorage.removeItem('courseColor');
-    sessionStorage.removeItem('courseName');
+    $.ajax({
+        type: 'GET',
+        url: 'Disciplines/get-course-description',
+        processData: true,
+        dataType: 'json',
+        data: { 'courseId': sessionStorage.getItem('courseId') },
+        success: function (data) {
+            $('.header-text__content > h3').first().text(data.name);
+            $('.course__img > img').attr('src', 'data:image*;base64,' + data.image);
+        }
+    });
+
+    //sessionStorage.removeItem('courseImage');
+    //sessionStorage.removeItem('courseColor');
+    //sessionStorage.removeItem('courseName');
 });
 
 $(document).ready(function () {
@@ -13,8 +25,11 @@ $(document).ready(function () {
         let id = $(this).attr('data-id');
 
         sessionStorage.setItem('disciplineId', id);
-        sessionStorage.setItem('disciplineImage', $(this).find('.discipline__image > img').first().attr('src'));
-        sessionStorage.setItem('disciplineName', $(this).find('.discipline__title').first().text());
+        window.location.href = `Disciplines/Lessons?disciplineId=${id}`;
+        return;
+
+        //sessionStorage.setItem('disciplineImage', $(this).find('.discipline__image > img').first().attr('src'));
+        //sessionStorage.setItem('disciplineName', $(this).find('.discipline__title').first().text());
 
         if ($(this).find('discipline_selected').length == 0) {
             let formData = new FormData();

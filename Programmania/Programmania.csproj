@@ -15,6 +15,11 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Resources\Views\Course\" />
+    <Folder Include="Resources\Views\Challanges\" />
+  </ItemGroup>
+
 
 
 </Project>
