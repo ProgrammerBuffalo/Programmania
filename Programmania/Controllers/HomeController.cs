@@ -45,8 +45,15 @@ namespace Programmania.Controllers
         public IActionResult GetUserLevel()
         {
             var user = HttpContext.Items["User"] as User;
-
-            return Json(new UserProfileVM(true) { Nickname = user.Name, Expierence = user.Exp });
+            return Json(new UserProfileVM(true)
+            {
+                Nickname = user.Name,
+                Expierence = user.Exp,
+                ChallengeStats = dbContext.ChallengeStatistics
+                    .Where(cs => cs.UserId == user.Id)
+                    .Select(cs => new UserChallengeStatsVM() { Wins = cs.Wins, Draws = cs.Draws, Loses = cs.Loses })
+                    .FirstOrDefault()
+            });
         }
 
         [AllowAnonymous]

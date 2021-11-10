@@ -3,19 +3,10 @@
     //getCurrentCourse();
     //getAllCourses();
     //getPerformance();
-    //getPossibleChallenges();
-    //getOfferedChallenges();
+    getPossibleChallenges();
+    getOfferedChallenges();
 
-    //$('#nickname').text('test')
-    //$('#courseBackground').css('background-color', 'red');
-    //$('#courseImage').attr('src', '/images/AngularLogo.png');
-    //$('#courseDescription').text('test')
-    //$('#courseName').text('test');
-    //$('#courseDiagram').attr('data-value', '10');
-    //$('#levelDiagram').attr('data-value', '10');
-    //$('#level').text('test');
-    //$('#expiriance').text('test');
-    //$('#gamesRate').text('test');
+    
 });
 
 function getUserInfo() {
@@ -25,10 +16,11 @@ function getUserInfo() {
         processData: true,
         dataType: 'json',
         success: function (data) {
-            //data.nickname;
-            //data.expierence;
-            //data.level;
-            //data.expToNextLevelPercentage
+            $('#nickname').text(data.nickname);
+            $('#level').text(data.level);
+            $('#expiriance').text(data.expierence);
+            $('#gamesRate').text(data.challengeStats.wins + ' / ' + data.challengeStats.gamesPlayed);
+            $('#levelDiagram').attr('data-value', data.expToNextLevelPercentage);
         }
     });
 }
@@ -40,8 +32,11 @@ function getCurrentCourse() {
         processData: true,
         dataType: 'json',
         success: function (data) {
-            //data.currentCourse
-            //data.currentDiscipline.name
+            $('#courseBackground').css('background-color', 'red');
+            $('#courseName').text(data.courseName);
+            $('#courseDescription').text(data.description);
+            $('#courseImage').attr('src', 'data:image/*;base64, ' + data.image);
+            $('#courseDiagram').attr('data-value', '10');
         }
     });
 }
