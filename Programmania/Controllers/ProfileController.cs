@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Programmania.Controllers
 {
+    [AllowAnonymous]
     [Route("Profile")]
-    [Authorize]
     public class ProfileController : Controller
     {
         [Route("")]
@@ -12,8 +12,9 @@ namespace Programmania.Controllers
         public IActionResult Profile()
         {
             //check this User or another
-            ViewModels.UserProfileVM profileVM = new ViewModels.UserProfileVM(true);
-            return View(profileVM);
+            //ViewModels.UserProfileVM profileVM = new ViewModels.UserProfileVM(true);
+            //return View(profileVM);
+            return View(new ViewModels.UserProfileVM(true));
         }
 
         [HttpGet]
