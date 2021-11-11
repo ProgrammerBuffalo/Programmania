@@ -81,13 +81,13 @@ namespace Programmania.Controllers
             return Json(info);
         }
 
-        [HttpGet("Disciplines/get-course-description")]
-        public IActionResult SelectedCourseInfo()
-        {
-            //this method should return image and name of selected course
-            //var data = new { CourseName = "hello1", CourseImage = new byte[0] };
-            return Json(null);
-        }
+        //[HttpGet("Disciplines/get-course-description")]
+        //public IActionResult SelectedCourseInfo()
+        //{
+        //    //this method should return image and name of selected course
+        //    //var data = new { CourseName = "hello1", CourseImage = new byte[0] };
+        //    return Json(null);
+        //}
 
         [Route("Disciplines/discipline-begin")]
         [HttpPost]
@@ -114,13 +114,13 @@ namespace Programmania.Controllers
             return View(getLessons(HttpContext.Items["User"] as User, disciplineId));
         }
 
-        [HttpGet("Disciplines/Lessons/get-discipline-description")]
-        public IActionResult SelectedDisciplineInfo()
-        {
-            //this method should return image and name of selected discipline
-            //var data = new { DisciplineName = "", DisciplineImage = new byte[0] };
-            return Json(null);
-        }
+        //[HttpGet("Disciplines/Lessons/get-discipline-description")]
+        //public IActionResult SelectedDisciplineInfo()
+        //{
+        //    //this method should return image and name of selected discipline
+        //    //var data = new { DisciplineName = "", DisciplineImage = new byte[0] };
+        //    return Json(null);
+        //}
 
         [Route("Disciplines/Lessons/check-test")]
         [HttpPost]

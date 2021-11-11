@@ -101,13 +101,13 @@
 
                         <div class="course__buttons">
                             <div class="course__button button_ruby">
-                                <a href="Courses">
+                                <a id="courseBtn">
                                     Go to course
                                 </a>
                             </div>
 
                             <div class="course__button button_ruby-white">
-                                <a href="#">
+                                <a id="disciplineBtn">
                                     <div class="current-discipline">
                                         <h3>Current discipline: </h3>
                                         <h3 id="discipline">some discipline</h3>
@@ -115,7 +115,6 @@
                                 </a>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -123,212 +122,212 @@
 
 
 
-		<div class="courses-container" id="courses">
-			<h3 class="container__title">All Courses</h3>
+            <div class="courses-container" id="courses">
+                <h3 class="container__title">All Courses</h3>
 
 
-			<div class="swiper">
-				<div class="courses swiper-container">
-					<div class="swiper-wrapper">
-						<div class="swiper-slide">
-							<div class="course" style="background-color: #fcc9c0;">
-								<div class="course__content">
-									<div class="course__info">
-										<h2 class="course__title title_ruby">Ruby</h2>
-										<div class="course__percent percent_ruby">
-											<div class="ldBar label-center" data-preset="circle" data-value="77"
-											data-transition-in="1000" style="width: 100%; height: 100%">
-										</div>
-									</div>
-								</div>
-
-                                            <div class="course__button button_ruby">
-                                                <a href="Courses">
-                                                    Go to course
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <div class="flip">
-                                            <div>
-                                                <img class="flip__front course__image" src="~/images/rubyCourse.png" />
-                                            </div>
-
-                                            <div class="flip__back">
-                                                <p>Welcome to Ruby Course!</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="swiper-slide">
-                                    <div class="course" style="background-color: #c0f1fc;">
-                                        <div class="course__content">
-                                            <div class="course__info">
-                                                <h2 class="course__title title_cpp">C++</h2>
-                                                <div class="course__percent percent_cpp">
-                                                    <div class="ldBar label-center" data-preset="circle" data-value="77"
-                                                         data-transition-in="1000" style="width: 100%; height: 100%">
-                                                    </div>
+                <div class="swiper">
+                    <div class="courses swiper-container">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="course" style="background-color: #fcc9c0;">
+                                    <div class="course__content">
+                                        <div class="course__info">
+                                            <h2 class="course__title title_ruby">Ruby</h2>
+                                            <div class="course__percent percent_ruby">
+                                                <div class="ldBar label-center" data-preset="circle" data-value="77"
+                                                     data-transition-in="1000" style="width: 100%; height: 100%">
                                                 </div>
                                             </div>
-
-                                            <div class="course__button button_cpp">
-                                                <a href="Courses">
-                                                    Go to course
-                                                </a>
-                                            </div>
                                         </div>
 
-                                        <div class="flip">
-                                            <div>
-                                                <img class="flip__front course__image" src="~/images/cppCourse.png"/>
-                                            </div>
+                                        <div class="course__button button_ruby">
+                                            <a href="Courses">
+                                                Go to course
+                                            </a>
+                                        </div>
+                                    </div>
 
-                                            <div class="flip__back">
-                                                <p>Welcome to C++ Course</p>
-                                            </div>
+                                    <div class="flip">
+                                        <div>
+                                            <img class="flip__front course__image" src="~/images/rubyCourse.png" />
+                                        </div>
+
+                                        <div class="flip__back">
+                                            <p>Welcome to Ruby Course!</p>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="swiper-slide">
-                                    <div class="course" style="background-color: #f5e4ff;">
-                                        <div class="course__content">
-                                            <div class="course__info">
-                                                <h2 class="course__title title_php">PHP</h2>
-                                                <div class="course__percent percent_php">
-                                                    <div class="ldBar label-center" data-preset="circle" data-value="77"
-                                                         data-transition-in="1000" style="width: 100%; height: 100%">
-                                                    </div>
+                            <div class="swiper-slide">
+                                <div class="course" style="background-color: #c0f1fc;">
+                                    <div class="course__content">
+                                        <div class="course__info">
+                                            <h2 class="course__title title_cpp">C++</h2>
+                                            <div class="course__percent percent_cpp">
+                                                <div class="ldBar label-center" data-preset="circle" data-value="77"
+                                                     data-transition-in="1000" style="width: 100%; height: 100%">
                                                 </div>
                                             </div>
-
-                                            <div class="course__button button_php">
-                                                <a href="Courses">
-                                                    Go to course
-                                                </a>
-                                            </div>
                                         </div>
 
-                                        <div class="flip">
-                                            <div class="flip__front course__image" style="background-image: url('images/phpCourse.jpg');">
+                                        <div class="course__button button_cpp">
+                                            <a href="Courses">
+                                                Go to course
+                                            </a>
+                                        </div>
+                                    </div>
 
-                                            </div>
+                                    <div class="flip">
+                                        <div>
+                                            <img class="flip__front course__image" src="~/images/cppCourse.png" />
+                                        </div>
 
-                                            <div class="flip__back">
-                                                <p>Welcome to PHP Course</p>
-                                            </div>
+                                        <div class="flip__back">
+                                            <p>Welcome to C++ Course</p>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+
+                            <div class="swiper-slide">
+                                <div class="course" style="background-color: #f5e4ff;">
+                                    <div class="course__content">
+                                        <div class="course__info">
+                                            <h2 class="course__title title_php">PHP</h2>
+                                            <div class="course__percent percent_php">
+                                                <div class="ldBar label-center" data-preset="circle" data-value="77"
+                                                     data-transition-in="1000" style="width: 100%; height: 100%">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="course__button button_php">
+                                            <a href="Courses">
+                                                Go to course
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="flip">
+                                        <div class="flip__front course__image" style="background-image: url('images/phpCourse.jpg');">
+
+                                        </div>
+
+                                        <div class="flip__back">
+                                            <p>Welcome to PHP Course</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="swiper-button-prev"></div>
                             <div class="swiper-button-next"></div>
                         </div>
                     </div>
                 </div>
-                </div>
+            </div>
 
 
 
-                <div class="level-container" id="level">
-                    <h3 class="container__title">Level</h3>
-                    <div class="level">
-                        <div class="level-col-1" data-aos="fade-right" data-aos-duration="1000">
-                            <div class="level__percent">
-                                <div id="levelDiagram" class="ldBar label-center" data-preset="circle" data-value="77" data-transition-in="1000"
-                                     style="width: 100%; height: 100%">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="level-col-2" data-aos="fade-left" data-aos-duration="1000">
-                            <div class="level__text">
-                                <h3>Level:</h3>
-                                <h3 id="level">32</h3>
-                            </div>
-                            <div class="level__text">
-                                <h3>Experience:</h3> 
-                                <h3 id="expiriance">32</h3>
+            <div class="level-container" id="level">
+                <h3 class="container__title">Level</h3>
+                <div class="level">
+                    <div class="level-col-1" data-aos="fade-right" data-aos-duration="1000">
+                        <div class="level__percent">
+                            <div id="levelDiagram" class="ldBar label-center" data-preset="circle" data-value="77" data-transition-in="1000"
+                                 style="width: 100%; height: 100%">
                             </div>
                         </div>
                     </div>
-                </div>
-
-
-
-
-<div class="performance-container" id="performance">
-	<a href="Performance">
-		<div class="btn btn_link btn_link_blue">
-			<div class="btn_link__front">
-				Performance
-			</div>
-			
-			<div class="btn_link__back btn_blue__back">
-				<div class="btn_link__next">
-					<img src="~/images/arrow_next.png" />
-				</div>
-			</div>
-		</div>
-	</a>
-	<div class="performance" data-aos="zoom-in" data-aos-duration="1000">
-		<div class="chartArea">
-			<div class="chart-container">
-				<canvas id="performanceChart">
-				</canvas>
-			</div>
-		</div>
-	</div>
-</div>
-
-
-
-<div class="challenges-container" id="challenges">
-	<a href="Challenges">
-		<div class="btn btn_link btn_link_red">
-			<div class="btn_link__front">
-				Challenges
-			</div>
-			
-			<div class="btn_link__back btn_red__back">
-				<div class="btn_link__next">
-					<img src="~/images/arrow_next.png" />
-				</div>
-			</div>
-		</div>
-	</a>
-	<div class="challenges" data-aos="zoom-in" data-aos-duration="1000">
-
-                        <div class="winrate__info">
-                            <h3>Games win:</h3>
-                            <h3 id="gamesRate">7/10</h3>
+                    <div class="level-col-2" data-aos="fade-left" data-aos-duration="1000">
+                        <div class="level__text">
+                            <h3>Level:</h3>
+                            <h3 id="level">32</h3>
                         </div>
-                        <div class="swiper">
-                            <div id="challanges" class="challenges-swiper swiper-container">
-                                <div class="swiper-wrapper">
-                                </div>
-                            </div>
-                            <div class="swiper-button-prev"></div>
-                            <div class="swiper-button-next"></div>
+                        <div class="level__text">
+                            <h3>Experience: </h3>
+                            <h3 id="expiriance">32</h3>
                         </div>
-
                     </div>
                 </div>
-
-
-
-<div class="achievment-container" id="achievments">
-	<h3 class="container__title">Achievments</h3>
-	<h3 class="dev-text">In development</h3>
-</div>
+            </div>
 
 
 
 
-                <div class="news-container" id="news">
-                    <div class="container__title">News</div>
-                    <h3 class="dev-text">In development</h3>
+            <div class="performance-container" id="performance">
+                <a href="Performance">
+                    <div class="btn btn_link btn_link_blue">
+                        <div class="btn_link__front">
+                            Performance
+                        </div>
+
+                        <div class="btn_link__back btn_blue__back">
+                            <div class="btn_link__next">
+                                <img src="~/images/arrow_next.png" />
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <div class="performance" data-aos="zoom-in" data-aos-duration="1000">
+                    <div class="chartArea">
+                        <div class="chart-container">
+                            <canvas id="performanceChart">
+                            </canvas>
+                        </div>
+                    </div>
                 </div>
+            </div>
+
+
+
+            <div class="challenges-container" id="challenges">
+                <a href="Challenges">
+                    <div class="btn btn_link btn_link_red">
+                        <div class="btn_link__front">
+                            Challenges
+                        </div>
+
+                        <div class="btn_link__back btn_red__back">
+                            <div class="btn_link__next">
+                                <img src="~/images/arrow_next.png" />
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <div class="challenges" data-aos="zoom-in" data-aos-duration="1000">
+
+                    <div class="winrate__info">
+                        <h3>Games win:</h3>
+                        <h3 id="gamesRate">7/10</h3>
+                    </div>
+                    <div class="swiper">
+                        <div id="challanges" class="challenges-swiper swiper-container">
+                            <div class="swiper-wrapper">
+                            </div>
+                        </div>
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+            <div class="achievment-container" id="achievments">
+                <h3 class="container__title">Achievments</h3>
+                <h3 class="dev-text">In development</h3>
+            </div>
+
+
+
+
+            <div class="news-container" id="news">
+                <div class="container__title">News</div>
+                <h3 class="dev-text">In development</h3>
+            </div>
         </main>
 
         <footer class="footer">
@@ -359,6 +358,8 @@
     </div>
 
 
+    <script type="text/javascript" src="~/js/elements/challangeItem.js"></script>
+    <script type="text/javascript" src="~/js/elements/courseItemMain.js"></script>
     <script type="text/javascript" src="~/js/util/courses-slider.js"></script>
     <script type="text/javascript" src="~/js/util/news-slider.js"></script>
     <script type="text/javascript" src="~/js/util/challenges-slider.js"></script>

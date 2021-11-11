@@ -1,18 +1,36 @@
-﻿$(document).ready(function () {
+﻿var challanges = [];
+
+$(document).ready(function () {
     //getUserInfo();
     //getCurrentCourse();
     //getAllCourses();
     //getPerformance();
-    getPossibleChallenges();
-    getOfferedChallenges();
+    //getPossibleChallenges();
+    //getOfferedChallenges();
+});
 
-    
+$(document).ready(function () {
+    $('#disciplineBtn').click(function () {
+        console(this);
+        console.log($(this).attr('data-id'))
+        let disciplineId = $(this).attr('data-id');
+        window.location.href = `Course/Disciplines/Lessons?disciplineId${disciplineId}`;
+    });
+});
+
+$(document).ready(function () {
+    $('#courseBtn').click(function () {
+        console(this);
+        console.log($(this).attr('data-id'))
+        let courseId = $(this).attr('data-id');
+        window.location.href = `Course/Disciplines?courseId=${courseId}`;
+    });
 });
 
 function getUserInfo() {
     $.ajax({
         type: 'GET',
-        url: '',
+        url: 'Main/get-user-info',
         processData: true,
         dataType: 'json',
         success: function (data) {
@@ -28,15 +46,17 @@ function getUserInfo() {
 function getCurrentCourse() {
     $.ajax({
         type: 'GET',
-        url: '',
+        url: 'Main/get-user-course',
         processData: true,
         dataType: 'json',
         success: function (data) {
+            $('#courseBtn').attr('data-id', data.courseId);
             $('#courseBackground').css('background-color', 'red');
             $('#courseName').text(data.courseName);
             $('#courseDescription').text(data.description);
             $('#courseImage').attr('src', 'data:image/*;base64, ' + data.image);
-            $('#courseDiagram').attr('data-value', '10');
+            $('#courseDiagram').attr('data-value', data.percentage);
+            $('#disciplineBtn').attr('data-id', data.currentDisciplineId);
         }
     });
 }
@@ -44,11 +64,10 @@ function getCurrentCourse() {
 function getAllCourses() {
     $.ajax({
         type: 'GET',
-        url: '',
+        url: 'Main/get-all-courses',
         processData: true,
         dataType: 'json',
         success: function (data) {
-            return Json(userCourses);
             for (var i = 0; i < data.lenght; i++) {
 
             }
@@ -63,9 +82,8 @@ function getPossibleChallenges() {
         processData: true,
         dataType: 'json',
         success: function (data) {
-            return Json(possibleChallenges);
             for (var i = 0; i < data.lenght; i++) {
-
+                $('#aa').add(getChallangeItem(true, data[i]));
             }
         }
     });
@@ -78,9 +96,11 @@ function getOfferedChallenges() {
         processData: true,
         dataType: 'json',
         success: function (data) {
-            return Json(offeredChallenges);
-            for (var i = 0; i < data.lenght; i++) {
+            if (data.lenght < 7)
+                getPossibleChallenges();
 
+            for (var i = 0; i < data.lenght; i++) {
+                $('#aa').add(getChallangeItem(false, data[i]))
             }
         }
     });

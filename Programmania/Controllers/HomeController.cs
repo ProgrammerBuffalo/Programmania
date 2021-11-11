@@ -17,7 +17,7 @@ namespace Programmania.Controllers
         private IStaticService staticService;
         private IPerformanceService performanceService;
 
-        public HomeController(DAL.ProgrammaniaDBContext dbContext, IStaticService staticService, 
+        public HomeController(DAL.ProgrammaniaDBContext dbContext, IStaticService staticService,
             IFileService fileService, IPerformanceService performanceService)
         {
             this.dbContext = dbContext;
@@ -92,7 +92,12 @@ namespace Programmania.Controllers
                 userCourseVM.LessonsCompleted += item.LessonOrder;
             }
 
-            return Json(new { CurrentCourse = userCourseVM, CurrentDiscipline = userDiscipline.Discipline.Name });
+            return Json(new
+            {
+                CurrentCourse = userCourseVM,
+                CurrentDiscipline = userDiscipline.Discipline.Name,
+                CurrentDisciplineId = userDiscipline.Discipline.Id
+            });
         }
 
         [AllowAnonymous]
@@ -110,7 +115,7 @@ namespace Programmania.Controllers
         public IActionResult GetUserPerformance()
         {
             var user = HttpContext.Items["User"] as User;
-            if(user != null)
+            if (user != null)
             {
                 IEnumerable<Reward> rewards = performanceService.GetRewards(user, 30, 0);
                 return Json(rewards);
