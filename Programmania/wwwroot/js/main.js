@@ -1,4 +1,68 @@
-﻿var challanges = [];
+﻿function getData(rewards) {
+    let data = [];
+    let date1 = new Date(rewards.date);
+    let date2;
+    let j = 0;
+    data.push({ day: date1.getDate(), exp: rewards[0].exp });
+    for (var i = 1; i < rewards.length; i++) {
+        date2 = new Date(rewards[i].date);
+        if (date1.getFullYear() == date2.getFullYear() && date1.getMonth() == date2.getMonth() && date1.getDate() == date2.getDate()) {
+            data[j].exp += rewards[i].exp;
+        }
+        else {
+            j++;
+            data[j] = { exp: rewards[i].exp, day = date2.getDate() }
+            date1 = date2;
+        }
+    }
+    return data;
+}
+
+function getLabels() {
+    let labels = [30];
+    let date = new Date();
+    for (let i = 0; i < labels.length; i++) {
+        labels[i] = date.getDate();
+        date.setDate(date.getDate() + 1);
+    }
+    return labels;
+}
+
+function createChart(ctx, labels, data) {
+    return new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "Rewards",
+                data: data,
+                fill: false,
+                borderColor: "rgb(102, 168, 255)",
+                tension: 0.1
+            }]
+        },
+        options: {
+            layout: {
+                padding: 20
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        font: {
+                            size: 20
+                        }
+                    }
+                }
+            },
+            parsing: {
+                xAxisKey: 'day',
+                yAxisKey: 'exp'
+            },
+            responsive: true,
+            maintainAspectRatio: false
+        },
+    })
+}
 
 $(document).ready(function () {
     //getUserInfo();
@@ -83,7 +147,7 @@ function getPossibleChallenges() {
         dataType: 'json',
         success: function (data) {
             for (var i = 0; i < data.lenght; i++) {
-                $('#aa').add(getChallangeItem(true, data[i]));
+                $('#challanges').append(getChallangeItem(true, data[i]));
             }
         }
     });
@@ -100,7 +164,7 @@ function getOfferedChallenges() {
                 getPossibleChallenges();
 
             for (var i = 0; i < data.lenght; i++) {
-                $('#aa').add(getChallangeItem(false, data[i]))
+                $('#challanges').append(getChallangeItem(false, data[i]))
             }
         }
     });
@@ -112,10 +176,12 @@ function getPerformance() {
         url: '',
         processData: true,
         dataType: 'json',
-        success: function (data) {
-            for (var i = 0; i < data.lenght; i++) {
+        success: function (rewards) {
+            let data = getData(rewards);
+            let labels = getLabels();
 
-            }
+            var ctx = document.getElementById('performanceChart').getContext('2d');
+            createChart(ctx, data, labels);
         }
     });
 }
