@@ -20,19 +20,55 @@
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
+    <link rel="stylesheet" href="~/css/HamburgerMenu.css" />
 
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+@*    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>*@
 
     <title>Main</title>
 </head>
 
 <body>
     <div class="wrapper">
+        <header class="header_main">
+        <div class="header-container">
+            <div class="container__text">Programmania</div>
+            <div class="header__burger">
+                <span></span>
+            </div>
+            <div class="container-menu">
+                <nav class="header__menu">
+                    <ul class="header__list">
+                        <li>
+                            <a href="Main" class="header__link">Main</a>
+                        </li>
+
+                        <li>
+                            <a href="Courses" class="header__link">Courses</a>
+                        </li>
+
+                        <li>
+                            <a href="Performance" class="header__link">Performance</a>
+                        </li>
+
+                        <li>
+                            <a href="Challenges" class="header__link">Challenges</a>
+                        </li>
+
+                        <li>
+                            <a href="Profile" class="header__link">Profile</a>
+                        </li>
+                        <li>
+                            <div class="btn btn_logout">Log out</div>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
         <main class="main">
             <header class="header" style="background-image: url('images/mainHeader.jpg');">
-                <div class="btn btn_logout">Log out</div>
                 <div id="nickname" class="header__title">
                     <p> Welcome to Programmania,</p>
                     <p id="nickname"></p>
@@ -148,10 +184,10 @@
                                         </div>
                                     </div>
 
-                                    <div class="flip">
-                                        <div>
-                                            <img class="flip__front course__image" src="~/images/rubyCourse.png" />
-                                        </div>
+                                        <div class="flip">
+                                            <div class="course__image flip__front">
+                                                <img src="~/images/rubyCourse.png" />
+                                            </div>
 
                                         <div class="flip__back">
                                             <p>Welcome to Ruby Course!</p>
@@ -179,10 +215,10 @@
                                         </div>
                                     </div>
 
-                                    <div class="flip">
-                                        <div>
-                                            <img class="flip__front course__image" src="~/images/cppCourse.png" />
-                                        </div>
+                                        <div class="flip">
+                                            <div class="course__image flip__front">
+                                                <img src="~/images/cppCourse.png"/>
+                                            </div>
 
                                         <div class="flip__back">
                                             <p>Welcome to C++ Course</p>
@@ -210,10 +246,10 @@
                                         </div>
                                     </div>
 
-                                    <div class="flip">
-                                        <div class="flip__front course__image" style="background-image: url('images/phpCourse.jpg');">
-
-                                        </div>
+                                        <div class="flip">
+                                            <div class="flip__front course__image">
+                                                <img src="~/images/phpCourse.jpg" />
+                                            </div>
 
                                         <div class="flip__back">
                                             <p>Welcome to PHP Course</p>
@@ -329,7 +365,9 @@
             </div>
         </main>
 
-        <footer class="footer">
+       
+    </div>
+     <footer class="footer">
             <div class="footer-links" data-aos="zoom-in" data-aos-duration="700">
                 <a href="#" class="footer-links_first">
                     <div class="footer-link__image">
@@ -354,7 +392,6 @@
                 <h5>&#x24B8; 2021 Programmania. All rights reserved.</h5>
             </div>
         </footer>
-    </div>
 
 
     <script type="text/javascript" src="~/js/elements/challangeItem.js"></script>
@@ -365,6 +402,7 @@
     <script type="text/javascript" src="~/js/util/createChartInMain.js"></script>
     <script type="text/javascript" src="~/js/util/open-menu.js"></script>
     <script type="text/javascript" src="~/js/main.js"></script>
+    <script type="text/javascript" src="~/js/util/burger.js"></script>
     <script type="text/javascript">
         AOS.init();
     </script>
