@@ -117,19 +117,19 @@
 
                     <div class="flip flip_right">
                         <div class="flip__front">
-                            <img id="courseImage" class="flip__front course__image" src="~/images/rubyCourse.png" />
+                            <img id="courseImage" class="flip__front course__image"/>
                         </div>
 
                         <div class="flip__back">
-                            <p id="courseDescription">Welcome to Ruby Course!</p>
+                            <p id="courseDescription"></p>
                         </div>
                     </div>
 
                     <div class="course__content">
                         <div class="course__info">
-                            <h2 id="courseName" class="course__title title_ruby">Ruby</h2>
+                            <h2 id="courseName" class="course__title title_ruby"></h2>
                             <div class="course__percent percent_ruby">
-                                <div id="courseDiagram" class="ldBar label-center" data-preset="circle" data-value="77"
+                                <div id="courseDiagram" class="ldBar label-center" data-preset="circle" data-value=""
                                      data-transition-in="1000" style="width: 100%; height: 100%">
                                 </div>
                             </div>
@@ -146,7 +146,7 @@
                                 <a id="disciplineBtn">
                                     <div class="current-discipline">
                                         <h3>Current discipline: </h3>
-                                        <h3 id="discipline">some discipline</h3>
+                                        <h3 id="discipline"></h3>
                                     </div>
                                 </a>
                             </div>
@@ -164,8 +164,8 @@
 
                 <div class="swiper">
                     <div class="courses swiper-container">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
+                        <div id="courses" class="swiper-wrapper">
+                            @*<div class="swiper-slide">
                                 <div class="course" style="background-color: #fcc9c0;">
                                     <div class="course__content">
                                         <div class="course__info">
@@ -256,7 +256,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>*@
                             <div class="swiper-button-prev"></div>
                             <div class="swiper-button-next"></div>
                         </div>
@@ -266,12 +266,12 @@
 
 
 
-            <div class="level-container" id="level">
+            <div class="level-container">
                 <h3 class="container__title">Level</h3>
                 <div class="level">
                     <div class="level-col-1" data-aos="fade-right" data-aos-duration="1000">
                         <div class="level__percent">
-                            <div id="levelDiagram" class="ldBar label-center" data-preset="circle" data-value="77" data-transition-in="1000"
+                            <div id="levelDiagram" class="ldBar label-center" data-preset="circle" data-value="" data-transition-in="1000"
                                  style="width: 100%; height: 100%">
                             </div>
                         </div>
@@ -279,11 +279,11 @@
                     <div class="level-col-2" data-aos="fade-left" data-aos-duration="1000">
                         <div class="level__text">
                             <h3>Level:</h3>
-                            <h3 id="level">32</h3>
+                            <h3 id="level"></h3>
                         </div>
                         <div class="level__text">
                             <h3>Experience: </h3>
-                            <h3 id="expiriance">32</h3>
+                            <h3 id="expiriance"></h3>
                         </div>
                     </div>
                 </div>

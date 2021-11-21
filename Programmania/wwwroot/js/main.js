@@ -11,7 +11,7 @@
         }
         else {
             j++;
-            data[j] = { exp: rewards[i].exp, day = date2.getDate() }
+            data[j] = { exp: rewards[i].exp, day: date2.getDate() }
             date1 = date2;
         }
     }
@@ -65,8 +65,8 @@ function createChart(ctx, labels, data) {
 }
 
 $(document).ready(function () {
-    //getUserInfo();
-    //getCurrentCourse();
+    getUserInfo();
+    getCurrentCourse();
     //getAllCourses();
     //getPerformance();
     //getPossibleChallenges();
@@ -100,9 +100,9 @@ function getUserInfo() {
         success: function (data) {
             $('#nickname').text(data.nickname);
             $('#level').text(data.level);
+            $('#levelDiagram').attr('data-value', data.expToNextLevelPercentage);
             $('#expiriance').text(data.expierence);
             $('#gamesRate').text(data.challengeStats.wins + ' / ' + data.challengeStats.gamesPlayed);
-            $('#levelDiagram').attr('data-value', data.expToNextLevelPercentage);
         }
     });
 }
@@ -114,13 +114,14 @@ function getCurrentCourse() {
         processData: true,
         dataType: 'json',
         success: function (data) {
-            $('#courseBtn').attr('data-id', data.courseId);
+            $('#courseBtn').attr('data-id', data.currentCourse.id);
             $('#courseBackground').css('background-color', 'red');
-            $('#courseName').text(data.courseName);
-            $('#courseDescription').text(data.description);
-            $('#courseImage').attr('src', 'data:image/*;base64, ' + data.image);
-            $('#courseDiagram').attr('data-value', data.percentage);
+            $('#courseName').text(data.currentCourse.courseName);
+            $('#courseDescription').text(data.currentCourse.description);
+            $('#courseImage').attr('src', 'data:image/jpg;base64,' + data.currentCourse.image);
+            $('#courseDiagram').attr('data-value', data.currentCourse.percentage);
             $('#disciplineBtn').attr('data-id', data.currentDisciplineId);
+            $('#discipline').text(data.currentDiscipline);
         }
     });
 }
