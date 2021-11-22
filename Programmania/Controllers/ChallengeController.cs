@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -10,11 +6,14 @@ using Programmania.Attributes;
 using Programmania.Models;
 using Programmania.Services.Interfaces;
 using Programmania.ViewModels;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Programmania.Controllers
 {
     [Route("Challenges")]
-    [Authorize]
+    //[Authorize]
     public class ChallengeController : Controller
     {
         private DAL.ProgrammaniaDBContext dbContext;

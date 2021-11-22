@@ -8,7 +8,7 @@
     str += "<div class='challenge-front'>" +
         + "<div>"
         + `<img src='data:image/*;base64,${challange.courseAvatar}' alt='Avatar image'/>`
-        + "div"
+        + "<div>"
         + "<div class='challenge-content'>"
         + "<div class='challenge__avatar'>"
         + `<img src='data:image/*;base64,${challange.opponentDescription.avatar}' alt='Avatar image'/>`
