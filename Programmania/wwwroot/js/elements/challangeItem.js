@@ -1,28 +1,33 @@
 ﻿function getChallangeItem(isCreate, challange) {
-    let str = "<div class='swiper-slide'>" +
-        `<a data-id=${challange.id}>`;
+    let str = "<div class='swiper-slide'>"
+        + `<a data-id=${challange.id}>`;
 
     if (isCreate) str += "<div class='challenge challenge_create'>";
     else str += "<div class='challenge challenge_accept'>";
 
     str += "<div class='challenge-front'>" +
         + "<div>"
-        + `<img src='data:image/*;base64,${challange.opponentDescription.avatar}' alt='Avatar image'/>`
+        + `<img src='data:image/*;base64,${challange.courseAvatar}' alt='Avatar image'/>`
         + "div"
         + "<div class='challenge-content'>"
         + "<div class='challenge__avatar'>"
-        + `<img src='data:image/*;base64,${challange.courseAvatar}' alt='Avatar image'/>`
+        + `<img src='data:image/*;base64,${challange.opponentDescription.avatar}' alt='Avatar image'/>`
         + "</div>"
         + `<h3 class='challenge__username'>${challange.opponentDescription.name}</h3>`
         + "<p class='challenge__info'>Propose a challenge in Python language</p>"
         + "</div>"
         + " </div>";
 
-    if (isCreate) str += "<div class='challenge-back challenge-back_accept'>";
-    else str += "<div class='challenge-back challenge-back_accept'>";
+    if (isCreate) {
+        str += "<div class='challenge-back challenge-back_accept'>"
+            + "<h3>Create the competition</h3>"
+    }
+    else {
+        str += "<div class='challenge-back challenge-back_accept'>"
+            + "<h3>Create the competition</h3>";
+    }
 
-    str += "<h3>Accept the competition</h3>"
-        + "</div>"
+    str += "</div>"
         + "</div>"
         + "</a>"
         + "</div>";
@@ -30,15 +35,6 @@
     return str;
 }
 
-//public int Id { get; set; }
-//public string Course { get; set; }
-//public byte[] CourseAvatar { get; set; }
-//public DateTime Date { get; set; }
-//public UserShortDescriptionVM OpponentDescription { get; set; }
-
-//public int Id { get; set; }
-//public string Name { get; set; }
-//public byte[] Avatar { get; set; }
 
 //<div class="swiper-slide">
 //    <a href='#'>

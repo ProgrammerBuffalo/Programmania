@@ -132,7 +132,7 @@ namespace Programmania.Controllers
             //UserCourseVM[] userCourses = staticService.GetCourses(user, fileService);
             //return Json(userCourses);
 
-            UserCourseVM[] userCourses = new UserCourseVM[3];
+            UserCourseVM[] userCourses = new UserCourseVM[2];
             userCourses[0] = new UserCourseVM()
             {
                 CourseId = 1,
@@ -151,7 +151,6 @@ namespace Programmania.Controllers
                 CourseName = "course2",
                 Image = System.IO.File.ReadAllBytes("wwwroot\\images\\AngularLogo.png")
             };
-            userCourses[2] = new UserCourseVM();
             return Json(userCourses);
         }
 

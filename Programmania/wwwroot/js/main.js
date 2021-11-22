@@ -1,17 +1,17 @@
 ﻿function getData(rewards) {
     let data = [];
-    let date1 = new Date(rewards.date);
+    let date1 = new Date(rewards[0].createdAt);
     let date2;
     let j = 0;
-    data.push({ day: date1.getDate(), exp: rewards[0].exp });
+    data.push({ day: date1.getDate(), exp: rewards[0].experience });
     for (var i = 1; i < rewards.length; i++) {
-        date2 = new Date(rewards[i].date);
+        date2 = new Date(rewards[i].createdAt);
         if (date1.getFullYear() == date2.getFullYear() && date1.getMonth() == date2.getMonth() && date1.getDate() == date2.getDate()) {
-            data[j].exp += rewards[i].exp;
+            data[j].exp += rewards[i].experience;
         }
         else {
             j++;
-            data[j] = { exp: rewards[i].exp, day: date2.getDate() }
+            data[j] = { exp: rewards[i].experience, day: date2.getDate() }
             date1 = date2;
         }
     }
@@ -19,11 +19,11 @@
 }
 
 function getLabels() {
-    let labels = [30];
+    let labels = new Array(30);
     let date = new Date();
     for (let i = 0; i < labels.length; i++) {
         labels[i] = date.getDate();
-        date.setDate(date.getDate() + 1);
+        date.setDate(date.getDate() - 1);
     }
     return labels;
 }
@@ -67,10 +67,10 @@ function createChart(ctx, labels, data) {
 $(document).ready(function () {
     getUserInfo();
     getCurrentCourse();
-    //getAllCourses();
-    //getPerformance();
-    //getPossibleChallenges();
-    //getOfferedChallenges();
+    getAllCourses();
+    getPerformance();
+    getPossibleChallenges();
+    getOfferedChallenges();
 });
 
 $(document).ready(function () {
@@ -133,9 +133,25 @@ function getAllCourses() {
         processData: true,
         dataType: 'json',
         success: function (data) {
-            for (var i = 0; i < data.lenght; i++) {
-
+            for (var i = 0; i < data.length; i++) {
+                $('#courses').append(createCourseItemMain(data[i]));
             }
+        }
+    });
+}
+
+function getPerformance() {
+    $.ajax({
+        type: 'GET',
+        url: 'Main/get-user-performance',
+        processData: true,
+        dataType: 'json',
+        success: function (rewards) {
+            let data = getData(rewards);
+            let labels = getLabels();
+
+            var ctx = document.getElementById('performanceChart').getContext('2d');
+            createChart(ctx, labels, data);
         }
     });
 }
@@ -143,11 +159,11 @@ function getAllCourses() {
 function getPossibleChallenges() {
     $.ajax({
         type: 'GET',
-        url: '',
+        url: 'Main/get-possible-challenges',
         processData: true,
         dataType: 'json',
         success: function (data) {
-            for (var i = 0; i < data.lenght; i++) {
+            for (var i = 0; i < data.length; i++) {
                 $('#challanges').append(getChallangeItem(true, data[i]));
             }
         }
@@ -157,32 +173,16 @@ function getPossibleChallenges() {
 function getOfferedChallenges() {
     $.ajax({
         type: 'GET',
-        url: '',
+        url: 'Main/get-offered-challenges',
         processData: true,
         dataType: 'json',
         success: function (data) {
             if (data.lenght < 7)
                 getPossibleChallenges();
 
-            for (var i = 0; i < data.lenght; i++) {
+            for (var i = 0; i < data.length; i++) {
                 $('#challanges').append(getChallangeItem(false, data[i]))
             }
-        }
-    });
-}
-
-function getPerformance() {
-    $.ajax({
-        type: 'GET',
-        url: '',
-        processData: true,
-        dataType: 'json',
-        success: function (rewards) {
-            let data = getData(rewards);
-            let labels = getLabels();
-
-            var ctx = document.getElementById('performanceChart').getContext('2d');
-            createChart(ctx, data, labels);
         }
     });
 }
