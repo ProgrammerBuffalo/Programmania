@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using Programmania.Attributes;
 using Programmania.Models;
 using Programmania.Services.Interfaces;
 using Programmania.ViewModels;
