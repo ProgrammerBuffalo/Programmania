@@ -108,6 +108,7 @@
                         <div class="tab">
                             <button id="userInfo" class="tablinks">User info</button>
                             <button id="games" class="tablinks">Games</button>
+                            <button id="challenges" class="tablinks">Challenges</button>
                             @*<button id="achievments" class="tablinks">Achievments</button>*@
                         </div>
 
@@ -154,6 +155,45 @@
                                     <p>@Model.ChallengeStats.Winrate</p>
                                 </div>
                                 <hr />
+                            </div>
+                        </div>
+
+                        <div class="tabcontent" id="challengesTab">
+                            <div class="challenges">
+                                <div class="challenge challenge_win">
+                                    <div class="challenge__description">
+                                        <p>Opponent: <a href="#">JohnJohnson</a></p>
+                                        <p>Language: <span>Python</span></p>
+                                    </div>
+
+                                    <div class="challenge__main">
+                                        <div class="challenge__result">
+                                            <h3>Win</h3>
+                                        </div>  
+
+                                        <div class="challenge__xp">
+                                            <h3><span>+200</span> XP</h3>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                 <div class="challenge challenge_lose">
+                                    <div class="challenge__description">
+                                        <p>Opponent: <a href="#">JohnJohnson</a></p>
+                                        <p>Language: <span>Python</span></p>
+                                    </div>
+
+                                   <div class="challenge__main">
+                                        <div class="challenge__result">
+                                            <h3>Lose</h3>
+                                        </div>  
+
+                                        <div class="challenge__xp">
+                                            <h3><span>-200</span> XP</h3>
+                                        </div>
+                                   </div>
+                                </div>
                             </div>
                         </div>
 

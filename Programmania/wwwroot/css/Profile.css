@@ -155,6 +155,58 @@ hr {
     font-family: monsterrat-bold;
 }
 
+.challenge{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 20px;
+    padding: 20px;
+
+    height: 75px;
+    width: 100%;
+}
+
+.challenge__description{
+    width: 33.333%;
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-around;
+}
+.challenge__main{
+    width: 66.666%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.challenge_win {
+    background-color: #deffdf;
+}
+.challenge_win p {
+    color: #007003;
+    font-size: 16px;
+}
+.challenge_win h3 {
+    color: #007003;
+    font-size: 30px;
+}
+
+.challenge_lose {
+    background-color: #ffdede;
+}
+
+.challenge_lose p {
+    color: #700000;
+    font-size: 16px;
+}
+
+.challenge_lose h3 {
+    color: #700000;
+    font-size: 30px;
+}
 /* Change background color of buttons on hover */
 .tab button:hover {
     background-color: #51aff7;
@@ -176,6 +228,30 @@ hr {
 @media (max-width: 1227px) {
     .level {
         padding: 20px 100px;
+    }
+}
+
+@media(max-width: 1060px) {
+    .tabcontent{
+        padding: 20px;
+    }
+
+    .challenge{
+        padding: 10px;
+        height: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .challenge__description{
+        width: 100%;
+    }
+
+    .challenge__main{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
     }
 }
 
@@ -212,5 +288,16 @@ hr {
 @media (max-width: 430px) {
     .profile__name {
         font-size: 2.2em;
+    }
+}
+
+@media(max-width: 380px) {
+    .challenge{
+        justify-content: center;
+        align-items: center;
+    }
+    .challenge__main{
+        flex-direction: column;
+        align-items: center;
     }
 }

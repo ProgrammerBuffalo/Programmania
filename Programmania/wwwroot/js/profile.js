@@ -12,6 +12,8 @@
 
     initTab(document.getElementById('games'),
         document.getElementById('gamesTab'));
+    initTab(document.getElementById('challenges'),
+        document.getElementById('challengesTab'));
 
     //initTab(document.getElementById('achievments'),
     //    document.getElementById('achievmentsTab'));
