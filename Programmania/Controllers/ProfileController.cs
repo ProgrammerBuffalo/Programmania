@@ -19,28 +19,42 @@ namespace Programmania.Controllers
             this.profileService = profileService;
         }
 
+        [AllowAnonymous]
         [HttpGet("")]
         public IActionResult Profile(string userIdCode)
         {
-            UserProfileVM profileVM;
-            if (userIdCode == null)
+            //UserProfileVM profileVM;
+            //if (userIdCode == null)
+            //{
+            //    var user = HttpContext.Items["User"] as User;
+            //    profileVM = profileService.GetProfileData(user);
+            //}
+            //else
+            //{
+            //    int? result = Utilities.Encryptor.DecryptToInt(userIdCode);
+            //    if (result != null)
+            //        profileVM = profileService.GetProfileData(result.Value);
+            //    else
+            //        return NotFound();
+            //}
+            //if (profileVM != null)
+            //    return View("/Views/Home/Profile.cshtml", profileVM);
+            //else
+            //    return NotFound();
+            UserProfileVM profileVM = new UserProfileVM(true)
             {
-                var user = HttpContext.Items["User"] as User;
-                profileVM = profileService.GetProfileData(user);
-            }
-            else
-            {
-                int? result = Utilities.Encryptor.DecryptToInt(userIdCode);
-                if (result != null)
-                    profileVM = profileService.GetProfileData(result.Value);
-                else
-                    return NotFound();
-            }
-            if (profileVM != null)
-                return View("/Views/Home/Profile.cshtml", profileVM);
-            else
-                return NotFound();
-            //return View("/Views/Home/Profile.cshtml", new UserProfileVM(true));
+                Nickname = "nick1",
+                Avatar = System.IO.File.ReadAllBytes("wwwroot\\images\\caio.jpg"),
+                Email = "email",
+                Expierence = 100,
+                ChallengeStats = new UserChallengeStatsVM()
+                {
+                    Wins = 10,
+                    Draws = 2,
+                    Loses = 2
+                }
+            };
+            return View("/Views/Home/Profile.cshtml", profileVM);
         }
 
         [HttpPost("change-nickname")]
