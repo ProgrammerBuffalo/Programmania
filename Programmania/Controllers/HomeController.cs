@@ -30,8 +30,8 @@ namespace Programmania.Controllers
         [HttpGet("")]
         public IActionResult Index()
         {
-            //return View();
-            return Redirect("Main");
+            return View();
+            //return Redirect("Main");
         }
 
         [AllowAnonymous]

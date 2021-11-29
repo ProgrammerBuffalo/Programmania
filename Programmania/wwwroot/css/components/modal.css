@@ -35,9 +35,9 @@
 
 .modal__input {
     font-family: monsterrat-light !important;
-    margin-top: 10px !important;
     font-size: 0.8em !important;
 }
+
 
 .modal__close {
     margin: 30px !important;
@@ -53,8 +53,8 @@
 
 .close {
     color: #aaa;
-    float: right;
-    font-size: 20px;
+    text-align: right;
+    font-size: 30px;
     font-weight: bold;
 }
 
@@ -68,7 +68,9 @@
 .modal__btn{
     width: 100% !important;
     font-size: 0.8em !important;
-    margin-top: 10px !important;
+    margin-top: 30px !important;
+    margin-bottom: 30px !important;
+    border-radius: 10px !important;
 }
 
 @keyframes animatetop {

@@ -6,6 +6,10 @@ new Swiper('.swiper', {
         stopOnLastSlide: true,
         disableOnInteraction: false
     },
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
     breakpoints: {
         320: {
             slidesPerView: 1
