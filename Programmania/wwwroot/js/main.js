@@ -73,24 +73,6 @@ $(document).ready(function () {
     getOfferedChallenges();
 });
 
-$(document).ready(function () {
-    $('#disciplineBtn').click(function () {
-        console(this);
-        console.log($(this).attr('data-id'))
-        let disciplineId = $(this).attr('data-id');
-        window.location.href = `Course/Disciplines/Lessons?disciplineId${disciplineId}`;
-    });
-});
-
-$(document).ready(function () {
-    $('#courseBtn').click(function () {
-        console(this);
-        console.log($(this).attr('data-id'))
-        let courseId = $(this).attr('data-id');
-        window.location.href = `Course/Disciplines?courseId=${courseId}`;
-    });
-});
-
 function getUserInfo() {
     $.ajax({
         type: 'GET',
@@ -186,3 +168,21 @@ function getOfferedChallenges() {
         }
     });
 }
+
+$(document).ready(function () {
+    $('#disciplineBtn').click(function () {
+        console(this);
+        console.log($(this).attr('data-id'))
+        let disciplineId = $(this).attr('data-id');
+        window.location.href = `Course/Disciplines/Lessons?disciplineId${disciplineId}`;
+    });
+});
+
+$(document).ready(function () {
+    $('#courseBtn').click(function () {
+        console(this);
+        console.log($(this).attr('data-id'))
+        let courseId = $(this).attr('data-id');
+        window.location.href = `Course/Disciplines?courseId=${courseId}`;
+    });
+});

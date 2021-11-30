@@ -1,9 +1,18 @@
 ﻿function getChallangeItem(isCreate, challange) {
-    let str = "<div class='swiper-slide'>"
-        + `<a data-id=${challange.id}>`;
+    //let str = "<div class='swiper-slide'>"
+    //    + `<a data-id=${challange.id}>`;
 
-    if (isCreate) str += "<div class='challenge challenge_create'>";
-    else str += "<div class='challenge challenge_accept'>";
+    //if (isCreate) str += "<div class='challenge challenge_create'>";
+    //else str += "<div class='challenge challenge_accept'>";
+
+    let str = "<div class='swiper-slide'>";
+
+    if (isCreate)
+        str += `<a href='Challenges/create-challenge?userId=${challange.opponentDescription.id}&courseId=${challange.courseId}'>`
+            + "<div class='challenge challenge_create'>";
+    else
+        str += `<a href='Challenges/create-challenge?challengeId=${challange.id}'>`
+            + "<div class='challenge challenge_accept'>";
 
     str += "<div class='challenge-front'>"
         + "<div>"

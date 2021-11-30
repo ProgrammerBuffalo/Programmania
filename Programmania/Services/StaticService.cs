@@ -116,6 +116,7 @@ namespace Programmania.Services
 
                 challenges.Add(new PossibleChallengeVM
                 {
+                    CourseId = course.Id,
                     Course = course.Name,
                     CourseAvatar = fileService.GetDocument(dbContext.Documents
                     .FirstOrDefault(d => d.StreamId == course.StreamId)?.Path),
