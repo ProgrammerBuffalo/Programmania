@@ -28,8 +28,8 @@ namespace Programmania.Controllers
         [HttpGet("")]
         public IActionResult Courses()
         {
-            UserCourseVM[] userCourses = staticService.GetCourses(HttpContext.Items["User"] as User, fileService);
-            return View(userCourses);
+            //UserCourseVM[] userCourses = staticService.GetCourses(HttpContext.Items["User"] as User, fileService);
+            return View();
         }
 
         [HttpGet("Disciplines")]
