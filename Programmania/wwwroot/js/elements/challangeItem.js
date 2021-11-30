@@ -27,8 +27,9 @@
         + "</div>"
         + "</div>";
 
+
     if (isCreate) {
-        str += "<div class='challenge-back challenge-back_accept'>"
+        str += "<div class='challenge-back challenge-back_create'>"
             + "<h3>Create the competition</h3>"
     }
     else {
@@ -36,7 +37,8 @@
             + "<h3>Create the competition</h3>";
     }
 
-    str += "</div>"
+    str += "</a>"
+        + "</div>"
         + "</div>"
         + "</a>"
         + "</div>";
