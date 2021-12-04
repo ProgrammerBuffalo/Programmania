@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace Programmania.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class HomeController : Controller
     {
         private DAL.ProgrammaniaDBContext dbContext;
@@ -27,21 +27,19 @@ namespace Programmania.Controllers
         }
 
         [AllowAnonymous]
+        [HttpGet("Index")]
         [HttpGet("")]
         public IActionResult Index()
         {
             return View();
-            //return Redirect("Main");
         }
 
-        [AllowAnonymous]
         [HttpGet("Main")]
         public IActionResult Main()
         {
             return View();
         }
 
-        [AllowAnonymous]
         [HttpGet("Main/get-user-info")]
         public IActionResult GetUserLevel()
         {
@@ -64,7 +62,6 @@ namespace Programmania.Controllers
             //});
         }
 
-        [AllowAnonymous]
         [HttpGet("Main/get-user-course")]
         public IActionResult GetUserCourse()
         {
@@ -123,7 +120,7 @@ namespace Programmania.Controllers
             });
         }
 
-        [AllowAnonymous]
+        
         [HttpGet("Main/get-all-courses")]
         public IActionResult GetAllCourses()
         {
@@ -154,7 +151,6 @@ namespace Programmania.Controllers
             return Json(userCourses);
         }
 
-        [AllowAnonymous]
         [HttpGet("Main/get-user-performance")]
         public IActionResult GetUserPerformance()
         {
@@ -180,7 +176,6 @@ namespace Programmania.Controllers
             return Json(rewards);
         }
 
-        [AllowAnonymous]
         [HttpGet("Main/get-offered-challenges")]
         public IActionResult GetOfferedChallenges()
         {
@@ -188,6 +183,8 @@ namespace Programmania.Controllers
 
             //List<OfferedChallengeVM> offeredChallenges = staticService.GetOfferedChallenges(user, fileService);
             //return Json(offeredChallenges);
+
+            //-----------------------------------------------
 
             OfferedChallengeVM[] offeredChallengeVMs = new OfferedChallengeVM[2];
             offeredChallengeVMs[0] = new OfferedChallengeVM()
@@ -219,7 +216,6 @@ namespace Programmania.Controllers
             return Json(offeredChallengeVMs);
         }
 
-        [AllowAnonymous]
         [HttpGet("Main/get-possible-challenges")]
         public IActionResult GetPossibleChallenges(int count)
         {
@@ -228,9 +224,12 @@ namespace Programmania.Controllers
             //List<PossibleChallengeVM> possibleChallenges = staticService.GetPossibleChallenges(fileService, count);
             //return Json(possibleChallenges);
 
+            //-----------------------------------------------
+
             PossibleChallengeVM[] possibleChallengeVM = new PossibleChallengeVM[2];
             possibleChallengeVM[0] = new PossibleChallengeVM()
             {
+                CourseId = 1,
                 Course = "course1",
                 CourseAvatar = System.IO.File.ReadAllBytes("wwwroot\\images\\AngularLogo.png"),
                 OpponentDescription = new UserShortDescriptionVM()
@@ -242,6 +241,7 @@ namespace Programmania.Controllers
             };
             possibleChallengeVM[1] = new PossibleChallengeVM()
             {
+                CourseId = 2,
                 Course = "course2",
                 CourseAvatar = System.IO.File.ReadAllBytes("wwwroot\\images\\AngularLogo.png"),
                 OpponentDescription = new UserShortDescriptionVM()

@@ -66,10 +66,10 @@ namespace Programmania.Controllers
         {
             if (!ModelState.IsValid)
             {
-                Models.User user = dbContext.Users.FirstOrDefault(u => u.Login == authenticationRequest.Email && u.Password == authenticationRequest.Password);
+                User user = dbContext.Users.FirstOrDefault(u => u.Login == authenticationRequest.Email && u.Password == authenticationRequest.Password);
                 if (user == null)
                 {
-                    string json = Utilities.FormError.MakeServerError("Error", "email or password was entered wrong");
+                    string json = Utilities.FormError.MakeServerError("error", "email or password was entered wrong");
                     return BadRequest(json);
                 }
                 else
@@ -130,9 +130,9 @@ namespace Programmania.Controllers
                 {
                     string jsonResponse;
                     if (user.Login == registrationVM.Email)
-                        jsonResponse = Utilities.FormError.MakeServerError("Error", "The given email already exists");
+                        jsonResponse = Utilities.FormError.MakeServerError("error", "The given email already exists");
                     else
-                        jsonResponse = Utilities.FormError.MakeServerError("Error", "The given password already exists");
+                        jsonResponse = Utilities.FormError.MakeServerError("error", "The given password already exists");
                     return BadRequest(jsonResponse);
                 }
             }

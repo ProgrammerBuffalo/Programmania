@@ -1,9 +1,18 @@
-﻿function getChallangeItem(isCreate, challange) {
-    let str = "<div class='swiper-slide'>"
-        + `<a data-id=${challange.id}>`;
+﻿function getChallangeItem(isCreate, challange, i) {
+    //let str = "<div class='swiper-slide'>"
+    //    + `<a data-id=${challange.id}>`;
 
-    if (isCreate) str += "<div class='challenge challenge_create'>";
-    else str += "<div class='challenge challenge_accept'>";
+    //if (isCreate) str += "<div class='challenge challenge_create'>";
+    //else str += "<div class='challenge challenge_accept'>";
+
+    let str = "<div class='swiper-slide'>"
+        + `<a data-id=${i}>`;
+
+
+    if (isCreate)
+        str += "<div class='challenge challenge_create'>";
+    else
+        str += "<div class='challenge challenge_accept'>";
 
     str += "<div class='challenge-front'>"
         + "<div>"
@@ -18,21 +27,73 @@
         + "</div>"
         + "</div>";
 
+
     if (isCreate) {
-        str += "<div class='challenge-back challenge-back_accept'>"
+        str += "<div class='challenge-back challenge-back_create'>"
             + "<h3>Create the competition</h3>"
     }
     else {
         str += "<div class='challenge-back challenge-back_accept'>"
-            + "<h3>Create the competition</h3>";
+            + "<h3>Accept the competition</h3>";
     }
 
-    str += "</div>"
+    str += "</a>"
+        + "</div>"
         + "</div>"
         + "</a>"
         + "</div>";
 
     return str;
+}
+
+function createOfferedChallangeItem() {
+    return "<div class='swiper-slide'>"
+        + `<a data-id=${i} onclick='acceptOfferedChallange()'>`
+        + "<div class='challenge challenge_accept'>"
+        + "<div class='challenge-front'>"
+        + "<div>"
+        + `<img src='data:image/*;base64,${challange.courseAvatar}' class='challenge__image' alt='Avatar image' />`
+        + "</div>"
+        + "<div class='challenge-content'>"
+        + "<div class='challenge__avatar'>"
+        + `<img src='data:image/*;base64,${challange.opponentDescription.avatar}' alt='Avatar image'/>`
+        + "</div>"
+        + `<h3 class='challenge__username'>${challange.opponentDescription.name}</h3>`
+        + "<p class='challenge__info'>Propose a challenge in Python language</p>"
+        + "</div>"
+        + "</div>"
+        + "<div class='challenge-back challenge-back_accept'>"
+        + "<h3>Accept the competition</h3>"
+        + "</a>"
+        + "</div>"
+        + "</div>"
+        + "</a>"
+        + "</div>";
+}
+
+function createCreateableChallangeItem() {
+    return "<div class='swiper-slide'>"
+        + `<a data-id=${i}> onclick='acceptCreateableChallange()'`
+        + "<div class='challenge challenge_create'>"
+        + "<div class='challenge-front'>"
+        + "<div>"
+        + `<img src='data:image/*;base64,${challange.courseAvatar}' class='challenge__image' alt='Avatar image' />`
+        + "</div>"
+        + "<div class='challenge-content'>"
+        + "<div class='challenge__avatar'>"
+        + `<img src='data:image/*;base64,${challange.opponentDescription.avatar}' alt='Avatar image'/>`
+        + "</div>"
+        + `<h3 class='challenge__username'>${challange.opponentDescription.name}</h3>`
+        + "<p class='challenge__info'>Propose a challenge in Python language</p>"
+        + "</div>"
+        + "</div>"
+        + "<div class='challenge-back challenge-back_create'>"
+        + "<h3>Create the competition</h3>"
+        + "</a>"
+        + "</div>"
+        + "</div>"
+        + "</a>"
+        + "</div>";
 }
 
 

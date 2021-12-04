@@ -1,4 +1,6 @@
-﻿function getData(rewards) {
+﻿var challanges = [];
+
+function getData(rewards) {
     let data = [];
     let date1 = new Date(rewards[0].createdAt);
     let date2;
@@ -69,26 +71,7 @@ $(document).ready(function () {
     getCurrentCourse();
     getAllCourses();
     getPerformance();
-    getPossibleChallenges();
-    getOfferedChallenges();
-});
-
-$(document).ready(function () {
-    $('#disciplineBtn').click(function () {
-        console(this);
-        console.log($(this).attr('data-id'))
-        let disciplineId = $(this).attr('data-id');
-        window.location.href = `Course/Disciplines/Lessons?disciplineId${disciplineId}`;
-    });
-});
-
-$(document).ready(function () {
-    $('#courseBtn').click(function () {
-        console(this);
-        console.log($(this).attr('data-id'))
-        let courseId = $(this).attr('data-id');
-        window.location.href = `Course/Disciplines?courseId=${courseId}`;
-    });
+    getChallanges();
 });
 
 function getUserInfo() {
@@ -156,33 +139,75 @@ function getPerformance() {
     });
 }
 
+async function getChallanges() {
+    let data = await getOfferedChallenges();
+
+    let i = 0;
+    for (i; i < data.length; i++)
+        $('#challanges').append(getChallangeItem(false, data[i], i))
+
+    if (data.length < 7) {
+        data = await getPossibleChallenges();
+        for (var j = 0; j < data.length; j++, i++)
+            $('#challanges').append(getChallangeItem(true, data[j], i));
+    }
+}
+
 function getPossibleChallenges() {
-    $.ajax({
+    return $.ajax({
         type: 'GET',
         url: 'Main/get-possible-challenges',
         processData: true,
         dataType: 'json',
         success: function (data) {
-            for (var i = 0; i < data.length; i++) {
-                $('#challanges').append(getChallangeItem(true, data[i]));
-            }
+            return data;
+            //for (var i = 0; i < data.length; i++) {
+            //    challanges.append(data[i]);
+            //    $('#challanges').append(getChallangeItem(true, data[i]));
+            //}
         }
     });
 }
 
 function getOfferedChallenges() {
-    $.ajax({
+    return $.ajax({
         type: 'GET',
         url: 'Main/get-offered-challenges',
         processData: true,
         dataType: 'json',
         success: function (data) {
-            if (data.lenght < 7)
-                getPossibleChallenges();
-
-            for (var i = 0; i < data.length; i++) {
-                $('#challanges').append(getChallangeItem(false, data[i]))
-            }
+            return data;
+            //for (var i = 0; i < data.length; i++) {
+            //    challanges.append(data[i]);
+            //    $('#challanges').append(getChallangeItem(false, data[i]))
+            //}
         }
     });
 }
+
+function acceptCreateableChallange() {
+
+}
+
+function acceptOfferedChallange() {
+
+}
+
+
+$(document).ready(function () {
+    $('#disciplineBtn').click(function () {
+        console(this);
+        console.log($(this).attr('data-id'))
+        let disciplineId = $(this).attr('data-id');
+        window.location.href = `Course/Disciplines/Lessons?disciplineId${disciplineId}`;
+    });
+});
+
+$(document).ready(function () {
+    $('#courseBtn').click(function () {
+        console(this);
+        console.log($(this).attr('data-id'))
+        let courseId = $(this).attr('data-id');
+        window.location.href = `Course/Disciplines?courseId=${courseId}`;
+    });
+});
