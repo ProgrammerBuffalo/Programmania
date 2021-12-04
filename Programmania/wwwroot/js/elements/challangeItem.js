@@ -8,6 +8,7 @@
     let str = "<div class='swiper-slide'>"
         + `<a data-id=${i}>`;
 
+
     if (isCreate)
         str += "<div class='challenge challenge_create'>";
     else
