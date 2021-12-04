@@ -26,7 +26,10 @@ $(document).ready(function () {
             headers: { 'Authorization': 'Bearer ' + getCookie('JwtToken') },
             data: data,
             success: function () {
-                window.location.href = redirectTo;
+                if (redirectTo == null || redirectTo === undefined)
+                    window.location.href = 'main';
+                else
+                    window.location.href = redirectTo;
             },
             error: function (jqXHR) {
                 var errors = JSON.parse(jqXHR.responseText);

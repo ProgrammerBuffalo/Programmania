@@ -11,7 +11,7 @@ using System.Linq;
 namespace Programmania.Controllers
 {
     [Route("Courses")]
-    //[Authorize]
+    [Authorize]
     public class CourseController : Controller
     {
         private DAL.ProgrammaniaDBContext dbContext;
@@ -33,7 +33,6 @@ namespace Programmania.Controllers
         }
 
         [HttpGet("Disciplines")]
-        [AllowAnonymous]
         public IActionResult Disciplines(int courseId)
         {
             //UserDisciplineVM[] userDisciplines = new UserDisciplineVM[6];
@@ -89,8 +88,7 @@ namespace Programmania.Controllers
         //    return Json(null);
         //}
 
-        [Route("Disciplines/discipline-begin")]
-        [HttpPost]
+        [HttpPost("Disciplines/discipline-begin")]
         public IActionResult BeginDiscipline(int disciplineId)
         {
             var user = HttpContext.Items["User"] as User;
@@ -122,8 +120,7 @@ namespace Programmania.Controllers
         //    return Json(null);
         //}
 
-        [Route("Disciplines/Lessons/check-test")]
-        [HttpPost]
+        [HttpPost("Disciplines/Lessons/check-test")]
         public IActionResult CheckTest(int testIndex, int disciplineId, int lessonId)
         {
             User user = HttpContext.Items["User"] as User;
@@ -145,9 +142,7 @@ namespace Programmania.Controllers
             return Json(false);
         }
 
-        [AllowAnonymous]
-        [Route("Disciplines/Lesson")]
-        [HttpGet]
+        [HttpGet("Disciplines/Lesson")]
         public IActionResult CheckLessonAccess(int lessonId, int disciplineId)
         {
             return Json(null);

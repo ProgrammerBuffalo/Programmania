@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace Programmania.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class HomeController : Controller
     {
         private DAL.ProgrammaniaDBContext dbContext;
@@ -27,21 +27,19 @@ namespace Programmania.Controllers
         }
 
         [AllowAnonymous]
+        [HttpGet("Index")]
         [HttpGet("")]
         public IActionResult Index()
         {
-            //return View();
-            return Redirect("Main");
+            return View();
         }
 
-        [AllowAnonymous]
         [HttpGet("Main")]
         public IActionResult Main()
         {
             return View();
         }
 
-        [AllowAnonymous]
         [HttpGet("Main/get-user-info")]
         public IActionResult GetUserLevel()
         {
@@ -64,7 +62,6 @@ namespace Programmania.Controllers
             //});
         }
 
-        [AllowAnonymous]
         [HttpGet("Main/get-user-course")]
         public IActionResult GetUserCourse()
         {
@@ -123,7 +120,7 @@ namespace Programmania.Controllers
             });
         }
 
-        [AllowAnonymous]
+        
         [HttpGet("Main/get-all-courses")]
         public IActionResult GetAllCourses()
         {
@@ -154,7 +151,6 @@ namespace Programmania.Controllers
             return Json(userCourses);
         }
 
-        [AllowAnonymous]
         [HttpGet("Main/get-user-performance")]
         public IActionResult GetUserPerformance()
         {
@@ -180,7 +176,6 @@ namespace Programmania.Controllers
             return Json(rewards);
         }
 
-        [AllowAnonymous]
         [HttpGet("Main/get-offered-challenges")]
         public IActionResult GetOfferedChallenges()
         {
@@ -221,7 +216,6 @@ namespace Programmania.Controllers
             return Json(offeredChallengeVMs);
         }
 
-        [AllowAnonymous]
         [HttpGet("Main/get-possible-challenges")]
         public IActionResult GetPossibleChallenges(int count)
         {

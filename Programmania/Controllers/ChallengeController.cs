@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace Programmania.Controllers
 {
     [Route("Challenges")]
-    //[Authorize]
+    [Authorize]
     public class ChallengeController : Controller
     {
         private DAL.ProgrammaniaDBContext dbContext;
@@ -27,7 +27,6 @@ namespace Programmania.Controllers
             this.staticService = staticService;
         }
 
-        [AllowAnonymous]
         [HttpGet("challenge-stats")]
         public IActionResult GetUserStats()
         {
@@ -41,7 +40,6 @@ namespace Programmania.Controllers
             return Json(new UserChallengeStatsVM { Wins = stats.Wins, Loses = stats.Loses, Draws = stats.Draws });
         }
 
-        [AllowAnonymous]
         [HttpGet("get-acceptable-challenges")]
         public IActionResult GetAcceptableChallenges()
         {
@@ -51,7 +49,6 @@ namespace Programmania.Controllers
             return View(offeredChallenges);
         }
 
-        [AllowAnonymous]
         [HttpGet("get-creatable-challenges")]
         public IActionResult GetCreatableChallenges()
         {
@@ -62,7 +59,6 @@ namespace Programmania.Controllers
             return View(offeredChallenges);
         }
 
-        [AllowAnonymous]
         [HttpPost("send-answers")]
         public async Task<IActionResult> SendAnswersPacket(Dictionary<int, int> answers)
         {
@@ -114,7 +110,6 @@ namespace Programmania.Controllers
             return Ok();
         }
 
-        [AllowAnonymous]
         [HttpPost("create-challenge")]
         public async Task<IActionResult> CreateChallenge(int courseId, int userId)
         {
@@ -131,7 +126,6 @@ namespace Programmania.Controllers
             return RedirectToAction("accept-challenge", (int)challengeParam.Value);
         }
 
-        [AllowAnonymous]
         [HttpPost("accept-challenge")]
         public IActionResult AcceptChallenge(int challengeId)
         {
@@ -139,7 +133,6 @@ namespace Programmania.Controllers
             return RedirectToAction("tests");
         }
 
-        [AllowAnonymous]
         [HttpGet("get-tests")]
         public IActionResult GetTestsOfChallenge()
         {
