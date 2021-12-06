@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Programmania.Attributes;
+using Programmania.DTOs;
 using Programmania.Models;
 using Programmania.Services.Interfaces;
 using Programmania.ViewModels;
@@ -12,8 +13,9 @@ using System.Threading.Tasks;
 
 namespace Programmania.Controllers
 {
-    [Route("Challenges")]
     [Authorize]
+    [Route("[controller]")]
+    [ApiController]
     public class ChallengeController : Controller
     {
         private DAL.ProgrammaniaDBContext dbContext;
@@ -25,6 +27,18 @@ namespace Programmania.Controllers
             this.dbContext = dbContext;
             this.fileService = fileService;
             this.staticService = staticService;
+        }
+
+        [HttpGet]
+        public IActionResult Challange()
+        {
+            return View("/Views/Home/Challenge.cshtml");
+        }
+
+        [HttpGet("Result")]
+        public IActionResult Result()
+        {
+            return View();
         }
 
         [HttpGet("challenge-stats")]
@@ -60,7 +74,7 @@ namespace Programmania.Controllers
         }
 
         [HttpPost("send-answers")]
-        public async Task<IActionResult> SendAnswersPacket(Dictionary<int, int> answers)
+        public async Task<IActionResult> SendAnswersPacket(AnswerDTO[] answers)
         {
             User user = HttpContext.Items["User"] as User;
             int? challengeId = HttpContext.Session.GetInt32("challenge");
@@ -74,13 +88,13 @@ namespace Programmania.Controllers
                 return BadRequest();
 
             int counter = 0;
-            foreach (var kvp in answers)
+            foreach (var answer in answers)
             {
-                Test test = listTests.FirstOrDefault(t => t.Id == kvp.Key);
+                Test test = listTests.FirstOrDefault(t => t.Id == answer.QuestionId);
                 if (test == null)
                     continue;
 
-                if (test.Correct == kvp.Value)
+                if (test.Correct == answer.QuestionId)
                     counter++;
             }
 
@@ -124,16 +138,17 @@ namespace Programmania.Controllers
             HttpContext.Session.SetInt32("opponent", userId);
 
             return RedirectToAction("accept-challenge", (int)challengeParam.Value);
+            //return RedirectToAction("accept-challenge", 1);
         }
 
-        [HttpPost("accept-challenge")]
+        [HttpGet("accept-challenge")]
         public IActionResult AcceptChallenge(int challengeId)
         {
             HttpContext.Session.SetInt32("challenge", challengeId);
-            return RedirectToAction("tests");
+            return Ok();
         }
 
-        [HttpGet("get-tests")]
+        [HttpGet("tests")]
         public IActionResult GetTestsOfChallenge()
         {
             int? challengeId = HttpContext.Session.GetInt32("challenge");
@@ -158,7 +173,17 @@ namespace Programmania.Controllers
                     A4 = test.Answer4
                 });
 
-            return View(tests);
+            return Json(tests);
+
+            //List<TestVM> tests = new List<TestVM>()
+            //{
+            //    new TestVM() { Id = 1, Question = "q1", A1 = "a1", A2 = "b1", A3 = "c1", A4 = "d1"},
+            //    new TestVM() { Id = 2, Question = "q2", A1 = "a2", A2 = "b2", A3 = "c2", A4 = "d2"},
+            //    new TestVM() { Id = 3, Question = "q3", A1 = "a3", A2 = "b3", A3 = "c3", A4 = "d3"},
+            //    new TestVM() { Id = 4, Question = "q4", A1 = "a4", A2 = "b4", A3 = "c4", A4 = "d4"},
+            //    new TestVM() { Id = 5, Question = "q5", A1 = "a5", A2 = "b5", A3 = "c5", A4 = "d5"}
+            //};
+            //return Json(tests);
         }
 
         private List<Test> getChallengeTests(User user, int challengeId)

@@ -4,7 +4,7 @@ for (let i = 0; i < 30; i++) {
 	labels[i] = i + 1;
 }
 
-const data = {
+const challanges = {
 	labels: labels,
 	datasets: [{
 		label: "Rewards",
@@ -19,7 +19,7 @@ var ctx = document.getElementById('performanceChart').getContext('2d');
 
 var perfomanceChart = new Chart(ctx, {
 	type: 'line',
-	data: data,
+	data: challanges,
 	options: {
 
 

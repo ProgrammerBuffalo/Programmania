@@ -2,131 +2,133 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="~/css/challenge.css">
-	<link rel="stylesheet" href="~/css/util/zeroing.css" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/challenge.css">
+    <link rel="stylesheet" href="~/css/util/zeroing.css" />
     <link rel="stylesheet" href="~/css/util/fonts.css" />
-	<link rel="stylesheet" href="~/css/Footer.css" />
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-	
+    <link rel="stylesheet" href="~/css/Footer.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-	<title>Challenge</title>
+    <title>Challenge</title>
 </head>
 
 <body>
-	<div class="wrapper">
-		<header class="header">
-			<div class="header__content">
-				<div class="arrow-left"></div>
-				<div class="avatar__image">
-					<img src="images/avatarImg.png" alt="avatar">
-				</div>
-				<h3 class="username">John</h3>
-				<div class="item">
-					<h3 class="item__title">Course: </h3>
-					<p class="item__subtitle">C#</p>
-				</div>
-				<div class="item">
-					<h3 class="item__title">Discipline: </h3>
-					<p class="item__subtitle">Sockets</p>
-				</div>
-			</div>
-		</header>
+    <div class="wrapper">
+        <header class="header">
+            <div class="header__content">
+                <div class="arrow-left"></div>
+                <div class="avatar__image">
+                    <img src="images/avatarImg.png" alt="avatar">
+                </div>
+                <h3 class="username">John</h3>
+                <div class="item">
+                    <h3 class="item__title">Course: </h3>
+                    <p class="item__subtitle">C#</p>
+                </div>
+                <div class="item">
+                    <h3 class="item__title">Discipline: </h3>
+                    <p class="item__subtitle">Sockets</p>
+                </div>
+            </div>
+        </header>
 
-		<main class="main">
-			<div class="answers-nav">
-				<a>
-					<div class="answer answer_choose"></div>
-				</a>
-				<a>
-					<div class="answer answer_choose"></div>
-				</a>
-				<a>
-					<div class="answer answer_unchoose"></div>
-				</a>
-				<a>
-					<div class="answer answer_unchoose"></div>
-				</a>
-				<a>
-					<div class="answer answer_unchoose"></div>
-				</a>
-				<a>
-					<div class="answer answer_choose"></div>
-				</a>
-				</div>
-			<div class="content">
-				
-				<div class="question">
-					<h2 class="question__title">Question:</h2>
-					<h3 class="question__text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
-						impedit
-						nulla ratione aut possimus ducimus cumque veniam odio voluptatem natus? Optio labore nisi eveniet
-						ducimus accusantium sint neque cumque reprehenderit.</h3>
+        <main class="main">
+            <div id="answersNav" class="answers-nav">
+                @*<div class="answer answer_choose"></div>
+                    <div class="answer answer_choose"></div>
+                    <div class="answer answer_unchoose"></div>
+                    <div class="answer answer_unchoose"></div>
+                    <div class="answer answer_unchoose"></div>
+                    <div class="answer answer_choose"></div>*@
+                @*<a>
+                    </a>
+                    <a>
+                    </a>
+                    <a>
+                    </a>
+                    <a>
+                    </a>
+                    <a>
+                    </a>
+                    <a>
+                    </a>*@
+            </div>
+            <div class="content">
 
-					<div class="question__answers">
-						<label class="rad-label">
-							<input type="radio" class="rad-input" name="rad" value="answer1"/>
-							<div class="rad-design"></div>
-							<div class="rad-text text-light">Answer 1</div>
-						</label>
+                <div class="question">
+                    <h2 class="question__title">Question:</h2>
+                    <h3 id="question" class="question__text">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
+                        impedit
+                        nulla ratione aut possimus ducimus cumque veniam odio voluptatem natus? Optio labore nisi eveniet
+                        ducimus accusantium sint neque cumque reprehenderit.
+                    </h3>
 
-						<label class="rad-label">
-							<input type="radio" class="rad-input" name="rad" value="answer2"/>
-							<div class="rad-design"></div>
-							<div class="rad-text text-light">Answer 2</div>
-						</label>
+                    <div class="question__answers">
+                        <label class="rad-label">
+                            <input id="rad1" data-id="0" type="radio" name="answer" class="rad-input" value="answer1" />
+                            <div class="rad-design"></div>
+                            <div id="answer1" class="rad-text text-light">Answer 1</div>
+                        </label>
 
-						<label class="rad-label">
-							<input type="radio" class="rad-input" name="rad" value="answer3"/>
-							<div class="rad-design"></div>
-							<div class="rad-text text-light">Answer 3</div>
-						</label>
+                        <label class="rad-label">
+                            <input id="rad2" data-id="1" type="radio" name="answer" class="rad-input" value="answer2" />
+                            <div class="rad-design"></div>
+                            <div id="answer2" class="rad-text text-light">Answer 2</div>
+                        </label>
 
-						<label class="rad-label">
-							<input type="radio" class="rad-input" name="rad" value="answer4" />
-							<div class="rad-design"></div>
-							<div class="rad-text text-light">Answer 4</div>
-						</label>
-					</div>
+                        <label class="rad-label">
+                            <input id="rad3" data-id="2" type="radio" name="answer" class="rad-input" value="answer3" />
+                            <div class="rad-design"></div>
+                            <div id="answer3" class="rad-text text-light">Answer 3</div>
+                        </label>
 
-					<div class="buttons">
-						<div class="btn__arrows">
-							<div class="btn__prev"></div>
-							<div class="btn__next"></div>
-						</div>
-					</div>
-				</div>
+                        <label class="rad-label">
+                            <input id="rad4" data-id="3" type="radio" name="answer" class="rad-input" value="answer4" />
+                            <div class="rad-design"></div>
+                            <div id="answer4" class="rad-text text-light">Answer 4</div>
+                        </label>
+                    </div>
 
-				<div class="statistic">
-					<!-- <div class="statistic-block block_answers">
-						<h3 class="statistic-block__title">Correct answers: </h3>
-						<h5 class="statistic-block__text">6 / 10</h5>
-					</div> -->
+                    <div class="buttons">
+                        <div class="btn__arrows">
+                            <div id="btnPrev" class="btn__prev"></div>
+                            <div id="btnNext" class="btn__next"></div>
+                        </div>
+                    </div>
+                </div>
 
-					<div class="statistic-block block_time">
-						<h3 class="statistic-block__title">Time left: </h3>
-						<h5 class="statistic-block__text" id="timer-show">01:30</h5>
-					</div>
+                <div class="statistic">
+                    <!-- <div class="statistic-block block_answers">
+                        <h3 class="statistic-block__title">Correct answers: </h3>
+                        <h5 class="statistic-block__text">6 / 10</h5>
+                    </div> -->
 
-					<div class="statistic-block block_end" style="">
-						<div class="flip">
-							<div class="flip__front">
-								<h3>End test</h3>
-							</div>
+                    <div class="statistic-block block_time">
+                        <h3 class="statistic-block__title">Time left: </h3>
+                        <h5 class="statistic-block__text" id="timer-show">01:30</h5>
+                    </div>
 
-							<div class="flip__back">
-								<h3>If you end the test, you can't return to your answers</h3>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</main>
+                    <div id="endTest" class="statistic-block block_end">
+                        <div class="flip">
+                            <div class="flip__front">
+                                <h3>End test</h3>
+                            </div>
 
-		 <footer class="footer">
+                            <div class="flip__back">
+                                <h3>If you end the test, you can't return to your answers</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
             <div class="footer-links" data-aos="zoom-in" data-aos-duration="700">
                 <a href="#" class="footer-links_first">
                     <div class="footer-link__image">
@@ -150,12 +152,12 @@
             <div class="footer__text" data-aos="zoom-in" data-aos-duration="700">
                 <h5>&#x24B8; 2021 Programmania. All rights reserved.</h5>
             </div>
-    </footer>
-	</div>
-	<script src="~/js/util/timer.js"></script>
-	<script src="~/js/loadAnswer.js"></script>
-	<script src="~/js/saveAnswer.js"></script>
-	<script>AOS.init();</script> 
+        </footer>
+    </div>
+
+    <script src="~/js/util/timer.js"></script>
+    <script src="~/js/challenge.js"></script>
+    <script>AOS.init();</script>
 </body>
 
 </html>

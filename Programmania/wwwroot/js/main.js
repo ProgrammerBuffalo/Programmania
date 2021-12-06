@@ -139,17 +139,39 @@ function getPerformance() {
     });
 }
 
+//async function getChallanges() {
+//    let data = await getOfferedChallenges();
+
+//    let i = 0;
+//    for (i; i < data.length; i++) {
+//        challanges.push(data[i]);
+//        $('#challanges').append(createOfferedChallangeItem(challanges[i], i));
+//    }
+
+//    if (challanges.length < 7) {
+//        data = await getPossibleChallenges();
+//        for (var j = 0; j < data.length; j++, i++) {
+//            challanges.push(data[j]);
+//            $('#challanges').append(createPossibleChallangeItem(challanges[i], i));
+//        }
+//    }
+//}
+
 async function getChallanges() {
-    let data = await getOfferedChallenges();
+    let data = await getPossibleChallenges();
 
     let i = 0;
-    for (i; i < data.length; i++)
-        $('#challanges').append(getChallangeItem(false, data[i], i))
+    for (i; i < data.length; i++) {
+        challanges.push(data[i]);
+        $('#challanges').append(createPossibleChallangeItem(challanges[i], i));
+    }
 
-    if (data.length < 7) {
-        data = await getPossibleChallenges();
-        for (var j = 0; j < data.length; j++, i++)
-            $('#challanges').append(getChallangeItem(true, data[j], i));
+    if (challanges.length < 7) {
+        data = await getOfferedChallenges();
+        for (var j = 0; j < data.length; j++, i++) {
+            challanges.push(data[j]);
+            $('#challanges').append(createOfferedChallangeItem(challanges[i], i));
+        }
     }
 }
 
@@ -161,10 +183,6 @@ function getPossibleChallenges() {
         dataType: 'json',
         success: function (data) {
             return data;
-            //for (var i = 0; i < data.length; i++) {
-            //    challanges.append(data[i]);
-            //    $('#challanges').append(getChallangeItem(true, data[i]));
-            //}
         }
     });
 }
@@ -177,22 +195,37 @@ function getOfferedChallenges() {
         dataType: 'json',
         success: function (data) {
             return data;
-            //for (var i = 0; i < data.length; i++) {
-            //    challanges.append(data[i]);
-            //    $('#challanges').append(getChallangeItem(false, data[i]))
-            //}
         }
     });
 }
 
-function acceptCreateableChallange() {
+function acceptPosibleChallange(el) {
+    let index = $(el).attr('data-id');
 
+    $.ajax({
+        type: 'POST',
+        url: '/Challenge/create-challenge',
+        dataType: 'json',
+        data: { 'courseId': challanges[index].courseId, 'userId': challanges[index].opponentDescription.id },
+        success: function () {
+            window.location.href = '/Challenge';
+        }
+    });
 }
 
-function acceptOfferedChallange() {
+function acceptOfferedChallange(el) {
+    let index = $(el).attr('data-id');
 
+    $.ajax({
+        type: 'POST',
+        url: '/Challenge/accept-challenge',
+        dataType: 'json',
+        data: { 'challengeId': challanges[index].id },
+        success: function () {
+            window.location.href = '/Challenge';
+        }
+    });
 }
-
 
 $(document).ready(function () {
     $('#disciplineBtn').click(function () {
