@@ -44,17 +44,38 @@ namespace Programmania.Services
 
         public Course GetCourse(int courseId)
         {
-            throw new System.NotImplementedException();
+            return db.Courses.FirstOrDefault(c => c.Id == courseId);
         }
 
         public IEnumerable<ListViewModel> GetCourseList()
         {
-            throw new System.NotImplementedException();
+            return db.Courses.Select(c => new ListViewModel() { Id = c.Id, Name = c.Name });
         }
 
         public bool UpdateCouse(CourseDTO dto)
         {
-            throw new System.NotImplementedException();
+            Course course = db.Courses.Where(c => c.Id == dto.CourseId).FirstOrDefault();
+            if (course != null)
+            {
+                if (dto.Image != null)
+                {
+                    if (course.StreamId != null)
+                    {
+                        fileService.UpdateDocument(course.StreamId, dto.Image);
+                    }
+                    else
+                    {
+                        SqlFileContext sqlFileContext = fileService.AddEmptyDocument(Guid.NewGuid().ToString() + Path.GetExtension(dto.Image.FileName));
+                        fileService.FillDocumentContent(sqlFileContext, dto.Image);
+                        course.StreamId = sqlFileContext.StreamId;
+                    }
+                }
+                course.Name = dto.Name;
+                course.Description = dto.Description;
+                db.SaveChanges();
+                return true;
+            }
+            return false;
         }
 
         public bool DeleteCourse(int courseId)
@@ -85,19 +106,41 @@ namespace Programmania.Services
             return discipline.Id;
         }
 
-        public Discipline GetDiscipline(int courseId)
+        public Discipline GetDiscipline(int disciplineId)
         {
-            throw new System.NotImplementedException();
+            return db.Disciplines.FirstOrDefault(d =>  d.Id == disciplineId);
         }
 
-        public IEnumerable<ListViewModel> GetDisciplineList()
+        public IEnumerable<ListViewModel> GetDisciplineList(int courseId)
         {
-            throw new System.NotImplementedException();
+            return db.Disciplines.Where(d => d.CourseId == courseId)
+                                 .Select(d => new ListViewModel() { Id = d.Id, Name = d.Name });
         }
 
-        public bool UpdateDiscipline(DisciplineDTO discipline)
+        public bool UpdateDiscipline(DisciplineDTO dto)
         {
-            throw new System.NotImplementedException();
+            Discipline discipline = db.Disciplines.FirstOrDefault(d => d.Id == dto.DisciplineId);
+            if (discipline != null)
+            {
+                if (dto.Image != null)
+                {
+                    if (discipline.StreamId != null)
+                    {
+                        fileService.UpdateDocument(discipline.StreamId, dto.Image);
+                    }
+                    else
+                    {
+                        SqlFileContext sqlFileContext = fileService.AddEmptyDocument(Guid.NewGuid().ToString() + Path.GetExtension(dto.Image.FileName));
+                        fileService.FillDocumentContent(sqlFileContext, dto.Image);
+                        discipline.StreamId = sqlFileContext.StreamId;
+                    }
+                }
+                discipline.Name = dto.Name;
+                discipline.Points = dto.Points;
+                db.SaveChanges();
+                return true;
+            }
+            return false;
         }
 
         public bool DeleteDiscipline(int disciplineId)

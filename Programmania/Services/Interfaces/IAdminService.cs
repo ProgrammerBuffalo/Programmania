@@ -17,8 +17,8 @@ namespace Programmania.Services.Interfaces
 
         #region Discipline
         int AddDiscipline(DisciplineDTO discipline);
-        IEnumerable<ListViewModel> GetDisciplineList();
-        Discipline GetDiscipline(int courseId);
+        IEnumerable<ListViewModel> GetDisciplineList(int courseId);
+        Discipline GetDiscipline(int disciplineId);
         bool UpdateDiscipline(DisciplineDTO discipline);
         bool DeleteDiscipline(int disciplineId);
         #endregion

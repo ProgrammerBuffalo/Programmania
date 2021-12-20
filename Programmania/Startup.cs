@@ -48,8 +48,6 @@ namespace Programmania
 
             services.AddControllersWithViews()
                 .AddViewLocalization();
-
-            //services.AddLocalization(options => options.ResourcesPath = "Resources");
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

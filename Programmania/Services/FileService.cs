@@ -62,7 +62,7 @@ namespace Programmania.Services
             return null;
         }
 
-        public bool FillDocumentContent(Models.SqlFileContext emptyFileContext, IFormFile formFile)
+        public bool FillDocumentContent(SqlFileContext emptyFileContext, IFormFile formFile)
         {
             using (SqlFileStream sqlFileStream = new SqlFileStream(emptyFileContext.Path, emptyFileContext.TransactionContext, FileAccess.Write))
             {
@@ -74,7 +74,7 @@ namespace Programmania.Services
             return true;
         }
 
-        public bool FillDocumentContent(Models.SqlFileContext emptyFileContext, string content)
+        public bool FillDocumentContent(SqlFileContext emptyFileContext, string content)
         {
             using (SqlFileStream sqlFileStream = new SqlFileStream(emptyFileContext.Path, emptyFileContext.TransactionContext, FileAccess.Write))
             {
