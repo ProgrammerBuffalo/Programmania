@@ -252,8 +252,6 @@ namespace Programmania.Controllers
 
             return userDisciplines.ToArray();
 
-        }
-
-
+        }        
     }
 }

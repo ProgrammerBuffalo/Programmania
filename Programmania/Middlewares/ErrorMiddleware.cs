@@ -54,7 +54,7 @@ namespace Programmania.Middlewares
                     case AuthorizeException e:
                         {
                             response.StatusCode = StatusCodes.Status401Unauthorized;
-                            response.Headers.Add("RedirectTo", path.Value);
+                            //response.Headers.Add("RedirectTo", path.Value);
                             break;
                         }
                     default:

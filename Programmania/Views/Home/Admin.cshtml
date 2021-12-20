@@ -1,0 +1,343 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <h2>This is menu</h2>
+    <div>
+        <div>
+            <label>Course</label>
+            <button id="courseAddMenu">Add</button>
+            <button id="courseUpdateMenu">Update</button>
+            <button id="courseDeleteMenu">Delete</button>
+        </div>
+        <div>
+            <label>Discipline</label>
+            <button id="disciplineAddMenu">Add</button>
+            <button id="disciplineUpdateMenu">Update</button>
+            <button id="disciplineDeleteMenu">Delete</button>
+        </div>
+        <div>
+            <label>Lesson</label>
+            <button id="lessonAddMenu">Add</button>
+            <button id="lessonUpdateMenu">Update</button>
+            <button id="lessonDeleteMenu">Delete</button>
+        </div>
+        <div>
+            <label>Test</label>
+            <button id="testAddMenu">Add</button>
+            <button id="testUpdateMenu">Update</button>
+            <button id="testDeleteMenu">Delete</button>
+        </div>
+    </div>
+
+    <div>
+        <h1>Add Course</h1>
+        <form>
+            <label>Name</label>
+            <input type="text" />
+            <label>Description</label>
+            <input type="text" />
+            <label>Image</label>
+            <input type="file" />
+            <input type="submit" value="Save" />
+        </form>
+    </div>
+
+    <div>
+        <h1>Update Course</h1>
+        <form>
+            <label>Select course to update</label>
+            <input list="brow">
+            <datalist id="brow">
+                <option data-id="1" value="aaa">
+                <option data-id="2" value="bbb">
+            </datalist>
+
+            <label>Name</label>
+            <input type="text" />
+            <label>Description</label>
+            <input type="text" />
+            <label>Image</label>
+            <input type="file" />
+            <input type="submit" value="Update" />
+        </form>
+    </div>
+
+    <div>
+        <h1>Delete Course</h1>
+        <form>
+            <label>Select course to delete</label>
+            <select>
+                <option data-id="">aaa</option>
+                <option data-id="">bbb</option>
+            </select>
+
+            <label>Name</label>
+            <input type="text" readonly />
+            <label>Description</label>
+            <input type="text" readonly />
+            <label>Image</label>
+            <input type="file" readonly />
+            <input type="submit" value="Delete" />
+        </form>
+    </div>
+
+    <div>
+        <h1>Add Discipline</h1>
+        <form>
+            <label>Select course for discipline</label>
+            <select>
+                <option data-id="">aaa</option>
+                <option data-id="">bbb</option>
+            </select>
+
+            <label>Name</label>
+            <input type="text" />
+            <label>Points</label>
+            <input type="text" />
+            <label>Image</label>
+            <input type="file" />
+            <input type="submit" value="Add" />
+        </form>
+
+    </div>
+
+    <div>
+        <h1>Update Discipline</h1>
+        <form>
+            <label>Select course for discipline</label>
+            <select>
+                <option data-id="">aaa</option>
+                <option data-id="">bbb</option>
+            </select>
+
+            <label>Name</label>
+            <input type="text" />
+            <label>Points</label>
+            <input type="text" />
+            <label>Image</label>
+            <input type="file" />
+            <input type="submit" value="Update" />
+        </form>
+    </div>
+
+    <div>
+        <h1>Delete Discipline</h1>
+        <form>
+            <label>Select course for discipline</label>
+            <select>
+                <option data-id="">aaa</option>
+                <option data-id="">bbb</option>
+            </select>
+
+            <label>Name</label>
+            <input type="text" />
+            <label>Points</label>
+            <input type="text" />
+            <label>Image</label>
+            <input type="file" />
+            <input type="submit" value="Delete" />
+        </form>
+
+    </div>
+
+    <div>
+        <h1>Add Lesson</h1>
+        <form>
+            <label>Select course for lesson</label>
+            <select>
+                <option data-id="">aaa</option>
+                <option data-id="">bbb</option>
+            </select>
+
+            <label>Select discipline for lesson</label>
+            <select>
+                <option data-id="">aaa</option>
+                <option data-id="">bbb</option>
+            </select>
+
+            <label>Name</label>
+            <input type="text" />
+            <label>Content</label>
+            <input type="text" />
+            <input type="submit" value="Add" />
+        </form>
+    </div>
+
+    <div>
+        <h1>Update Lesson</h1>
+        <form>
+            <label>Select course for lesson</label>
+            <select>
+                <option data-id="">aaa</option>
+                <option data-id="">bbb</option>
+            </select>
+
+            <label>Select discipline for lesson</label>
+            <select>
+                <option data-id="">aaa</option>
+                <option data-id="">bbb</option>
+            </select>
+
+            <label>Name</label>
+            <input type="text" />
+            <label>Content</label>
+            <input type="text" />
+            <input type="submit" value="Update" />
+        </form>
+    </div>
+
+    <div>
+        <h1>Delete Lesson</h1>
+        <form>
+            <label>Select course for lesson</label>
+            <select>
+                <option data-id="">aaa</option>
+                <option data-id="">bbb</option>
+            </select>
+
+            <label>Select discipline for lesson</label>
+            <select>
+                <option data-id="">aaa</option>
+                <option data-id="">bbb</option>
+            </select>
+
+            <label>Name</label>
+            <input type="text" />
+            <label>Content</label>
+            <input type="text" />
+            <input type="submit" value="Delete" />
+        </form>
+    </div>
+
+    <div>
+        <h1>Add Test</h1>
+        <form>
+            <label>Select course for test</label>
+            <select>
+                <option data-id="">aaa</option>
+                <option data-id="">bbb</option>
+            </select>
+
+            <label>Select discipline for test</label>
+            <select>
+                <option data-id="">aaa</option>
+                <option data-id="">bbb</option>
+            </select>
+
+            <label>Select lesson for test</label>
+            <select>
+                <option data-id="">aaa</option>
+                <option data-id="">bbb</option>
+            </select>
+
+            <label>Question</label>
+            <input type="text" />
+            <label>Answer: A</label>
+            <input type="text" />
+            <label>Answer: B</label>
+            <input type="text" />
+            <label>Answer: C</label>
+            <input type="text" />
+            <label>Answer: D</label>
+            <input type="text" />
+            <input type="submit" value="Add" />
+        </form>
+    </div>
+
+    <div>
+        <h1>Update Test</h1>
+        <form>
+            <label>Select course for test</label>
+            <select>
+                <option data-id="">aaa</option>
+                <option data-id="">bbb</option>
+            </select>
+
+            <label>Select discipline for test</label>
+            <select>
+                <option data-id="">aaa</option>
+                <option data-id="">bbb</option>
+            </select>
+
+            <label>Select lesson for test</label>
+            <select>
+                <option data-id="">aaa</option>
+                <option data-id="">bbb</option>
+            </select>
+
+            <label>Question</label>
+            <input type="text" />
+            <label>Answer: A</label>
+            <input type="text" />
+            <label>Answer: B</label>
+            <input type="text" />
+            <label>Answer: C</label>
+            <input type="text" />
+            <label>Answer: D</label>
+            <input type="text" />
+            <input type="submit" value="Update" />
+        </form>
+    </div>
+
+    <div>
+        <h1>Delete Test</h1>
+        <form>
+            <label>Select course for test</label>
+            <select>
+                <option data-id="">aaa</option>
+                <option data-id="">bbb</option>
+            </select>
+
+            <label>Select discipline for test</label>
+            <select>
+                <option data-id="">aaa</option>
+                <option data-id="">bbb</option>
+            </select>
+
+            <label>Select lesson for test</label>
+            <select>
+                <option data-id="">aaa</option>
+                <option data-id="">bbb</option>
+            </select>
+
+            <label>Question</label>
+            <input type="text" />
+            <label>Answer: A</label>
+            <input type="text" />
+            <label>Answer: B</label>
+            <input type="text" />
+            <label>Answer: C</label>
+            <input type="text" />
+            <label>Answer: D</label>
+            <input type="text" />
+            <input type="submit" value="Remove" />
+        </form>
+    </div>
+
+    @*<h1>Add Course</h1>
+        <form>
+        </form>
+
+        <h1>Add Discipline</h1>
+        <form>
+        </form>
+
+        <h1>Add Lesson</h1>
+        <form>
+        </form>
+
+        <h1>Add Test</h1>
+        <form>
+        </form>*@
+
+    <script src="~/js/admin.js"></script>
+</body>
+</html>

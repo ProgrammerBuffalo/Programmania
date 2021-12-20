@@ -8,6 +8,7 @@ using Programmania.Services.Interfaces;
 using System;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace Programmania.Services
 {
@@ -69,6 +70,15 @@ namespace Programmania.Services
                 {
                     stream.CopyTo(sqlFileStream);
                 }
+            }
+            return true;
+        }
+
+        public bool FillDocumentContent(Models.SqlFileContext emptyFileContext, string content)
+        {
+            using (SqlFileStream sqlFileStream = new SqlFileStream(emptyFileContext.Path, emptyFileContext.TransactionContext, FileAccess.Write))
+            {
+                sqlFileStream.Write(Encoding.UTF8.GetBytes(content), 0, content.Length);
             }
             return true;
         }

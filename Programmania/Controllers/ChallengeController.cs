@@ -38,7 +38,8 @@ namespace Programmania.Controllers
         [HttpGet("Result")]
         public IActionResult Result()
         {
-            return View();
+            //dbContext.Challenges.Select(c => c.Id == challangeId);
+            return View("/Views/Home/ChallengeResult.cshtml");
         }
 
         [HttpGet("challenge-stats")]

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -16,7 +15,9 @@ namespace Programmania.Models
 
         [Column("Name")]
         public string Name { get; set; }
-        
+
+        public int DisciplineId { get; set; }
+
         public Discipline Discipline { get; set; }
 
         public int TestId { get; set; }
@@ -28,7 +29,7 @@ namespace Programmania.Models
 
         public Lesson()
         {
-            
+
         }
     }
 }

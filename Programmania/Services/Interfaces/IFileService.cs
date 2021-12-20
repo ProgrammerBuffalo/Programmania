@@ -13,6 +13,8 @@ namespace Programmania.Services.Interfaces
 
         public bool FillDocumentContent(Models.SqlFileContext emptyFileContext, IFormFile formFile);
 
+        public bool FillDocumentContent(Models.SqlFileContext emptyFileContext, string content);
+
         public bool UpdateDocument(Guid guid, IFormFile formFile);
 
         public bool RemoveDocument(Guid guid);

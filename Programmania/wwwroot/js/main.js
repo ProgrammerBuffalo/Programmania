@@ -15,7 +15,7 @@ function getData(rewards) {
             j++;
             data[j] = { exp: rewards[i].experience, day: date2.getDate() }
             date1 = date2;
-        }
+        }   
     }
     return data;
 }

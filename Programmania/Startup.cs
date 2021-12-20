@@ -44,6 +44,7 @@ namespace Programmania
             services.AddScoped<IProfileService, ProfileService>();
             services.AddScoped<IPerformanceService, PerformanceService>();
             services.AddScoped<IStaticService, StaticService>();
+            services.AddScoped<IAdminService, AdminService>();
 
             services.AddControllersWithViews()
                 .AddViewLocalization();
