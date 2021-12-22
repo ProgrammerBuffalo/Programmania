@@ -26,15 +26,16 @@ namespace Programmania.Services.Interfaces
         #region Lesson
         int AddLesson(AddLessonDTO lesson);
         IEnumerable<ListViewModel> GetLessonList(int disciplineId);
-        string GetLesson(int lessonId);
-        bool UpdateLesson(string lesson);
+        LessonViewModel GetLesson(int lessonId);
+        bool UpdateLesson(int lessonId, string name, int order);
+        bool UpdateContent(int lessonId, string content);
         bool DeleteLesson(int lessonId);
         #endregion
 
         #region Test
-        int AddTest(TestDTO test);
+        int AddTest(AddTestDTO test);
         Test GetTest(int testId);
-        bool UpdateTest(TestDTO dto);
+        bool UpdateTest(UpdateTestDTO dto);
         bool DeleteTest(int testId);
         #endregion
     }

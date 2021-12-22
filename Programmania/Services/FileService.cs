@@ -103,6 +103,23 @@ namespace Programmania.Services
             return true;
         }
 
+        public bool UpdateDocument(Guid guid, string content)
+        {
+            var fileContext = getSqlFileContext(guid);
+            using (SqlFileStream sqlFileStream = new SqlFileStream(fileContext.Path, fileContext.TransactionContext, FileAccess.Write))
+            {
+                byte[] byteArray = Encoding.ASCII.GetBytes(content);
+                using (MemoryStream stream = new MemoryStream(byteArray))
+                {
+                    using (StreamReader reader = new StreamReader(stream))
+                    {
+                        reader.BaseStream.CopyTo(sqlFileStream);
+                    }
+                }
+            }
+            return true;
+        }
+
         private SqlFileContext getSqlFileContext(Guid guid)
         {
             var doc = dbContext.Documents
@@ -112,5 +129,6 @@ namespace Programmania.Services
             else
                 return null;
         }
+
     }
 }

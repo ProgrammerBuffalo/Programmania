@@ -17,6 +17,8 @@ namespace Programmania.Services.Interfaces
 
         public bool UpdateDocument(Guid guid, IFormFile formFile);
 
+        public bool UpdateDocument(Guid guid, string content);
+
         public bool RemoveDocument(Guid guid);
     }
 }

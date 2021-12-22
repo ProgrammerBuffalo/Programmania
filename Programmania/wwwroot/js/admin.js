@@ -18,7 +18,9 @@
 
 
 $(document).ready(function () {
-
+    $('#brow').change(function () {
+        console.log($(this).val());
+    });
 });
 
 //#region Course

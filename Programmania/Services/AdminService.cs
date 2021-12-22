@@ -108,7 +108,7 @@ namespace Programmania.Services
 
         public Discipline GetDiscipline(int disciplineId)
         {
-            return db.Disciplines.FirstOrDefault(d =>  d.Id == disciplineId);
+            return db.Disciplines.FirstOrDefault(d => d.Id == disciplineId);
         }
 
         public IEnumerable<ListViewModel> GetDisciplineList(int courseId)
@@ -171,19 +171,52 @@ namespace Programmania.Services
             return lesson.Id;
         }
 
-        public string GetLesson(int lessonId)
+        public LessonViewModel GetLesson(int lessonId)
         {
-            throw new System.NotImplementedException();
+            return db.Lessons.Where(l => l.Id == lessonId)
+                             .Select(l => new LessonViewModel()
+                             {
+                                 Name = l.Name,
+                                 Order = l.Order,
+                                 Content = System.Text.Encoding.UTF8.GetString(
+                                     fileService.GetDocument(db.Documents
+                                        .Where(d => d.StreamId == l.StreamId)
+                                        .Select(d => d.Path)
+                                        .FirstOrDefault()))
+                             })
+                             .FirstOrDefault();
         }
 
         public IEnumerable<ListViewModel> GetLessonList(int disciplineId)
         {
-            throw new System.NotImplementedException();
+            return db.Lessons.Where(l => l.DisciplineId == disciplineId).Select(l => new ListViewModel() { Id = l.Id, Name = l.Name });
         }
 
-        public bool UpdateLesson(string lesson)
+        public bool UpdateLesson(int lessonId, string name, int order)
         {
-            throw new System.NotImplementedException();
+            Lesson lesson = db.Lessons.Where(l => l.Id == lessonId).FirstOrDefault();
+            if (lesson == null)
+                return false;
+
+            Lesson lesson1 = db.Lessons.Where(l => l.DisciplineId == lesson.DisciplineId && l.Order == order).FirstOrDefault();
+            if (lesson1 == null)
+                return false;
+
+            lesson.Order = order;
+            lesson1.Order = lesson.Order;
+            db.SaveChanges();
+            return true;
+        }
+
+        public bool UpdateContent(int lessonId, string content)
+        {
+            Guid streamId = db.Lessons.Where(l => l.Id == lessonId).Select(l => l.StreamId).FirstOrDefault();
+            if (streamId == null)
+                return false;
+
+            fileService.UpdateDocument(streamId, content);
+
+            return true;
         }
 
         public bool DeleteLesson(int lessonId)
@@ -193,19 +226,48 @@ namespace Programmania.Services
         #endregion
 
         #region Test
-        public int AddTest(TestDTO test)
+        public int AddTest(AddTestDTO dto)
         {
-            throw new System.NotImplementedException();
+            Lesson lesson = db.Lessons.Where(l => l.Id == dto.LessonId).FirstOrDefault();
+            if (lesson == null)
+                return 0;
+
+            Test test = new Test()
+            {
+                Question = dto.Question,
+                Answer1 = dto.Answer1,
+                Answer2 = dto.Answer2,
+                Answer3 = dto.Answer3,
+                Answer4 = dto.Answer4,
+                Correct = 1
+            };
+            db.Tests.Add(test);
+            db.SaveChanges();
+
+            lesson.Test = test;
+            db.SaveChanges();
+            return test.Id;
         }
 
         public Test GetTest(int testId)
         {
-            throw new System.NotImplementedException();
+            return db.Tests.Where(t => t.Id == testId).FirstOrDefault();
         }
 
-        public bool UpdateTest(TestDTO dto)
+        public bool UpdateTest(UpdateTestDTO dto)
         {
-            throw new System.NotImplementedException();
+            Test test = db.Tests.Where(t => t.Id == dto.TestId).FirstOrDefault();
+            if (test == null)
+                return false;
+
+            test.Question = dto.Question;
+            test.Answer1 = dto.Answer1;
+            test.Answer2 = dto.Answer2;
+            test.Answer3 = dto.Answer3;
+            test.Answer4 = dto.Answer4;
+
+            db.SaveChanges();
+            return true;
         }
 
         public bool DeleteTest(int testId)
