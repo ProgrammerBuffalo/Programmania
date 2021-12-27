@@ -18,7 +18,7 @@
 
         input[type=text]:focus,
         input[type=password]:focus,
-        input[type=email]:focus{
+        input[type=email]:focus {
             outline: none;
             border: 3px solid #ffc14d;
             box-shadow: 4px 4px 10px rgba(255, 217, 145, 0.06);
@@ -75,13 +75,14 @@
 .checkbox-label {
     display: block;
     margin-bottom: 4px;
-    position: relative; 
-    padding-left: 30px; 
+    position: relative;
+    padding-left: 30px;
     cursor: pointer;
 }
+
     .checkbox-label input[type=radio] {
-        position: absolute; 
-        opactiy: 0;
+        position: absolute;
+        opacity: 0;
         width: 0;
         height: 0;
     }
@@ -96,6 +97,7 @@ input[type="file"] {
     padding: 6px 12px;
     cursor: pointer;
 }
+
 .btn {
     box-sizing: border-box;
     width: 100%;
@@ -107,18 +109,67 @@ input[type="file"] {
     margin: 0 auto !important;
     margin-top: 10px !important;
     font-size: 1em;
+    cursor: pointer;
 }
+
     .btn:hover {
         opacity: 0.7;
         box-shadow: 5px 5px 12px rgba(0,0,0,0.06);
     }
 
-.btn-danger {
-    background-color: #ffc14d;
-    color: #fff;
-    
+.btn-inline {
+    display: inline-block;
+    width: 25%;
 }
-.btn-success {
-    background-color: #4dff5c;
+
+.btn-danger {
+    background-color: #df4759;
     color: #fff;
+}
+
+.btn-success {
+    background-color: #42ba96;
+    color: #fff;
+}
+
+.btn-info {
+    background-color: #5bc0de;
+    color: #000;
+}
+
+.btn-primary {
+    background-color: #0275d8;
+    color: #fff;
+}
+
+.btn-warning {
+    background-color: #f0ad4e;
+    color: #000;
+}
+
+.select {
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: 3px solid #eee;
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.06);
+    width: 100%;
+}
+
+    .select:not(:last-child) {
+        margin-bottom: 20px;
+    }
+
+select:focus {
+    border: 3px solid #ffc14d;
+    box-shadow: 4px 4px 10px rgba(255, 217, 145, 0.06);
+}
+
+.form-container {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    max-width: 500px;
+    height: auto;
+    padding: 20px;
+    margin: 0 auto;
+    border-radius: 20px;
 }

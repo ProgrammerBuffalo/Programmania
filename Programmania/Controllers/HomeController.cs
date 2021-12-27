@@ -40,6 +40,13 @@ namespace Programmania.Controllers
             return View();
         }
 
+        [AllowAnonymous]
+        [HttpGet("Form")]
+        public IActionResult Form()
+        {
+            return View();
+        }
+
         [HttpGet("Main/get-user-info")]
         public IActionResult GetUserLevel()
         {
